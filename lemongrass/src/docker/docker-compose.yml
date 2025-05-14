@@ -1,0 +1,57 @@
+# docker-compose.yml for Lemongrass project
+# Configures PostgreSQL and Spring Boot services for the culinary community web app
+
+version: '3.9'
+
+services:
+  postgresql_lemongrass:
+    container_name: postgresql_lemongrass
+    image: postgres:16.2
+    environment:
+      # Database credentials (use .env file in production)
+      - POSTGRES_USER=lemongrass
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=lemongrass
+    ports:
+      - "5432:5432"
+    volumes:
+      # Persist PostgreSQL data
+      - lemongrass_data:/var/lib/postgresql/data
+#    healthcheck:
+#      test: ["CMD-SHELL", "pg_isready -U lemongrass -d lemongrass"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
+#      start_period: 10s
+    restart: on-failure
+    networks:
+      - lemongrass_network
+
+  # Spring Boot application (optional, uncomment if needed)
+  # app:
+  #   container_name: lemongrass_app
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql_lemongrass:5432/lemongrass
+  #     - SPRING_DATASOURCE_USERNAME=lemongrass
+  #     - SPRING_DATASOURCE_PASSWORD=${POSTGRES_PASSWORD:-LemongrassSecure2025}
+  #     - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     postgresql_lemongrass:
+  #       condition: service_healthy
+  #   restart: on-failure
+  #   networks:
+  #     - lemongrass_network
+
+volumes:
+  lemongrass_data:
+    name: lemongrass_data
+    driver: local
+
+networks:
+  lemongrass_network:
+    driver: bridge
