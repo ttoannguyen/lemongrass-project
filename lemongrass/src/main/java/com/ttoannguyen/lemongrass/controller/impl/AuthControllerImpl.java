@@ -1,11 +1,11 @@
-package com.ttoannguyen.lemongrass.controller;
+package com.ttoannguyen.lemongrass.controller.impl;
 
+import com.ttoannguyen.lemongrass.controller.AuthController;
 import com.ttoannguyen.lemongrass.dto.request.AccountRequest;
 import com.ttoannguyen.lemongrass.dto.request.LoginRequest;
 import com.ttoannguyen.lemongrass.dto.response.AccountResponse;
 import com.ttoannguyen.lemongrass.dto.response.LoginResponse;
 import com.ttoannguyen.lemongrass.security.service.AuthService;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;

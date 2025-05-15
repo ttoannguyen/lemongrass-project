@@ -40,7 +40,7 @@ public class AccountEntity extends AbstractAuditingEntity<String> implements Use
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -50,11 +50,16 @@ public class AccountEntity extends AbstractAuditingEntity<String> implements Use
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
-                .collect(Collectors.toList());
+        List<SimpleGrantedAuthority> authorities = roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName().name()))
+                .toList();
+        roles.stream()
+                .flatMap(roleEntity -> roleEntity.getScopes().stream())
+                .map(scopeEntity -> new SimpleGrantedAuthority(scopeEntity.getName()))
+                .forEach(authorities::add);
+        return authorities;
     }
-
+    
     @Override
     public String getPassword() {
         return password; // Trả về password thực

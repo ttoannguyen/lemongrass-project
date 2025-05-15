@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "roles")
@@ -23,4 +24,11 @@ public class RoleEntity extends AbstractAuditingEntity<Long> implements Serializ
     @Column(name = "name", length = 20, nullable = false)
     ERole name = ERole.USER;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "role_scopes",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "scope_id")
+    )
+    private List<ScopeEntity> scopes;
 }

@@ -2,11 +2,8 @@ package com.ttoannguyen.lemongrass.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-import java.util.List;
-
-public record RoleDTO(
+public record ScopeDTO(
         Long id,
-        @NotBlank String name,
-        List<Long> scopeIds
+        @NotBlank String name
 ) {
 }
