@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.service;
 
 import com.ttoannguyen.lemongrass.config.JwtUtil;
+import com.ttoannguyen.lemongrass.entity.AccountEntity;
 import com.ttoannguyen.lemongrass.repository.AccountRepository;
 import com.ttoannguyen.lemongrass.service.dto.request.AccountRequest;
 import com.ttoannguyen.lemongrass.service.mapper.AccountMapper;
@@ -23,5 +24,17 @@ public class AuthService {
         if(accountRepository.existsByUsername(request.getUsername())){
             throw new IllegalArgumentException("Username already exists");
         }
+        if(accountRepository.existsByEmail(request.getEmail())){
+            throw new IllegalArgumentException("Email already exists!");
+        }
+
+        AccountEntity entity = accountMapper.toEntity(request);
+        entity.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        AccountEntity saveEntity = accountRepository.save(entity);
+
+        String token = jwtUtil.generateToken(saveEntity.getUsername());
+
+        return new JwtResponseRecord(token, accountMapper.toResponseDto(saveEntity));
     }
 }
