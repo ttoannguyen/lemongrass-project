@@ -1,45 +1,87 @@
 package com.ttoannguyen.lemongrass.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.experimental.FieldDefaults;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.io.Serial;
-import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@Setter
-@Getter
 @Entity
-@Table(name = "users")
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class AccountEntity extends AbstractAuditingEntity<String> implements Serializable {
-    @Serial
-    private static final long serialVersionUID = 1L;
+@Table(name = "accounts")
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class AccountEntity extends AbstractAuditingEntity<String> implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+    private String id;
 
-    @Column(unique = true, nullable = false, name = "username")
-    String username;
+    @Column(unique = true, nullable = false)
+    private String username;
 
-    @Column(unique = true, name = "password")
-    String password;
+    @Column(unique = true, nullable = false)
+    private String email;
 
-    @Column(name = "first_name")
-    String firstName;
+    @Column(nullable = false)
+    private String password;
 
-    @Column(name = "last_name")
-    String lastName;
+    private String address;
 
-    @Column(unique = true, name = "email")
-    String email;
+    @Column(nullable = false)
+    private boolean inactive = false;
 
-    @Column(unique = true, name = "phone")
-    String phone;
+    @Column(name = "is_deleted", nullable = false)
+    private boolean isDeleted = false;
 
-    @Column(unique = true, name = "address")
-    String address;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private List<RoleEntity> roles;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return roles.stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public String getPassword() {
+        return password; // Trả về password thực
+    }
+
+    @Override
+    public String getUsername() {
+        return username; // Trả về username thực
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true; // Có thể thêm logic kiểm tra nếu cần
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return !inactive; // Tài khoản bị khóa nếu inactive = true
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true; // Có thể thêm logic kiểm tra nếu cần
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return !isDeleted; // Tài khoản không hoạt động nếu đã bị xóa
+    }
 }

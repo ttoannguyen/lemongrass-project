@@ -2,13 +2,10 @@ package com.ttoannguyen.lemongrass.repository;
 
 import com.ttoannguyen.lemongrass.entity.AccountEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.Optional;
+
 public interface AccountRepository extends JpaRepository<AccountEntity, String> {
-    AccountEntity findByUsername(String username);
-
-    boolean existsByUsername(String username);
-
-    boolean existsByEmail(String email);
+    Optional<AccountEntity> findByUsername(String username);
+    Optional<AccountEntity> findByEmail(String email);
 }

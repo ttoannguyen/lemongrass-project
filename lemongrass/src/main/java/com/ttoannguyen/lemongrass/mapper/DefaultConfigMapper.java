@@ -1,4 +1,4 @@
-package com.ttoannguyen.lemongrass.service.mapper;
+package com.ttoannguyen.lemongrass.mapper;
 
 
 import org.mapstruct.MapperConfig;
