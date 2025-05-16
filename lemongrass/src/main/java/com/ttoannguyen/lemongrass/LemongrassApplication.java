@@ -1,11 +1,12 @@
 package com.ttoannguyen.lemongrass;
 
 import io.micrometer.common.util.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -39,6 +40,7 @@ public class LemongrassApplication {
 
 		log.info(
 				"""
+                        
                         ----------------------------------------------------------
                         Application '{}' is running! Access URLs:
                         Local     : {}://localhost:{}{}
@@ -56,4 +58,5 @@ public class LemongrassApplication {
 				contextPath,
 				env.getActiveProfiles());
 	}
+
 }

@@ -1,13 +1,14 @@
 package com.ttoannguyen.lemongrass.mapper;
 
-import com.ttoannguyen.lemongrass.dto.request.AccountRequest;
-import com.ttoannguyen.lemongrass.dto.response.AccountResponse;
-import com.ttoannguyen.lemongrass.entity.AccountEntity;
+import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
+import com.ttoannguyen.lemongrass.entity.Account;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
-@Mapper(config = DefaultConfigMapper.class, uses = {RoleMapper.class})
-public interface AccountMapper extends EntityMapper<AccountResponse, AccountEntity> {
-    //    @Mapping(target = "roles", source = "roleIds")
-    AccountEntity toEntity(AccountRequest dto);
+
+@Mapper(componentModel = "spring")
+public interface AccountMapper {
+    Account toAccount(AccountCreateRequest request);
+
+    AccountResponse toAccountResponse(Account account);
 }

@@ -1,10 +1,8 @@
 package com.ttoannguyen.lemongrass.dto.Response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -13,18 +11,10 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class AccountResponse {
-    String id;
-    String email;
-    String username;
-    String firstName;
-    String lastName;
-    LocalDate dob;
-    String address;
-    boolean inactive = false;
-    boolean isDeleted = false;
-    Set<RoleResponse> roles;
+public class RoleResponse {
+    String name;
+    String description;
+    Set<PermissionResponse> permissions;
     String createdBy;
     LocalDateTime createdDate;
     LocalDateTime lastModifiedDate;

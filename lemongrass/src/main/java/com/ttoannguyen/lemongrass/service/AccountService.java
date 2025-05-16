@@ -1,9 +1,13 @@
 package com.ttoannguyen.lemongrass.service;
 
-import com.ttoannguyen.lemongrass.dto.request.AccountRequest;
-import com.ttoannguyen.lemongrass.dto.response.AccountResponse;
+import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
+
+import java.util.List;
+
 
 public interface AccountService {
-    AccountResponse registerUser(AccountRequest userRequest);
-    AccountResponse findByUsername(String username);
+    AccountResponse createAccount(AccountCreateRequest request);
+    List<AccountResponse> getAccounts();
+    AccountResponse getAccount(String username);
 }
