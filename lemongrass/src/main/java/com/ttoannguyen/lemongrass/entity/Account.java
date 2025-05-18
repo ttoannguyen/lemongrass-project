@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Account extends AbstractAuditingEntity<String> implements Serializable {
+public class Account extends AbstractAuditingEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
@@ -48,6 +48,6 @@ public class Account extends AbstractAuditingEntity<String> implements Serializa
     @Column(name = "is_deleted", nullable = false)
     boolean isDeleted = false;
 
-//    @ManyToMany
-//    Set<Role> roles;
+    @ManyToMany
+    Set<Role> roles;
 }

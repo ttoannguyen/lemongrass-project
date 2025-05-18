@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = {"createdDate", "lastModifiedDate", "createdBy", "lastModifiedBy" }, allowGetters = true)
-public abstract class AbstractAuditingEntity<ID> implements Serializable {
+public abstract class AbstractAuditingEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -45,5 +45,5 @@ public abstract class AbstractAuditingEntity<ID> implements Serializable {
     @Column(name = "last_modified_by", length = 50)
     private String lastModifiedBy="System";
 
-    public abstract ID getId();
+//    public abstract ID getId();
 }

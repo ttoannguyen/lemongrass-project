@@ -16,9 +16,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Permission extends AbstractAuditingEntity<String> implements Serializable {
+public class Permission extends AbstractAuditingEntity implements Serializable {
     @Id
-    String id;
     String name;
     String description;
 }

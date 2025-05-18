@@ -1,19 +1,23 @@
-package com.ttoannguyen.lemongrass.jwt;
+package com.ttoannguyen.lemongrass.configuration.jwt;
 
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
+import com.ttoannguyen.lemongrass.entity.Account;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.text.ParseException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.Collections;
 import java.util.Date;
+import java.util.StringJoiner;
 
 @Slf4j
 @Service
@@ -22,16 +26,16 @@ public class TokenProvider {
     @Value("${jwt.signer-key}")
     protected String SIGNER_KEY;
 
-    public String generateToken(String username){
+    public String generateToken(Account account){
         JWSHeader jwsHeader = new JWSHeader(JWSAlgorithm.HS512);
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
-                .subject(username)
+                .subject(account.getUsername())
                 .issuer("Lemongrass")
                 .issueTime(new Date())
                 .expirationTime(new Date(
                         Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
                 ))
-                .claim("customClaim", "Custom")
+                               .claim("scope", buildScope(account))
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -51,5 +55,13 @@ public class TokenProvider {
         Date expiryTime = signedJWT.getJWTClaimsSet().getExpirationTime();
 
         return signedJWT.verify(jwsVerifier) && expiryTime.after(new Date());
+    }
+
+    private String buildScope(Account account){
+        final StringJoiner stringJoiner = new StringJoiner(" ");
+        if(!CollectionUtils.isEmpty(account.getRoles())){
+            account.getRoles().forEach(stringJoiner::add);
+        }
+        return stringJoiner.toString();
     }
 }

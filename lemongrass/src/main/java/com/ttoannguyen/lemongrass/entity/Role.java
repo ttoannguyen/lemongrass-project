@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -14,11 +15,11 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Role extends AbstractAuditingEntity<String> implements Serializable {
+public class Role extends AbstractAuditingEntity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    String id;
     String name;
     String description;
+
+    @ManyToMany
+    Set<Permission> permissions;
 }

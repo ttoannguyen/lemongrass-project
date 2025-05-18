@@ -8,10 +8,13 @@ import com.ttoannguyen.lemongrass.service.AccountService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -26,7 +29,13 @@ public class AccountControllerImpl implements AccountController {
 
     @Override
     public ApiResponse<List<AccountResponse>> getAccounts() {
-        return ApiResponse.<List<AccountResponse>>builder()
+        final var authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.info("Username {}", authentication.getName());
+        authentication.getAuthorities().forEach(grantedAuthority ->
+                log.info(grantedAuthority.getAuthority()));
+
+        return ApiResponse.<List<AccountResponse>>
+                        builder()
                 .result(accountService.getAccounts())
                 .build();
     }
@@ -35,6 +44,13 @@ public class AccountControllerImpl implements AccountController {
     public ApiResponse<AccountResponse> getAccount(String username) {
         return ApiResponse.<AccountResponse>builder()
                 .result(accountService.getAccount(username))
+                .build();
+    }
+
+    @Override
+    public ApiResponse<AccountResponse> getMyInfo() {
+        return ApiResponse.<AccountResponse>builder()
+                .result(accountService.getMyInfo())
                 .build();
     }
 }
