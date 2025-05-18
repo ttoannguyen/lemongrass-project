@@ -60,7 +60,7 @@ public class TokenProvider {
     private String buildScope(Account account){
         final StringJoiner stringJoiner = new StringJoiner(" ");
         if(!CollectionUtils.isEmpty(account.getRoles())){
-            account.getRoles().forEach(stringJoiner::add);
+            account.getRoles().forEach(role -> stringJoiner.add(role.getName()));
         }
         return stringJoiner.toString();
     }

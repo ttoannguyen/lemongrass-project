@@ -3,6 +3,7 @@ package com.ttoannguyen.lemongrass.controller.impl;
 import com.ttoannguyen.lemongrass.controller.AccountController;
 import com.ttoannguyen.lemongrass.dto.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.AccountUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
 import com.ttoannguyen.lemongrass.service.AccountService;
 import lombok.AccessLevel;
@@ -41,9 +42,9 @@ public class AccountControllerImpl implements AccountController {
     }
 
     @Override
-    public ApiResponse<AccountResponse> getAccount(String username) {
+    public ApiResponse<AccountResponse> getAccount(String accountId) {
         return ApiResponse.<AccountResponse>builder()
-                .result(accountService.getAccount(username))
+                .result(accountService.getAccount(accountId))
                 .build();
     }
 
@@ -51,6 +52,13 @@ public class AccountControllerImpl implements AccountController {
     public ApiResponse<AccountResponse> getMyInfo() {
         return ApiResponse.<AccountResponse>builder()
                 .result(accountService.getMyInfo())
+                .build();
+    }
+
+    @Override
+    public ApiResponse<AccountResponse> updateAccount(String accountId, AccountUpdateRequest request) {
+        return ApiResponse.<AccountResponse>builder()
+                .result(accountService.updateAccount(accountId, request))
                 .build();
     }
 }

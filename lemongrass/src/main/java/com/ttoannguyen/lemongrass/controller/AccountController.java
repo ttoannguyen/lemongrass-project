@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.controller;
 
 import com.ttoannguyen.lemongrass.dto.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.AccountUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,12 @@ public interface AccountController {
     @GetMapping()
     ApiResponse<List<AccountResponse>> getAccounts();
 
-    @GetMapping("/{username}")
-    ApiResponse<AccountResponse> getAccount(@Valid @PathVariable(name = "username") String username);
+    @GetMapping("/{accountId}")
+    ApiResponse<AccountResponse> getAccount(@Valid @PathVariable(name = "accountId") String accountId);
 
     @GetMapping("/myInfo")
     ApiResponse<AccountResponse> getMyInfo();
+
+    @PutMapping("/{accountId}")
+    ApiResponse<AccountResponse> updateAccount(@PathVariable(value = "accountId") String accountId, @RequestBody AccountUpdateRequest request);
 }

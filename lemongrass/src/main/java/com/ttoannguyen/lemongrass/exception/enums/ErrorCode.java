@@ -17,8 +17,8 @@ public enum ErrorCode {
     UNAUTHENTICATED(1005, "Unauthenticated!",  HttpStatus.UNAUTHORIZED),
     INVALID_KEY(1000, "Invalid message key!", HttpStatus.BAD_REQUEST),
     UNAUTHORIZED(1006, "You do not have permission!", HttpStatus.FORBIDDEN),
-    UNCATEGORIZED_EXCEPTION(9999, "Uncategorized exception!", HttpStatus.INTERNAL_SERVER_ERROR)
-    ;
+    UNCATEGORIZED_EXCEPTION(9999, "Uncategorized exception!", HttpStatus.INTERNAL_SERVER_ERROR),
+    ROLE_NOT_FOUND(1007,"Role not exists!" , HttpStatus.NOT_FOUND);
     private int code;
     private String message;
     private HttpStatusCode httpStatusCode;

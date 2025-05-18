@@ -24,8 +24,8 @@ public class AccountResponse {
     String address;
     boolean inactive = false;
     boolean isDeleted = false;
-    //    Set<RoleResponse> roles;
-    Set<String> roles;
+    Set<RoleResponse> roles;
+//    Set<String> roles;
     String createdBy;
     LocalDateTime createdDate;
     String lastModifiedBy;
