@@ -13,7 +13,7 @@ import org.mapstruct.MappingTarget;
 public interface AccountMapper {
     Account toAccount(AccountCreateRequest request);
 
-    @Mapping(target = "roles", ignore = true)
+//    @Mapping(target = "roles", ignore = true)
     AccountResponse toAccountResponse(Account account);
 
     @Mapping(target = "roles", ignore = true)

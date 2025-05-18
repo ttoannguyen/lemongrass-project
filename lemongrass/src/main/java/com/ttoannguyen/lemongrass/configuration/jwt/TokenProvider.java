@@ -6,6 +6,8 @@ import com.nimbusds.jose.crypto.MACVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import com.ttoannguyen.lemongrass.entity.Account;
+import com.ttoannguyen.lemongrass.exception.AppException;
+import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
 import lombok.experimental.NonFinal;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +20,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.Date;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -35,7 +38,8 @@ public class TokenProvider {
                 .expirationTime(new Date(
                         Instant.now().plus(1, ChronoUnit.HOURS).toEpochMilli()
                 ))
-                               .claim("scope", buildScope(account))
+                .claim("scope", buildScope(account))
+                .jwtID(UUID.randomUUID().toString())
                 .build();
 
         Payload payload = new Payload(jwtClaimsSet.toJSONObject());
@@ -49,19 +53,30 @@ public class TokenProvider {
         }
     }
 
-    public boolean verifyToken(String token) throws JOSEException, ParseException {
+    public SignedJWT verifyToken(String token) throws JOSEException, ParseException {
         JWSVerifier jwsVerifier = new MACVerifier(SIGNER_KEY.getBytes());
         SignedJWT signedJWT = SignedJWT.parse(token);
         Date expiryTime = signedJWT.getJWTClaimsSet().getExpirationTime();
 
-        return signedJWT.verify(jwsVerifier) && expiryTime.after(new Date());
+        final var verified = signedJWT.verify(jwsVerifier);
+        
+        if(!(verified && expiryTime.after(new Date()))) throw new AppException(ErrorCode.UNAUTHORIZED);
+    
+        return signedJWT;
     }
 
     private String buildScope(Account account){
         final StringJoiner stringJoiner = new StringJoiner(" ");
         if(!CollectionUtils.isEmpty(account.getRoles())){
-            account.getRoles().forEach(role -> stringJoiner.add(role.getName()));
+            account.getRoles().forEach(role -> {
+                    stringJoiner.add("ROLE_" + role.getName());
+                    if(!CollectionUtils.isEmpty(role.getPermissions()))
+                        role.getPermissions().forEach(permission ->
+                                stringJoiner.add(permission.getName()));
+            });
         }
         return stringJoiner.toString();
     }
+
+
 }

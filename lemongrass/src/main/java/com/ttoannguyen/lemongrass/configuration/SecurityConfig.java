@@ -27,8 +27,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @NonFinal
-    public final String[] PUBLIC_ENDPOINTS = { "/api/_v1/auth/login",
-            "/api/_v1/auth/introspect", "/api/_v1/accounts/register"};
+    public final String[] PUBLIC_ENDPOINTS = {
+            "/api/_v1/auth/login",
+            "/api/_v1/auth/introspect",
+            "/api/_v1/accounts/register",
+            "/api/_v1/auth/logout"
+        };
 
     private final JwtProvider jwtProvider;
 
@@ -55,7 +59,7 @@ public class SecurityConfig {
     @Bean
     JwtAuthenticationConverter jwtAuthenticationConverter() {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
-        jwtGrantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
+        jwtGrantedAuthoritiesConverter.setAuthorityPrefix("");
         JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
         jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return jwtAuthenticationConverter;

@@ -4,6 +4,7 @@ import com.nimbusds.jose.JOSEException;
 import com.ttoannguyen.lemongrass.dto.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.AuthenticationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.IntrospectRequest;
+import com.ttoannguyen.lemongrass.dto.Request.LogoutRequest;
 import com.ttoannguyen.lemongrass.dto.Response.AuthenticationResponse;
 import com.ttoannguyen.lemongrass.dto.Response.IntrospectResponse;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,4 +20,7 @@ public interface AuthenticationController {
 
     @PostMapping("/introspect")
     ApiResponse<IntrospectResponse> introspect(@RequestBody IntrospectRequest request) throws ParseException, JOSEException;
+
+    @PostMapping("/logout")
+    ApiResponse<Void> logout(@RequestBody LogoutRequest request) throws ParseException, JOSEException;
 }

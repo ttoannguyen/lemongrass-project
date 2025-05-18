@@ -5,6 +5,7 @@ import com.ttoannguyen.lemongrass.controller.AuthenticationController;
 import com.ttoannguyen.lemongrass.dto.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.AuthenticationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.IntrospectRequest;
+import com.ttoannguyen.lemongrass.dto.Request.LogoutRequest;
 import com.ttoannguyen.lemongrass.dto.Response.AuthenticationResponse;
 import com.ttoannguyen.lemongrass.dto.Response.IntrospectResponse;
 import com.ttoannguyen.lemongrass.service.AuthenticationService;
@@ -33,5 +34,11 @@ public class AuthenticationControllerImpl implements AuthenticationController {
         return ApiResponse.<IntrospectResponse>builder()
                 .result(authenticationService.introspect(request))
                 .build();
+    }
+
+    @Override
+    public ApiResponse<Void> logout(LogoutRequest request) throws ParseException, JOSEException {
+        authenticationService.logout(request);
+        return ApiResponse.<Void>builder().build();
     }
 }

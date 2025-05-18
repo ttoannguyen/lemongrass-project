@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.dto.Request;
 
+import com.ttoannguyen.lemongrass.validator.DobConstraint;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -20,6 +21,8 @@ public class AccountCreateRequest {
     String password;
     String firstName;
     String lastName;
+
+    @DobConstraint(min = 18, message = "INVALID_DOB")
     LocalDate dob;
     String address;
 }
