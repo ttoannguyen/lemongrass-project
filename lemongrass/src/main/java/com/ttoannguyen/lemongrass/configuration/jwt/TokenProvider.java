@@ -47,6 +47,8 @@ public class TokenProvider {
     protected long REFRESHABLE_DURATION;
 
     public String generateToken(Account account) {
+        log.info("Signer key {}", SIGNER_KEY);
+
         JWSHeader jwsHeader = new JWSHeader(JWSAlgorithm.HS512);
         JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
                 .subject(account.getUsername())

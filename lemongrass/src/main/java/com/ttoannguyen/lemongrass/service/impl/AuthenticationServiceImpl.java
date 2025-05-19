@@ -38,6 +38,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
+
         final var account = accountRepository.findByUsername(request.getUsername());
         if (account == null) throw new AppException(ErrorCode.USER_NOT_EXISTED);
 
