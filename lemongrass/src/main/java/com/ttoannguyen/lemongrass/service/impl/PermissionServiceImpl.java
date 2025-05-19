@@ -1,17 +1,19 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.ttoannguyen.lemongrass.dto.Request.PermissionRequest;
 import com.ttoannguyen.lemongrass.dto.Response.PermissionResponse;
 import com.ttoannguyen.lemongrass.entity.Permission;
 import com.ttoannguyen.lemongrass.mapper.PermissionMapper;
 import com.ttoannguyen.lemongrass.repository.PermissionRepository;
 import com.ttoannguyen.lemongrass.service.PermissionService;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -23,9 +25,7 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public PermissionResponse createPermission(PermissionRequest request) {
         Permission permission = permissionMapper.toPermission(request);
-        return permissionMapper.toPermissionResponse(
-                permissionRepository.save(permission)
-        );
+        return permissionMapper.toPermissionResponse(permissionRepository.save(permission));
     }
 
     @Override

@@ -1,6 +1,13 @@
 package com.ttoannguyen.lemongrass.configuration;
 
-import ch.qos.logback.classic.encoder.JsonEncoder;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.ttoannguyen.lemongrass.entity.Account;
 import com.ttoannguyen.lemongrass.entity.Role;
 import com.ttoannguyen.lemongrass.entity.enums.ERole;
@@ -8,17 +15,11 @@ import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
 import com.ttoannguyen.lemongrass.repository.AccountRepository;
 import com.ttoannguyen.lemongrass.repository.RoleRepository;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Slf4j
 @Configuration
@@ -34,16 +35,15 @@ public class ApplicationInitConfig {
         return args -> {
             // Initialize roles if they don't exist
             if (!roleRepository.existsById(ERole.ADMIN.name())) {
-                Role adminRole = Role.builder()
-                        .name(ERole.ADMIN.name())
-                        .build();
+                Role adminRole = Role.builder().name(ERole.ADMIN.name()).build();
                 roleRepository.save(adminRole);
                 log.info("Admin role created");
             }
 
             // Create an admin account if it doesn't exist
             if (!accountRepository.existsByUsername("admin")) {
-                Role adminRole = roleRepository.findById(ERole.ADMIN.name())
+                Role adminRole = roleRepository
+                        .findById(ERole.ADMIN.name())
                         .orElseThrow(() -> new AppException(ErrorCode.UNCATEGORIZED_EXCEPTION));
 
                 Set<Role> roles = new HashSet<>();

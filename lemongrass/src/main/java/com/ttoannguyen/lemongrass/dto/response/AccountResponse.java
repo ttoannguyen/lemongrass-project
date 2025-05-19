@@ -1,12 +1,13 @@
 package com.ttoannguyen.lemongrass.dto.Response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Data
 @NoArgsConstructor
@@ -25,7 +26,7 @@ public class AccountResponse {
     boolean inactive = false;
     boolean isDeleted = false;
     Set<RoleResponse> roles;
-//    Set<String> roles;
+    //    Set<String> roles;
     String createdBy;
     LocalDateTime createdDate;
     String lastModifiedBy;

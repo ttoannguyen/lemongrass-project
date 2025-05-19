@@ -47,5 +47,5 @@ server:
 
 jwt:
   signer-key: "SUc3vhm9LhF72WDw2z/IfSvCvjhYo8zJv1nfMNLGCDsKqA7wlJAPX5PyNZnpheAX"
-  valid-duration: 36000000
-#  refreshable-duration: 120 # in second
+  valid-duration: 15 # in seconds
+  refreshable-duration: 30 # in seconds

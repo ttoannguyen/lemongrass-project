@@ -1,13 +1,15 @@
 package com.ttoannguyen.lemongrass.controller;
 
+import java.util.List;
+
+import jakarta.validation.Valid;
+
+import org.springframework.web.bind.annotation.*;
+
 import com.ttoannguyen.lemongrass.dto.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
 import com.ttoannguyen.lemongrass.dto.Request.AccountUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
-import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RequestMapping("/api/_v1/accounts")
 public interface AccountController {
@@ -24,5 +26,6 @@ public interface AccountController {
     ApiResponse<AccountResponse> getMyInfo();
 
     @PutMapping("/{accountId}")
-    ApiResponse<AccountResponse> updateAccount(@PathVariable(value = "accountId") String accountId, @RequestBody AccountUpdateRequest request);
+    ApiResponse<AccountResponse> updateAccount(
+            @PathVariable(value = "accountId") String accountId, @RequestBody AccountUpdateRequest request);
 }

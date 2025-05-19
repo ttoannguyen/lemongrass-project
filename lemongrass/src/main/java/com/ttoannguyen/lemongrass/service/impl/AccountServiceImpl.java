@@ -1,5 +1,14 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
 import com.ttoannguyen.lemongrass.dto.Request.AccountUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
@@ -12,18 +21,10 @@ import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import com.ttoannguyen.lemongrass.repository.AccountRepository;
 import com.ttoannguyen.lemongrass.repository.RoleRepository;
 import com.ttoannguyen.lemongrass.service.AccountService;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -45,7 +46,8 @@ public class AccountServiceImpl implements AccountService {
         account.setPassword(passwordEncoder.encode(request.getPassword()));
 
         // Gán vai trò USER mặc định
-        Role userRole = roleRepository.findById(ERole.USER.name())
+        Role userRole = roleRepository
+                .findById(ERole.USER.name())
                 .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
@@ -56,8 +58,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<AccountResponse> getAccounts() {
-        return accountRepository.findAll()
-                .stream()
+        return accountRepository.findAll().stream()
                 .map(accountMapper::toAccountResponse)
                 .toList();
     }
@@ -65,15 +66,14 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountResponse getAccount(String accountId) {
         return accountMapper.toAccountResponse(
-                accountRepository.findById(accountId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED))
-        );
+                accountRepository.findById(accountId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
     }
 
     @Override
     public AccountResponse getMyInfo() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         final var account = accountRepository.findByUsername(username);
-        if(account == null) {
+        if (account == null) {
             throw new AppException(ErrorCode.USER_NOT_EXISTED);
         }
         return accountMapper.toAccountResponse(account);
@@ -82,8 +82,8 @@ public class AccountServiceImpl implements AccountService {
     @Override
     @PreAuthorize("hasRole('ADMIN')")
     public AccountResponse updateAccount(String accountId, AccountUpdateRequest request) {
-        Account account = accountRepository.findById(accountId)
-                .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+        Account account =
+                accountRepository.findById(accountId).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
         accountMapper.updateAccount(account, request);
 

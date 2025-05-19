@@ -1,19 +1,20 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
+import java.util.HashSet;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
 import com.ttoannguyen.lemongrass.dto.Request.RoleRequest;
 import com.ttoannguyen.lemongrass.dto.Response.RoleResponse;
-import com.ttoannguyen.lemongrass.entity.Permission;
 import com.ttoannguyen.lemongrass.mapper.RoleMapper;
 import com.ttoannguyen.lemongrass.repository.PermissionRepository;
 import com.ttoannguyen.lemongrass.repository.RoleRepository;
 import com.ttoannguyen.lemongrass.service.RoleService;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -33,11 +34,7 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public List<RoleResponse> getRoles() {
-        return roleRepository.findAll()
-                .stream()
-                .map(roleMapper::toRoleResponse)
-                .toList()
-                ;
+        return roleRepository.findAll().stream().map(roleMapper::toRoleResponse).toList();
     }
 
     @Override

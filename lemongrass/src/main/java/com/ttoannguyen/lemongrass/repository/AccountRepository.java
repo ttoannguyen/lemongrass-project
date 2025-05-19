@@ -1,9 +1,8 @@
 package com.ttoannguyen.lemongrass.repository;
 
-import com.ttoannguyen.lemongrass.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import com.ttoannguyen.lemongrass.entity.Account;
 
 public interface AccountRepository extends JpaRepository<Account, String> {
     boolean existsByUsername(String username);

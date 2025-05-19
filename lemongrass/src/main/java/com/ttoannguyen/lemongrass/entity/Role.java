@@ -1,11 +1,12 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import jakarta.persistence.*;
-import lombok.*;
-import lombok.experimental.FieldDefaults;
-
 import java.io.Serializable;
 import java.util.Set;
+
+import jakarta.persistence.*;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Entity
 @Table(name = "roles")
@@ -18,6 +19,7 @@ import java.util.Set;
 public class Role extends AbstractAuditingEntity implements Serializable {
     @Id
     String name;
+
     String description;
 
     @ManyToMany

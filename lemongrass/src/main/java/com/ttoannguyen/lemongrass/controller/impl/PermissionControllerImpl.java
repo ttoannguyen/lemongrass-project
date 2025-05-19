@@ -1,16 +1,18 @@
 package com.ttoannguyen.lemongrass.controller.impl;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.RestController;
+
 import com.ttoannguyen.lemongrass.controller.PermissionController;
 import com.ttoannguyen.lemongrass.dto.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.PermissionRequest;
 import com.ttoannguyen.lemongrass.dto.Response.PermissionResponse;
 import com.ttoannguyen.lemongrass.service.PermissionService;
+
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
