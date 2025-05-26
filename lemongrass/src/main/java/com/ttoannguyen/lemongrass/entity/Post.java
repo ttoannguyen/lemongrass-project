@@ -1,53 +1,46 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Set;
-
 import jakarta.persistence.*;
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "accounts")
+@Table(name = "post")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Account extends AbstractAuditingEntity implements Serializable {
+public class Post extends AbstractAuditingEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     String id;
 
     @Column(unique = true, nullable = false)
-    String username;
+    String title;
 
     @Column(unique = true, nullable = false)
-    String email;
+    String content;
 
     @Column(nullable = false)
-    String password;
-
-    @Column(name = "first_name", nullable = false)
-    String firstName;
-
-    @Column(name = "last_name", nullable = false)
-    String lastName;
-
-    LocalDate dob;
-
-    String address;
+    String visibility;
 
     @Column(nullable = false)
-    boolean inactive = false;
+    boolean isApproved = true;
 
-    @Column(name = "is_deleted", nullable = false)
-    boolean isDeleted = false;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id")
+    Account account;
 
-    @ManyToMany
-    Set<Role> roles;
+    @ManyToOne
+    @JoinColumn(name = "group_id")
+    Group group;
+
+    @ManyToOne
+    @JoinColumn(name = "recipe_id")
+    Recipe recipe;
 }

@@ -10,7 +10,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Entity
-@Table(name = "accounts")
+@Table(name = "account")
 @Getter
 @Setter
 @Builder
@@ -42,12 +42,19 @@ public class Account extends AbstractAuditingEntity implements Serializable {
 
     String address;
 
+    String profilePictureUrl;
+
+    String bio;
+
     @Column(nullable = false)
     boolean inactive = false;
 
-    @Column(name = "is_deleted", nullable = false)
-    boolean isDeleted = false;
+    @Column(nullable = false)
+    boolean isBanned = false;
 
     @ManyToMany
     Set<Role> roles;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
+     Set<Post> posts;
 }

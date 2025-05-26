@@ -1,5 +1,7 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import com.ttoannguyen.lemongrass.entity.enums.GroupRole;
+import com.ttoannguyen.lemongrass.entity.enums.MembershipStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -18,25 +20,34 @@ import java.io.Serializable;
 public class GroupMembership extends AbstractAuditingEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    String id;
+    @Column(name = "membership_id", updatable = false, nullable = false)
+    String membershipId;
 
-    @NotBlank
-    @Column(name = "name", nullable = false)
-    String name;
-
-    @Column(name = "description", columnDefinition = "TEXT")
-    String description;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "group_id", nullable = false)
+    Group group;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", nullable = false)
     Account account;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "visibility", nullable = false)
-    Visibility visibility;
+    @Column(nullable = false)
+    private GroupRole role;
 
-    public enum Visibility {
-        PUBLIC, PRIVATE
+//    @Enumerated(EnumType.STRING)
+//    @Column(name = "status", nullable = false)
+//    Status status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    MembershipStatus status;
+
+    public enum Role {
+        MEMBER, OWNER
+    }
+
+    public enum Status {
+        PENDING, APPROVED, BLOCKED
     }
 }

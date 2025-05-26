@@ -1,10 +1,7 @@
 package com.ttoannguyen.lemongrass.configuration;
 
-import com.ttoannguyen.lemongrass.configuration.jwt.CustomJwtDecoder;
-import com.ttoannguyen.lemongrass.configuration.jwt.JwtAuthenticationEntryPoint;
-import lombok.AccessLevel;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import java.util.List;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -19,7 +16,12 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
-import java.util.List;
+import com.ttoannguyen.lemongrass.configuration.jwt.CustomJwtDecoder;
+import com.ttoannguyen.lemongrass.configuration.jwt.JwtAuthenticationEntryPoint;
+
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 
 @Configuration
 @EnableWebSecurity
@@ -29,30 +31,27 @@ import java.util.List;
 public class SecurityConfig {
 
     protected static final String[] PUBLIC_ENDPOINTS = {
-            "/api/_v1/auth/login",
-            "/api/_v1/auth/logout",
-            "/api/_v1/auth/introspect",
-            "/api/_v1/auth/refresh",
-            "/api/_v1/accounts/register"
+        "/api/_v1/auth/login",
+        "/api/_v1/auth/logout",
+        "/api/_v1/auth/introspect",
+        "/api/_v1/auth/refresh",
+        "/api/_v1/accounts/register"
     };
 
     CustomJwtDecoder customJwtDecoder;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(AbstractHttpConfigurer::disable)
+        http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS).permitAll()
-                        .anyRequest().authenticated()
-                )
-                .oauth2ResourceServer(oauth2 -> oauth2
-                        .jwt(jwtConfigurer -> jwtConfigurer
+                        .requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS)
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
+                .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwtConfigurer -> jwtConfigurer
                                 .decoder(customJwtDecoder)
-                                .jwtAuthenticationConverter(jwtAuthenticationConverter())
-                        )
-                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
-                );
+                                .jwtAuthenticationConverter(jwtAuthenticationConverter()))
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint()));
 
         return http.build();
     }

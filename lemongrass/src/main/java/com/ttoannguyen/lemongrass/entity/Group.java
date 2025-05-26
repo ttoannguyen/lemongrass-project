@@ -6,25 +6,49 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "units")
+@Table(name = "group")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Unit  extends AbstractAuditingEntity implements Serializable {
+public class Group extends AbstractAuditingEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    String id;
+    @Column(name = "group_id", updatable = false, nullable = false)
+    String groupId;
 
     @NotBlank
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(unique = true, nullable = false)
     String name;
 
-    @Column(name = "type")
-    String type;
+    String description;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id", nullable = false)
+    Account account;
+
+    private String category;
+
+    private String coverImageUrl;
+
+    private String rules;
+
+    @Column(nullable = false)
+    private boolean requirePostApproval = false;
+
+    @Column(nullable = false)
+    private Integer memberCount = 0;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "visibility", nullable = false)
+    Visibility visibility;
+
+    public enum Visibility {
+        PUBLIC, PRIVATE
+    }
 }
