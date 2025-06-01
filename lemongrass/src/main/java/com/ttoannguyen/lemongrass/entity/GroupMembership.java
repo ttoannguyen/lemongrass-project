@@ -24,7 +24,7 @@ public class GroupMembership extends AbstractAuditingEntity implements Serializa
     String membershipId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "group_id", nullable = false)
+    @JoinColumn(name = "groups_id", nullable = false)
     Group group;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -34,10 +34,6 @@ public class GroupMembership extends AbstractAuditingEntity implements Serializa
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private GroupRole role;
-
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "status", nullable = false)
-//    Status status;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

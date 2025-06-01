@@ -6,9 +6,11 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 
-
+/**
+ * Hướng Dẫn
+ */
 @Entity
-@Table(name = "ingredient")
+@Table(name = "instruction")
 @Getter
 @Setter
 @Builder

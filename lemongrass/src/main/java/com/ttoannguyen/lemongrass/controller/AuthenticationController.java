@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nimbusds.jose.JOSEException;
-import com.ttoannguyen.lemongrass.dto.ApiResponse;
+import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.AuthenticationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.IntrospectRequest;
 import com.ttoannguyen.lemongrass.dto.Request.LogoutRequest;

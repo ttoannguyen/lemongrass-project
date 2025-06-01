@@ -1,0 +1,137 @@
+Website được phát triển với mục đích giúp cửa hàng kinh doanh vật phẩm trang
+trí lễ hội và khách hàng có thể thực hiện việc mua bán thông qua mạng Internet. Giao
+diện website được thiết kế gồm 2 phần: phần giao diện của quản lý và giao diện khách
+hàng. Hệ thống gồm 3 nhóm người dùng: người dùng quản lý, khách hàng (đã có tài
+khoản), khách vãng lai (chưa có tài khoản). Giao diện quản lý dành riêng cho người
+quản lý, giao diện khách hàng được sử dụng cho khách hàng và khách vãng lai. Khách
+vãng lai sau khi đăng nhập sẽ trở thành khách hàng, khách hàng có thể thực hiện các
+chức năng của khách vãng lai.
+Khách vãng lai là người dùng chưa có tài khoản trong hệ thống, khách vãng lai có
+thể đăng ký tài khoản thông qua chức năng đăng ký bằng cách điền email, mật khẩu.
+Khách vãng lai có thể thực hiện chức năng: đăng ký tài khoản, xem chi tiết sản phẩm,
+tìm kiếm sản phẩm, lọc sản phẩm, xem bài viết, hỏi đáp với hộp thoại tự động, điều
+khiển bằng giọng nói. Chức năng xem chi tiết sản phẩm cho phép người dùng xem
+chi tiết tất cả các sản phẩm; chức năng tìm kiếm cho phép người dùng tìm kiếm sản
+phẩm theo tên; chức năng lọc sản phẩm cho phép người dùng lọc theo lễ hội, lọc theo
+giá; chức năng đăng ký cho phép đăng ký tài khoản vào hệ thống. Chức năng xem bài
+viết cho phép khách vãng lai có thể xem các bài viết trên hệ thống. Chức năng hỏi
+đáp với hộp thoại tự động cho phép người dùng có thể tìm hiểu về website hay các
+thông tin liên quan đến các vật phẩm trang trí lễ hội có trong website một cách nhanh
+chóng. Người dùng tương tác bằng cách nhập các câu hỏi thông qua hộp trò chuyện,
+hệ thống trả lời tự động sẽ cung cấp các câu trả lời tương ứng với câu hỏi được đặt
+ra. Chức năng điều khiển bằng giọng nói với trợ lý ảo mua sắm, giúp khách vãng lai
+có thể thực hiện các chức năng cơ bản bằng giọng nói mà không phải thực hiện mua
+sắm thủ công như thao tác bấm chuột, bàn phím, ..., giúp tăng trải nghiệm của khách
+hàng khi mua sắm. Khi sử dụng chức năng điều khiển bằng giọng nói, yêu cầu người
+dùng có thể đọc hướng dẫn trước khi sử dụng để có trải nghiệm tốt nhất.
+Khách hàng là người dùng đã đăng nhập vào hệ thống thông qua tài khoản đã đăng
+ký bằng cách cung cấp email và mật khẩu. Khách hàng có thể thực hiện tất cả các
+chức năng của khách vãng lai. Ngoài ra, khách hàng còn có thể thực hiện các chức
+năng: đăng nhập, quản lý giỏ hàng, đặt hàng, thanh toán, đánh giá sản phẩm, quản lý
+thông tin tài khoản, liên hệ, bình luận bài viết. Chức năng của quản lý giỏ hàng là cho
+phép người dùng thêm sản phẩm vào giỏ hàng, sau khi thêm có thể cập nhật số lượng
+
+sản phẩm và có thể xóa sản phẩm ra khỏi giỏ hàng; chức năng đặt hàng ,thanh toán
+cho phép đặt hàng thông qua sản phẩm đã thêm vào giỏ hàng, để có thể hoàn tất chức
+năng đặt hàng khách hàng phải chọn sản phẩm muốn đặt hàng từ giỏ hàng và sau đó
+thì khách hàng phải chọn phương thức thanh toán trực tuyến qua ví điện tử hoặc chọn
+phương thức thanh toán khi nhận hàng. Chức năng đánh giá sản phẩm cho phép khách
+hàng đánh giá sản phẩm bằng cách xếp hạng từ 1 đến 5 sao, đồng thời kèm theo lời
+bình luận về sản phẩm; chức năng quản lý thông tin cá nhân cho phép khách hàng
+xem thông tin cá nhân, đồng thời cập nhật thông tin cá nhân như tên, email, số điện
+thoại, địa chỉ, avatar, xem lịch sử mua hàng. Chức năng liên hệ cho phép khách hàng
+có thể gửi yêu cầu về đến hệ thống, khi khách hàng muốn gửi liên hệ thì khách hàng
+phải nhập đầy đủ các thông tin như: tên, email, số điện thoại, và thông tin yêu cầu;
+sau khi điền đầy đủ thông tin và chọn gửi thì thông tin yêu cầu đó sẽ được gửi đến hệ
+thống và người quản lý sẽ thấy thông tin liên hệ đó ở danh sách liên hệ, sau đó người
+quản lý sẽ giải quyết yêu cầu liên hệ. Chức năng bình luận bài đăng cho phép khách
+hàng có thể tương tác qua lại thông qua bình luận bài đăng.
+Người quản lý đóng vai trò như chủ cửa hàng kinh doanh, người quản lý sử dụng
+tài khoản được cấp để đăng nhập vào hệ thống. Người quản lý có thể thực hiện các
+chức năng như khách hàng đồng thời người quản lý có thể thực hiện các chức năng
+riêng của người quản lý như: thống kê, quản lý người dùng, quản lý sản phẩm, quản
+lý đơn hàng, quản lý liên hệ, quản lý hình ảnh, quản lý bài đăng, quản lý đánh giá. Ở
+giao diện quản lý có thanh menu giúp cho người quản lý có thể chuyển đổi qua lại
+các chức năng với nhau.
+Chức năng thống kê cho phép người quản lý xem tổng doanh thu của cửa hàng và
+một số dữ liệu liên quan đến việc kinh doanh.
+Chức năng quản lý người dùng cho phép xem danh sách người dùng, ngoài ra
+người quản lý có thể sửa thông tin người dùng hoặc xóa tài khoản người dùng. Ngoài
+ra, người quản lý có thể xuất danh sách người dùng ra file excel.
+Chức năng quản lý sản phẩm cho phép xem danh sách sản phẩm trong hệ thống,
+đồng thời người quản lý có thể thêm sản phẩm mới vào danh sách sản phẩm bằng
+cách nhập thông tin sản phẩm bao gồm: tên sản phẩm, loại sản phẩm, giá sản phẩm,
+hình ảnh, số lượng sản phẩm trong kho, mô tả sản phẩm, phần trăm giảm giá. Người
+quản lý có thể sửa thông tin sản phẩm, xóa sản phẩm trong danh sách, tạo giảm giá
+và nhấn vào nút tương ứng. Ngoài ra, người quản lý có thể xuất danh sách sản phẩm
+ra file excel.
+Chức năng quản lý đơn hàng cho phép xem danh sách các đơn hàng hiện có trong
+hệ thống. Hiện có trong hệ thống 4 trạng thái: đã xác nhận, đã vận chuyển, đã nhận
+hàng, đã thanh toán. Người quản lý có thể lọc đơn hàng theo từng trạng thái khác
+
+nhau. Trạng thái xác nhận đơn hàng được người quản lý cập nhật. Trạng thái đã vận
+chuyển được người quản lý cập nhật sao khi đã giao đơn hàng cho đơn vị vận chuyển.
+Trạng thái đã nhận được hàng sẽ được quản lý cập nhật sau khi nhận thông báo giao
+hàng thành công từ đơn vị vân chuyển. Người quản lý có thể in đơn hàng và xuất
+danh sách đơn hàng ra file excel.
+Chức năng quản lý liện hệ cho phép xem danh sách các liên hệ mà khách hàng
+gửi tới. Hiện có trong hệ thống trạng thái đã xử lý. Người quản lý có thể lọc các liên
+hệ đã xử lý hoặc các liên hệ chưa được xử lý. Trạng thái đã xử lý sẽ được người quản
+lý cập nhật sau khi đã giải quyết yêu cầu của khách hàng. Ngoài ra, người quản lý có
+thể xuất danh sách liên hệ ra file excel.
+Chức năng quản lý hình ảnh cho phép xem danh sách hình ảnh đã thêm vào để tạo
+sự đa dạng ở phần giao diện. Người quản lý có thể lọc hình ảnh theo loại. Ngoài ra,
+người quản lý có thể thay đổi hoặc xóa hình ảnh ra khỏi danh sách.
+Chức năng quản lý bài đăng cho phép xem danh sách bài đăng đã thêm vào để tạo
+sự đa dạng ở phần giao diện. Người quản lý có thể lọc bài đăng theo loại. Ngoài ra,
+người quản lý có thể thay đổi hoặc xóa bài đăng ra khỏi danh sách.
+Chức năng quản lý đánh giá cho phép xem danh sách đánh giá. Người quản lý có
+thể xóa các đánh giá xấu.
+
+
+
+
+
+
+-------
+1.2. Phân tích đánh giá giải pháp 
+1.2.1. Giải pháp lựa chọn 
+Trang web lựa chọn sử dụng React và dịch vụ cơ sở dữ liệu đám mây Firebase 
+là một giải pháp tối ưu để xây dựng các ứng dụng web hiện đại với yêu cầu về thời 
+gian phát triển nhanh, khả năng mở rộng cao cùng chi phí hợp lý. 
+− React.js là một thư viện JavaScript phổ biến để xây dựng giao diện người 
+dùng đơn trang (SPA - Single Page Application) - mượt mà và không cần 
+tải lại toàn bộ trang khi có thay đổi. Với khả năng tái sử dụng component, 
+React sở hữu tốc độ phát triển và hiệu suất cao. 
+− Firebase là một nền tảng phát triển ứng dụng web toàn diện của Google. 
+Firebase giúp đơn giản hóa việc triển khai và quản lý các ứng dụng web và 
+di động bằng cách cung cấp các dịch vụ back-end như cơ sở dữ liệu, xác 
+thực, lưu trữ tệp, thông báo, và hosting. 
+1.2.2. Đánh giá giải pháp 
+➢ Ưu điểm giải pháp; 
+− Sự đơn giản trong phát triển: 
++ Cả hai công cụ Firebase và React đều sở hữu cộng đồng người dùng 
+đông đảo cùng kho tài liệu và các thư viện hỗ trợ phong phú, đa dạng.
++ Firebase cung cấp các dịch vụ sẵn có như cơ sở dữ liệu, xác thực, lưu 
+trữ và hosting. Từ đó giảm thiểu thời gian xây dựng và cấu hình. 
++ Việc sử dụng React (JavaScript/TypeScript) trên giao diện người dùng 
+và Firebase SDK trên back-end giúp thống nhất ngôn ngữ phát triển, 
+giảm độ phức tạp và tăng độ tích hợp của mã nguồn. 
++ Cấu trúc Firebase linh hoạt, cho phép mở rộng cơ sở dữ liệu và các chức 
+năng một các dễ dàng. 
+− Hiệu suất cao và trải nghiệm người dùng mượt mà: 
++ React sử dụng Virtual DOM để cập nhật giao diện nhanh chóng và mượt 
+mà, cung cấp trải nghiệm tốt cho người dùng . 
++ Firebase và React kết hợp rất hiệu quả trong việc xử lý các tác vụ không 
+đồng bộ, giúp ứng dụng hoạt động ổn định và nhanh chóng. 
++ Firebase Hosting cung cấp tốc độ tải trang nhanh, hỗ trợ HTTPS mặc 
+định và tích hợp tốt với ứng dụng React. 
+➢ Khuyết điểm giải pháp: 
+Bên cạnh những ưu điểm mà công nghệ này mang lại, vẫn  có một số khuyết 
+điểm tồn tại như sau: 
+− Trong việc quản lý trạng thái của những dự án lớn, nhiều người dùng:  
++ Khi dự án trở nên phức tạp với nhiều thành phần, việc quản lý và đồng 
+bộ dữ liệu có thể trở nên khó khăn, đòi hỏi kỹ thuật và kiến thức cao. 
++ Có thể gặp phải các giới hạn về tần suất đọc/ghi dữ liệu khi lượng yêu 
+cầu tăng cao, gây ảnh hưởng đến hiệu suất xử lý.  
++ Do là NoSQL nên Firebase không tối ưu cho cơ sở dữ liệu truyền thống. 

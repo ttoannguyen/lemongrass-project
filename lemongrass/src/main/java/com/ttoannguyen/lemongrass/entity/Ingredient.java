@@ -7,6 +7,10 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 
+/**
+ * Nguyên Liệu
+ */
+
 @Entity
 @Table(name = "ingredient")
 @Getter
@@ -30,8 +34,9 @@ public class Ingredient  extends AbstractAuditingEntity implements Serializable 
 
     String quantity;
 
-    String unit;
 
+
+    @Column(name = "ingredient_order")
     Integer order;
 //
 //    @ManyToOne

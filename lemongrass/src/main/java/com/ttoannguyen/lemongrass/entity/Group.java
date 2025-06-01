@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "group")
+@Table(name = "groups")
 @Getter
 @Setter
 @Builder
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class Group extends AbstractAuditingEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "group_id", updatable = false, nullable = false)
+    @Column(name = "groups_id", updatable = false, nullable = false)
     String groupId;
 
     @NotBlank
@@ -32,17 +32,17 @@ public class Group extends AbstractAuditingEntity implements Serializable {
     @JoinColumn(name = "account_id", nullable = false)
     Account account;
 
-    private String category;
+     String category;
 
-    private String coverImageUrl;
+     String coverImageUrl;
 
-    private String rules;
-
-    @Column(nullable = false)
-    private boolean requirePostApproval = false;
+     String rules;
 
     @Column(nullable = false)
-    private Integer memberCount = 0;
+     boolean requirePostApproval = false;
+
+    @Column(nullable = false)
+     Integer memberCount = 0;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "visibility", nullable = false)

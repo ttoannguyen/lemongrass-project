@@ -1,7 +1,5 @@
-export default function HomePage() {
-  return (
-    <>
-      <h1>Trang chủ</h1>
-    </>
-  );
-}
+const Home = () => {
+  return <div className="">Home</div>;
+};
+
+export default Home;

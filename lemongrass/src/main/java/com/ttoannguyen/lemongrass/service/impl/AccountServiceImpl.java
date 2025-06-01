@@ -47,7 +47,7 @@ public class AccountServiceImpl implements AccountService {
 
         // Gán vai trò USER mặc định
         Role userRole = roleRepository
-                .findById(ERole.USER.name())
+                .findById(ERole.REGISTERED.name())
                 .orElseThrow(() -> new AppException(ErrorCode.ROLE_NOT_FOUND));
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);

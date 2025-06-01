@@ -37,7 +37,7 @@ public class Post extends AbstractAuditingEntity implements Serializable {
     Account account;
 
     @ManyToOne
-    @JoinColumn(name = "group_id")
+    @JoinColumn(name = "groups_id")
     Group group;
 
     @ManyToOne

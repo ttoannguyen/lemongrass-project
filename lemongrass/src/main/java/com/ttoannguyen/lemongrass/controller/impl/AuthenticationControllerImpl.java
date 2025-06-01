@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nimbusds.jose.JOSEException;
 import com.ttoannguyen.lemongrass.controller.AuthenticationController;
-import com.ttoannguyen.lemongrass.dto.ApiResponse;
+import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.AuthenticationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.IntrospectRequest;
 import com.ttoannguyen.lemongrass.dto.Request.LogoutRequest;

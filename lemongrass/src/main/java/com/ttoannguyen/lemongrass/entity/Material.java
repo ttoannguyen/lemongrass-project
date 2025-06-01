@@ -7,6 +7,10 @@ import lombok.experimental.FieldDefaults;
 
 import java.io.Serializable;
 
+/**
+ *
+ */
+
 @Entity
 @Table(name = "materials")
 @Getter

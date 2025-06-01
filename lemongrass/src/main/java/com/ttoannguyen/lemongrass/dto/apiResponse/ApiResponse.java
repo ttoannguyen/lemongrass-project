@@ -1,4 +1,4 @@
-package com.ttoannguyen.lemongrass.dto;
+package com.ttoannguyen.lemongrass.dto.apiResponse;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

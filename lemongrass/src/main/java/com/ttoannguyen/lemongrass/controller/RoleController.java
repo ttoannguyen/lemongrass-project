@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.ttoannguyen.lemongrass.dto.ApiResponse;
+import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.dto.Request.RoleRequest;
 import com.ttoannguyen.lemongrass.dto.Response.RoleResponse;
 
