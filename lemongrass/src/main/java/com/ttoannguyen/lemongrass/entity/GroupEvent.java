@@ -1,12 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
-
+import java.time.LocalDateTime;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "group_event")
@@ -16,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GroupEvent extends AbstractAuditingEntity implements Serializable {
+public class GroupEvent extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;

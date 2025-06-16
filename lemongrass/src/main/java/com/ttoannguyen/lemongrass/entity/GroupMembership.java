@@ -1,13 +1,10 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import jakarta.persistence.*;
 import com.ttoannguyen.lemongrass.entity.enums.GroupRole;
 import com.ttoannguyen.lemongrass.entity.enums.MembershipStatus;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "group_members")
@@ -17,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class GroupMembership extends AbstractAuditingEntity implements Serializable {
+public class GroupMembership extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "membership_id", updatable = false, nullable = false)
@@ -40,10 +37,13 @@ public class GroupMembership extends AbstractAuditingEntity implements Serializa
     MembershipStatus status;
 
     public enum Role {
-        MEMBER, OWNER
+        MEMBER,
+        OWNER
     }
 
     public enum Status {
-        PENDING, APPROVED, BLOCKED
+        PENDING,
+        APPROVED,
+        BLOCKED
     }
 }

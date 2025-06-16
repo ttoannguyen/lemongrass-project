@@ -1,7 +1,9 @@
 package com.ttoannguyen.lemongrass.repository;
 
-import com.ttoannguyen.lemongrass.entity.PinnedPost;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PinnedPostRepository extends JpaRepository<PinnedPost, String> {
-}
+import com.ttoannguyen.lemongrass.entity.PinnedPost;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PinnedPostRepository extends JpaRepository<PinnedPost, String> {}

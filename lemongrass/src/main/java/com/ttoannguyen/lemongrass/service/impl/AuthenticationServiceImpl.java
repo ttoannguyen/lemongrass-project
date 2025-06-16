@@ -39,8 +39,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
-        final var account = accountRepository.findByUsername(request.getUsername());
-        if (account == null) throw new AppException(ErrorCode.USER_NOT_EXISTED);
+        final var account = accountRepository.findByUsername(request.getUsername()).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
         final boolean authenticated = passwordEncoder.matches(request.getPassword(), account.getPassword());
         if (!authenticated) throw new AppException(ErrorCode.UNAUTHENTICATED);
@@ -87,9 +86,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 InvalidatedToken.builder().id(jit).expiryTime(expiryTime).build();
         invalidatedTokenRepository.save(invalidatedToken);
         final var username = signJWT.getJWTClaimsSet().getSubject();
-        final var account = accountRepository.findByUsername(username);
-        if (account == null) throw new AppException(ErrorCode.UNAUTHENTICATED);
-
+        final var account = accountRepository.findByUsername(username).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         final var token = tokenProvider.generateToken(account);
 
         return AuthenticationResponse.builder().token(token).build();

@@ -1,6 +1,5 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -17,7 +16,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Account extends AbstractAuditingEntity implements Serializable {
+public class Account extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
@@ -47,14 +46,11 @@ public class Account extends AbstractAuditingEntity implements Serializable {
     String bio;
 
     @Column(nullable = false)
-    boolean inactive = false;
+    boolean inactive;
 
     @Column(nullable = false)
-    boolean isBanned = false;
+    boolean isBanned;
 
     @ManyToMany
     Set<Role> roles;
-
-    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true)
-     Set<Post> posts;
 }

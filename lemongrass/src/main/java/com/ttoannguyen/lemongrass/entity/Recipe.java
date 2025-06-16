@@ -1,15 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import java.util.List;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "recipe")
@@ -19,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Recipe extends AbstractAuditingEntity implements Serializable {
+public class Recipe extends AbstractAuditingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -48,40 +42,20 @@ public class Recipe extends AbstractAuditingEntity implements Serializable {
     String tags;
 
     @Column(nullable = false)
-    boolean isVerified = false;
+    boolean isVerified;
 
     @Column(nullable = false)
-    Integer shareCount = 0;
+    Integer shareCount;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Ingredient> ingredients = new ArrayList<>();
+    List<Instruction> instructions;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Instruction> instructions = new ArrayList<>();
-
-//    @NotBlank
-//    @Column(columnDefinition = "TEXT", nullable = false)
-//    String instructions;
-//
-//    @Positive
-//    @Column(name = "cooking_time", nullable = false)
-//    Integer cookingTime;
-//
-//    @Enumerated(EnumType.STRING)
-//    @Column(name = "difficulty", nullable = false)
-//    Difficulty difficulty;
-//
-//    @Positive
-//    @Column(name = "servings", nullable = false)
-//    Integer servings;
-//
-//    @PositiveOrZero
-//    @Column(name = "rating_avg")
-//    Double ratingAvg;
-
-
+    List<Ingredient> ingredients;
 
     public enum Difficulty {
-        EASY, MEDIUM, HARD
+        EASY,
+        MEDIUM,
+        HARD
     }
 }

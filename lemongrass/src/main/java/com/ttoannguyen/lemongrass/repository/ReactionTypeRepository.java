@@ -1,7 +1,10 @@
 package com.ttoannguyen.lemongrass.repository;
 
-import com.ttoannguyen.lemongrass.entity.Reaction;
+import jdk.jfr.Registered;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ReactionTypeRepository extends JpaRepository<Reaction, String> {
-}
+import com.ttoannguyen.lemongrass.entity.Reaction;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ReactionTypeRepository extends JpaRepository<Reaction, String> {}

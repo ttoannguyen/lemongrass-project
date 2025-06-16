@@ -1,11 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import com.ttoannguyen.lemongrass.entity.enums.ReportStatus;
 import jakarta.persistence.*;
+import com.ttoannguyen.lemongrass.entity.enums.ReportStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "post_report")
@@ -15,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class PostReport extends AbstractAuditingEntity implements Serializable {
+public class PostReport extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;

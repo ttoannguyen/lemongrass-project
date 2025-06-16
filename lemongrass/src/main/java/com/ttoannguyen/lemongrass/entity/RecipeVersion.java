@@ -1,11 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import jakarta.persistence.*;
+import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "recipe_version")
@@ -15,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RecipeVersion extends AbstractAuditingEntity implements Serializable {
+public class RecipeVersion extends AbstractAuditingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -38,7 +36,7 @@ public class RecipeVersion extends AbstractAuditingEntity implements Serializabl
     @Column(columnDefinition = "JSON")
     String tags;
 
-//    @ManyToOne
-//    @JoinColumn(name = "modified_by", nullable = false)
-//    private Account modifiedBy;
+    // @ManyToOne
+    // @JoinColumn(name = "modified_by", nullable = false)
+    // private Account modifiedBy;
 }

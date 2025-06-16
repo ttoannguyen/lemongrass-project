@@ -5,9 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
 @Entity
 @Table(name = "groups")
 @Getter
@@ -16,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Group extends AbstractAuditingEntity implements Serializable {
+public class Group extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "groups_id", updatable = false, nullable = false)
@@ -32,23 +29,24 @@ public class Group extends AbstractAuditingEntity implements Serializable {
     @JoinColumn(name = "account_id", nullable = false)
     Account account;
 
-     String category;
+    String category;
 
-     String coverImageUrl;
+    String coverImageUrl;
 
-     String rules;
-
-    @Column(nullable = false)
-     boolean requirePostApproval = false;
+    String rules;
 
     @Column(nullable = false)
-     Integer memberCount = 0;
+    boolean requirePostApproval;
+
+    @Column(nullable = false)
+    Integer memberCount;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "visibility", nullable = false)
     Visibility visibility;
 
     public enum Visibility {
-        PUBLIC, PRIVATE
+        PUBLIC,
+        PRIVATE
     }
 }

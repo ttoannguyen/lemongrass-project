@@ -23,10 +23,10 @@ public class AccountResponse {
     String lastName;
     LocalDate dob;
     String address;
-    boolean inactive = false;
-    boolean isDeleted = false;
+    boolean inactive;
+    boolean isDeleted;
     Set<RoleResponse> roles;
-    //    Set<String> roles;
+    // Set<String> roles;
     String createdBy;
     LocalDateTime createdDate;
     String lastModifiedBy;

@@ -1,13 +1,10 @@
 package com.ttoannguyen.lemongrass.entity;
 
-
+import jakarta.persistence.*;
 import com.ttoannguyen.lemongrass.entity.enums.NotificationType;
 import com.ttoannguyen.lemongrass.entity.enums.Priority;
-import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "notification")
@@ -17,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Notification extends AbstractAuditingEntity implements Serializable {
+public class Notification extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     String id;
@@ -46,7 +43,7 @@ public class Notification extends AbstractAuditingEntity implements Serializable
     Recipe recipe;
 
     @Column(nullable = false)
-    boolean isRead = false;
+    boolean isRead;
 
     @Enumerated(EnumType.STRING)
     Priority priority;

@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
-
-
 @Entity
 @Table(name = "reaction_type")
 @Getter
@@ -15,9 +12,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ReactionType extends AbstractAuditingEntity implements Serializable {
+public class ReactionType extends AbstractAuditingEntity {
     @Id
-            @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
     @Column(nullable = false)

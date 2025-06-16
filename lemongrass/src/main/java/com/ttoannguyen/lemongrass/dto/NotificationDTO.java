@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.dto;
 
 import com.ttoannguyen.lemongrass.entity.enums.NotificationType;
 import com.ttoannguyen.lemongrass.entity.enums.Priority;
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;

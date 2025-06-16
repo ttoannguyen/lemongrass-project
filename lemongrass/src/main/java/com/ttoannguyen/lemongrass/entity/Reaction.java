@@ -1,12 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import com.ttoannguyen.lemongrass.entity.enums.ReactionTargetType;
 import jakarta.persistence.*;
+import com.ttoannguyen.lemongrass.entity.enums.ReactionTargetType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.ColumnDefault;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "reaction")
@@ -16,9 +13,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Reaction extends AbstractAuditingEntity implements Serializable {
+public class Reaction extends AbstractAuditingEntity {
     @Id
-            @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
     @Column(nullable = false)

@@ -1,10 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
 
 /**
  * Hướng Dẫn
@@ -17,16 +16,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Instruction extends AbstractAuditingEntity implements Serializable {
+public class Instruction extends AbstractAuditingEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     String id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_id", nullable = false)
-    private Recipe recipe;
+    @JsonIgnore
+    Recipe recipe;
 
     @Column(nullable = false)
     private Integer stepNumber;

@@ -1,11 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import com.ttoannguyen.lemongrass.entity.enums.CommentStatus;
 import jakarta.persistence.*;
+import com.ttoannguyen.lemongrass.entity.enums.CommentStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
 
 @Entity
 @Table(name = "comment")
@@ -15,9 +13,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Comment extends AbstractAuditingEntity implements Serializable {
+public class Comment extends AbstractAuditingEntity {
     @Id
-            @GeneratedValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     String id;
 
     @ManyToOne
@@ -37,5 +35,4 @@ public class Comment extends AbstractAuditingEntity implements Serializable {
 
     @Column(nullable = false)
     CommentStatus status;
-
 }

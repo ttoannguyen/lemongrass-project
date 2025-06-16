@@ -1,16 +1,13 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-
-import java.io.Serializable;
 
 /**
  * Nguyên Liệu
  */
-
 @Entity
 @Table(name = "ingredient")
 @Getter
@@ -19,41 +16,23 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Ingredient  extends AbstractAuditingEntity implements Serializable {
+public class Ingredient extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
     String id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "recipe_id", nullable = false)
+    @JsonIgnore
     Recipe recipe;
+
 
     @Column(nullable = false)
     String name;
 
     String quantity;
 
-
-
     @Column(name = "ingredient_order")
     Integer order;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "material_id", nullable = false)
-//    Material material;
-//
-//    @PositiveOrZero
-//    @Column(name = "quantity")
-//    Double quantity;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "unit_id")
-//    Unit unit;
-//
-//    @Column(name = "custom_unit")
-//    String customUnit;
-//
-//    @Column(name = "notes")
-//    String notes;
 }

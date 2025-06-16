@@ -1,12 +1,9 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import java.io.Serializable;
 import java.util.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -18,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class InvalidatedToken extends AbstractAuditingEntity implements Serializable {
+public class InvalidatedToken extends AbstractAuditingEntity {
     @Id
     String id;
 

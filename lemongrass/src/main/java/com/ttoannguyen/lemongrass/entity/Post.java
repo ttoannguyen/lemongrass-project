@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.io.Serializable;
-
 @Entity
 @Table(name = "post")
 @Getter
@@ -14,7 +12,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Post extends AbstractAuditingEntity implements Serializable {
+public class Post extends AbstractAuditingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", updatable = false, nullable = false)
@@ -30,7 +28,7 @@ public class Post extends AbstractAuditingEntity implements Serializable {
     String visibility;
 
     @Column(nullable = false)
-    boolean isApproved = true;
+    boolean isApproved;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id")

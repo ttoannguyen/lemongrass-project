@@ -1,10 +1,7 @@
 package com.ttoannguyen.lemongrass.entity;
 
-import java.io.Serializable;
 import java.util.Set;
-
 import jakarta.persistence.*;
-
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -16,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Role extends AbstractAuditingEntity implements Serializable {
+public class Role extends AbstractAuditingEntity {
     @Id
     String name;
 

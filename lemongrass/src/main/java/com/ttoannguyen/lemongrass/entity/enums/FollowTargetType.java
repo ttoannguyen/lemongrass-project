@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.entity.enums;
 
 public enum FollowTargetType {
-    USER, GROUP
+    USER,
+    GROUP
 }
