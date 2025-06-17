@@ -1,16 +1,15 @@
 package com.ttoannguyen.lemongrass.mapper;
 
-import com.ttoannguyen.lemongrass.dto.Response.IngredientResponse;
-import com.ttoannguyen.lemongrass.dto.Response.InstructionResponse;
-import com.ttoannguyen.lemongrass.dto.Response.RecipeResponse;
-import com.ttoannguyen.lemongrass.entity.Ingredient;
-import com.ttoannguyen.lemongrass.entity.Instruction;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.Recipe;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.util.List;
-
-@Mapper(componentModel = "spring", uses = {IngredientMapper.class, InstructionMapper.class})
+@Mapper(componentModel = "spring", uses = { AccountMapper.class, IngredientMapper.class, InstructionMapper.class })
 public interface RecipeMapper {
+    @Mapping(source = "account", target = "account")
+    @Mapping(source = "ingredients", target = "ingredients")
+    @Mapping(source = "instructions", target = "instructions")
+    @Mapping(source = "verified", target = "isVerified")
     RecipeResponse toRecipeResponse(Recipe recipe);
 }

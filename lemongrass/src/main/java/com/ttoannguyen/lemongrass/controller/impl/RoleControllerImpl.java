@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ttoannguyen.lemongrass.controller.RoleController;
-import com.ttoannguyen.lemongrass.dto.Request.RoleRequest;
-import com.ttoannguyen.lemongrass.dto.Response.RoleResponse;
+import com.ttoannguyen.lemongrass.dto.Request.role.RoleRequest;
+import com.ttoannguyen.lemongrass.dto.Response.role.RoleResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.RoleService;
 
@@ -28,14 +28,14 @@ public class RoleControllerImpl implements RoleController {
     }
 
     @Override
-    public ApiResponse<List<RoleResponse>> getPermissions() {
+    public ApiResponse<List<RoleResponse>> getRoles() {
         return ApiResponse.<List<RoleResponse>>builder()
                 .result(roleService.getRoles())
                 .build();
     }
 
     @Override
-    public ApiResponse<Void> deletePermissionById(String roleId) {
+    public ApiResponse<Void> deleteRoleById(String roleId) {
         roleService.delete(roleId);
         return ApiResponse.<Void>builder().build();
     }

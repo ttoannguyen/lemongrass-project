@@ -1,14 +1,14 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
-import com.ttoannguyen.lemongrass.dto.Request.PostCreateRequest;
-import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
-import com.ttoannguyen.lemongrass.dto.Response.PostResponse;
+import com.ttoannguyen.lemongrass.dto.Request.post.PostCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.post.PostResponse;
 import com.ttoannguyen.lemongrass.entity.Account;
 import com.ttoannguyen.lemongrass.entity.Group;
 import com.ttoannguyen.lemongrass.entity.Post;
 import com.ttoannguyen.lemongrass.entity.Recipe;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
+import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import com.ttoannguyen.lemongrass.mapper.PostMapper;
 import com.ttoannguyen.lemongrass.repository.AccountRepository;
 import com.ttoannguyen.lemongrass.repository.GroupRepository;
@@ -20,6 +20,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -29,6 +31,8 @@ public class PostServiceImpl implements PostService {
     GroupRepository groupRepository;
     RecipeRepository recipeRepository;
     PostMapper postMapper;
+    AccountMapper accountMapper;
+
     @Override
     public PostResponse create(PostCreateRequest request, String username) {
         Account account = accountRepository.findByUsername(username)
@@ -50,5 +54,19 @@ public class PostServiceImpl implements PostService {
         post.setApproved(false);
 
         return postMapper.toPostResponse(postRepository.save(post));
+    }
+
+    @Override
+    public List<PostResponse> getPosts() {
+        return postMapper.toListPostResponse(postRepository.findAll());
+    }
+
+    @Override
+    public PostResponse getPost(String postId) {
+        return postMapper.toPostResponse(
+                postRepository.findById(postId)
+                        .orElseThrow(() -> new AppException(ErrorCode.POST_NOT_EXISTED)
+                        )
+        );
     }
 }

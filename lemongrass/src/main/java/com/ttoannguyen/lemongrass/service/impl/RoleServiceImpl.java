@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ttoannguyen.lemongrass.dto.Request.RoleRequest;
-import com.ttoannguyen.lemongrass.dto.Response.RoleResponse;
+import com.ttoannguyen.lemongrass.dto.Request.role.RoleRequest;
+import com.ttoannguyen.lemongrass.dto.Response.role.RoleResponse;
 import com.ttoannguyen.lemongrass.mapper.RoleMapper;
 import com.ttoannguyen.lemongrass.repository.PermissionRepository;
 import com.ttoannguyen.lemongrass.repository.RoleRepository;

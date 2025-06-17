@@ -6,9 +6,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ttoannguyen.lemongrass.controller.AccountController;
-import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
-import com.ttoannguyen.lemongrass.dto.Request.AccountUpdateRequest;
-import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
+import com.ttoannguyen.lemongrass.dto.Request.account.AccountCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.account.AccountUpdateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.AccountService;
 

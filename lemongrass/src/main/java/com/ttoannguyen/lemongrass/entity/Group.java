@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import com.ttoannguyen.lemongrass.entity.enums.Visibility;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -45,8 +46,4 @@ public class Group extends AbstractAuditingEntity {
     @Column(name = "visibility", nullable = false)
     Visibility visibility;
 
-    public enum Visibility {
-        PUBLIC,
-        PRIVATE
-    }
 }

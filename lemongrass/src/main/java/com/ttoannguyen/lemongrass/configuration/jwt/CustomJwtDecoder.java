@@ -13,7 +13,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.stereotype.Component;
 
 import com.nimbusds.jose.JOSEException;
-import com.ttoannguyen.lemongrass.dto.Request.IntrospectRequest;
+import com.ttoannguyen.lemongrass.dto.Request.auth.IntrospectRequest;
 import com.ttoannguyen.lemongrass.service.AuthenticationService;
 
 import lombok.AccessLevel;

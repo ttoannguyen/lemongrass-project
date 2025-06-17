@@ -1,8 +1,8 @@
 package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.PostController;
-import com.ttoannguyen.lemongrass.dto.Request.PostCreateRequest;
-import com.ttoannguyen.lemongrass.dto.Response.PostResponse;
+import com.ttoannguyen.lemongrass.dto.Request.post.PostCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.post.PostResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.PostService;
 import lombok.AccessLevel;
@@ -18,6 +18,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PostControllerImpl implements PostController {
     PostService postService;
+
     @Override
     public ApiResponse<PostResponse> create(PostCreateRequest postRequest) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -28,11 +29,15 @@ public class PostControllerImpl implements PostController {
 
     @Override
     public ApiResponse<List<PostResponse>> getPosts() {
-        return null;
+        return ApiResponse.<List<PostResponse>>builder()
+                .result(postService.getPosts())
+                .build();
     }
 
     @Override
     public ApiResponse<PostResponse> getPost(String postId) {
-        return null;
+        return ApiResponse.<PostResponse>builder()
+                .result(postService.getPost(postId))
+                .build();
     }
 }

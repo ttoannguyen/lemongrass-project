@@ -1,7 +1,7 @@
 package com.ttoannguyen.lemongrass.controller;
 
-import com.ttoannguyen.lemongrass.dto.Request.PostCreateRequest;
-import com.ttoannguyen.lemongrass.dto.Response.PostResponse;
+import com.ttoannguyen.lemongrass.dto.Request.post.PostCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.post.PostResponse;
 import org.springframework.web.bind.annotation.*;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 
@@ -15,8 +15,6 @@ public interface PostController {
     @GetMapping
     ApiResponse<List<PostResponse>> getPosts();
 
-    @GetMapping("/{postId}")
+    @GetMapping("/post")
     ApiResponse<PostResponse> getPost(@RequestParam("postId") String postId);
-
-
 }

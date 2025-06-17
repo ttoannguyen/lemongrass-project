@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nimbusds.jose.JOSEException;
-import com.ttoannguyen.lemongrass.dto.Request.AuthenticationRequest;
-import com.ttoannguyen.lemongrass.dto.Request.IntrospectRequest;
-import com.ttoannguyen.lemongrass.dto.Request.LogoutRequest;
-import com.ttoannguyen.lemongrass.dto.Request.RefreshRequest;
-import com.ttoannguyen.lemongrass.dto.Response.AuthenticationResponse;
-import com.ttoannguyen.lemongrass.dto.Response.IntrospectResponse;
+import com.ttoannguyen.lemongrass.dto.Request.auth.AuthenticationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.auth.IntrospectRequest;
+import com.ttoannguyen.lemongrass.dto.Request.auth.LogoutRequest;
+import com.ttoannguyen.lemongrass.dto.Request.auth.RefreshRequest;
+import com.ttoannguyen.lemongrass.dto.Response.auth.AuthenticationResponse;
+import com.ttoannguyen.lemongrass.dto.Response.auth.IntrospectResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 
 @RequestMapping("/api/_v1/auth")

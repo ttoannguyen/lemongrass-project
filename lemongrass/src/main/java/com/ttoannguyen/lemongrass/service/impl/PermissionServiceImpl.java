@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.ttoannguyen.lemongrass.dto.Request.PermissionRequest;
-import com.ttoannguyen.lemongrass.dto.Response.PermissionResponse;
+import com.ttoannguyen.lemongrass.dto.Request.permission.PermissionRequest;
+import com.ttoannguyen.lemongrass.dto.Response.permission.PermissionResponse;
 import com.ttoannguyen.lemongrass.entity.Permission;
 import com.ttoannguyen.lemongrass.mapper.PermissionMapper;
 import com.ttoannguyen.lemongrass.repository.PermissionRepository;

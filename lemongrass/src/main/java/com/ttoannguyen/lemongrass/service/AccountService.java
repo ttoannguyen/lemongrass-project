@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 
-import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
-import com.ttoannguyen.lemongrass.dto.Request.AccountUpdateRequest;
-import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
+import com.ttoannguyen.lemongrass.dto.Request.account.AccountCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.account.AccountUpdateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 
 public interface AccountService {
     AccountResponse createAccount(AccountCreateRequest request);

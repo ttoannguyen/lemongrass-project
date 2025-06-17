@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.ttoannguyen.lemongrass.dto.Request.PermissionRequest;
-import com.ttoannguyen.lemongrass.dto.Response.PermissionResponse;
+import com.ttoannguyen.lemongrass.dto.Request.permission.PermissionRequest;
+import com.ttoannguyen.lemongrass.dto.Response.permission.PermissionResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 
 @RequestMapping("/api/_v1/permissions")

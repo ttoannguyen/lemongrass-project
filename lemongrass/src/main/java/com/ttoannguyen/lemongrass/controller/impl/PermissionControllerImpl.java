@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ttoannguyen.lemongrass.controller.PermissionController;
-import com.ttoannguyen.lemongrass.dto.Request.PermissionRequest;
-import com.ttoannguyen.lemongrass.dto.Response.PermissionResponse;
+import com.ttoannguyen.lemongrass.dto.Request.permission.PermissionRequest;
+import com.ttoannguyen.lemongrass.dto.Response.permission.PermissionResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.PermissionService;
 

@@ -9,9 +9,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.ttoannguyen.lemongrass.dto.Request.AccountCreateRequest;
-import com.ttoannguyen.lemongrass.dto.Request.AccountUpdateRequest;
-import com.ttoannguyen.lemongrass.dto.Response.AccountResponse;
+import com.ttoannguyen.lemongrass.dto.Request.account.AccountCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.account.AccountUpdateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 import com.ttoannguyen.lemongrass.entity.Account;
 import com.ttoannguyen.lemongrass.entity.Role;
 import com.ttoannguyen.lemongrass.entity.enums.ERole;

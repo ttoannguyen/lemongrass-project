@@ -23,6 +23,8 @@ public enum ErrorCode {
     INVALID_DOB(1008, "Your age must be at least {min}", HttpStatus.BAD_REQUEST),
     GROUP_NOT_EXISTED(1009, "Group not exists!", HttpStatus.NOT_FOUND),
     RECIPE_NOT_EXISTED(1010, "Recipe not exists!", HttpStatus.NOT_FOUND),
+    POST_NOT_EXISTED(1011, "Post not exists!", HttpStatus.NOT_FOUND),
+    GROUP_EXISTED(1012, "Group exists!", HttpStatus.BAD_REQUEST),
 
     ;
     private int code;
