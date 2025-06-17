@@ -135,3 +135,6 @@ bộ dữ liệu có thể trở nên khó khăn, đòi hỏi kỹ thuật và k
 + Có thể gặp phải các giới hạn về tần suất đọc/ghi dữ liệu khi lượng yêu 
 cầu tăng cao, gây ảnh hưởng đến hiệu suất xử lý.  
 + Do là NoSQL nên Firebase không tối ưu cho cơ sở dữ liệu truyền thống. 
+
+
+font: Poppins

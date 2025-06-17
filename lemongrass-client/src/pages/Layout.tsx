@@ -1,11 +1,10 @@
-import React from "react";
+import NavBar from "@/components/NavBar";
 import { Outlet } from "react-router-dom";
 
-type Props = {};
-
-const Layout = (props: Props) => {
+const Layout = () => {
   return (
     <div>
+      <NavBar />
       <Outlet />
     </div>
   );

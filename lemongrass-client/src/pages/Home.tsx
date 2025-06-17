@@ -1,11 +1,9 @@
-import NavBar from "@/components/NavBar";
+// type Props = {};
 
-type Props = {};
-
-const Home = (props: Props) => {
+const Home = () => {
   return (
     <div>
-      <NavBar />
+      <p>Nội dung trang home</p>
     </div>
   );
 };
