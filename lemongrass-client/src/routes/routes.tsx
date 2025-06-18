@@ -1,5 +1,7 @@
 import Home from "@/pages/Home";
 import Layout from "@/pages/Layout";
+import Login from "@/pages/Login";
+import Register from "@/pages/Register";
 import { type RouteObject } from "react-router-dom";
 
 const routes: RouteObject[] = [
@@ -15,15 +17,20 @@ const routes: RouteObject[] = [
       //   path: "about",
       //   element: <About />,
       // },
-      // {
-      //   path: "login",
-      //   element: <Login />,
-      // },
+
       // {
       //   path: "register",
       //   element: <Register />,
       // },
     ],
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
+  {
+    path: "register",
+    element: <Register />,
   },
 ];
 

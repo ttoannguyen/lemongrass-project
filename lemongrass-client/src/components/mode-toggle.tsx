@@ -17,6 +17,7 @@ export function ModeToggle() {
         onPressedChange={handleToggle}
         aria-label="Toggle theme"
         className="cursor-pointer"
+        size={"xs"}
       >{isDark ? (
         <Moon className="h-4 w-4 text-background-d " />
       ) : (
