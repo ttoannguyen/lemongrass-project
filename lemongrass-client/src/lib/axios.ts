@@ -5,13 +5,14 @@ interface ApiError {
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
+  baseURL: `${
+    import.meta.env.VITE_API_URL || "http://localhost:3000"
+  }/api/_v1/`,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// Request interceptor to add auth token
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("authToken");

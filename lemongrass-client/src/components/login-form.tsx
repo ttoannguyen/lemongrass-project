@@ -5,17 +5,64 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import loginImage from "@/assets/images/login_.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState, type ChangeEvent } from "react";
+import { authService } from "@/services/authService";
+import { Loader2 } from "lucide-react";
+import { useAuth } from "@/contexts/authContext";
+
+interface FormData {
+  username: string;
+  password: string;
+}
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const [formData, setFormData] = useState<FormData>({
+    username: "",
+    password: "",
+  });
+  const [error, setError] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const { login } = useAuth();
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setError("");
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!formData.username || !formData.password) {
+      setError("Please fill in all fields");
+      return;
+    }
+
+    setIsLoading(true);
+    setError("");
+
+    try {
+      const data = await authService.login(formData);
+      login(data.result.token, data.result.account);
+      console.log(data.result.account);
+      navigate("/");
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : "Unknown error";
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="overflow-hidden p-0 mb-10">
         <CardContent className="grid p-0 md:grid-cols-2">
-          <form className="p-6 md:p-8">
+          <form className="p-6 md:p-8" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-6">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-2xl font-bold">Welcome back</h1>
@@ -23,13 +70,21 @@ export function LoginForm({
                   Login to your Acme Inc account
                 </p>
               </div>
+              {error && (
+                <div className="text-destructive text-sm text-center">
+                  {error}
+                </div>
+              )}
               <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="username">Username</Label>
                 <Input
-                  id="email"
-                  type="email"
-                  placeholder="m@example.com"
+                  id="username"
+                  type="username"
+                  placeholder="username"
+                  value={formData.username}
+                  onChange={handleChange}
                   required
+                  disabled={isLoading}
                 />
               </div>
               <div className="grid gap-3">
@@ -42,10 +97,24 @@ export function LoginForm({
                     Forgot your password?
                   </a>
                 </div>
-                <Input id="password" type="password" required />
+                <Input
+                  id="password"
+                  type="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  disabled={isLoading}
+                />
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                    Logging in...
+                  </>
+                ) : (
+                  "Login"
+                )}
               </Button>
               <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
                 <span className="bg-card text-muted-foreground relative z-10 px-2">
