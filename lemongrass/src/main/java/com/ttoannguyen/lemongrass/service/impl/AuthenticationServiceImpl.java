@@ -3,6 +3,8 @@ package com.ttoannguyen.lemongrass.service.impl;
 import java.text.ParseException;
 import java.util.Date;
 
+import com.ttoannguyen.lemongrass.entity.Account;
+import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,70 +27,93 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AuthenticationServiceImpl implements AuthenticationService {
-    AccountRepository accountRepository;
-    TokenProvider tokenProvider;
-    PasswordEncoder passwordEncoder;
-    InvalidatedTokenRepository invalidatedTokenRepository;
+  AccountRepository accountRepository;
+  TokenProvider tokenProvider;
+  PasswordEncoder passwordEncoder;
+  InvalidatedTokenRepository invalidatedTokenRepository;
+  AccountMapper accountMapper;
 
-    @Override
-    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+  @Override
+  public AuthenticationResponse authenticate(AuthenticationRequest request) {
 
-        final var account = accountRepository.findByUsername(request.getUsername()).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+    final Account account =
+        accountRepository
+            .findByUsername(request.getUsername())
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
-        final boolean authenticated = passwordEncoder.matches(request.getPassword(), account.getPassword());
-        if (!authenticated) throw new AppException(ErrorCode.UNAUTHENTICATED);
+    final boolean authenticated =
+        passwordEncoder.matches(request.getPassword(), account.getPassword());
+    if (!authenticated) throw new AppException(ErrorCode.UNAUTHENTICATED);
 
-        final var token = tokenProvider.generateToken(account);
+    final var token = tokenProvider.generateToken(account);
 
-        return AuthenticationResponse.builder().token(token).build();
+    return AuthenticationResponse.builder()
+        .token(token)
+        .account(accountMapper.toAccountResponse(account))
+        .build();
+  }
+
+  @Override
+  @Transactional
+  public IntrospectResponse introspect(IntrospectRequest request)
+      throws ParseException, JOSEException {
+    final var token = request.getToken();
+    final var inValid = true;
+    try {
+      final var jwtClaims = tokenProvider.verifyToken(token, false);
+      final var username = jwtClaims.getJWTClaimsSet().getSubject();
+      final Account account =
+          accountRepository
+              .findByUsername(username)
+              .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+      return IntrospectResponse.builder()
+          .valid(inValid)
+          .account(accountMapper.toAccountResponse(account))
+          .build();
+    } catch (AppException e) {
+      return IntrospectResponse.builder().valid(!inValid).account(null).build();
     }
+  }
 
-    @Override
-    public IntrospectResponse introspect(IntrospectRequest request) throws ParseException, JOSEException {
-        final var token = request.getToken();
-        final var inValid = true;
-        try {
-            tokenProvider.verifyToken(token, false);
-        } catch (AppException e) {
-            return IntrospectResponse.builder().valid(!inValid).build();
-        }
-        return IntrospectResponse.builder().valid(inValid).build();
+  @Override
+  public void logout(LogoutRequest request) throws ParseException, JOSEException {
+    try {
+      final var signToken = tokenProvider.verifyToken(request.getToken(), true);
+      String jit = signToken.getJWTClaimsSet().getJWTID();
+
+      Date expiryTime = signToken.getJWTClaimsSet().getExpirationTime();
+      InvalidatedToken invalidatedToken =
+          InvalidatedToken.builder().id(jit).expiryTime(expiryTime).build();
+
+      invalidatedTokenRepository.save(invalidatedToken);
+    } catch (AppException e) {
+      log.info("Token already expired!");
     }
+  }
 
-    @Override
-    public void logout(LogoutRequest request) throws ParseException, JOSEException {
-        try {
-            final var signToken = tokenProvider.verifyToken(request.getToken(), true);
-            String jit = signToken.getJWTClaimsSet().getJWTID();
+  @Override
+  public AuthenticationResponse refreshToken(RefreshRequest request)
+      throws ParseException, JOSEException {
+    final var signJWT = tokenProvider.verifyToken(request.getToken(), true);
+    final var jit = signJWT.getJWTClaimsSet().getJWTID();
+    final var expiryTime = signJWT.getJWTClaimsSet().getExpirationTime();
+    InvalidatedToken invalidatedToken =
+        InvalidatedToken.builder().id(jit).expiryTime(expiryTime).build();
+    invalidatedTokenRepository.save(invalidatedToken);
+    final var username = signJWT.getJWTClaimsSet().getSubject();
+    final var account =
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+    final var token = tokenProvider.generateToken(account);
 
-            Date expiryTime = signToken.getJWTClaimsSet().getExpirationTime();
-            InvalidatedToken invalidatedToken =
-                    InvalidatedToken.builder().id(jit).expiryTime(expiryTime).build();
-
-            invalidatedTokenRepository.save(invalidatedToken);
-        } catch (AppException e) {
-            log.info("Token already expired!");
-        }
-    }
-
-    @Override
-    public AuthenticationResponse refreshToken(RefreshRequest request) throws ParseException, JOSEException {
-        final var signJWT = tokenProvider.verifyToken(request.getToken(), true);
-        final var jit = signJWT.getJWTClaimsSet().getJWTID();
-        final var expiryTime = signJWT.getJWTClaimsSet().getExpirationTime();
-        InvalidatedToken invalidatedToken =
-                InvalidatedToken.builder().id(jit).expiryTime(expiryTime).build();
-        invalidatedTokenRepository.save(invalidatedToken);
-        final var username = signJWT.getJWTClaimsSet().getSubject();
-        final var account = accountRepository.findByUsername(username).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
-        final var token = tokenProvider.generateToken(account);
-
-        return AuthenticationResponse.builder().token(token).build();
-    }
+    return AuthenticationResponse.builder().token(token).build();
+  }
 }

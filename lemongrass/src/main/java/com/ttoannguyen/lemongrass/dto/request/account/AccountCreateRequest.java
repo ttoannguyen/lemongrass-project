@@ -16,20 +16,20 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AccountCreateRequest {
-    @Email
-    String email;
+  @Email String email;
 
-    @Size(min = 3, message = "INVALID_USERNAME")
-    String username;
+  @Size(min = 3, message = "INVALID_USERNAME")
+  String username;
 
-    @Size(min = 8, message = "INVALID_PASSWORD")
-    String password;
+  @Size(min = 8, message = "INVALID_PASSWORD")
+  String password;
 
-    String firstName;
-    String lastName;
+  String firstName;
+  String lastName;
 
-    @DobConstraint(min = 18, message = "INVALID_DOB")
-    LocalDate dob;
+  @DobConstraint(min = 18, message = "INVALID_DOB")
+  LocalDate dob;
 
-    String address;
+  String address;
+  String profilePictureUrl;
 }

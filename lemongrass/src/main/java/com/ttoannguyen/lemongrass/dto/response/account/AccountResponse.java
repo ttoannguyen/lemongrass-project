@@ -17,19 +17,21 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AccountResponse {
-    String id;
-    String email;
-    String username;
-    String firstName;
-    String lastName;
-    LocalDate dob;
-    String address;
-    boolean inactive;
-    boolean isDeleted;
-    Set<RoleResponse> roles;
-    // Set<String> roles;
-    String createdBy;
-    LocalDateTime createdDate;
-    String lastModifiedBy;
-    LocalDateTime lastModifiedDate;
+  String id;
+  String email;
+  String username;
+  String firstName;
+  String lastName;
+  LocalDate dob;
+  String bio;
+  String address;
+  boolean inactive;
+  boolean isDeleted;
+  String profilePictureUrl;
+  Set<RoleResponse> roles;
+  // Set<String> roles;
+  String createdBy;
+  LocalDateTime createdDate;
+  String lastModifiedBy;
+  LocalDateTime lastModifiedDate;
 }

@@ -13,7 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class InstructionResponse {
-    String id;
-    Integer stepNumber;
-    private String description;
+  String id;
+  Integer stepNumber;
+  String description;
 }
