@@ -1,4 +1,9 @@
-import axios, { AxiosError, type AxiosResponse } from "axios";
+import axios, {
+  AxiosError,
+  AxiosHeaders,
+  type AxiosResponse,
+  type InternalAxiosRequestConfig,
+} from "axios";
 
 interface ApiError {
   error: string;
@@ -14,10 +19,16 @@ const api = axios.create({
 });
 
 api.interceptors.request.use(
-  (config) => {
+  (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem("authToken");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const skipAuth =
+      config.headers instanceof AxiosHeaders &&
+      config.headers.get("x-auth-required") === "false";
+
+    if (token && !skipAuth) {
+      if (config.headers instanceof AxiosHeaders) {
+        config.headers.set("Authorization", `Bearer ${token}`);
+      }
     }
     return config;
   },

@@ -14,7 +14,12 @@ export const authService = {
   ): Promise<BaseResponse<LoginResponse>> => {
     const response = await api.post<BaseResponse<LoginResponse>>(
       "/auth/login",
-      credentials
+      credentials,
+      {
+        headers: {
+          "x-auth-required": "false",
+        },
+      }
     );
     const token = response.data.result.token;
     localStorage.setItem("authToken", token);
@@ -30,7 +35,12 @@ export const authService = {
   ): Promise<RegisterResponse> => {
     const response = await api.post<RegisterResponse>(
       "/accounts/register",
-      registerData
+      registerData,
+      {
+        headers: {
+          "x-auth-required": "false",
+        },
+      }
     );
     if (response.data.code !== 1000) {
       throw new Error("Register failed: Invalid response code");
@@ -41,7 +51,15 @@ export const authService = {
   introspect: async (): Promise<Introspect> => {
     try {
       const token = localStorage.getItem("authToken");
-      const response = await api.post("/auth/introspect", { token: token });
+      const response = await api.post(
+        "/auth/introspect",
+        { token: token },
+        {
+          headers: {
+            "x-auth-required": "false",
+          },
+        }
+      );
       if (response.data.code !== 1000) {
         throw new Error("Register failed: Invalid response code");
       }

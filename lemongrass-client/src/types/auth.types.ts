@@ -49,6 +49,7 @@ export interface Account {
   dob?: string;
   address?: string;
   inactive: boolean;
+  bio: string;
   roles: Role[];
   profilePictureUrl: string;
   createdBy: string;

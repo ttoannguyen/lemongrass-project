@@ -65,6 +65,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  /* overflow: auto !important; */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -73,11 +74,11 @@
 
 .dark {
     --color-primary: oklch(0.75 0.12 160);     /* Xanh lá sáng */
-    /* --color-accent: oklch(0.92 0.08 100);      Vàng chanh dịu */
-    /* --color-secondary: oklch(0.70 0.05 30);    Nâu sáng */
-    /* --color-background: oklch(0.35 0.08 170);  Xanh đậm */
-    /* --color-card: oklch(0.45 0.10 160);        Xanh lá đậm hơn */
-    /* --color-text: #e4dbdd;   */
+    --color-accent: oklch(0.92 0.08 100);     
+    --color-secondary: oklch(0.70 0.05 30);    
+    --color-background: oklch(0.35 0.08 170);
+    --color-card: oklch(0.45 0.10 160);
+    --color-text: #e4dbdd;  
             /* Xám sáng */
 }
 

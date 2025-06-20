@@ -12,6 +12,7 @@ interface AuthContextType {
   isLoggedIn: boolean;
   token: string | null;
   account: Account | null;
+  isLoadingAuth: boolean;
   login: (token: string, account: Account) => void;
   logout: () => void;
 }
@@ -24,10 +25,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.getItem("authToken")
   );
   const [account, setAccount] = useState<Account | null>(null);
+  const [isLoadingAuth, setIsLoadingAuth] = useState<boolean>(true);
 
   useEffect(() => {
     const verifyToken = async () => {
-      if (!token) return;
+      if (!token) {
+        setIsLoadingAuth(false);
+        return;
+      }
 
       const { valid, account } = await authService.introspect();
       if (valid && account) {
@@ -36,11 +41,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       } else {
         logout();
       }
+      setIsLoadingAuth(false);
     };
     verifyToken();
   }, [token]);
 
-  const login = (token: string) => {
+  const login = (token: string, account: Account) => {
     setToken(token);
     setAccount(account);
     setIsLoggedIn(true);
@@ -55,7 +61,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, token, account, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn, token, account, isLoadingAuth, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

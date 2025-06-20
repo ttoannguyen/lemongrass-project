@@ -1,9 +1,12 @@
 // type Props = {};
 
+import AvatarUser from "@/components/NavBar/AvatarNav";
+
 const Home = () => {
   return (
-    <div>
-      <p>Nội dung trang home</p>
+    <div className="flex">
+      <span>abc</span>
+      <AvatarUser />
     </div>
   );
 };
