@@ -16,13 +16,12 @@ export function ModeToggle() {
         pressed={isDark}
         onPressedChange={handleToggle}
         aria-label="Toggle theme"
-        className="cursor-pointer"
+        className="cursor-pointer bg-background-l dark:bg-background-d! dark:text-background-l!"
+        variant={"ghost"}
         size={"xs"}
-      >{isDark ? (
-        <Moon className="h-4 w-4 text-background-d " />
-      ) : (
-        <Sun className="h-4 w-4 text-background-l" />
-      )}</Toggle>
+      >
+        {isDark ? <Moon className="h-4 w-4  " /> : <Sun className="h-4 w-4 " />}
+      </Toggle>
     </div>
   );
 }

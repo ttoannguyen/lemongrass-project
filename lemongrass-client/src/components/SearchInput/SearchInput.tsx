@@ -9,9 +9,9 @@ const SearchInput = ({ className }: props) => {
       <InputSearch
         type="text"
         placeholder="Search..."
-        className="w-full bg-background text-text border border-border rounded-[var(--radius-sm)]  focus:ring-1 focus:border-transparent transition-all"
+        className="w-full h-10 bg-background text-text border border-border rounded-[var(--radius-sm)]  focus:ring-1 focus:border-transparent transition-all"
       />
-      <Button className="text-background bg-secondary hover:bg-secondary/90 cursor-pointer">
+      <Button className="text-background h-10 bg-secondary hover:bg-secondary/90 cursor-pointer">
         Search
       </Button>
     </div>
