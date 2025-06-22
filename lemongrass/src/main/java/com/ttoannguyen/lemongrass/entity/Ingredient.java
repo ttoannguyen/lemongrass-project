@@ -5,9 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-/**
- * Nguyên Liệu
- */
+import java.util.UUID;
+
 @Entity
 @Table(name = "ingredient")
 @Getter
@@ -17,22 +16,31 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Ingredient extends AbstractAuditingEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id", nullable = false)
-    @JsonIgnore
-    Recipe recipe;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(updatable = false, nullable = false)
+  String id;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "recipe_id", nullable = false)
+  @JsonIgnore
+  Recipe recipe;
 
-    @Column(nullable = false)
-    String name;
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "template_id")
+  IngredientTemplate template;
 
-    String quantity;
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "unit_id")
+  IngredientUnit unit;
 
-    @Column(name = "ingredient_order")
-    Integer order;
+  @Column(nullable = true)
+  String note; // "băm nhỏ", "rửa sạch"
+
+  @Column(nullable = false)
+  Float quantity;
+
+  @Column(name = "ingredient_order")
+  Integer orderIndex;
 }

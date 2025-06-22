@@ -1,5 +1,6 @@
 version: '3.9'
 name: lemongrass
+
 services:
   postgresql_lemongrass:
     container_name: postgresql_lemongrass
@@ -15,9 +16,25 @@ services:
     restart: on-failure
     networks:
       - lemongrass_network
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.0.2
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - lemongrass_network
+
 volumes:
   lemongrass_data:
     name: lemongrass_data
+    driver: local
+  esdata:
     driver: local
 
 networks:

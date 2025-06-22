@@ -29,7 +29,6 @@ public class AccountResponse {
   boolean isDeleted;
   String profilePictureUrl;
   Set<RoleResponse> roles;
-  // Set<String> roles;
   String createdBy;
   LocalDateTime createdDate;
   String lastModifiedBy;
