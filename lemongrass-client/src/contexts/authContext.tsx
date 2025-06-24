@@ -1,4 +1,4 @@
-import { authService } from "@/services/authService";
+import { authService } from "@/services/auth.service";
 import type { Account } from "@/types";
 import {
   createContext,

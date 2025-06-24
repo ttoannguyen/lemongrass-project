@@ -1,12 +1,11 @@
 // type Props = {};
 
-import Feeds from "@/components/MainFeeds/Feeds";
-import AvatarUser from "@/components/NavBar/AvatarNav";
+import { FeedPage } from "@/components/MainFeeds/Feeds";
 
 const Home = () => {
   return (
-    <div className="flex">
-      <Feeds />
+    <div className="flex ">
+      <FeedPage className="md:min-w-200 bg-amber-400 mx-auto" />
     </div>
   );
 };

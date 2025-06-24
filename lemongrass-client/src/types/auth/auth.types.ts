@@ -1,8 +1,3 @@
-export interface BaseResponse<T = unknown> {
-  code: number;
-  result: T;
-}
-
 export interface LoginCredentials {
   username: string;
   password: string;

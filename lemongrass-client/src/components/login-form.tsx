@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import loginImage from "@/assets/images/login_.png";
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState, type ChangeEvent } from "react";
-import { authService } from "@/services/authService";
+import { authService } from "@/services/auth.service";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/contexts/authContext";
 
