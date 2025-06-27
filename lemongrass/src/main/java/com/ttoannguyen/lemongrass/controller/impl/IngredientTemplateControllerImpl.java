@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -22,6 +24,20 @@ public class IngredientTemplateControllerImpl implements IngredientTemplateContr
   public ApiResponse<IngredientTemplateResponse> create(IngredientTemplateCreateRequest request) {
     return ApiResponse.<IngredientTemplateResponse>builder()
         .result(ingredientTemplateService.create(request))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<List<IngredientTemplateResponse>> getIngredientTemplates() {
+    return ApiResponse.<List<IngredientTemplateResponse>>builder()
+        .result(ingredientTemplateService.getIngredientTemplates())
+        .build();
+  }
+
+  @Override
+  public ApiResponse<IngredientTemplateResponse> getIngredientTemplateId(String id) {
+    return ApiResponse.<IngredientTemplateResponse>builder()
+        .result(ingredientTemplateService.getIngredientTemplateId(id))
         .build();
   }
 }

@@ -5,9 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-/**
- * Hướng Dẫn
- */
+import java.util.List;
+
 @Entity
 @Table(name = "instruction")
 @Getter
@@ -18,19 +17,22 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Instruction extends AbstractAuditingEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "id", updatable = false, nullable = false)
+  String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "recipe_id", nullable = false)
-    @JsonIgnore
-    Recipe recipe;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "recipe_id", nullable = false)
+  @JsonIgnore
+  Recipe recipe;
 
-    @Column(nullable = false)
-    private Integer stepNumber;
+  @Column(nullable = false)
+  private Integer stepNumber;
 
-    @Column(nullable = false)
-    private String description;
+  @Column(nullable = false)
+  private String description;
+
+  @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL, orphanRemoval = true)
+  List<Image> images;
 }

@@ -19,20 +19,29 @@ services:
 
   elasticsearch:
     container_name: elasticsearch
-    image: docker.elastic.co/elasticsearch/elasticsearch:9.0.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.monitoring.collection.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - node.store.allow_mmap=false
     ports:
       - "9200:9200"
     volumes:
       - esdata:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: on-failure
+    mem_limit: 1g
     networks:
       - lemongrass_network
 
 volumes:
   lemongrass_data:
-    name: lemongrass_data
     driver: local
   esdata:
     driver: local
@@ -40,3 +49,49 @@ volumes:
 networks:
   lemongrass_network:
     driver: bridge
+
+
+
+
+#version: '3.9'
+#name: lemongrass
+#
+#services:
+#  postgresql_lemongrass:
+#    container_name: postgresql_lemongrass
+#    image: postgres:16.2
+#    environment:
+#      - POSTGRES_USER=lemongrass
+#      - POSTGRES_PASSWORD=12345678
+#      - POSTGRES_DB=lemongrass
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - lemongrass_data:/var/lib/postgresql/data
+#    restart: on-failure
+#    networks:
+#      - lemongrass_network
+#
+#  elasticsearch:
+#    container_name: elasticsearch
+#    image: docker.elastic.co/elasticsearch/elasticsearch:9.0.2
+#    environment:
+#      - discovery.type=single-node
+#      - xpack.security.enabled=false
+#    ports:
+#      - "9200:9200"
+#    volumes:
+#      - esdata:/usr/share/elasticsearch/data
+#    networks:
+#      - lemongrass_network
+#
+#volumes:
+#  lemongrass_data:
+#    name: lemongrass_data
+#    driver: local
+#  esdata:
+#    driver: local
+#
+#networks:
+#  lemongrass_network:
+#    driver: bridge

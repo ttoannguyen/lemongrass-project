@@ -28,8 +28,14 @@ public enum ErrorCode {
 
   INGREDIENT_UNIT_EXISTED(1013, "Ingredient unit exists!", HttpStatus.BAD_REQUEST),
   INGREDIENT_TEMPLATE_EXISTED(1014, "Ingredient template exists!", HttpStatus.BAD_REQUEST),
-  INGREDIENT_NOT_UNIT_EXISTED(1015, "Ingredient unit not exists!", HttpStatus.NOT_FOUND),
-  ;
+  INGREDIENT_UNIT_NOT_EXISTED(1015, "Ingredient unit not exists!", HttpStatus.NOT_FOUND),
+
+  INGREDIENT_TEMPLATE_NOT_EXISTED(1016, "Ingredient template not exists!", HttpStatus.NOT_FOUND),
+  INVALID_TAGS_FORMAT(1017, "Invalid tags format!", HttpStatus.BAD_REQUEST),
+
+  FAILED_UPLOAD(1018, "Upload failed!", HttpStatus.BAD_REQUEST),
+  INVALID_FILE(1019, "Invalid file!", HttpStatus.BAD_REQUEST);
+
   private int code;
   private String message;
   private HttpStatusCode httpStatusCode;

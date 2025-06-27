@@ -1,11 +1,14 @@
 spring:
   application:
     name: lemongrass
+  config:
+    import: optional:file:.env[.properties]
+  
   elasticsearch:
     uris: http://localhost:9200
     connection-timeout: 5s
     socket-timeout: 10s
-  
+
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:${POSTGRESQL_PORT:5432}/${POSTGRESQL_DATABASE:lemongrass}
@@ -32,7 +35,6 @@ spring:
       hibernate.cache.use_second_level_cache: false
       hibernate.cache.use_query_cache: false
       hibernate.generate_statistics: false
-      # modify batch size as necessary
       hibernate.jdbc.batch_size: 25
       hibernate.order_inserts: true
       hibernate.order_updates: true
@@ -48,8 +50,12 @@ logging:
 server:
   port: 8080
 
-
 jwt:
-  signer-key: "SUc3vhm9LhF72WDw2z/IfSvCvjhYo8zJv1nfMNLGCDsKqA7wlJAPX5PyNZnpheAX"
-  valid-duration: 3600 # in seconds
-  refreshable-duration: 36000 # in seconds
+  signer-key: ${JWT_SIGNER_KEY:SUc3vhm9LhF72WDw2z/IfSvCvjhYo8zJv1nfMNLGCDsKqA7wlJAPX5PyNZnpheAX}
+  valid-duration: 3600
+  refreshable-duration: 36000
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  api-secret: ${CLOUDINARY_API_SECRET}

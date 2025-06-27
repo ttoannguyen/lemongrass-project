@@ -30,7 +30,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig {
 
-  protected static final String[] PUBLIC_ENDPOINTS = {
+  protected static final String[] PUBLIC_GET_ENDPOINTS = {"/api/_v1/feeds"};
+
+  protected static final String[] PUBLIC_POST_ENDPOINTS = {
     "/api/_v1/auth/login",
     "/api/_v1/auth/logout",
     "/api/_v1/auth/introspect",
@@ -47,7 +49,9 @@ public class SecurityConfig {
         .authorizeHttpRequests(
             authorize ->
                 authorize
-                    .requestMatchers(HttpMethod.POST, PUBLIC_ENDPOINTS)
+                    .requestMatchers(HttpMethod.POST, PUBLIC_POST_ENDPOINTS)
+                    .permitAll()
+                    .requestMatchers(HttpMethod.GET, PUBLIC_GET_ENDPOINTS)
                     .permitAll()
                     .anyRequest()
                     .authenticated())

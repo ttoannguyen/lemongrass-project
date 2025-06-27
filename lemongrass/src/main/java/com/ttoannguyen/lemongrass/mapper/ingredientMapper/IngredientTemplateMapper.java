@@ -37,4 +37,7 @@ public interface IngredientTemplateMapper {
                     .build())
         .collect(Collectors.toList());
   }
+
+  List<IngredientTemplateResponse> toListIngredientTemplateResponse(
+      List<IngredientTemplate> ingredientTemplates);
 }

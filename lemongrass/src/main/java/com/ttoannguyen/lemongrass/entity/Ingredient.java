@@ -41,6 +41,6 @@ public class Ingredient extends AbstractAuditingEntity {
   @Column(nullable = false)
   Float quantity;
 
-  @Column(name = "ingredient_order")
+  @Column(name = "order_index")
   Integer orderIndex;
 }

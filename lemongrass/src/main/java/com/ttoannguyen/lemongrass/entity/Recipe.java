@@ -1,6 +1,10 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,47 +19,48 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Recipe extends AbstractAuditingEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "id", updatable = false, nullable = false)
+  String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    Account account;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "account_id")
+  Account account;
 
-    @Column(nullable = false)
-    String title;
+  @Column(nullable = false, unique = true)
+  String title;
 
-    Integer cookingTime;
+  Integer cookingTime;
 
-    @Enumerated(EnumType.STRING)
-    Difficulty difficulty;
+  @Enumerated(EnumType.STRING)
+  Difficulty difficulty;
 
-    Integer servings;
+  Integer servings;
 
-    Float ratingAvg;
+  Float ratingAvg;
 
-    String category;
+  String category;
 
-    @Column(columnDefinition = "JSON")
-    String tags;
+  @ManyToMany
+  @JoinTable(
+      name = "recipe_tag",
+      joinColumns = @JoinColumn(name = "recipe_id"),
+      inverseJoinColumns = @JoinColumn(name = "tag_name"))
+  Set<Tag> tags = new HashSet<>();
 
-    @Column(nullable = false)
-    boolean isVerified;
+  @Column(nullable = false)
+  boolean isVerified;
 
-    @Column(nullable = false)
-    Integer shareCount;
+  @Column(nullable = false)
+  Integer shareCount;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Instruction> instructions;
+  @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+  List<Instruction> instructions;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Ingredient> ingredients;
+  @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+  List<Ingredient> ingredients;
 
-    public enum Difficulty {
-        EASY,
-        MEDIUM,
-        HARD
-    }
+  @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+  List<Image> images;
 }

@@ -1,9 +1,7 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientTemplateCreateRequest;
-import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientUnitCreateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientTemplateResponse;
-import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientUnitResponse;
 import com.ttoannguyen.lemongrass.entity.IngredientTemplate;
 import com.ttoannguyen.lemongrass.entity.IngredientUnit;
 import com.ttoannguyen.lemongrass.exception.AppException;
@@ -12,12 +10,12 @@ import com.ttoannguyen.lemongrass.mapper.ingredientMapper.IngredientTemplateMapp
 import com.ttoannguyen.lemongrass.repository.IngredientTemplateRepository;
 import com.ttoannguyen.lemongrass.repository.IngredientUnitRepository;
 import com.ttoannguyen.lemongrass.service.IngredientTemplateService;
-import com.ttoannguyen.lemongrass.service.IngredientUnitService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -40,7 +38,7 @@ public class IngredientTemplateServiceImpl implements IngredientTemplateService 
                 id ->
                     ingredientUnitRepository
                         .findById(id)
-                        .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_NOT_UNIT_EXISTED)))
+                        .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED)))
             .collect(Collectors.toSet());
 
     IngredientTemplate ingredientTemplate = ingredientTemplateMapper.toIngredientTemplate(request);
@@ -48,5 +46,22 @@ public class IngredientTemplateServiceImpl implements IngredientTemplateService 
 
     return ingredientTemplateMapper.toIngredientTemplateResponse(
         ingredientTemplateRepository.save(ingredientTemplate));
+  }
+
+  @Override
+  public List<IngredientTemplateResponse> getIngredientTemplates() {
+
+    List<IngredientTemplate> ingredientTemplates = ingredientTemplateRepository.findAll();
+
+    return ingredientTemplateMapper.toListIngredientTemplateResponse(ingredientTemplates);
+  }
+
+  @Override
+  public IngredientTemplateResponse getIngredientTemplateId(String id) {
+    IngredientTemplate ingredientTemplate =
+        ingredientTemplateRepository
+            .findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));
+    return ingredientTemplateMapper.toIngredientTemplateResponse(ingredientTemplate);
   }
 }

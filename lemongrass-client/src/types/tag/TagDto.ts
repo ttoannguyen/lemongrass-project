@@ -1,4 +1,4 @@
-export interface Tag {
+export interface TagDto {
   name: string;
   color: string;
 }

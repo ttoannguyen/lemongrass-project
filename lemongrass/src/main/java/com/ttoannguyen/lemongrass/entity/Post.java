@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Entity
 @Table(name = "post")
 @Getter
@@ -13,32 +15,35 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Post extends AbstractAuditingEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id", updatable = false, nullable = false)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "id", updatable = false, nullable = false)
+  String id;
 
-    @Column(unique = true, nullable = false)
-    String title;
+  @Column(unique = true, nullable = false)
+  String title;
 
-    @Column(unique = true, nullable = false)
-    String content;
+  @Column(unique = true, nullable = false)
+  String content;
 
-    @Column(nullable = false)
-    String visibility;
+  @Column(nullable = false)
+  String visibility;
 
-    @Column(nullable = false)
-    boolean isApproved;
+  @Column(nullable = false)
+  boolean isApproved;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
-    Account account;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "account_id")
+  Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "groups_id")
-    Group group;
+  @ManyToOne
+  @JoinColumn(name = "groups_id")
+  Group group;
 
-    @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    Recipe recipe;
+  @ManyToOne
+  @JoinColumn(name = "recipe_id")
+  Recipe recipe;
+
+  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+  List<Image> images;
 }

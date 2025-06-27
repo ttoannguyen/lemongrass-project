@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -28,5 +30,21 @@ public class IngredientUnitServiceImpl implements IngredientUnitService {
     }
     return ingredientUnitMapper.toIngredientUnitResponse(
         ingredientUnitRepository.save(ingredientUnitMapper.toIngredientUnit(request)));
+  }
+
+  @Override
+  public List<IngredientUnitResponse> getUnits() {
+    List<IngredientUnit> ingredientUnits = ingredientUnitRepository.findAll();
+    return ingredientUnitMapper.toIngredientUnitResponseList(ingredientUnits);
+  }
+
+  @Override
+  public IngredientUnitResponse getUnitId(String id) {
+    IngredientUnit ingredientUnit =
+        ingredientUnitRepository
+            .findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));
+
+    return ingredientUnitMapper.toIngredientUnitResponse(ingredientUnit);
   }
 }

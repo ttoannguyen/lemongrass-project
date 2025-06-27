@@ -1,4 +1,30 @@
 package com.ttoannguyen.lemongrass.controller.impl;
 
-public class RecipeControllerImpl {
+import com.ttoannguyen.lemongrass.controller.RecipeController;
+import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
+import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
+import com.ttoannguyen.lemongrass.service.RecipeService;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class RecipeControllerImpl implements RecipeController {
+  RecipeService recipeService;
+
+  @Override
+  public ApiResponse<RecipeResponse> create(RecipeCreationRequest request) {
+    return ApiResponse.<RecipeResponse>builder().result(recipeService.create(request)).build();
+  }
+
+  @Override
+  public ApiResponse<List<RecipeResponse>> getRecipes() {
+    return ApiResponse.<List<RecipeResponse>>builder().result(recipeService.getRecipes()).build();
+  }
 }

@@ -1,14 +1,18 @@
 package com.ttoannguyen.lemongrass.dto.Response.recipe;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.ttoannguyen.lemongrass.dto.Response.image.ImageResponse;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientResponse;
 import com.ttoannguyen.lemongrass.dto.Response.instruction.InstructionResponse;
 import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
+import com.ttoannguyen.lemongrass.dto.Response.tags.TagResponse;
 import com.ttoannguyen.lemongrass.entity.Recipe;
+import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,17 +20,19 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecipeResponse {
-    String id;
-    String title;
-    Integer cookingTime;
-    Recipe.Difficulty difficulty;
-    Integer servings;
-    Float ratingAvg;
-    String category;
-    String tags;
-    boolean isVerified;
-    Integer shareCount;
-    AccountResponse account;
-    private List<IngredientResponse> ingredients;
-    private List<InstructionResponse> instructions;
+  String id;
+  String title;
+  Integer cookingTime;
+  Difficulty difficulty;
+  Integer servings;
+  Float ratingAvg;
+  String category;
+  boolean isVerified;
+  Integer shareCount;
+  AccountResponse account;
+
+  List<TagResponse> tags;
+  List<ImageResponse> images;
+  List<IngredientResponse> ingredients;
+  List<InstructionResponse> instructions;
 }
