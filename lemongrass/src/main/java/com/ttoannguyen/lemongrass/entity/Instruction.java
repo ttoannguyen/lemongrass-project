@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,5 +35,5 @@ public class Instruction extends AbstractAuditingEntity {
   private String description;
 
   @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL, orphanRemoval = true)
-  List<Image> images;
+  List<Image> images = new ArrayList<>();
 }

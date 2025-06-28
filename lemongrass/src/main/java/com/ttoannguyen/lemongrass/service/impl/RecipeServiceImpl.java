@@ -1,6 +1,10 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
+import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
+import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.tag.TagCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.*;
 import com.ttoannguyen.lemongrass.exception.AppException;
@@ -36,261 +40,32 @@ public class RecipeServiceImpl implements RecipeService {
   @Override
   @Transactional
   public RecipeResponse create(RecipeCreationRequest request) {
-    // 1. Tạo Recipe cơ bản
-    Recipe recipe =
-        Recipe.builder()
-            .title(request.getTitle())
-            .cookingTime(request.getCookingTime())
-            .difficulty(request.getDifficulty())
-            .servings(request.getServings())
-            .category(request.getCategory())
-            .isVerified(false)
-            .shareCount(0)
-            .build();
+    Recipe recipe = buildBaseRecipe(request);
+    recipeRepository.save(recipe);
 
-    // 2. Gán Tags trước khi lưu recipe
     if (request.getTags() != null) {
-      Set<Tag> tags =
-          request.getTags().stream()
-              .map(
-                  tagReq ->
-                      tagRepository
-                          .findById(tagReq.getName())
-                          .map(
-                              existing -> {
-                                if (!Objects.equals(existing.getColor(), tagReq.getColor())) {
-                                  existing.setColor(tagReq.getColor());
-                                }
-                                return existing;
-                              })
-                          .orElseGet(
-                              () ->
-                                  tagRepository.save(
-                                      Tag.builder()
-                                          .name(tagReq.getName())
-                                          .color(tagReq.getColor())
-                                          .build())))
-              .collect(Collectors.toSet());
+      Set<Tag> tags = resolveTags(request.getTags());
       recipe.setTags(tags);
     }
 
-    // 💾 Lưu Recipe ngay bây giờ
-    recipe = recipeRepository.save(recipe);
-
-    // 3. Gán Ingredients
     if (request.getIngredients() != null) {
-      final Recipe finalRecipe = recipe;
-      List<Ingredient> ingredients =
-          request.getIngredients().stream()
-              .map(
-                  req -> {
-                    IngredientTemplate template =
-                        ingredientTemplateRepository
-                            .findById(req.getTemplateId())
-                            .orElseThrow(
-                                () -> new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));
-                    IngredientUnit unit =
-                        ingredientUnitRepository
-                            .findById(req.getUnitId())
-                            .orElseThrow(
-                                () -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));
-                    return Ingredient.builder()
-                        .recipe(finalRecipe)
-                        .template(template)
-                        .unit(unit)
-                        .quantity(req.getQuantity())
-                        .note(req.getNote())
-                        .orderIndex(req.getOrderIndex())
-                        .build();
-                  })
-              .toList();
+      List<Ingredient> ingredients = buildIngredients(request.getIngredients(), recipe);
       ingredientRepository.saveAll(ingredients);
       recipe.setIngredients(ingredients);
     }
 
-    // 4. Gán Instructions và ảnh instruction
     if (request.getInstructions() != null) {
-      List<Instruction> instructions = new ArrayList<>();
-      for (var instructionReq : request.getInstructions()) {
-        Instruction instruction =
-            Instruction.builder()
-                .recipe(recipe)
-                .stepNumber(instructionReq.getStepNumber())
-                .description(instructionReq.getDescription())
-                .build();
-
-        instruction = instructionRepository.save(instruction); // ✅ phải lưu trước khi gán ảnh
-
-        if (instructionReq.getImages() != null) {
-          final Instruction finalInstruction = instruction;
-          List<Image> instructionImages =
-              instructionReq.getImages().stream()
-                  .map(
-                      img -> {
-                        String url = cloudinaryService.uploadImage(img.getFile());
-                        return Image.builder()
-                            .url(url)
-                            .displayOrder(img.getDisplayOrder())
-                            .instruction(finalInstruction)
-                            .build();
-                      })
-                  .toList();
-          imageRepository.saveAll(instructionImages);
-          instruction.setImages(instructionImages);
-        }
-
-        instructions.add(instruction);
-      }
+      List<Instruction> instructions = buildInstructions(request.getInstructions(), recipe);
+      instructionRepository.saveAll(instructions);
       recipe.setInstructions(instructions);
     }
 
-    // 5. Gán ảnh chính cho Recipe
     if (request.getImages() != null) {
-      final Recipe finalRecipe1 = recipe;
-      List<Image> recipeImages =
-          request.getImages().stream()
-              .map(
-                  img -> {
-                    String url = cloudinaryService.uploadImage(img.getFile());
-                    return Image.builder()
-                        .url(url)
-                        .displayOrder(img.getDisplayOrder())
-                        .recipe(finalRecipe1)
-                        .build();
-                  })
-              .toList();
-      imageRepository.saveAll(recipeImages);
-      recipe.setImages(recipeImages);
+      List<Image> images = uploadImages(request.getImages(), recipe, null);
+      imageRepository.saveAll(images);
+      recipe.setImages(images);
     }
-
-    // 6. Trả về response
     return recipeMapper.toRecipeResponse(recipe);
-
-    // 1. Khởi tạo Recipe cơ bản
-    //    Recipe recipe =
-    //        Recipe.builder()
-    //            .title(request.getTitle())
-    //            .cookingTime(request.getCookingTime())
-    //            .difficulty(request.getDifficulty())
-    //            .servings(request.getServings())
-    //            .category(request.getCategory())
-    //            .isVerified(false)
-    //            .shareCount(0)
-    //            .build();
-    //
-    //    // 2. Gán Tags
-    //    if (request.getTags() != null) {
-    //      Set<Tag> tags =
-    //          request.getTags().stream()
-    //              .map(
-    //                  tagReq ->
-    //                      tagRepository
-    //                          .findById(tagReq.getName())
-    //                          .map(
-    //                              existing -> {
-    //                                if (!Objects.equals(existing.getColor(), tagReq.getColor())) {
-    //                                  existing.setColor(tagReq.getColor());
-    //                                }
-    //                                return existing;
-    //                              })
-    //                          .orElseGet(
-    //                              () ->
-    //                                  tagRepository.save(
-    //                                      Tag.builder()
-    //                                          .name(tagReq.getName())
-    //                                          .color(tagReq.getColor())
-    //                                          .build())))
-    //              .collect(Collectors.toSet());
-    //      recipe.setTags(tags);
-    //    }
-    //
-    //    // 3. Gán Ingredients
-    //    if (request.getIngredients() != null) {
-    //      List<Ingredient> ingredients =
-    //          request.getIngredients().stream()
-    //              .map(
-    //                  req -> {
-    //                    IngredientTemplate template =
-    //                        ingredientTemplateRepository
-    //                            .findById(req.getTemplateId())
-    //                            .orElseThrow(
-    //                                () -> new
-    // AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));
-    //                    IngredientUnit unit =
-    //                        ingredientUnitRepository
-    //                            .findById(req.getUnitId())
-    //                            .orElseThrow(
-    //                                () -> new
-    // AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));
-    //                    return Ingredient.builder()
-    //                        .recipe(recipe)
-    //                        .template(template)
-    //                        .unit(unit)
-    //                        .quantity(req.getQuantity())
-    //                        .note(req.getNote())
-    //                        .orderIndex(req.getOrderIndex())
-    //                        .build();
-    //                  })
-    //              .toList();
-    //      recipe.setIngredients(ingredients);
-    //    }
-    //
-    //    // 4. Gán Instructions và ảnh của từng instruction
-    //    List<Instruction> instructions = new ArrayList<>();
-    //    for (var instructionReq : request.getInstructions()) {
-    //      Instruction instruction =
-    //          Instruction.builder()
-    //              .recipe(recipe)
-    //              .stepNumber(instructionReq.getStepNumber())
-    //              .description(instructionReq.getDescription())
-    //              .build();
-    //
-    //      instruction = instructionRepository.save(instruction); // ✅ Lưu trước để có ID
-    //
-    //      if (instructionReq.getImages() != null) {
-    //        Instruction finalInstruction = instruction;
-    //        List<Image> instructionImages =
-    //            instructionReq.getImages().stream()
-    //                .map(
-    //                    img -> {
-    //                      String url = cloudinaryService.uploadImage(img.getFile());
-    //                      return Image.builder()
-    //                          .url(url)
-    //                          .displayOrder(img.getDisplayOrder())
-    //                          .instruction(finalInstruction)
-    //                          .build();
-    //                    })
-    //                .toList();
-    //        imageRepository.saveAll(instructionImages); // ✅ Lưu ảnh
-    //        instruction.setImages(instructionImages); // Gán lại ảnh
-    //      }
-    //
-    //      instructions.add(instruction);
-    //    }
-    //    recipe.setInstructions(instructions);
-    //
-    //    // 5. Gán ảnh chính cho Recipe
-    //    if (request.getImages() != null) {
-    //      List<Image> recipeImages =
-    //          request.getImages().stream()
-    //              .map(
-    //                  img -> {
-    //                    String url = cloudinaryService.uploadImage(img.getFile());
-    //                    return Image.builder()
-    //                        .url(url)
-    //                        .displayOrder(img.getDisplayOrder())
-    //                        .recipe(recipe)
-    //                        .build();
-    //                  })
-    //              .toList();
-    //      recipe.setImages(recipeImages);
-    //    }
-    //
-    //    // 6. Lưu recipe
-    //    Recipe savedRecipe = recipeRepository.save(recipe);
-    //
-    //    // 7. Trả về RecipeResponse có chứa ảnh
-    //    return recipeMapper.toRecipeResponse(savedRecipe);
   }
 
   @Override
@@ -313,5 +88,109 @@ public class RecipeServiceImpl implements RecipeService {
         .findByTitle(name)
         .map(recipeMapper::toRecipeResponse)
         .orElseThrow(() -> new AppException(ErrorCode.RECIPE_NOT_EXISTED));
+  }
+
+  private Recipe buildBaseRecipe(RecipeCreationRequest request) {
+    return Recipe.builder()
+        .title(request.getTitle())
+        .cookingTime(request.getCookingTime())
+        .difficulty(request.getDifficulty())
+        .servings(request.getServings())
+        .category(request.getCategory())
+        .isVerified(false)
+        .shareCount(0)
+        .build();
+  }
+
+  private Set<Tag> resolveTags(List<TagCreationRequest> requests) {
+    return requests.stream()
+        .map(
+            tagCreationRequest ->
+                tagRepository
+                    .findByName(tagCreationRequest.getName())
+                    .map(
+                        existing -> {
+                          if (!Objects.equals(existing.getColor(), tagCreationRequest.getColor()))
+                            existing.setColor(tagCreationRequest.getColor());
+
+                          return existing;
+                        })
+                    .orElseGet(
+                        () ->
+                            tagRepository.save(
+                                Tag.builder()
+                                    .name(tagCreationRequest.getName())
+                                    .color(tagCreationRequest.getColor())
+                                    .build())))
+        .collect(Collectors.toSet());
+  }
+
+  private List<Ingredient> buildIngredients(
+      List<IngredientCreationRequest> requests, Recipe recipe) {
+    return requests.stream()
+        .map(
+            request -> {
+              IngredientTemplate ingredientTemplate =
+                  ingredientTemplateRepository
+                      .findById(request.getTemplateId())
+                      .orElseThrow(
+                          () -> new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));
+
+              IngredientUnit ingredientUnit =
+                  ingredientUnitRepository
+                      .findById(request.getUnitId())
+                      .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));
+
+              return Ingredient.builder()
+                  .recipe(recipe)
+                  .template(ingredientTemplate)
+                  .unit(ingredientUnit)
+                  .quantity(request.getQuantity())
+                  .note(request.getNote())
+                  .orderIndex(request.getOrderIndex())
+                  .build();
+            })
+        .toList();
+  }
+
+  private List<Instruction> buildInstructions(
+      List<InstructionCreationRequest> instructionCreationRequests, Recipe recipe) {
+    List<Instruction> instructions = new ArrayList<>();
+
+    for (InstructionCreationRequest req : instructionCreationRequests) {
+      Instruction instruction =
+          Instruction.builder()
+              .recipe(recipe)
+              .stepNumber(req.getStepNumber())
+              .description(req.getDescription())
+              .build();
+      instruction = instructionRepository.save(instruction);
+
+      if (req.getImages() != null) {
+        List<Image> images = uploadImages(req.getImages(), null, instruction);
+        imageRepository.saveAll(images);
+        instruction.setImages(images);
+      }
+
+      instructions.add(instruction);
+    }
+
+    return instructions;
+  }
+
+  private List<Image> uploadImages(
+      List<ImageRequest> requests, Recipe recipe, Instruction instruction) {
+    return requests.stream()
+        .map(
+            img -> {
+              String url = cloudinaryService.uploadImage(img.getFile());
+              return Image.builder()
+                  .url(url)
+                  .displayOrder(img.getDisplayOrder())
+                  .recipe(recipe)
+                  .instruction(instruction)
+                  .build();
+            })
+        .collect(Collectors.toList());
   }
 }

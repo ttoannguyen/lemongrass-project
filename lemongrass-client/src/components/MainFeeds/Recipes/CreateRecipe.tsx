@@ -1,479 +1,11 @@
-// import useCreateRecipe from "@/hooks/useCreateRecipe";
-// import { useIngredientTemplates } from "@/hooks/useIngredientTemplate";
-// import { useIngredientUnit } from "@/hooks/useIngredientUnit";
-// import type { Difficulty } from "@/types/enums/difficulty.enum";
-// import { useRef, useState } from "react";
-
-// const CreateRecipe = () => {
-//   const {
-//     // data: units,
-//     loading: unitsLoading,
-//     error: unitsError,
-//   } = useIngredientUnit();
-//   const {
-//     data: templates,
-//     loading: templatesLoading,
-//     error: templatesError,
-//   } = useIngredientTemplates();
-//   const {
-//     title,
-//     setTitle,
-//     description,
-//     setDescription,
-//     cookingTime,
-//     setCookingTime,
-//     difficulty,
-//     setDifficulty,
-//     servings,
-//     setServings,
-//     category,
-//     setCategory,
-//     ingredients,
-//     addIngredient,
-//     updateIngredient,
-//     removeIngredient,
-//     instructions,
-//     addInstruction,
-//     updateInstruction,
-//     removeInstruction,
-//     recipeImages,
-//     addRecipeImage,
-//     removeRecipeImage,
-//     instructionImages,
-//     addInstructionImage,
-//     removeInstructionImage,
-//     tags,
-//     addTag,
-//     removeTag,
-//     getAllowedUnits,
-//     submitRecipe,
-//   } = useCreateRecipe();
-
-//   const [tagInput, setTagInput] = useState("");
-//   const [tagColor, setTagColor] = useState("#FF6666");
-//   const canvasRef = useRef<HTMLCanvasElement>(null);
-
-//   const handleRecipeImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     const files = e.target.files;
-//     if (files) {
-//       Array.from(files).forEach((file, index) => {
-//         const reader = new FileReader();
-//         reader.onload = (event) => {
-//           if (event.target?.result) {
-//             const img = new Image();
-//             img.src = event.target.result as string;
-//             img.onload = () => {
-//               // Optional: Preview image on canvas
-//               if (canvasRef.current) {
-//                 const ctx = canvasRef.current.getContext("2d");
-//                 if (ctx) {
-//                   canvasRef.current.width = 100;
-//                   canvasRef.current.height = 100;
-//                   ctx.drawImage(img, 0, 0, 100, 100);
-//                 }
-//               }
-//               addRecipeImage({
-//                 url: event?.target?.result as string,
-//                 displayOrder: recipeImages.length + index + 1,
-//               });
-//             };
-//           }
-//         };
-//         reader.readAsDataURL(file);
-//       });
-//     }
-//   };
-
-//   const handleInstructionImageUpload = (
-//     e: React.ChangeEvent<HTMLInputElement>,
-//     instructionIndex: number
-//   ) => {
-//     const files = e.target.files;
-//     if (files) {
-//       Array.from(files).forEach((file, index) => {
-//         const reader = new FileReader();
-//         reader.onload = (event) => {
-//           if (event.target?.result) {
-//             const img = new Image();
-//             img.src = event.target.result as string;
-//             img.onload = () => {
-//               // Optional: Preview image on canvas
-//               if (canvasRef.current) {
-//                 const ctx = canvasRef.current.getContext("2d");
-//                 if (ctx) {
-//                   canvasRef.current.width = 100;
-//                   canvasRef.current.height = 100;
-//                   ctx.drawImage(img, 0, 0, 100, 100);
-//                 }
-//               }
-//               addInstructionImage(instructionIndex, {
-//                 url: event?.target?.result as string,
-//                 displayOrder:
-//                   (instructionImages[instructionIndex]?.length || 0) +
-//                   index +
-//                   1,
-//               });
-//             };
-//           }
-//         };
-//         reader.readAsDataURL(file);
-//       });
-//     }
-//   };
-
-//   const handleSubmit = async (e: React.FormEvent) => {
-//     e.preventDefault();
-//     try {
-//       await submitRecipe();
-//       alert("Công thức đã được tạo thành công!");
-//     } catch (error) {
-//       alert(
-//         "Lỗi khi tạo công thức: " +
-//           (error instanceof Error ? error.message : "Unknown error")
-//       );
-//     }
-//   };
-
-//   if (unitsLoading || templatesLoading) {
-//     return <div className="p-6 text-center">Đang tải...</div>;
-//   }
-
-//   if (unitsError || templatesError) {
-//     return (
-//       <div className="p-6 text-center text-red-500">
-//         Lỗi khi tải dữ liệu: {unitsError?.message || templatesError?.message}
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <form onSubmit={handleSubmit} className="p-6 max-w-3xl mx-auto space-y-6">
-//       <h1 className="text-2xl font-bold">Tạo Công Thức</h1>
-
-//       <div>
-//         <label htmlFor="title">Title</label>
-//         <input
-//           value={title}
-//           onChange={(e) => setTitle(e.target.value)}
-//           placeholder="Tên món ăn"
-//           className="w-full p-2 border rounded"
-//           required
-//           id="title"
-//         />
-//       </div>
-
-//       <div>
-//         <label htmlFor="cookingTime">Cooking Time (hour)</label>
-
-//         <input
-//           type="number"
-//           value={cookingTime}
-//           onChange={(e) => setCookingTime(Number(e.target.value))}
-//           placeholder="Thời gian nấu (giờ)"
-//           className="w-full p-2 border rounded"
-//           min="1"
-//           required
-//           id="cookingTime"
-//         />
-//       </div>
-
-//       <div>
-//         <label htmlFor="difficulty">Difficulty</label>
-
-//         <select
-//           value={difficulty}
-//           onChange={(e) => setDifficulty(e.target.value as Difficulty)}
-//           className="w-full p-2 border rounded"
-//           required
-//           id="difficulty"
-//         >
-//           <option value="EASY">Dễ</option>
-//           <option value="MEDIUM">Trung bình</option>
-//           <option value="HARD">Khó</option>
-//         </select>
-//       </div>
-
-//       <div>
-//         <label htmlFor="servings">Servings</label>
-
-//         <input
-//           type="number"
-//           value={servings}
-//           onChange={(e) => setServings(Number(e.target.value))}
-//           placeholder="Khẩu phần"
-//           className="w-full p-2 border rounded"
-//           min="1"
-//           required
-//           id="servings"
-//         />
-//       </div>
-
-//       <div>
-//         <label htmlFor="category">Category</label>
-
-//         <input
-//           value={category}
-//           onChange={(e) => setCategory(e.target.value)}
-//           placeholder="Danh mục (vd: Canh, Món chính)"
-//           className="w-full p-2 border rounded"
-//           required
-//           id="category"
-//         />
-//       </div>
-
-//       <div>
-//         <label htmlFor="description">Description</label>
-//         <textarea
-//           value={description}
-//           onChange={(e) => setDescription(e.target.value)}
-//           placeholder="Mô tả món ăn"
-//           className="w-full p-2 border rounded"
-//           id="description"
-//         />
-//       </div>
-
-//       {/* Tags */}
-//       <div>
-//         <label>Tags</label>
-//         <div className="flex gap-2 mt-1">
-//           <input
-//             value={tagInput}
-//             onChange={(e) => setTagInput(e.target.value)}
-//             placeholder="Tên tag"
-//             className="border p-1 rounded"
-//           />
-//           <input
-//             type="color"
-//             value={tagColor}
-//             onChange={(e) => setTagColor(e.target.value)}
-//           />
-//           <button
-//             type="button"
-//             onClick={() => {
-//               if (tagInput.trim() === "") return;
-//               addTag({ name: tagInput, color: tagColor });
-//               setTagInput("");
-//             }}
-//             className="bg-blue-500 text-white px-2 rounded"
-//           >
-//             Thêm
-//           </button>
-//         </div>
-//         <div className="flex flex-wrap gap-2 mt-2">
-//           {tags.map((tag, idx) => (
-//             <div key={idx} className="flex items-center gap-1">
-//               <span
-//                 className="px-2 py-1 rounded text-white"
-//                 style={{ backgroundColor: tag.color }}
-//               >
-//                 {tag.name}
-//               </span>
-//               <button
-//                 type="button"
-//                 onClick={() => removeTag(idx)}
-//                 className="text-red-500 font-bold"
-//               >
-//                 ×
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-
-//       {/* Ingredients */}
-//       <div>
-//         <h2 className="font-semibold">Nguyên liệu</h2>
-//         {ingredients.map((ingredient, index) => (
-//           <div key={index} className="flex gap-2 mb-2">
-//             <select
-//               value={ingredient.templateId}
-//               onChange={(e) =>
-//                 updateIngredient(index, { templateId: e.target.value })
-//               }
-//               className="p-1 border rounded"
-//               required
-//             >
-//               <option value="">Chọn nguyên liệu</option>
-//               {templates?.map((template) => (
-//                 <option key={template.id} value={template.id}>
-//                   {template.name}
-//                 </option>
-//               ))}
-//             </select>
-//             <input
-//               type="text"
-//               value={ingredient.quantity}
-//               onChange={(e) =>
-//                 updateIngredient(index, { quantity: Number(e.target.value) })
-//               }
-//               placeholder="Số lượng"
-//               className="w-24 border p-1 rounded"
-//               required
-//             />
-//             <select
-//               value={ingredient.unitId}
-//               onChange={(e) =>
-//                 updateIngredient(index, { unitId: e.target.value })
-//               }
-//               className="p-1 border rounded"
-//             >
-//               <option value="">Chọn đơn vị</option>
-//               {getAllowedUnits(ingredient.templateId).map((unit) => (
-//                 <option key={unit.id} value={unit.id}>
-//                   {unit.name}
-//                 </option>
-//               ))}
-//             </select>
-//             <input
-//               value={ingredient.note || ""}
-//               onChange={(e) =>
-//                 updateIngredient(index, { note: e.target.value })
-//               }
-//               placeholder="Ghi chú"
-//               className="flex-1 border p-1 rounded"
-//             />
-//             <button
-//               type="button"
-//               onClick={() => removeIngredient(index)}
-//               className="text-red-500"
-//             >
-//               Xóa
-//             </button>
-//           </div>
-//         ))}
-//         <button
-//           type="button"
-//           onClick={addIngredient}
-//           className="bg-green-500 text-white px-2 rounded"
-//         >
-//           + Thêm nguyên liệu
-//         </button>
-//       </div>
-
-//       {/* Instructions */}
-//       <div>
-//         <h2 className="font-semibold">Hướng dẫn</h2>
-//         {instructions.map((instruction, index) => (
-//           <div key={instruction.stepNumber} className="space-y-2 mb-4">
-//             <div className="flex gap-2">
-//               <textarea
-//                 value={instruction.description}
-//                 onChange={(e) =>
-//                   updateInstruction(index, { description: e.target.value })
-//                 }
-//                 placeholder={`Bước ${index + 1}`}
-//                 className="w-full p-2 border rounded"
-//                 required
-//               />
-//               <button
-//                 type="button"
-//                 onClick={() => removeInstruction(index)}
-//                 className="text-red-500"
-//               >
-//                 Xóa
-//               </button>
-//             </div>
-//             <div>
-//               <label>Hình ảnh cho bước {index + 1}</label>
-//               <input
-//                 type="file"
-//                 accept="image/*"
-//                 multiple
-//                 onChange={(e) => handleInstructionImageUpload(e, index)}
-//                 className="w-full p-2 border rounded"
-//               />
-//               <div className="flex flex-wrap gap-2 mt-2">
-//                 {instructionImages[index]?.map((image, imgIndex) => (
-//                   <div key={imgIndex} className="relative">
-//                     <img
-//                       src={image.url}
-//                       // alt={image.alt}
-//                       className="w-24 h-24 object-cover rounded"
-//                     />
-//                     <button
-//                       type="button"
-//                       onClick={() => removeInstructionImage(index, imgIndex)}
-//                       className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
-//                     >
-//                       ×
-//                     </button>
-//                   </div>
-//                 ))}
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//         <button
-//           type="button"
-//           onClick={addInstruction}
-//           className="bg-green-500 text-white px-2 rounded"
-//         >
-//           + Thêm bước
-//         </button>
-//       </div>
-
-//       {/* Recipe Images */}
-//       <div>
-//         <h2 className="font-semibold">Hình ảnh món ăn</h2>
-//         <input
-//           type="file"
-//           accept="image/*"
-//           multiple
-//           onChange={handleRecipeImageUpload}
-//           className="w-full p-2 border rounded"
-//         />
-//         <div className="flex flex-wrap gap-2 mt-2">
-//           {recipeImages.map((image, index) => (
-//             <div key={index} className="relative">
-//               <img
-//                 src={image.url}
-//                 // alt={image.alt}
-//                 className="w-24 h-24 object-cover rounded"
-//               />
-//               <button
-//                 type="button"
-//                 onClick={() => removeRecipeImage(index)}
-//                 className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
-//               >
-//                 ×
-//               </button>
-//             </div>
-//           ))}
-//         </div>
-//         {/* Canvas for image preview (optional) */}
-//         <canvas ref={canvasRef} className="hidden" />
-//       </div>
-
-//       <button
-//         type="submit"
-//         className="bg-blue-600 text-white px-4 py-2 rounded"
-//       >
-//         Tạo công thức
-//       </button>
-//     </form>
-//   );
-// };
-
-// export default CreateRecipe;
-
 import { useIngredientTemplates } from "@/hooks/useIngredientTemplate";
-import { useIngredientUnit } from "@/hooks/useIngredientUnit";
 import useCreateRecipe from "@/hooks/useCreateRecipe";
 import type { Difficulty } from "@/types/enums/difficulty.enum";
 import { useRef, useState } from "react";
+import type { ImageUpload } from "@/types/image/ImageUpload";
 
 const CreateRecipe = () => {
-  const {
-    data: units,
-    loading: unitsLoading,
-    error: unitsError,
-  } = useIngredientUnit();
-
-  const {
-    data: templates,
-    loading: templatesLoading,
-    error: templatesError,
-  } = useIngredientTemplates();
+  const { data: templates } = useIngredientTemplates();
 
   const {
     title,
@@ -507,7 +39,7 @@ const CreateRecipe = () => {
     removeTag,
     getAllowedUnits,
     submitRecipe,
-  } = useCreateRecipe({ templates: templates || [], units: units || [] });
+  } = useCreateRecipe({ templates: templates || [] });
 
   const [tagInput, setTagInput] = useState("");
   const [tagColor, setTagColor] = useState("#FF6666");
@@ -517,28 +49,10 @@ const CreateRecipe = () => {
     const files = e.target.files;
     if (files) {
       Array.from(files).forEach((file, index) => {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          if (event.target?.result) {
-            const img = new Image();
-            img.src = event.target.result as string;
-            img.onload = () => {
-              if (canvasRef.current) {
-                const ctx = canvasRef.current.getContext("2d");
-                if (ctx) {
-                  canvasRef.current.width = 100;
-                  canvasRef.current.height = 100;
-                  ctx.drawImage(img, 0, 0, 100, 100);
-                }
-              }
-              addRecipeImage({
-                url: event?.target?.result as string,
-                displayOrder: recipeImages.length + index + 1,
-              });
-            };
-          }
-        };
-        reader.readAsDataURL(file);
+        addRecipeImage({
+          file,
+          displayOrder: recipeImages.length + index + 1,
+        });
       });
     }
   };
@@ -550,31 +64,11 @@ const CreateRecipe = () => {
     const files = e.target.files;
     if (files) {
       Array.from(files).forEach((file, index) => {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          if (event.target?.result) {
-            const img = new Image();
-            img.src = event.target.result as string;
-            img.onload = () => {
-              if (canvasRef.current) {
-                const ctx = canvasRef.current.getContext("2d");
-                if (ctx) {
-                  canvasRef.current.width = 100;
-                  canvasRef.current.height = 100;
-                  ctx.drawImage(img, 0, 0, 100, 100);
-                }
-              }
-              addInstructionImage(instructionIndex, {
-                url: event?.target?.result as string,
-                displayOrder:
-                  (instructionImages[instructionIndex]?.length || 0) +
-                  index +
-                  1,
-              });
-            };
-          }
-        };
-        reader.readAsDataURL(file);
+        addInstructionImage(instructionIndex, {
+          file,
+          displayOrder:
+            (instructionImages[instructionIndex]?.length || 0) + index + 1,
+        });
       });
     }
   };
@@ -582,8 +76,9 @@ const CreateRecipe = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await submitRecipe();
-      alert("Công thức đã được tạo thành công!");
+      const recipe = await submitRecipe();
+      console.log(recipe);
+      // alert("Công thức đã được tạo thành công!");
     } catch (error) {
       alert(
         "Lỗi khi tạo công thức: " +
@@ -592,25 +87,13 @@ const CreateRecipe = () => {
     }
   };
 
-  if (unitsLoading || templatesLoading) {
-    return <div className="p-6 text-center">Đang tải...</div>;
-  }
-
-  if (unitsError || templatesError) {
-    return (
-      <div className="p-6 text-center text-red-500">
-        Lỗi khi tải dữ liệu: {unitsError?.message || templatesError?.message}
-      </div>
-    );
-  }
-
-  // <form onSubmit={handleSubmit}>{/* Form UI tiếp tục ở đây... */}</form>;
   return (
     <form onSubmit={handleSubmit} className="p-6 max-w-3xl mx-auto space-y-6">
       <h1 className="text-2xl font-bold">Tạo Công Thức</h1>
 
+      {/* Thông tin cơ bản */}
       <div>
-        <label htmlFor="title">Title</label>
+        <label htmlFor="title">Tên món ăn</label>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -622,13 +105,11 @@ const CreateRecipe = () => {
       </div>
 
       <div>
-        <label htmlFor="cookingTime">Cooking Time (hour)</label>
-
+        <label htmlFor="cookingTime">Thời gian nấu (giờ)</label>
         <input
           type="number"
           value={cookingTime}
           onChange={(e) => setCookingTime(Number(e.target.value))}
-          placeholder="Thời gian nấu (giờ)"
           className="w-full p-2 border rounded"
           min="1"
           required
@@ -637,8 +118,7 @@ const CreateRecipe = () => {
       </div>
 
       <div>
-        <label htmlFor="difficulty">Difficulty</label>
-
+        <label htmlFor="difficulty">Độ khó</label>
         <select
           value={difficulty}
           onChange={(e) => setDifficulty(e.target.value as Difficulty)}
@@ -653,13 +133,11 @@ const CreateRecipe = () => {
       </div>
 
       <div>
-        <label htmlFor="servings">Servings</label>
-
+        <label htmlFor="servings">Khẩu phần</label>
         <input
           type="number"
           value={servings}
           onChange={(e) => setServings(Number(e.target.value))}
-          placeholder="Khẩu phần"
           className="w-full p-2 border rounded"
           min="1"
           required
@@ -668,12 +146,10 @@ const CreateRecipe = () => {
       </div>
 
       <div>
-        <label htmlFor="category">Category</label>
-
+        <label htmlFor="category">Danh mục</label>
         <input
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          placeholder="Danh mục (vd: Canh, Món chính)"
           className="w-full p-2 border rounded"
           required
           id="category"
@@ -681,11 +157,10 @@ const CreateRecipe = () => {
       </div>
 
       <div>
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description">Mô tả</label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          placeholder="Mô tả món ăn"
           className="w-full p-2 border rounded"
           id="description"
         />
@@ -739,7 +214,7 @@ const CreateRecipe = () => {
         </div>
       </div>
 
-      {/* Ingredients */}
+      {/* Nguyên liệu */}
       <div>
         <h2 className="font-semibold">Nguyên liệu</h2>
         {ingredients.map((ingredient, index) => (
@@ -760,7 +235,7 @@ const CreateRecipe = () => {
               ))}
             </select>
             <input
-              type="text"
+              type="number"
               value={ingredient.quantity}
               onChange={(e) =>
                 updateIngredient(index, { quantity: Number(e.target.value) })
@@ -776,7 +251,7 @@ const CreateRecipe = () => {
               }
               className="p-1 border rounded"
             >
-              <option value="">Chọn đơn vị</option>
+              <option value="">Đơn vị</option>
               {getAllowedUnits(ingredient.templateId).map((unit) => (
                 <option key={unit.id} value={unit.id}>
                   {unit.name}
@@ -809,7 +284,7 @@ const CreateRecipe = () => {
         </button>
       </div>
 
-      {/* Instructions */}
+      {/* Hướng dẫn */}
       <div>
         <h2 className="font-semibold">Hướng dẫn</h2>
         {instructions.map((instruction, index) => (
@@ -842,22 +317,23 @@ const CreateRecipe = () => {
                 className="w-full p-2 border rounded"
               />
               <div className="flex flex-wrap gap-2 mt-2">
-                {instructionImages[index]?.map((image, imgIndex) => (
-                  <div key={imgIndex} className="relative">
-                    <img
-                      src={image.url}
-                      // alt={image.alt}
-                      className="w-24 h-24 object-cover rounded"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeInstructionImage(index, imgIndex)}
-                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
-                    >
-                      ×
-                    </button>
-                  </div>
-                ))}
+                {instructionImages[index]?.map(
+                  (image: ImageUpload, imgIndex) => (
+                    <div key={imgIndex} className="relative">
+                      <img
+                        src={URL.createObjectURL(image.file)}
+                        className="w-24 h-24 object-cover rounded"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeInstructionImage(index, imgIndex)}
+                        className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
+                      >
+                        ×
+                      </button>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           </div>
@@ -871,7 +347,7 @@ const CreateRecipe = () => {
         </button>
       </div>
 
-      {/* Recipe Images */}
+      {/* Ảnh món ăn */}
       <div>
         <h2 className="font-semibold">Hình ảnh món ăn</h2>
         <input
@@ -882,11 +358,10 @@ const CreateRecipe = () => {
           className="w-full p-2 border rounded"
         />
         <div className="flex flex-wrap gap-2 mt-2">
-          {recipeImages.map((image, index) => (
+          {recipeImages.map((image: ImageUpload, index) => (
             <div key={index} className="relative">
               <img
-                src={image.url}
-                // alt={image.alt}
+                src={URL.createObjectURL(image.file)}
                 className="w-24 h-24 object-cover rounded"
               />
               <button
@@ -899,7 +374,6 @@ const CreateRecipe = () => {
             </div>
           ))}
         </div>
-        {/* Canvas for image preview (optional) */}
         <canvas ref={canvasRef} className="hidden" />
       </div>
 

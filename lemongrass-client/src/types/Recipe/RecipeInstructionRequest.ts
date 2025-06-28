@@ -1,7 +1,7 @@
-import type { ImageDto } from "../image/ImageDto";
+import type { ImageUpload } from "../image/ImageUpload";
 
 export type RecipeInstructionRequest = {
   stepNumber: number;
   description: string;
-  images: ImageDto[];
+  images: ImageUpload[];
 };

@@ -16,7 +16,14 @@ import java.util.List;
 
 @Mapper(
     componentModel = "spring",
-    uses = {AccountMapper.class, TagMapper.class, IngredientMapper.class})
+    uses = {
+      AccountMapper.class,
+      TagMapper.class,
+      IngredientMapper.class,
+      GroupMapper.class,
+      InstructionMapper.class,
+      ImageMapper.class
+    })
 public interface FeedMapper {
 
   // Mapping Post → PostFeedItemResponse
@@ -25,6 +32,11 @@ public interface FeedMapper {
   @Mapping(source = "createdDate", target = "createAt")
   @Mapping(source = "account", target = "accountShortResponse")
   @Mapping(source = "content", target = "content")
+  @Mapping(source = "title", target = "title")
+  @Mapping(source = "visibility", target = "visibility")
+  @Mapping(source = "approved", target = "isApproved")
+  @Mapping(source = "group", target = "group")
+  @Mapping(source = "recipe", target = "recipe")
   @Mapping(source = "images", target = "imageResponses", qualifiedByName = "mapImageUrls")
   PostFeedItemResponse toPostFeedItemResponse(Post post);
 
@@ -38,9 +50,11 @@ public interface FeedMapper {
   @Mapping(source = "difficulty", target = "difficulty")
   @Mapping(source = "cookingTime", target = "cookingTime")
   @Mapping(source = "servings", target = "servings")
-  @Mapping(source = "ratingAvg", target = "rating")
+  @Mapping(source = "ratingAvg", target = "ratingAvg")
+  @Mapping(source = "shareCount", target = "shareCount")
   @Mapping(source = "tags", target = "tags")
-  @Mapping(source = "ingredients", target = "ingredientShortResponses")
+  @Mapping(source = "ingredients", target = "ingredients")
+  @Mapping(source = "instructions", target = "instructions")
   @Mapping(source = "images", target = "imageResponses", qualifiedByName = "mapImageUrls")
   RecipeFeedItemResponse toRecipeFeedItemResponse(Recipe recipe);
 
@@ -48,7 +62,6 @@ public interface FeedMapper {
   @Named("mapImageUrls")
   default List<ImageResponse> mapImageUrls(List<Image> images) {
     if (images == null || images.isEmpty()) return List.of();
-
     return images.stream()
         .sorted(
             Comparator.comparing(
