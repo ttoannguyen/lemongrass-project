@@ -1,8 +1,8 @@
 import type { Difficulty } from "../enums/difficulty.enum";
 import type { ImageDto } from "../image/ImageDto";
-import type { IngredientDto } from "../ingredient/IngredientDto";
-import type { InstructionDto } from "../instruction/InstructionDto";
 import type { TagDto } from "../tag/TagDto";
+import type { RecipeIngredientRequest } from "./RecipeIngredientRequest";
+import type { RecipeInstructionRequest } from "./RecipeInstructionRequest";
 
 export type RecipeCreateRequest = {
   title: string;
@@ -11,7 +11,7 @@ export type RecipeCreateRequest = {
   servings: number;
   category: string;
   tags: TagDto[];
-  ingredients: IngredientDto[];
-  instructions: InstructionDto[];
+  ingredients: RecipeIngredientRequest[];
+  instructions: RecipeInstructionRequest[];
   images?: ImageDto[];
 };

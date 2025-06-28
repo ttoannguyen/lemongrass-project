@@ -7,7 +7,7 @@ type Props = {
 
 const RecipeItemCard = ({ recipe }: Props) => {
   return (
-    <div className="border p-4 rounded shadow ">
+    <div className="border p-4 m-5 rounded shadow ">
       <Link to={"/recipe"} className="text-lg font-semibold ">
         {recipe.title}
         {recipe.ingredientShortResponses.map((ige) => (

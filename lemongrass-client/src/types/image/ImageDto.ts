@@ -1,4 +1,5 @@
 export type ImageDto = {
   url: string;
-  displayOrder?: number;
+  displayOrder: number;
+  file?: File;
 };

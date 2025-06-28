@@ -4,3 +4,8 @@ export interface IngredientDto {
   quantity: string;
   order: number | null;
 }
+
+export interface ExtendedIngredientDto extends IngredientDto {
+  unitId?: string;
+  note?: string;
+}

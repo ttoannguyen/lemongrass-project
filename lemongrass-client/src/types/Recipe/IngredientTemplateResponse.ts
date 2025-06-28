@@ -1,6 +1,8 @@
+import type { Unit } from "../units/Unit";
+
 export interface IngredientTemplateResponse {
   id: string;
   name: string;
-  minValue: number;
-  stepValue: number;
+  aliases: number;
+  allowedUnits: Unit[];
 }
