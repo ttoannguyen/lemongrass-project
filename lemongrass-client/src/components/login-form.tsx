@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import React, { useState, type ChangeEvent } from "react";
 import { authService } from "@/services/auth.service";
 import { Loader2 } from "lucide-react";
-import { useAuth } from "@/contexts/authContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface FormData {
   username: string;

@@ -8,6 +8,7 @@ import com.ttoannguyen.lemongrass.service.RecipeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,7 +21,10 @@ public class RecipeControllerImpl implements RecipeController {
 
   @Override
   public ApiResponse<RecipeResponse> create(RecipeCreationRequest request) {
-    return ApiResponse.<RecipeResponse>builder().result(recipeService.create(request)).build();
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<RecipeResponse>builder()
+        .result(recipeService.create(request, username))
+        .build();
   }
 
   @Override

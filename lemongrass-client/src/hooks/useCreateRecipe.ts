@@ -6,7 +6,7 @@ import type { RecipeInstructionRequest } from "@/types/Recipe/RecipeInstructionR
 import type { Unit } from "@/types/units/Unit";
 import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
 import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
-import { recipeService } from "./../services/recipe.createFormData.service";
+import { recipeService } from "../services/recipe/recipe.createFormData.service";
 import type { ImageUpload } from "@/types/image/ImageUpload";
 
 type UseCreateRecipeParams = {

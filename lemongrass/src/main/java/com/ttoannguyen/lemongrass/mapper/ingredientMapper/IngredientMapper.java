@@ -12,6 +12,7 @@ import java.util.List;
 public interface IngredientMapper {
   @Mapping(source = "template.name", target = "name")
   @Mapping(source = "orderIndex", target = "order")
+  @Mapping(source = "unit.name", target = "unitName")
   IngredientResponse toIngredientResponse(Ingredient ingredient);
 
   List<IngredientResponse> toListIngredientResponse(List<Ingredient> ingredients);

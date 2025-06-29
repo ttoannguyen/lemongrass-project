@@ -1,7 +1,7 @@
-import type { Tag } from "../tag/TagDto";
-import type { IngredientShortResponse } from "../IngredientShortResponse";
 import type { ImageResponse } from "../ImageResponse";
 import type { AccountShortResponse } from "../AccountShortResponse";
+import type { IngredientDto } from "../ingredient/IngredientDto";
+import type { TagDto } from "../tag/TagDto";
 
 export interface RecipeFeedItem {
   id: string;
@@ -16,6 +16,6 @@ export interface RecipeFeedItem {
   cookingTime: number;
   servings: number;
   rating: number | null;
-  tags: Tag[];
-  ingredientShortResponses: IngredientShortResponse[];
+  tags: TagDto[];
+  ingredients: IngredientDto[];
 }

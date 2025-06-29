@@ -9,6 +9,7 @@ import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.*;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
+import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import com.ttoannguyen.lemongrass.mapper.RecipeMapper;
 import com.ttoannguyen.lemongrass.repository.*;
 import com.ttoannguyen.lemongrass.service.CloudinaryService;
@@ -27,20 +28,28 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class RecipeServiceImpl implements RecipeService {
 
-  RecipeRepository recipeRepository;
-  IngredientTemplateRepository ingredientTemplateRepository;
-  IngredientUnitRepository ingredientUnitRepository;
-  InstructionRepository instructionRepository;
-  IngredientRepository ingredientRepository;
-  ImageRepository imageRepository;
-  TagRepository tagRepository;
   RecipeMapper recipeMapper;
+  AccountMapper accountMapper;
+
+  TagRepository tagRepository;
+  ImageRepository imageRepository;
+  RecipeRepository recipeRepository;
   CloudinaryService cloudinaryService;
+  AccountRepository accountRepository;
+  IngredientRepository ingredientRepository;
+  InstructionRepository instructionRepository;
+  IngredientUnitRepository ingredientUnitRepository;
+  IngredientTemplateRepository ingredientTemplateRepository;
 
   @Override
   @Transactional
-  public RecipeResponse create(RecipeCreationRequest request) {
-    Recipe recipe = buildBaseRecipe(request);
+  public RecipeResponse create(RecipeCreationRequest request, String username) {
+    Account account =
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+    Recipe recipe = buildBaseRecipe(request, account);
     recipeRepository.save(recipe);
 
     if (request.getTags() != null) {
@@ -90,13 +99,14 @@ public class RecipeServiceImpl implements RecipeService {
         .orElseThrow(() -> new AppException(ErrorCode.RECIPE_NOT_EXISTED));
   }
 
-  private Recipe buildBaseRecipe(RecipeCreationRequest request) {
+  private Recipe buildBaseRecipe(RecipeCreationRequest request, Account account) {
     return Recipe.builder()
         .title(request.getTitle())
         .cookingTime(request.getCookingTime())
         .difficulty(request.getDifficulty())
         .servings(request.getServings())
         .category(request.getCategory())
+        .account(account)
         .isVerified(false)
         .shareCount(0)
         .build();

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import SearchInput from "../SearchInput/SearchInput";
 import { Button } from "../ui/button";
-import { useAuth } from "@/contexts/authContext";
+import { useAuth } from "@/contexts/AuthContext";
 import AvatarNav from "./AvatarNav";
 import { ModeToggle } from "../mode-toggle";
 import { PickCreate } from "./PickCreate";
@@ -17,7 +17,7 @@ const NavBar = () => {
       <div className="flex items-center justify-between px-2 md:px-4 py-4  max-w-screen-2xl mx-auto">
         <h1
           onClick={() => navigate("/")}
-          className="text-sm md:text-4xl md:ml-8 md:mr-8 font-bold cursor-pointer"
+          className="text-sm md:text-3xl font-bold cursor-pointer text-white bg-text rounded-sm h-10 px-1 mx-1"
         >
           Lemongrass
         </h1>

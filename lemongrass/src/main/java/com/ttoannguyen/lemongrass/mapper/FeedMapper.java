@@ -44,7 +44,6 @@ public interface FeedMapper {
   @Mapping(target = "type", constant = "RECIPE")
   @Mapping(source = "id", target = "id")
   @Mapping(source = "createdDate", target = "createAt")
-  @Mapping(source = "account", target = "accountShortResponse")
   @Mapping(source = "title", target = "title")
   @Mapping(source = "category", target = "category")
   @Mapping(source = "difficulty", target = "difficulty")
@@ -56,6 +55,7 @@ public interface FeedMapper {
   @Mapping(source = "ingredients", target = "ingredients")
   @Mapping(source = "instructions", target = "instructions")
   @Mapping(source = "images", target = "imageResponses", qualifiedByName = "mapImageUrls")
+  @Mapping(source = "account", target = "accountShortResponse")
   RecipeFeedItemResponse toRecipeFeedItemResponse(Recipe recipe);
 
   // Helper method để map và sắp xếp ảnh theo displayOrder

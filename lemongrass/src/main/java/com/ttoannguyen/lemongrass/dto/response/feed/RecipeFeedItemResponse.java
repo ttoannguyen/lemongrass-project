@@ -30,8 +30,6 @@ public class RecipeFeedItemResponse extends FeedItemResponse {
   String category;
   boolean isVerified;
   Integer shareCount;
-  AccountResponse account;
-
   List<TagResponse> tags;
   List<ImageResponse> images;
   List<IngredientResponse> ingredients;

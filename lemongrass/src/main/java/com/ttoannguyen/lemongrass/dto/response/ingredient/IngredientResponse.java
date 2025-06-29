@@ -13,8 +13,9 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class IngredientResponse {
-    String id;
-    String name;
-    String quantity;
-    Integer order;
+  String id;
+  String name;
+  String unitName;
+  String quantity;
+  Integer order;
 }

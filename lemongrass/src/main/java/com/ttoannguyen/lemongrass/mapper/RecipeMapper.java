@@ -20,7 +20,7 @@ import java.util.List;
 public interface RecipeMapper {
   ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-  @Mapping(source = "account", target = "account")
+  @Mapping(source = "account", target = "accountShortResponse")
   @Mapping(source = "ingredients", target = "ingredients")
   @Mapping(source = "instructions", target = "instructions")
   @Mapping(source = "verified", target = "isVerified")

@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.dto.Response.recipe;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.ttoannguyen.lemongrass.dto.Response.account.AccountShortResponse;
 import com.ttoannguyen.lemongrass.dto.Response.image.ImageResponse;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientResponse;
 import com.ttoannguyen.lemongrass.dto.Response.instruction.InstructionResponse;
@@ -18,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class RecipeResponse {
   String id;
   String title;
@@ -29,8 +29,7 @@ public class RecipeResponse {
   String category;
   boolean isVerified;
   Integer shareCount;
-  AccountResponse account;
-
+  AccountShortResponse accountShortResponse;
   List<TagResponse> tags;
   List<ImageResponse> images;
   List<IngredientResponse> ingredients;

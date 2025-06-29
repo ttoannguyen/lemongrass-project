@@ -1,5 +1,5 @@
 import type { RecipeFeedItem } from "@/types/feed/RecipeFeedItem";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type Props = {
   recipe: RecipeFeedItem;
@@ -8,12 +8,12 @@ type Props = {
 const RecipeItemCard = ({ recipe }: Props) => {
   return (
     <div className="border p-4 m-5 rounded shadow ">
-      <Link to={"/recipe"} className="text-lg font-semibold ">
+      <Link to={`/recipe/${recipe.id}`} className="text-lg font-semibold ">
         {recipe.title}
-        {recipe.ingredientShortResponses.map((ige) => (
-          <div>
+        {recipe.ingredients.map((ige) => (
+          <div key={ige.name}>
             <p>{ige.name}</p>
-            <p>{ige.quatity}</p>
+            <p>{ige.quantity}</p>
           </div>
         ))}
       </Link>

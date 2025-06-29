@@ -7,7 +7,7 @@ import com.ttoannguyen.lemongrass.entity.Recipe;
 import java.util.List;
 
 public interface RecipeService {
-  RecipeResponse create(RecipeCreationRequest recipe);
+  RecipeResponse create(RecipeCreationRequest recipe, String username);
 
   List<RecipeResponse> getRecipes();
 

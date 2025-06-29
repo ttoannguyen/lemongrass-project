@@ -30,7 +30,9 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecurityConfig {
 
-  protected static final String[] PUBLIC_GET_ENDPOINTS = {"/api/_v1/feeds"};
+  protected static final String[] PUBLIC_GET_ENDPOINTS = {
+    "/api/_v1/feeds", "/api/_v1/recipes", "/api/_v1/posts"
+  };
 
   protected static final String[] PUBLIC_POST_ENDPOINTS = {
     "/api/_v1/auth/login",

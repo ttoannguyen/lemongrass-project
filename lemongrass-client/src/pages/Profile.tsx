@@ -1,5 +1,5 @@
 import HeaderProfile from "@/components/Profile/HeaderProfile";
-import { useAuth } from "@/contexts/authContext";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Profile = () => {
   const { account } = useAuth();

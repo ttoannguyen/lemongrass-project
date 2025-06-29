@@ -7,7 +7,7 @@ const Home = () => {
   // const { data: units, loading, error, refetch } = useIngredientUnit();
   // console.log(units);
   return (
-    <div className="flex ">
+    <div className="flex bg-[#f6f6f6]">
       <FeedPage className="md:min-w-200  mx-auto" />
     </div>
   );
