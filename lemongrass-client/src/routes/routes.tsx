@@ -46,15 +46,15 @@ const routes: RouteObject[] = [
           </ProtectedRoute>
         ),
       },
-      {
-        path: "create-recipe",
-        element: (
-          <ProtectedRoute>
-            <CreateRecipe />
-          </ProtectedRoute>
-        ),
-      },
     ],
+  },
+  {
+    path: "create-recipe",
+    element: (
+      <ProtectedRoute>
+        <CreateRecipe />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "login",
