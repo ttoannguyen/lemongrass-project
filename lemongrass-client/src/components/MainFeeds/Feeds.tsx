@@ -1,11 +1,12 @@
 import { isPostFeedItem, isRecipeFeedItem } from "@/types/feed/type-guards";
 import type { RecipeFeedItem } from "@/types/feed/RecipeFeedItem";
-import RecipeItemCard from "./Recipes/RecipeItemCard";
+// import RecipeItemCard from "./Recipes/RecipeItemCard";
 import type { FeedItem } from "@/types/feed/FeedItem";
 import { useFeedContext } from "@/contexts/FeedContext";
 import type { PostFeedItem } from "@/types/feed/PostFeedItem";
 import PostItemCard from "./Posts/PostItemCard";
-import { PhotoProvider } from "react-photo-view";
+import RecipeItemCard from "./Feed/RecipeItemCard";
+// import { PhotoProvider } from "react-photo-view";
 
 type Props = {
   className?: string;
@@ -18,7 +19,7 @@ export const FeedPage = ({ className }: Props) => {
   if (error) return <p>Lỗi: {error.message}</p>;
 
   return (
-    <PhotoProvider>
+    // <PhotoProvider>
       <div className={className}>
         <div className="flex flex-col gap-2">
           {feeds?.map((feed: FeedItem) => {
@@ -34,6 +35,6 @@ export const FeedPage = ({ className }: Props) => {
           })}
         </div>
       </div>
-    </PhotoProvider>
+    // </PhotoProvider>
   );
 };

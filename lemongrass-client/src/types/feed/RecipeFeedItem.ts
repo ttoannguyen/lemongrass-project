@@ -1,4 +1,4 @@
-import type { ImageResponse } from "../ImageResponse";
+import type { ImageResponse } from "../image/ImageResponse";
 import type { AccountShortResponse } from "../AccountShortResponse";
 import type { IngredientDto } from "../ingredient/IngredientDto";
 import type { TagDto } from "../tag/TagDto";

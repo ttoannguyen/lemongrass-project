@@ -1,5 +1,5 @@
 import type { Tag } from "../tag/TagDto";
-import type { ImageResponse } from "../ImageResponse";
+import type { ImageResponse } from "../image/ImageResponse";
 import type { AccountShortResponse } from "../AccountShortResponse";
 
 export interface PostFeedItem {

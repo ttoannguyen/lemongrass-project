@@ -7,7 +7,7 @@ import {
   CarouselPrevious,
   CarouselNext,
 } from "@/components/ui/carousel";
-import type { ImageResponse } from "@/types/ImageResponse";
+import type { ImageResponse } from "@/types/image/ImageResponse";
 
 interface ImageWithDimensions {
   url?: string;
