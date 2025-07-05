@@ -22,7 +22,8 @@ import java.util.List;
       IngredientMapper.class,
       GroupMapper.class,
       InstructionMapper.class,
-      ImageMapper.class
+      ImageMapper.class,
+      CategoryMapper.class
     })
 public interface FeedMapper {
 
@@ -45,7 +46,7 @@ public interface FeedMapper {
   @Mapping(source = "id", target = "id")
   @Mapping(source = "createdDate", target = "createAt")
   @Mapping(source = "title", target = "title")
-  @Mapping(source = "category", target = "category")
+  @Mapping(source = "categories", target = "category")
   @Mapping(source = "difficulty", target = "difficulty")
   @Mapping(source = "cookingTime", target = "cookingTime")
   @Mapping(source = "servings", target = "servings")

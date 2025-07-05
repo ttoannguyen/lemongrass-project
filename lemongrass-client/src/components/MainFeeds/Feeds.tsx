@@ -19,22 +19,20 @@ export const FeedPage = ({ className }: Props) => {
   if (error) return <p>Lỗi: {error.message}</p>;
 
   return (
-    // <PhotoProvider>
-      <div className={className}>
-        <div className="flex flex-col gap-2">
-          {feeds?.map((feed: FeedItem) => {
-            if (isRecipeFeedItem(feed)) {
-              const recipe = feed as RecipeFeedItem;
-              return <RecipeItemCard key={feed.id} recipe={recipe} />;
-            }
-            if (isPostFeedItem(feed)) {
-              const post = feed as PostFeedItem;
-              return <PostItemCard key={feed.id} post={post} />;
-            }
-            return null;
-          })}
-        </div>
+    <div className={className}>
+      <div className="flex flex-col gap-2">
+        {feeds?.map((feed: FeedItem) => {
+          if (isRecipeFeedItem(feed)) {
+            const recipe = feed as RecipeFeedItem;
+            return <RecipeItemCard key={feed.id} recipe={recipe} />;
+          }
+          if (isPostFeedItem(feed)) {
+            const post = feed as PostFeedItem;
+            return <PostItemCard key={feed.id} post={post} />;
+          }
+          return null;
+        })}
       </div>
-    // </PhotoProvider>
+    </div>
   );
 };

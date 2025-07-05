@@ -6,7 +6,7 @@ import type { RecipeInstructionRequest } from "@/types/Recipe/RecipeInstructionR
 import type { Unit } from "@/types/units/Unit";
 import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
 import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
-import { recipeService } from "../services/recipe/recipe.createFormData.service";
+import { recipeCreateService } from "../services/recipe/recipe.createFormData.service";
 import type { ImageUpload } from "@/types/image/ImageUpload";
 
 type UseCreateRecipeParams = {
@@ -159,7 +159,7 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
     };
 
     try {
-      const result = await recipeService.createRecipe(payload);
+      const result = await recipeCreateService.createRecipe(payload);
       console.log("Recipe created successfully:", result);
       // TODO: redirect or notify success
     } catch (error) {

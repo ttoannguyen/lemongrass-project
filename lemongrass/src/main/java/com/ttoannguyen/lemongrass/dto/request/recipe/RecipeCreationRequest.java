@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.dto.Request.recipe;
 
+import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationRequest;
@@ -21,7 +22,7 @@ public class RecipeCreationRequest {
   Integer cookingTime;
   Difficulty difficulty;
   Integer servings;
-  String category;
+  List<String> categoryIds;
   List<TagCreationRequest> tags;
   List<IngredientCreationRequest> ingredients;
   List<InstructionCreationRequest> instructions;

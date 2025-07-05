@@ -15,4 +15,7 @@ public interface RecipeController {
 
   @GetMapping
   ApiResponse<List<RecipeResponse>> getRecipes();
+
+  @GetMapping("/{recipeId}")
+  ApiResponse<RecipeResponse> getRecipeById(@PathVariable("recipeId") String id);
 }

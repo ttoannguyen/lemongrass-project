@@ -10,7 +10,7 @@ const RecipeItemCard = ({ recipe }: Props) => {
   return (
     <div className="border p-4 m-5 rounded shadow max-w-2xl w-full mx-auto">
       <Link to={`/recipe/${recipe.id}`} className="text-lg font-semibold ">
-        {recipe.title}
+        <div className="hover:underline">{recipe.title}</div>
         {recipe.ingredients.map((ige) => (
           <div key={ige.name}>
             <p>{ige.name}</p>
@@ -28,7 +28,9 @@ const RecipeItemCard = ({ recipe }: Props) => {
           </span>
         ))}
       </p>
-      <FeedImageTemplate image={recipe.imageResponses} />
+      <Link to={`/recipe/${recipe.id}`}>
+        <FeedImageTemplate image={recipe.imageResponses} />
+      </Link>
     </div>
   );
 };

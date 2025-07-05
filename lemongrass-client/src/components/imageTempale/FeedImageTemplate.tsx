@@ -12,7 +12,6 @@ const FeedImageTemplate = ({ image }: Props) => {
 
   const renderSingle = () => (
     <AspectRatio ratio={1 / 1} className="w-full h-full overflow-hidden">
-      {/* <img src={images[0].url} alt="" className="object-cover w-full h-full" /> */}
       <ImageBox src={image[0].url ?? ""} />
     </AspectRatio>
   );
@@ -21,7 +20,6 @@ const FeedImageTemplate = ({ image }: Props) => {
     <div className="grid grid-cols-2 gap-[2px] w-full h-full">
       {images.map((img, i) => (
         <AspectRatio key={i} ratio={1 / 2} className="overflow-hidden">
-          {/* <img src={img.url} alt="" className="object-cover w-full h-full" /> */}
           <ImageBox src={img.url ?? ""} />
         </AspectRatio>
       ))}
@@ -47,7 +45,6 @@ const FeedImageTemplate = ({ image }: Props) => {
     <div className="grid grid-cols-2 grid-rows-2 gap-[2px] w-full h-full">
       {images.map((img, i) => (
         <AspectRatio key={i} ratio={1 / 1} className="overflow-hidden">
-          {/* <img src={img.url} alt="" className="object-cover w-full h-full" /> */}
           <ImageBox src={img.url ?? ""} />
         </AspectRatio>
       ))}
@@ -56,11 +53,9 @@ const FeedImageTemplate = ({ image }: Props) => {
 
   const renderFive = () => (
     <div className="flex gap-[2px] w-full h-full">
-      {/* Left 2 images */}
       <div className="flex flex-col gap-[2px] flex-1">
         {images.slice(0, 2).map((img, i) => (
           <AspectRatio key={i} ratio={1 / 1} className="flex-1 overflow-hidden">
-            {/* <img src={img.url} alt="" className="object-cover w-full h-full" /> */}
             <ImageBox src={img.url ?? ""} />
           </AspectRatio>
         ))}
@@ -71,11 +66,6 @@ const FeedImageTemplate = ({ image }: Props) => {
         {images.slice(2, 5).map((img, i) => (
           <div key={i} className="relative flex-1 overflow-hidden">
             <AspectRatio ratio={1 / 1} className="h-full">
-              {/* <img
-                src={img.url}
-                alt=""
-                className="object-cover w-full h-full transition-transform hover: "
-              /> */}
               <ImageBox src={img.url ?? ""} />
             </AspectRatio>
             {i === 2 && extraCount > 0 && (

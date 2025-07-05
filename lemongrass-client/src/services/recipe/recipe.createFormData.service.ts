@@ -55,7 +55,7 @@ const toFormData = (data: RecipeCreateRequest): FormData => {
   return formData;
 };
 
-export const recipeService = {
+export const recipeCreateService = {
   createRecipe: async (data: RecipeCreateRequest) => {
     const formData = toFormData(data);
     const res = await api.post<BaseResponse<RecipeResponse>>(

@@ -4,6 +4,7 @@ import com.ttoannguyen.lemongrass.controller.RecipeController;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
+import com.ttoannguyen.lemongrass.entity.Recipe;
 import com.ttoannguyen.lemongrass.service.RecipeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,10 @@ public class RecipeControllerImpl implements RecipeController {
   @Override
   public ApiResponse<List<RecipeResponse>> getRecipes() {
     return ApiResponse.<List<RecipeResponse>>builder().result(recipeService.getRecipes()).build();
+  }
+
+  @Override
+  public ApiResponse<RecipeResponse> getRecipeById(String id) {
+    return ApiResponse.<RecipeResponse>builder().result(recipeService.getRecipeId(id)).build();
   }
 }

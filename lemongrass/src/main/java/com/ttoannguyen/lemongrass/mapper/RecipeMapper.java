@@ -16,7 +16,12 @@ import java.util.List;
 
 @Mapper(
     componentModel = "spring",
-    uses = {AccountMapper.class, IngredientMapper.class, InstructionMapper.class})
+    uses = {
+      AccountMapper.class,
+      IngredientMapper.class,
+      InstructionMapper.class,
+      CategoryMapper.class
+    })
 public interface RecipeMapper {
   ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -26,6 +31,7 @@ public interface RecipeMapper {
   @Mapping(source = "verified", target = "isVerified")
   @Mapping(source = "tags", target = "tags")
   @Mapping(source = "images", target = "images")
+  @Mapping(source = "categories", target = "category")
   RecipeResponse toRecipeResponse(Recipe recipe);
 
   @Named("jsonToList")

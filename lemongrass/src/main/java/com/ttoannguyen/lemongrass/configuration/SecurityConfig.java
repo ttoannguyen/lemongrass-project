@@ -31,7 +31,7 @@ import lombok.experimental.FieldDefaults;
 public class SecurityConfig {
 
   protected static final String[] PUBLIC_GET_ENDPOINTS = {
-    "/api/_v1/feeds", "/api/_v1/recipes", "/api/_v1/posts"
+    "/api/_v1/feeds", "/api/_v1/recipes/**", "/api/_v1/posts"
   };
 
   protected static final String[] PUBLIC_POST_ENDPOINTS = {

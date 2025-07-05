@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.dto.Response.recipe;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.ttoannguyen.lemongrass.dto.Response.account.AccountShortResponse;
+import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.dto.Response.image.ImageResponse;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientResponse;
 import com.ttoannguyen.lemongrass.dto.Response.instruction.InstructionResponse;
@@ -26,7 +27,7 @@ public class RecipeResponse {
   Difficulty difficulty;
   Integer servings;
   Float ratingAvg;
-  String category;
+  List<CategoryResponse> category;
   boolean isVerified;
   Integer shareCount;
   AccountShortResponse accountShortResponse;

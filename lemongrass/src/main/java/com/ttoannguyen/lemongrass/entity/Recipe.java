@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -40,7 +41,7 @@ public class Recipe extends AbstractAuditingEntity {
 
   Float ratingAvg;
 
-  String category;
+  //  String category;
 
   @ManyToMany
   @JoinTable(
@@ -63,4 +64,11 @@ public class Recipe extends AbstractAuditingEntity {
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
   List<Image> images;
+
+  @ManyToMany
+  @JoinTable(
+      name = "recipe_categories",
+      joinColumns = @JoinColumn(name = "recipe_id"),
+      inverseJoinColumns = @JoinColumn(name = "category_id"))
+  private List<Category> categories;
 }

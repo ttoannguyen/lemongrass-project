@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.dto.Response.feed;
 
 import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
+import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.dto.Response.image.ImageResponse;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientResponse;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientShortResponse;
@@ -27,7 +28,7 @@ public class RecipeFeedItemResponse extends FeedItemResponse {
   Difficulty difficulty;
   Integer servings;
   Float ratingAvg;
-  String category;
+  List<CategoryResponse> category;
   boolean isVerified;
   Integer shareCount;
   List<TagResponse> tags;

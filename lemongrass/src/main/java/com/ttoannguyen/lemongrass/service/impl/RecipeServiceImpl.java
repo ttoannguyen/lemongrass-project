@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
+import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationRequest;
@@ -18,11 +19,13 @@ import jakarta.transaction.Transactional;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -35,6 +38,7 @@ public class RecipeServiceImpl implements RecipeService {
   ImageRepository imageRepository;
   RecipeRepository recipeRepository;
   CloudinaryService cloudinaryService;
+  CategoryRepository categoryRepository;
   AccountRepository accountRepository;
   IngredientRepository ingredientRepository;
   InstructionRepository instructionRepository;
@@ -105,11 +109,25 @@ public class RecipeServiceImpl implements RecipeService {
         .cookingTime(request.getCookingTime())
         .difficulty(request.getDifficulty())
         .servings(request.getServings())
-        .category(request.getCategory())
+        .categories(
+            request.getCategoryIds() != null
+                ? resolveCategories(request.getCategoryIds())
+                : List.of())
         .account(account)
         .isVerified(false)
         .shareCount(0)
         .build();
+  }
+
+  private List<Category> resolveCategories(List<String> categoryIds) {
+
+    return categoryIds.stream()
+        .map(
+            categoryCreationRequest ->
+                categoryRepository
+                    .findById(categoryCreationRequest)
+                    .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED)))
+        .toList();
   }
 
   private Set<Tag> resolveTags(List<TagCreationRequest> requests) {

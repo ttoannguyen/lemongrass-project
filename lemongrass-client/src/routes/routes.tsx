@@ -1,4 +1,5 @@
 import CreateRecipe from "@/components/MainFeeds/Recipes/CreateRecipe";
+import RecipeDetailPage from "@/components/MainFeeds/Recipes/RecipeDetailPage";
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 import Home from "@/pages/Home";
 import Layout from "@/pages/Layout";
@@ -45,6 +46,14 @@ const routes: RouteObject[] = [
             <MyRecipe />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "recipe/:recipeId",
+        element: <RecipeDetailPage />,
+      },
+      {
+        path: "recipe/:recipeId/image/:imageId",
+        element: <RecipeDetailPage />,
       },
     ],
   },

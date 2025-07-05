@@ -34,7 +34,11 @@ public enum ErrorCode {
   INVALID_TAGS_FORMAT(1017, "Invalid tags format!", HttpStatus.BAD_REQUEST),
 
   FAILED_UPLOAD(1018, "Upload failed!", HttpStatus.BAD_REQUEST),
-  INVALID_FILE(1019, "Invalid file!", HttpStatus.BAD_REQUEST);
+  INVALID_FILE(1019, "Invalid file!", HttpStatus.BAD_REQUEST),
+
+  CATEGORY_NOT_EXISTED(1020, "Category not exists!", HttpStatus.NOT_FOUND),
+  CATEGORY_EXISTED(1021, "Category exists!", HttpStatus.BAD_REQUEST),
+  ;
 
   private int code;
   private String message;
