@@ -27,6 +27,7 @@ export const FeedProvider = ({ children }: { children: React.ReactNode }) => {
     setError(null);
     try {
       const result = await feedsService.getFeeds();
+      console.log("In feedcontext: ", result);
       setFeeds(result);
     } catch (err) {
       setError(err as Error);
@@ -36,7 +37,7 @@ export const FeedProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    fetchFeeds(); // load dữ liệu khi bắt đầu
+    fetchFeeds();
   }, [fetchFeeds]);
 
   return (

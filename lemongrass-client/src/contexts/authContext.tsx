@@ -35,6 +35,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const { valid, account } = await authService.introspect();
+      console.log("In authcontext: ",{valid, account})
       if (valid && account) {
         setAccount(account);
         setIsLoggedIn(true);

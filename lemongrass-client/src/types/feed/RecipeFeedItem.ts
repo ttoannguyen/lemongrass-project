@@ -2,6 +2,7 @@ import type { ImageResponse } from "../image/ImageResponse";
 import type { AccountShortResponse } from "../AccountShortResponse";
 import type { IngredientDto } from "../ingredient/IngredientDto";
 import type { TagDto } from "../tag/TagDto";
+import type { categoryDto } from "../category/CategoryDto";
 
 export interface RecipeFeedItem {
   id: string;
@@ -11,7 +12,7 @@ export interface RecipeFeedItem {
   imageResponses: ImageResponse[];
   isVerified: boolean | null;
   title: string;
-  category: string;
+  category: categoryDto[];
   difficulty: "EASY" | "MEDIUM" | "HARD";
   cookingTime: number;
   servings: number;

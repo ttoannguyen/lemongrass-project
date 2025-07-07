@@ -7,6 +7,7 @@ type Props = {
 };
 
 const RecipeItemCard = ({ recipe }: Props) => {
+  console.log("In recipe item card: ", recipe);
   return (
     <div className="border p-4 m-5 rounded shadow max-w-2xl w-full mx-auto">
       <Link to={`/recipe/${recipe.id}`} className="text-lg font-semibold ">
@@ -19,7 +20,11 @@ const RecipeItemCard = ({ recipe }: Props) => {
         ))}
       </Link>
       <p className="text-sm text-gray-500">
-        {recipe.category} • {recipe.difficulty}
+        {recipe.category?.map((category) => (
+          <span key={category.name} className="mr-2">
+            {category.name}
+          </span>
+        ))}
       </p>
       <p>
         {recipe.tags?.map((tag) => (

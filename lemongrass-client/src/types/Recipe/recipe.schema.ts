@@ -1,0 +1,54 @@
+import { z } from "zod";
+
+export const recipeSchema = z.object({
+  title: z.string().min(1),
+  cookingTime: z.number().min(1),
+  difficulty: z.enum(["EASY", "MEDIUM", "HARD"]),
+  servings: z.number().min(1),
+  category: z.string(),
+
+  tags: z
+    .array(
+      z.object({
+        name: z.string(),
+        color: z.string(),
+      })
+    )
+    .optional(),
+
+  ingredients: z.array(
+    z.object({
+      templateId: z.string(),
+      unitId: z.string(),
+      quantity: z.number().min(0),
+      note: z.string().optional(),
+      orderIndex: z.number(),
+    })
+  ),
+
+  instructions: z.array(
+    z.object({
+      stepNumber: z.number(),
+      description: z.string(),
+      images: z
+        .array(
+          z.object({
+            file: z.any(), // bạn có thể dùng refine() để validate File
+            displayOrder: z.number(),
+          })
+        )
+        .optional(),
+    })
+  ),
+
+  images: z
+    .array(
+      z.object({
+        file: z.any(),
+        displayOrder: z.number(),
+      })
+    )
+    .optional(),
+});
+
+export type RecipeFormValues = z.infer<typeof recipeSchema>;

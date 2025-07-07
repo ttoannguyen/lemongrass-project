@@ -9,9 +9,7 @@ function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <AuthProvider>
-        {/* <PhotoProvider> */}
         <FeedProvider>{element}</FeedProvider>
-        {/* </PhotoProvider> */}
       </AuthProvider>
     </ThemeProvider>
   );
