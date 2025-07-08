@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { Label } from "../ui/label";
+import { Label } from "../../ui/label";
 
 const DifficultyField = () => {
   const { register } = useFormContext();

@@ -1,10 +1,10 @@
-import { CategoryField } from "@/components/CreateRecipe/CategoryField";
-import CookingTimeField from "@/components/CreateRecipe/CookingTimeField";
-import DescriptionField from "@/components/CreateRecipe/DescriptionField";
-import DifficultyField from "@/components/CreateRecipe/DifficultyField";
-import RecipeImagesField from "@/components/CreateRecipe/RecipeImagesField";
-import TagsField from "@/components/CreateRecipe/TagsField";
-import TitleField from "@/components/CreateRecipe/TitleField";
+import { CategoryField } from "@/components/CreateRecipe/Fields/CategoryField";
+import CookingTimeField from "@/components/CreateRecipe/Fields/CookingTimeField";
+import DescriptionField from "@/components/CreateRecipe/Fields/DescriptionField";
+import DifficultyField from "@/components/CreateRecipe/Fields/DifficultyField";
+import RecipeImagesField from "@/components/CreateRecipe/Fields/RecipeImagesField";
+import TagsField from "@/components/CreateRecipe/Fields/TagsField";
+import TitleField from "@/components/CreateRecipe/Fields/TitleField";
 import { FormProvider, useForm } from "react-hook-form";
 
 const CreateRecipe = () => {

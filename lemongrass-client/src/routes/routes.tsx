@@ -1,6 +1,7 @@
+import CreateRecipe from "@/components/MainFeeds/Recipes/CreateRecipe";
 import RecipeDetailPage from "@/components/MainFeeds/Recipes/RecipeDetailPage";
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
-import CreateRecipe from "@/pages/CreateRecipe";
+
 import Home from "@/pages/Home";
 import Layout from "@/pages/Layout";
 import Login from "@/pages/Login";

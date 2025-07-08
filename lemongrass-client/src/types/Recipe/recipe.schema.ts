@@ -1,11 +1,12 @@
 import { z } from "zod";
 
 export const recipeSchema = z.object({
-  title: z.string().min(1),
+  title: z.string().min(3),
   cookingTime: z.number().min(1),
+  description: z.string(),
   difficulty: z.enum(["EASY", "MEDIUM", "HARD"]),
   servings: z.number().min(1),
-  category: z.string(),
+  category: z.string().min(1, "Please select a category"),
 
   tags: z
     .array(
@@ -16,15 +17,23 @@ export const recipeSchema = z.object({
     )
     .optional(),
 
-  ingredients: z.array(
+  // ingredients: z.array(
+  //   z.object({
+  //     templateId: z.string(),
+  //     unitId: z.string(),
+  //     quantity: z.number().min(0),
+  //     note: z.string().optional(),
+  //     orderIndex: z.number(),
+  //   })
+  // ),
+  ingredients: z
+  .array(
     z.object({
-      templateId: z.string(),
-      unitId: z.string(),
-      quantity: z.number().min(0),
-      note: z.string().optional(),
-      orderIndex: z.number(),
+      templateId: z.string().min(1, "Template ID is required"),
     })
-  ),
+  )
+  .min(1, "At least one ingredient is required"),
+
 
   instructions: z.array(
     z.object({

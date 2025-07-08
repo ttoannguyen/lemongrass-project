@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { Label } from "../../ui/label";
+import { Input } from "../../ui/input";
 
 const CookingTimeField = () => {
   const { register } = useFormContext();

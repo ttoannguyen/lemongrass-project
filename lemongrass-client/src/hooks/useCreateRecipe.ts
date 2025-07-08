@@ -4,9 +4,9 @@ import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientReq
 import type { TagDto } from "@/types/tag/TagDto";
 import type { RecipeInstructionRequest } from "@/types/Recipe/RecipeInstructionRequest";
 import type { Unit } from "@/types/units/Unit";
-import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
+// import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
 import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
-import { recipeCreateService } from "../services/recipe/recipe.createFormData.service";
+// import { recipeCreateService } from "../services/recipe/recipe.createFormData.service";
 import type { ImageUpload } from "@/types/image/ImageUpload";
 
 type UseCreateRecipeParams = {
@@ -144,28 +144,28 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
     return found?.allowedUnits ?? [];
   };
 
-  const submitRecipe = async () => {
-    const payload: RecipeCreateRequest = {
-      title,
-      cookingTime,
-      description,
-      difficulty,
-      servings,
-      category,
-      tags,
-      ingredients,
-      instructions,
-      images: recipeImages,
-    };
+  // const submitRecipe = async () => {
+  //   const payload: RecipeCreateRequest = {
+  //     title,
+  //     cookingTime,
+  //     description,
+  //     difficulty,
+  //     servings,
+  //     category,
+  //     tags,
+  //     ingredients,
+  //     instructions,
+  //     images: recipeImages,
+  //   };
 
-    try {
-      const result = await recipeCreateService.createRecipe(payload);
-      console.log("Recipe created successfully:", result);
-      // TODO: redirect or notify success
-    } catch (error) {
-      console.error("Failed to create recipe:", error);
-    }
-  };
+  //   try {
+  //     const result = await recipeCreateService.createRecipe(payload);
+  //     console.log("Recipe created successfully:", result);
+  //     // TODO: redirect or notify success
+  //   } catch (error) {
+  //     console.error("Failed to create recipe:", error);
+  //   }
+  // };
 
   return {
     title,
@@ -198,7 +198,7 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
     addTag,
     removeTag,
     getAllowedUnits,
-    submitRecipe,
+    // submitRecipe,
   };
 };
 

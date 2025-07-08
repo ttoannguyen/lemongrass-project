@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
-import { Label } from "../ui/label";
-import { Input } from "../ui/input";
+import { Label } from "../../ui/label";
+import { Input } from "../../ui/input";
 
 type Tag = {
   name: string;
