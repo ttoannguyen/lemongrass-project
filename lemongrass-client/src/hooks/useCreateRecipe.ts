@@ -19,7 +19,8 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
   const [cookingTime, setCookingTime] = useState(1);
   const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.MEDIUM);
   const [servings, setServings] = useState(1);
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState<string[]>([]);
+
   const [ingredients, setIngredients] = useState<RecipeIngredientRequest[]>([]);
   const [instructions, setInstructions] = useState<RecipeInstructionRequest[]>(
     []

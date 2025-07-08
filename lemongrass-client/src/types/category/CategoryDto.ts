@@ -1,4 +1,4 @@
-export interface categoryDto {
+export interface CategoryDto {
   id: string;
   name: string;
 }

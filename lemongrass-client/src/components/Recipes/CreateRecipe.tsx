@@ -1,4 +1,3 @@
-import { useIngredientTemplates } from "@/hooks/useIngredientTemplate";
 import useCreateRecipe from "@/hooks/useCreateRecipe";
 import type { Difficulty } from "@/types/enums/difficulty.enum";
 import { useRef, useState } from "react";
@@ -7,9 +6,16 @@ import { Progress } from "@/components/ui/progress";
 import { useSubmitRecipe } from "@/hooks/queries/useSubmitRecipe";
 import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
 import { useNavigate } from "react-router-dom";
+import type { CategoryDto } from "@/types/category/CategoryDto";
+import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
 
-const CreateRecipe = () => {
-  const { data: templates } = useIngredientTemplates();
+type Props = {
+  categories: CategoryDto[];
+  templates: IngredientTemplateResponse[];
+};
+
+const CreateRecipeForm = ({ categories, templates }: Props) => {
+  // console.log(categories);
 
   const {
     title,
@@ -50,8 +56,7 @@ const CreateRecipe = () => {
   const [tagColor, setTagColor] = useState("#FF6666");
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [progress, setProgress] = useState(0);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const handleRecipeImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -80,6 +85,18 @@ const CreateRecipe = () => {
       });
     }
   };
+  console.log({
+    title,
+    cookingTime,
+    description,
+    difficulty,
+    servings,
+    category,
+    tags,
+    ingredients,
+    instructions,
+    images: recipeImages,
+  });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -104,7 +121,7 @@ const CreateRecipe = () => {
       console.log("Recipe created:", recipe);
       setProgress(60);
       setTimeout(() => setProgress(100), 500);
-      navigate(`/recipe/${recipe.id}`)
+      navigate(`/recipe/${recipe.id}`);
     } catch (error) {
       alert(
         "Lỗi khi tạo công thức: " +
@@ -179,7 +196,7 @@ const CreateRecipe = () => {
         />
       </div>
 
-      <div>
+      {/* <div>
         <label htmlFor="category">Danh mục</label>
         <input
           value={category}
@@ -188,6 +205,28 @@ const CreateRecipe = () => {
           required
           id="category"
         />
+      </div> */}
+
+      <div>
+        <label htmlFor="category">Danh mục</label>
+        <select
+          multiple
+          value={category}
+          onChange={(e) =>
+            setCategory(
+              Array.from(e.target.selectedOptions, (opt) => opt.value)
+            )
+          }
+          className="w-full p-2 border rounded"
+          required
+          id="category"
+        >
+          {categories.map((cat) => (
+            <option key={cat.id} value={cat.id}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div>
@@ -421,4 +460,4 @@ const CreateRecipe = () => {
   );
 };
 
-export default CreateRecipe;
+export default CreateRecipeForm;

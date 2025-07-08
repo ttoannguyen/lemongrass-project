@@ -68,4 +68,24 @@ export const authService = {
       throw new Error(`Register failed: Invalid response code ${err}`);
     }
   },
+  logout: async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await api.post(
+        "/auth/logout",
+        { token: token },
+        {
+          headers: {
+            "x-auth-required": "false",
+          },
+        }
+      );
+      if (response.data.code !== 1000) {
+        throw new Error("Register failed: Invalid response code");
+      }
+      return response.data.result;
+    } catch (err) {
+      throw new Error(`Register failed: Invalid response code ${err}`);
+    }
+  },
 };

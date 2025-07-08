@@ -11,7 +11,9 @@ const toFormData = (data: RecipeCreateRequest): FormData => {
   formData.append("cookingTime", data.cookingTime.toString());
   formData.append("difficulty", data.difficulty);
   formData.append("servings", data.servings.toString());
-  formData.append("category", data.category);
+  data.category.forEach((cat, index) => {
+    formData.append(`category[${index}]`, cat);
+  });
 
   // Tags
   data.tags?.forEach((tag, index) => {

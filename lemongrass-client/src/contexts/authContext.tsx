@@ -1,3 +1,4 @@
+// contexts/AuthContext.tsx
 import { authService } from "@/services/auth.service";
 import type { Account } from "@/types";
 import {

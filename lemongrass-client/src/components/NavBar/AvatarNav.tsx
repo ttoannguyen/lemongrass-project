@@ -11,17 +11,30 @@ import {
 import { useNavigate } from "react-router-dom";
 import { TypographyP } from "../ui/TypographyP";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { authService } from "@/services/auth.service";
 
 type Props = {
   className?: string;
 };
 
 const AvatarNav = ({ className }: Props) => {
-  const { account } = useAuth();
+  const { account, logout: clearContext } = useAuth();
   const navigate = useNavigate();
 
   const username = account?.username || "User";
   const avatarFallback = username.slice(0, 2).toUpperCase();
+
+  const handleLogout = async () => {
+    try {
+      await authService.logout();
+    } catch (err) {
+      console.error("Logout failed:", err);
+    } finally {
+      localStorage.removeItem("authToken");
+      clearContext();
+      navigate("/");
+    }
+  };
 
   return (
     <div className={className}>
@@ -58,7 +71,7 @@ const AvatarNav = ({ className }: Props) => {
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onSelect={() => navigate("/profile")}
+            onSelect={() => navigate(`/profile/${account?.id}`)}
             className="focus:bg-primary cursor-pointer focus:text-white"
           >
             Profile
@@ -77,10 +90,7 @@ const AvatarNav = ({ className }: Props) => {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-            onSelect={() => {
-              // TODO: handle logout logic here
-              console.log("Logging out...");
-            }}
+            onSelect={handleLogout}
             className="focus:bg-red-500/30 cursor-pointer focus:text-red-600"
           >
             Logout

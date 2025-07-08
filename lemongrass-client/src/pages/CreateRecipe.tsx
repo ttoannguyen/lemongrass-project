@@ -1,30 +1,17 @@
-import { CategoryField } from "@/components/CreateRecipe/Fields/CategoryField";
-import CookingTimeField from "@/components/CreateRecipe/Fields/CookingTimeField";
-import DescriptionField from "@/components/CreateRecipe/Fields/DescriptionField";
-import DifficultyField from "@/components/CreateRecipe/Fields/DifficultyField";
-import RecipeImagesField from "@/components/CreateRecipe/Fields/RecipeImagesField";
-import TagsField from "@/components/CreateRecipe/Fields/TagsField";
-import TitleField from "@/components/CreateRecipe/Fields/TitleField";
-import { FormProvider, useForm } from "react-hook-form";
+import CreateRecipeForm from "@/components/Recipes/CreateRecipe";
+import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
+import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
 
 const CreateRecipe = () => {
-  const methods = useForm();
-  const onSubmit = (data: unknown) => {
-    console.log(data);
-  };
+  const { data: categories } = useCategoryQuery();
+  const { data: templates } = useIngredientTemplates();
+
+  if (!categories || !templates) return <div>Loading...</div>;
+
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)}>
-        <TitleField />
-        <DescriptionField />
-        <TagsField />
-        <RecipeImagesField />
-        <DifficultyField />
-        <CookingTimeField />
-        <CategoryField />
-        <button type="submit">Create Recipe</button>
-      </form>
-    </FormProvider>
+    <>
+      <CreateRecipeForm categories={categories} templates={templates} />
+    </>
   );
 };
 

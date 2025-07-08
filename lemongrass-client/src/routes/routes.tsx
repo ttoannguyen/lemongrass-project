@@ -1,4 +1,3 @@
-import CreateRecipe from "@/components/Recipes/CreateRecipe";
 import RecipeDetailPage from "@/components/Recipes/RecipeDetailPage";
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 
@@ -10,6 +9,7 @@ import MyRecipe from "@/pages/MyRecipe";
 import Profile from "@/pages/Profile";
 import Register from "@/pages/Register";
 import { type RouteObject } from "react-router-dom";
+import CreateRecipe from "@/pages/CreateRecipe";
 
 const routes: RouteObject[] = [
   {
@@ -20,8 +20,16 @@ const routes: RouteObject[] = [
         index: true,
         element: <Home />,
       },
+      // {
+      //   path: "profile",
+      //   element: (
+      //     <ProtectedRoute>
+      //       <Profile />
+      //     </ProtectedRoute>
+      //   ),
+      // },
       {
-        path: "profile",
+        path: "profile/:accountId",
         element: (
           <ProtectedRoute>
             <Profile />

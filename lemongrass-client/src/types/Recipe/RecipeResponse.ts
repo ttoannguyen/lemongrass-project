@@ -1,10 +1,16 @@
+import type { AccountShortResponse } from "../AccountShortResponse";
+
 export interface RecipeResponse {
+  accountShortResponse: AccountShortResponse;
   id: string;
   title: string;
   cookingTime: number;
   difficulty: "EASY" | "MEDIUM" | "HARD";
   servings: number;
-  category: string;
+  category: {
+    id: string;
+    name: string;
+  }[];
   shareCount: number;
   verified: boolean;
 

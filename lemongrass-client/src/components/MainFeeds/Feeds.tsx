@@ -5,16 +5,18 @@ import { isPostFeedItem, isRecipeFeedItem } from "@/types/feed/type-guards";
 import RecipeItemCard from "./Feed/RecipeItemCard";
 import type { PostFeedItem } from "@/types/feed/PostFeedItem";
 import PostItemCard from "./Posts/PostItemCard";
+import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
 
 type Props = {
   className?: string;
 };
 
 export const FeedPage = ({ className }: Props) => {
-  const { data: feeds, isLoading, error } = useFeed();
-
+  const { data: feeds, isLoading, error: feedError } = useFeed();
+  // const { data: categories, error: categoryError } = useCategoryQuery();
+  // console.log(categories, categoryError);
   if (isLoading) return <p>Đang tải dữ liệu...</p>;
-  if (error) return <p>Lỗi: {error.message}</p>;
+  if (feedError) return <p>Lỗi: {feedError.message}</p>;
 
   return (
     <div className={className}>

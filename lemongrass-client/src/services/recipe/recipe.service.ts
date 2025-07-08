@@ -6,7 +6,7 @@ export const recipeService = {
   getRecipes: async (): Promise<RecipeResponse[]> => {
     const res = await api.get<BaseResponse<RecipeResponse[]>>("/recipes", {
       headers: {
-        "x-auth_required": "false",
+        "x-auth-required": "false",
       },
     });
     return res.data.result;
@@ -15,7 +15,7 @@ export const recipeService = {
   getRecipeById: async (id: string): Promise<RecipeResponse> => {
     const res = await api.get<BaseResponse<RecipeResponse>>(`/recipes/${id}`, {
       headers: {
-        "x-auth_required": "false",
+        "x-auth-required": "false",
       },
     });
     return res.data.result;

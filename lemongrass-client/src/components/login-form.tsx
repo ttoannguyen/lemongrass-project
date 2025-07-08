@@ -10,6 +10,7 @@ import React, { useState, type ChangeEvent } from "react";
 import { authService } from "@/services/auth.service";
 import { Loader2 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface FormData {
   username: string;
@@ -26,6 +27,7 @@ export function LoginForm({
   });
   const [error, setError] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { login } = useAuth();
@@ -49,6 +51,7 @@ export function LoginForm({
       const data = await authService.login(formData);
       login(data.result.token, data.result.account);
       console.log(data.result.account);
+      queryClient.invalidateQueries();
       navigate("/");
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "Unknown error";

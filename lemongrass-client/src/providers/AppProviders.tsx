@@ -1,3 +1,4 @@
+// providers/AppProviders.tsx
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { PreloadAppData } from "./PreloadAppData";
