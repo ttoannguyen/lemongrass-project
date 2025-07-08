@@ -1,5 +1,5 @@
-import CreateRecipe from "@/components/MainFeeds/Recipes/CreateRecipe";
-import RecipeDetailPage from "@/components/MainFeeds/Recipes/RecipeDetailPage";
+import CreateRecipe from "@/components/Recipes/CreateRecipe";
+import RecipeDetailPage from "@/components/Recipes/RecipeDetailPage";
 import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
 
 import Home from "@/pages/Home";
@@ -20,10 +20,6 @@ const routes: RouteObject[] = [
         index: true,
         element: <Home />,
       },
-      // {
-      //   path: "recipe",
-      //   element: <RecipeItem />,
-      // },
       {
         path: "profile",
         element: (

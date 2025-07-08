@@ -7,7 +7,7 @@ type Props = {
 };
 
 const RecipeItemCard = ({ recipe }: Props) => {
-  console.log("In recipe item card: ", recipe);
+  // console.log("In recipe item card: ", recipe);
   return (
     <div className="border p-4 m-5 rounded shadow max-w-2xl w-full mx-auto">
       <Link to={`/recipe/${recipe.id}`} className="text-lg font-semibold ">

@@ -22,12 +22,12 @@ export const FeedPage = ({ className }: Props) => {
         {feeds?.map((feed: FeedItem) => {
           if (isRecipeFeedItem(feed)) {
             const recipe = feed as RecipeFeedItem;
-            console.log("In feed - recipe: ", [feed.id, recipe]);
+            // console.log("In feed - recipe: ", [feed.id, recipe]);
             return <RecipeItemCard key={feed.id} recipe={recipe} />;
           }
           if (isPostFeedItem(feed)) {
             const post = feed as PostFeedItem;
-            console.log("In feed - post: ", [feed.id, post]);
+            // console.log("In feed - post: ", [feed.id, post]);
 
             return <PostItemCard key={feed.id} post={post} />;
           }
