@@ -13,8 +13,10 @@ import java.util.Optional;
 @Repository
 public interface RecipeRepository extends JpaRepository<Recipe, String> {
 
-  @EntityGraph(attributePaths = {"account"})
-  List<Recipe> findAll();
+  //  @EntityGraph(attributePaths = {"account"})
+  //  List<Recipe> findAll();
 
   Optional<Recipe> findByTitle(String title);
+
+  List<Recipe> findAllByAccountId(String accountId);
 }

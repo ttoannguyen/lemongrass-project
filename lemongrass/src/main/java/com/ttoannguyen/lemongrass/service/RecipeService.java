@@ -14,4 +14,6 @@ public interface RecipeService {
   RecipeResponse getRecipeId(String id);
 
   RecipeResponse getRecipeName(String name);
+
+  List<RecipeResponse> getMyRecipes(String username);
 }

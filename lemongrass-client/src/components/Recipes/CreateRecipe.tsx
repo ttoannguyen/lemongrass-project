@@ -210,7 +210,7 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
       <div>
         <label htmlFor="category">Danh mục</label>
         <select
-          multiple
+          // multiple
           value={category}
           onChange={(e) =>
             setCategory(

@@ -37,6 +37,30 @@ export function LoginForm({
     setError("");
   };
 
+  // const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   if (!formData.username || !formData.password) {
+  //     setError("Please fill in all fields");
+  //     return;
+  //   }
+
+  //   setIsLoading(true);
+  //   setError("");
+
+  //   try {
+  //     const data = await authService.login(formData);
+  //     login(data.result.token, data.result.account);
+  //     console.log(data.result.account);
+  //     queryClient.invalidateQueries();
+  //     navigate("/");
+  //   } catch (err: unknown) {
+  //     const errorMessage = err instanceof Error ? err.message : "Unknown error";
+  //     setError(errorMessage);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formData.username || !formData.password) {
@@ -49,10 +73,23 @@ export function LoginForm({
 
     try {
       const data = await authService.login(formData);
-      login(data.result.token, data.result.account);
-      console.log(data.result.account);
+      const { token, account } = data.result;
+
+      login(token, account);
+      console.log(account);
+
       queryClient.invalidateQueries();
-      navigate("/");
+
+      // Lấy vai trò đầu tiên (hoặc lọc theo ưu tiên nếu cần)
+      const primaryRole = account.roles[0]?.name.toUpperCase();
+
+      if (primaryRole === "ADMIN") {
+        navigate("/admin");
+      } else if (primaryRole === "STAFF") {
+        navigate("/staff");
+      } else {
+        navigate("/");
+      }
     } catch (err: unknown) {
       const errorMessage = err instanceof Error ? err.message : "Unknown error";
       setError(errorMessage);

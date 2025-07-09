@@ -1,12 +1,12 @@
+import type { Account } from "@/types";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { useAuth } from "@/contexts/AuthContext";
 
 type Props = {
   className?: string;
+  account?: Account;
 };
 
-const AvataProfile = ({ className }: Props) => {
-  const { account } = useAuth();
+const AvataProfile = ({ className, account }: Props) => {
   const username = account?.username || "User";
   const avatarFallback = username.slice(0, 2).toUpperCase();
 

@@ -20,4 +20,11 @@ export const recipeService = {
     });
     return res.data.result;
   },
+
+  getMyRecipes: async (): Promise<RecipeResponse[]> => {
+    const res = await api.get<BaseResponse<RecipeResponse[]>>(
+      "/recipes/myRecipes"
+    );
+    return res.data.result;
+  },
 };

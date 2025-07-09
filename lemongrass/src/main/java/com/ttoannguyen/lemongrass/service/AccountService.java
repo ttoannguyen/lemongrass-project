@@ -10,15 +10,15 @@ import com.ttoannguyen.lemongrass.dto.Request.account.AccountUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 
 public interface AccountService {
-    AccountResponse createAccount(AccountCreateRequest request);
+  AccountResponse createAccount(AccountCreateRequest request);
 
-    @PreAuthorize("hasRole('ADMIN')")
-    List<AccountResponse> getAccounts();
+  @PreAuthorize("hasRole('ADMIN')")
+  List<AccountResponse> getAccounts();
 
-    @PostAuthorize("returnObject.username == authentication.name")
-    AccountResponse getAccount(String accountId);
+  //    @PostAuthorize("returnObject.username == authentication.name")
+  AccountResponse getAccount(String accountId);
 
-    AccountResponse getMyInfo();
+  AccountResponse getMyInfo();
 
-    AccountResponse updateAccount(String accountId, AccountUpdateRequest request);
+  AccountResponse updateAccount(String accountId, AccountUpdateRequest request);
 }

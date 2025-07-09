@@ -103,6 +103,15 @@ public class RecipeServiceImpl implements RecipeService {
         .orElseThrow(() -> new AppException(ErrorCode.RECIPE_NOT_EXISTED));
   }
 
+  @Override
+  public List<RecipeResponse> getMyRecipes(String username) {
+    Account account =
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+    return recipeMapper.toRecipeResponseList(recipeRepository.findAllByAccountId(account.getId()));
+  }
+
   private Recipe buildBaseRecipe(RecipeCreationRequest request, Account account) {
     return Recipe.builder()
         .title(request.getTitle())

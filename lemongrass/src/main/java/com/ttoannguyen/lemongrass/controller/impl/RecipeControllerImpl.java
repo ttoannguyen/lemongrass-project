@@ -22,7 +22,7 @@ public class RecipeControllerImpl implements RecipeController {
 
   @Override
   public ApiResponse<RecipeResponse> create(RecipeCreationRequest request) {
-    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    final String username = SecurityContextHolder.getContext().getAuthentication().getName();
     return ApiResponse.<RecipeResponse>builder()
         .result(recipeService.create(request, username))
         .build();
@@ -36,5 +36,13 @@ public class RecipeControllerImpl implements RecipeController {
   @Override
   public ApiResponse<RecipeResponse> getRecipeById(String id) {
     return ApiResponse.<RecipeResponse>builder().result(recipeService.getRecipeId(id)).build();
+  }
+
+  @Override
+  public ApiResponse<List<RecipeResponse>> getMyRecipes() {
+    final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<List<RecipeResponse>>builder()
+        .result(recipeService.getMyRecipes(username))
+        .build();
   }
 }

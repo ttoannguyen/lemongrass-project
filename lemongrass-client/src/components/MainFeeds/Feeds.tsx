@@ -5,7 +5,8 @@ import { isPostFeedItem, isRecipeFeedItem } from "@/types/feed/type-guards";
 import RecipeItemCard from "./Feed/RecipeItemCard";
 import type { PostFeedItem } from "@/types/feed/PostFeedItem";
 import PostItemCard from "./Posts/PostItemCard";
-import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
+import { MiniPostComposer } from "../Posts/MiniPostComposer";
+// import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
 
 type Props = {
   className?: string;
@@ -20,6 +21,7 @@ export const FeedPage = ({ className }: Props) => {
 
   return (
     <div className={className}>
+      <MiniPostComposer />
       <div className="flex flex-col gap-2">
         {feeds?.map((feed: FeedItem) => {
           if (isRecipeFeedItem(feed)) {

@@ -12,7 +12,7 @@ import {
 import { Badge } from "../ui/badge";
 
 type Props = {
-  account?: Account | null;
+  account: Account;
 };
 
 const HeaderProfile = ({ account }: Props) => {
@@ -27,7 +27,10 @@ const HeaderProfile = ({ account }: Props) => {
       {/* Avatar */}
       <div className="relative flex w-full">
         <div className="absolute bottom-0 md:right-0 left-4 md:left-0">
-          <AvataProfile className=" h-20 w-20 md:h-40 md:w-40 rounded-full border-4 border-background bg-background shadow-md mx-auto" />
+          <AvataProfile
+            account={account}
+            className=" h-20 w-20 md:h-40 md:w-40 rounded-full border-4 border-background bg-background shadow-md mx-auto"
+          />
         </div>
         <div className="flex md:mt-4 ml-auto md:h-16 z-10">
           <Button variant={"main"}>Follow</Button>

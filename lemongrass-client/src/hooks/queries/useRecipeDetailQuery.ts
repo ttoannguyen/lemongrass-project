@@ -10,3 +10,12 @@ export const useRecipeDetail = (id: string) => {
     staleTime: 300_000,
   });
 };
+
+
+export const useMyRecipes = () => {
+  return useQuery<RecipeResponse[]>({
+    queryKey: ["my-recipe"],
+    queryFn: recipeService.getMyRecipes,
+    staleTime: 300_000,
+  });
+};

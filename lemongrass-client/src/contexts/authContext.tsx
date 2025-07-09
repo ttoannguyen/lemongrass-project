@@ -1,4 +1,3 @@
-// contexts/AuthContext.tsx
 import { authService } from "@/services/auth.service";
 import type { Account } from "@/types";
 import {
@@ -6,16 +5,23 @@ import {
   useContext,
   useState,
   useEffect,
+  useMemo,
   type ReactNode,
 } from "react";
 
-interface AuthContextType {
-  isLoggedIn: boolean;
+export interface AuthContextType {
   token: string | null;
   account: Account | null;
+  isLoggedIn: boolean;
   isLoadingAuth: boolean;
   login: (token: string, account: Account) => void;
   logout: () => void;
+
+  // Role/Permission helpers
+  hasRole: (roleName: string) => boolean;
+  hasAnyRole: (roles: string[]) => boolean;
+  hasPermission: (permission: string) => boolean;
+  hasAnyPermission: (permissions: string[]) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -36,15 +42,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const { valid, account } = await authService.introspect();
-      console.log("In authcontext: ",{valid, account})
+      console.log("In authcontext: ", { valid, account });
+
       if (valid && account) {
         setAccount(account);
         setIsLoggedIn(true);
       } else {
         logout();
       }
+
       setIsLoadingAuth(false);
     };
+
     verifyToken();
   }, [token]);
 
@@ -62,9 +71,45 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem("authToken");
   };
 
+  const hasRole = (roleName: string): boolean => {
+    return !!account?.roles?.some((role) => role.name === roleName);
+  };
+
+  const hasAnyRole = (roleNames: string[]): boolean => {
+    return !!account?.roles?.some((role) => roleNames.includes(role.name));
+  };
+
+  // ✅ Flatten all permissions from all roles (memoized for performance)
+  const flattenedPermissions = useMemo(() => {
+    if (!account) return [];
+    const perms = account.roles.flatMap((role) =>
+      role.permissions?.map((p) => p.name)
+    );
+    return Array.from(new Set(perms));
+  }, [account]);
+
+  const hasPermission = (permission: string): boolean => {
+    return flattenedPermissions.includes(permission);
+  };
+
+  const hasAnyPermission = (permissionsToCheck: string[]): boolean => {
+    return flattenedPermissions.some((p) => permissionsToCheck.includes(p));
+  };
+
   return (
     <AuthContext.Provider
-      value={{ isLoggedIn, token, account, isLoadingAuth, login, logout }}
+      value={{
+        token,
+        account,
+        isLoggedIn,
+        isLoadingAuth,
+        login,
+        logout,
+        hasRole,
+        hasAnyRole,
+        hasPermission,
+        hasAnyPermission,
+      }}
     >
       {children}
     </AuthContext.Provider>
@@ -74,6 +119,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within AuthProvider");
+  if (!context) {
+    throw new Error("useAuth must be used within AuthProvider");
+  }
   return context;
 };
