@@ -21,10 +21,6 @@ const PermissionList = () => {
     setIsModalOpen(true);
   };
 
-  // const handleSave = () => {
-  //   setIsModalOpen(false);
-  // };
-
   if (isLoading) return <p className="p-4">Đang tải quyền hạn...</p>;
   if (isError)
     return <p className="text-red-500">Không thể tải danh sách quyền hạn.</p>;

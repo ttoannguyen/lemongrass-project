@@ -2,10 +2,16 @@ type ImageBoxProps = {
   src: string;
   alt?: string;
   overlayText?: string;
+  className?: string;
 };
 
-const ImageBox = ({ src = "", alt = "", overlayText }: ImageBoxProps) => (
-  <div className="relative group w-full h-full overflow-hidden cursor-pointer">
+const ImageBox = ({
+  src = "",
+  alt = "",
+  overlayText,
+  className,
+}: ImageBoxProps) => (
+  <div className={`relative group overflow-hidden cursor-pointer ${className}`}>
     <img
       src={src}
       alt={alt}

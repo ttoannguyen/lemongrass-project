@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.Recipe;
+import com.ttoannguyen.lemongrass.entity.SavedRecipe;
 import com.ttoannguyen.lemongrass.mapper.ingredientMapper.IngredientMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -33,6 +34,11 @@ public interface RecipeMapper {
   @Mapping(source = "images", target = "images")
   @Mapping(source = "categories", target = "category")
   RecipeResponse toRecipeResponse(Recipe recipe);
+
+  @Mapping(source = "recipe", target = ".")
+  RecipeResponse savedRecipeToRecipeResponse(SavedRecipe savedRecipe);
+
+  List<RecipeResponse> savedRecipesToRecipeResponses(List<SavedRecipe> savedRecipes);
 
   @Named("jsonToList")
   static List<String> jsonToList(String tagsJson) {

@@ -6,6 +6,7 @@ import RecipeItemCard from "./Feed/RecipeItemCard";
 import type { PostFeedItem } from "@/types/feed/PostFeedItem";
 import PostItemCard from "./Posts/PostItemCard";
 import { MiniPostComposer } from "../Posts/MiniPostComposer";
+import { useSavedRecipes } from "@/hooks/queries/useRecipeQuery";
 // import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
 
 type Props = {
@@ -14,8 +15,10 @@ type Props = {
 
 export const FeedPage = ({ className }: Props) => {
   const { data: feeds, isLoading, error: feedError } = useFeed();
-  // const { data: categories, error: categoryError } = useCategoryQuery();
-  // console.log(categories, categoryError);
+  const { data: savedRecipes } = useSavedRecipes();
+
+  const savedIds = new Set(savedRecipes?.map((r) => r.id));
+
   if (isLoading) return <p>Đang tải dữ liệu...</p>;
   if (feedError) return <p>Lỗi: {feedError.message}</p>;
 
@@ -26,13 +29,16 @@ export const FeedPage = ({ className }: Props) => {
         {feeds?.map((feed: FeedItem) => {
           if (isRecipeFeedItem(feed)) {
             const recipe = feed as RecipeFeedItem;
-            // console.log("In feed - recipe: ", [feed.id, recipe]);
-            return <RecipeItemCard key={feed.id} recipe={recipe} />;
+            return (
+              <RecipeItemCard
+                key={feed.id}
+                recipe={recipe}
+                savedList={savedIds}
+              />
+            );
           }
           if (isPostFeedItem(feed)) {
             const post = feed as PostFeedItem;
-            // console.log("In feed - post: ", [feed.id, post]);
-
             return <PostItemCard key={feed.id} post={post} />;
           }
           return null;

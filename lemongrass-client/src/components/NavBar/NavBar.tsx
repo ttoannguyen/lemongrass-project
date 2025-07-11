@@ -12,7 +12,8 @@ const NavBar = () => {
 
   return (
     // Outer full-width background
-    <div className="w-full bg-background text-text">
+    // <div className="w-full bg-background text-text">
+    <div className="w-full bg-background text-text sticky top-0 z-50 shadow-xs">
       {/* Inner centered container with spacing on sides */}
       <div className="flex items-center justify-between px-2 md:px-4 py-4  max-w-screen-2xl mx-auto">
         <h1

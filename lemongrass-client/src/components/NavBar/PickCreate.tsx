@@ -8,11 +8,13 @@ import { ChevronDown } from "lucide-react";
 import { TypographyP } from "../ui/TypographyP";
 import { useState } from "react";
 import { CreatePostModal } from "../Posts/CreatePostModel";
+import { useNavigate } from "react-router-dom";
 
 export function PickCreate() {
   const [isPostModalOpen, setPostModalOpen] = useState(false);
-  const [isRecipeModalOpen, setRecipeModalOpen] = useState(false);
-  console.log(isRecipeModalOpen);
+  // const [isRecipeModalOpen, setRecipeModalOpen] = useState(false);
+  // console.log(isRecipeModalOpen);
+  const navegate = useNavigate();
   return (
     <>
       <DropdownMenu>
@@ -26,7 +28,7 @@ export function PickCreate() {
           align="end"
           className="w-32 bg-white dark:bg-white"
         >
-          <DropdownMenuItem onClick={() => setRecipeModalOpen(true)}>
+          <DropdownMenuItem onClick={() => navegate("create-recipe")}>
             Create Recipe
           </DropdownMenuItem>
           <DropdownMenuItem onClick={() => setPostModalOpen(true)}>

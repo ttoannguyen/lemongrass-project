@@ -12,17 +12,51 @@ const RecipeDetailPage = () => {
   if (isLoading)
     return (
       <div className="max-w-3xl mx-auto py-8 px-4">
-        <Skeleton className="h-8 w-1/3 mb-4" />
-        <Skeleton className="h-4 w-1/2 mb-2" />
-        <Skeleton className="h-4 w-1/4 mb-2" />
-        <Skeleton className="h-4 w-1/3 mb-2" />
-        <Skeleton className="h-6 w-full mt-4" />
+        <Skeleton className="bg-text h-8 w-1/3 mb-4" />
+        <Skeleton className="bg-text h-4 w-1/2 mb-2" />
+        <Skeleton className="bg-text h-4 w-1/4 mb-2" />
+        <Skeleton className="bg-text h-4 w-1/3 mb-2" />
+        <Skeleton className="bg-text h-6 w-full mt-4" />
       </div>
     );
   if (isError || !recipe) return <div>Lỗi tải công thức</div>;
-  console.log(recipe.accountShortResponse);
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
+      {/* {recipe.images && recipe.images.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0.5 mb-6">
+          {recipe.images.map((image, index) => (
+            <img
+              key={index}
+              src={image.url}
+              alt={`Recipe image ${index + 1}`}
+              className="w-full h-60 object-center"
+            />
+          ))}
+        </div>
+      )} */}
+
+      {recipe.images && recipe.images.length > 0 && (
+        <div className="mb-6">
+          <img
+            src={recipe.images[0].url}
+            alt="Main Recipe Image"
+            className="w-full h-72 object-cover mb-4"
+          />
+          {recipe.images.length > 1 && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-0.5">
+              {recipe.images.slice(1).map((image, index) => (
+                <img
+                  key={index}
+                  src={image.url}
+                  alt={`Recipe image ${index + 2}`}
+                  className="w-full h-40 object-cover "
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
       <h1 className="text-3xl font-bold">{recipe.title}</h1>
 
       <div className="text-gray-600 mt-2 space-y-1">
@@ -90,11 +124,9 @@ const RecipeDetailPage = () => {
           ))}
       </div>
 
-      <div className="mt-6 flex gap-4 text-sm text-gray-500">
-        <p>
-          Tác giả:{" "}
-          <AuthorHoverCard author={recipe.accountShortResponse} />
-        </p>
+      <div className="mt-6 flex items-center gap-4 text-sm text-gray-500">
+        <p>Tác giả:</p>
+        <AuthorHoverCard author={recipe.accountShortResponse} />
       </div>
 
       <div className="mt-6 flex gap-4 text-sm text-gray-500">

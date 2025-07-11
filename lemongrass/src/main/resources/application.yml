@@ -52,7 +52,7 @@ server:
 
 jwt:
   signer-key: ${JWT_SIGNER_KEY:SUc3vhm9LhF72WDw2z/IfSvCvjhYo8zJv1nfMNLGCDsKqA7wlJAPX5PyNZnpheAX}
-  valid-duration: 3600
+  valid-duration: 36000
   refreshable-duration: 36000
 
 cloudinary:
