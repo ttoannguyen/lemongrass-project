@@ -4,7 +4,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { PreloadPublicData } from "@/providers/PreloadPublicData";
 import { PreloadUserData } from "@/providers/PreloadUserData";
 import { PreloadAdminData } from "@/providers/PreloadAdminData";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const providers = [
   (children: React.ReactNode) => (
@@ -31,7 +31,7 @@ export const AppProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {wrapped}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </>
   );
 };

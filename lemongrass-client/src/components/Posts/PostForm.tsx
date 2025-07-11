@@ -2,20 +2,14 @@ import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
-import { Label } from "../ui/label";
+
+import { useSubmitPost } from "@/hooks/queries/usePostQuery";
 // import { useEffect, useState } from "react";
 
 type PostFormData = {
   title: string;
   content: string;
-  visibility: "public" | "private" | "group";
+  visibility: "PUBLIC" | "PRIVATE" | "GROUP";
   groupId?: string;
   recipeId?: string;
   image?: FileList;
@@ -25,15 +19,15 @@ type Props = {
   onSuccess: () => void;
 };
 
-const mockGroups = [
-  { id: "g1", name: "Nấu ăn healthy" },
-  { id: "g2", name: "Yêu bếp" },
-];
+// const mockGroups = [
+//   { id: "g1", name: "Nấu ăn healthy" },
+//   { id: "g2", name: "Yêu bếp" },
+// ];
 
-const mockRecipes = [
-  { id: "r1", title: "Bánh mì bơ tỏi" },
-  { id: "r2", title: "Salad cá ngừ" },
-];
+// const mockRecipes = [
+//   { id: "r1", title: "Bánh mì bơ tỏi" },
+//   { id: "r2", title: "Salad cá ngừ" },
+// ];
 
 const PostForm = ({ onSuccess }: Props) => {
   const {
@@ -44,34 +38,29 @@ const PostForm = ({ onSuccess }: Props) => {
     reset,
     formState: { errors },
   } = useForm<PostFormData>({
-    defaultValues: { visibility: "public" },
+    defaultValues: { visibility: "PUBLIC" },
   });
 
   const visibility = watch("visibility");
 
+  const {} = useSubmitPost();
+
+  const { mutateAsync } = useSubmitPost();
+
   const onSubmit = async (data: PostFormData) => {
     try {
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("content", data.content);
-      formData.append("visibility", data.visibility);
-      if (data.groupId) formData.append("groupId", data.groupId);
-      if (data.recipeId) formData.append("recipeId", data.recipeId);
-      if (data.image && data.image[0]) {
-        formData.append("image", data.image[0]);
-      }
-
-      const res = await fetch("/api/posts", {
-        method: "POST",
-        body: formData,
+      await mutateAsync({
+        title: data.title,
+        content: data.content,
+        visibility: data.visibility,
+        // groupId: data.groupId,
+        // recipeId: data.recipeId,
       });
-
-      if (!res.ok) throw new Error("Lỗi khi tạo bài viết");
 
       reset();
       onSuccess();
     } catch (err) {
-      console.error(err);
+      console.error("Lỗi khi đăng bài:", err);
     }
   };
 
@@ -98,10 +87,10 @@ const PostForm = ({ onSuccess }: Props) => {
         <p className="text-red-500 text-sm">Nội dung là bắt buộc</p>
       )}
 
-      <Label>Ảnh minh hoạ (tuỳ chọn)</Label>
-      <Input type="file" accept="image/*" {...register("image")} />
+      {/* <Label>Ảnh minh hoạ (tuỳ chọn)</Label>
+      <Input type="file" accept="image/*" {...register("image")} /> */}
 
-      <Label>Chế độ hiển thị</Label>
+      {/* <Label>Chế độ hiển thị</Label>
       <Select
         value={visibility}
         onValueChange={(val: string) =>
@@ -116,9 +105,9 @@ const PostForm = ({ onSuccess }: Props) => {
           <SelectItem value="private">Chỉ mình tôi</SelectItem>
           <SelectItem value="group">Chỉ trong nhóm</SelectItem>
         </SelectContent>
-      </Select>
+      </Select> */}
 
-      {visibility === "group" && (
+      {/* {visibility === "group" && (
         <>
           <Label>Chọn nhóm</Label>
           <select
@@ -133,9 +122,9 @@ const PostForm = ({ onSuccess }: Props) => {
             ))}
           </select>
         </>
-      )}
+      )} */}
 
-      <Label>Gắn kèm công thức (nếu có)</Label>
+      {/* <Label>Gắn kèm công thức (nếu có)</Label>
       <select {...register("recipeId")} className="border rounded px-2 py-1">
         <option value="">-- Không chọn --</option>
         {mockRecipes.map((r) => (
@@ -143,7 +132,7 @@ const PostForm = ({ onSuccess }: Props) => {
             {r.title}
           </option>
         ))}
-      </select>
+      </select> */}
 
       <div className="flex justify-end">
         <Button type="submit">Đăng bài</Button>
