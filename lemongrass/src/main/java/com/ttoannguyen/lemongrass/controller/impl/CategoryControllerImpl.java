@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.CategoryController;
 import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.category.CategoryRequest;
 import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.CategoryService;
@@ -37,6 +38,13 @@ public class CategoryControllerImpl implements CategoryController {
       CategoryCreationRequest categoryCreationRequest) {
     return ApiResponse.<CategoryResponse>builder()
         .result(categoryService.createCategory(categoryCreationRequest))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<CategoryResponse> updateCategory(CategoryRequest categoryRequest) {
+    return ApiResponse.<CategoryResponse>builder()
+        .result(categoryService.updateCategory(categoryRequest))
         .build();
   }
 }

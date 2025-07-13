@@ -3,7 +3,9 @@ package com.ttoannguyen.lemongrass.search;
 import jakarta.persistence.Id;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.elasticsearch.annotations.CompletionField;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.core.suggest.Completion;
 
 import java.time.Instant;
 import java.util.List;
@@ -16,21 +18,25 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FeedDocument {
   @Id String id;
-  String type; // "POST" or "RECIPE"
+
+  String type;
+
+  @CompletionField(maxInputLength = 100)
+  Completion titleSuggest;
 
   String title;
-  String content; // Only for posts
+  String content;
 
   String accountId;
   String accountName;
 
-  String groupId; // Only for posts
-  String recipeId; // If post references a recipe
+  String groupId;
+  String recipeId;
 
-  String category; // Only for recipes
-  List<String> tags; // For recipe tags (parsed from JSON)
+  String category;
+  List<String> tags;
 
-  String difficulty; // For recipes
+  String difficulty;
   Integer cookingTime;
   Integer servings;
   Float ratingAvg;
@@ -39,7 +45,6 @@ public class FeedDocument {
   Boolean isApproved;
   Integer shareCount;
 
-  String visibility; // Only for posts: PUBLIC, PRIVATE...
-
+  String visibility;
   Instant createdDate;
 }

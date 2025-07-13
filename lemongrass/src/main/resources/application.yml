@@ -50,6 +50,11 @@ logging:
 server:
   port: 8080
 
+elasticsearch:
+  host: localhost
+  port: 9200
+  scheme: http
+
 jwt:
   signer-key: ${JWT_SIGNER_KEY:SUc3vhm9LhF72WDw2z/IfSvCvjhYo8zJv1nfMNLGCDsKqA7wlJAPX5PyNZnpheAX}
   valid-duration: 36000

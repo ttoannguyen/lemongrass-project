@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.controller;
 
 import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.category.CategoryRequest;
 import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import org.springframework.web.bind.annotation.*;
@@ -18,4 +19,7 @@ public interface CategoryController {
   @PostMapping
   ApiResponse<CategoryResponse> createCategory(
       @RequestBody CategoryCreationRequest categoryCreationRequest);
+
+  @PutMapping("/{categoryId}")
+  ApiResponse<CategoryResponse> updateCategory(@RequestBody CategoryRequest categoryRequest);
 }

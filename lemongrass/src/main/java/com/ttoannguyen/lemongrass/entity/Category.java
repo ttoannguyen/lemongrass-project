@@ -22,7 +22,4 @@ public class Category {
 
   @Column(unique = true)
   private String name;
-
-  //  @ManyToMany(mappedBy = "categories")
-  //  private List<Recipe> recipes = new ArrayList<>();
 }

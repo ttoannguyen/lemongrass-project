@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
 import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.category.CategoryRequest;
 import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.entity.Category;
 import com.ttoannguyen.lemongrass.exception.AppException;
@@ -43,5 +44,24 @@ public class CategoryServiceImpl implements CategoryService {
         categoryRepository
             .findById(id)
             .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED)));
+  }
+
+  @Override
+  public CategoryResponse updateCategory(CategoryRequest categoryRequest) {
+    Category existingCategory =
+        categoryRepository
+            .findById(categoryRequest.getId())
+            .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
+
+    if (!existingCategory.getName().equalsIgnoreCase(categoryRequest.getName())
+        && categoryRepository.existsByName(categoryRequest.getName())) {
+      throw new AppException(ErrorCode.CATEGORY_EXISTED);
+    }
+
+    existingCategory.setName(categoryRequest.getName());
+
+    Category updatedCategory = categoryRepository.save(existingCategory);
+
+    return categoryMapper.toCategoryResponse(updatedCategory);
   }
 }

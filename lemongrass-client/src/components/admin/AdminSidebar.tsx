@@ -9,6 +9,10 @@ import {
   Settings,
   Repeat,
   HomeIcon,
+  Apple,
+  FolderKanban,
+  Ruler,
+  Tag,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -28,31 +32,37 @@ const navSections: {
   {
     title: "Tổng quan",
     links: [
-      {
-        label: "Dashboard",
-        path: "/admin",
-        icon: LayoutDashboard,
-        end: true,
-      },
+      { label: "Dashboard", path: "/admin", icon: LayoutDashboard, end: true },
     ],
   },
   {
     title: "Quản lý nội dung",
     links: [
+      { label: "Bài viết", path: "/admin/posts", icon: FileText },
+      { label: "Công thức", path: "/admin/recipes", icon: ChefHat },
       {
-        label: "Người dùng",
-        path: "/admin/users",
-        icon: Users,
+        label: "Danh mục công thức",
+        path: "/admin/recipe-categories",
+        icon: FolderKanban,
+        requiredPermissions: ["ADMIN"],
       },
       {
-        label: "Bài viết",
-        path: "/admin/posts",
-        icon: FileText,
+        label: "Nguyên liệu",
+        path: "/admin/ingredients",
+        icon: Apple,
+        requiredPermissions: ["ADMIN"],
       },
       {
-        label: "Công thức",
-        path: "/admin/recipes",
-        icon: ChefHat,
+        label: "Đơn vị đo",
+        path: "/admin/units",
+        icon: Ruler,
+        requiredPermissions: ["ADMIN"],
+      },
+      {
+        label: "Thẻ / Tags",
+        path: "/admin/tags",
+        icon: Tag,
+        requiredPermissions: ["MANAGE_TAGS"],
       },
     ],
   },

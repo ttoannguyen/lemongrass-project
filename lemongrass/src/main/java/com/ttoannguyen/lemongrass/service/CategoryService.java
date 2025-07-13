@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.service;
 
 import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.category.CategoryRequest;
 import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 
 import java.util.List;
@@ -11,4 +12,6 @@ public interface CategoryService {
   CategoryResponse createCategory(CategoryCreationRequest categoryCreationRequest);
 
   CategoryResponse getCategoryById(String id);
+
+  CategoryResponse updateCategory(CategoryRequest categoryRequest);
 }
