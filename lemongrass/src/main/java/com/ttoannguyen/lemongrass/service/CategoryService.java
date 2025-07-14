@@ -14,4 +14,6 @@ public interface CategoryService {
   CategoryResponse getCategoryById(String id);
 
   CategoryResponse updateCategory(CategoryRequest categoryRequest);
+
+  Void deleteCategory(String id);
 }

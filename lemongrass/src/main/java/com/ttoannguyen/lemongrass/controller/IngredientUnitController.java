@@ -1,6 +1,8 @@
 package com.ttoannguyen.lemongrass.controller;
 
+import com.cloudinary.Api;
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientUnitCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientUnitUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientUnitResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import org.springframework.web.bind.annotation.*;
@@ -17,4 +19,8 @@ public interface IngredientUnitController {
 
   @GetMapping("/{id}")
   ApiResponse<IngredientUnitResponse> getUnitId(@PathVariable("id") String id);
+
+  @PutMapping("/{id}")
+  ApiResponse<IngredientUnitResponse> updateUnit(
+      @PathVariable("id") String id, @RequestBody IngredientUnitUpdateRequest request);
 }

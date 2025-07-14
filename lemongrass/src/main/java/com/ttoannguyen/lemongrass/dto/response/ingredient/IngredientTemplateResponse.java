@@ -3,6 +3,7 @@ package com.ttoannguyen.lemongrass.dto.Response.ingredient;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -15,4 +16,8 @@ public class IngredientTemplateResponse {
   String name;
   List<String> aliases;
   List<IngredientUnitResponse> allowedUnits;
+  String createdBy;
+  String lastModifiedBy;
+  LocalDateTime createdDate;
+  LocalDateTime lastModifiedDate;
 }

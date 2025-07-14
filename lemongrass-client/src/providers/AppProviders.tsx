@@ -4,6 +4,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { PreloadPublicData } from "@/providers/PreloadPublicData";
 import { PreloadUserData } from "@/providers/PreloadUserData";
 import { PreloadAdminData } from "@/providers/PreloadAdminData";
+import { Toaster } from "@/components/ui/sonner";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const providers = [
@@ -32,6 +33,7 @@ export const AppProviders = ({ children }: { children: React.ReactNode }) => {
     <>
       {wrapped}
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <Toaster position="top-right" richColors />
     </>
   );
 };

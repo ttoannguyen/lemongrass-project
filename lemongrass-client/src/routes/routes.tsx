@@ -22,6 +22,12 @@ import ManageStaffWork from "@/pages/staff/ManageStaffWork";
 import ReportedContentList from "@/components/staff/ReportedContentList";
 import StaffDashboard from "@/pages/staff/StaffDashboard";
 import ManageRolesAndPermissions from "@/pages/admin/ManageRolesAndPermissions";
+import RecipeCategory from "@/pages/admin/RecipeCategory";
+import Ingredient from "@/pages/admin/Ingredient";
+import Units from "@/pages/admin/Units";
+import Tags from "@/pages/admin/Tags";
+import Moderation from "@/pages/admin/system/Moderation";
+import Setting from "@/pages/admin/system/Setting";
 
 // const routes: RouteObject[] = [
 //   {
@@ -93,6 +99,14 @@ const routes: RouteObject[] = [
       { path: "users", element: <ManageUsers /> },
       { path: "posts", element: <ManagePosts /> },
       { path: "recipes", element: <ManageRecipes /> },
+      { path: "recipe-categories", element: <RecipeCategory /> },
+      { path: "ingredients", element: <Ingredient /> },
+      { path: "units", element: <Units /> },
+      { path: "tags", element: <Tags /> },
+
+      // He thong
+      { path: "moderation", element: <Moderation /> },
+      { path: "settings", element: <Setting /> },
       { path: "roles", element: <ManageRolesAndPermissions /> },
     ],
   },

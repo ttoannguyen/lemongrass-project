@@ -8,6 +8,7 @@ import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
 import com.ttoannguyen.lemongrass.mapper.CategoryMapper;
 import com.ttoannguyen.lemongrass.repository.CategoryRepository;
+import com.ttoannguyen.lemongrass.repository.RecipeRepository;
 import com.ttoannguyen.lemongrass.service.CategoryService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
   CategoryRepository categoryRepository;
   CategoryMapper categoryMapper;
+  RecipeRepository recipeRepository;
 
   @Override
   public List<CategoryResponse> getCategories() {
@@ -63,5 +65,18 @@ public class CategoryServiceImpl implements CategoryService {
     Category updatedCategory = categoryRepository.save(existingCategory);
 
     return categoryMapper.toCategoryResponse(updatedCategory);
+  }
+
+  @Override
+  public Void deleteCategory(String id) {
+    Category category =
+        categoryRepository
+            .findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED));
+    if (recipeRepository.existsByCategories_Id(id))
+      throw new AppException(ErrorCode.CATEGORY_IN_USE);
+
+    categoryRepository.delete(category);
+    return null;
   }
 }

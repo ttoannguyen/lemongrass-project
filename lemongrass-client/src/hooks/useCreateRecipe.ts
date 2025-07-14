@@ -3,7 +3,7 @@ import { Difficulty } from "@/types/enums/difficulty.enum";
 import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientRequest";
 import type { TagDto } from "@/types/tag/TagDto";
 import type { RecipeInstructionRequest } from "@/types/Recipe/RecipeInstructionRequest";
-import type { Unit } from "@/types/units/Unit";
+import type { Unit } from "@/types/units/UnitResponse";
 // import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
 import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
 // import { recipeCreateService } from "../services/recipe/recipe.createFormData.service";

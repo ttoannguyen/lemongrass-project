@@ -6,18 +6,24 @@ import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PostResponse {
-    String id;
-    String title;
-    String content;
-    String visibility;
-    boolean isApproved;
-    AccountResponse author;
-    GroupResponse group;
-    RecipeResponse recipe;
+  String id;
+  String title;
+  String content;
+  String visibility;
+  boolean isApproved;
+  AccountResponse author;
+  GroupResponse group;
+  RecipeResponse recipe;
+  String createdBy;
+  String lastModifiedBy;
+  LocalDateTime createdDate;
+  LocalDateTime lastModifiedDate;
 }

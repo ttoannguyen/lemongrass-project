@@ -1,6 +1,6 @@
 // hooks/queries/useIngredientUnitQuery.ts
 import { useQuery } from "@tanstack/react-query";
-import { ingredientUnitService } from "@/services/ingredientUnit.service";
+import { ingredientUnitService } from "@/services/unit/unit.service";
 import type { IngredientUnitResponse } from "@/types/Recipe/IngredientUnitResponse";
 
 export const useIngredientUnitQuery = () => {

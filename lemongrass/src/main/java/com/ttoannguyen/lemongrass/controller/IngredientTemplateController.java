@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.controller;
 
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientTemplateCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientTemplateUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientTemplateResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,10 @@ public interface IngredientTemplateController {
   ApiResponse<IngredientTemplateResponse> getIngredientTemplateId(
       @PathVariable("id") String IngredientTemplateId);
 
-  //  @GetMapping("/name")
-  //  ApiResponse<IngredientTemplateResponse> getIngredientTemplateName(
-  //      @PathVariable String IngredientTemplateName);
+  @PutMapping("/{id}")
+  ApiResponse<IngredientTemplateResponse> update(
+      @PathVariable("id") String id, @RequestBody IngredientTemplateUpdateRequest request);
+
+  @DeleteMapping("/{id}")
+  ApiResponse<Void> delete(@PathVariable("id") String id);
 }

@@ -34,6 +34,10 @@ public interface IngredientTemplateMapper {
                     .name(unit.getName())
                     .minValue(unit.getMinValue())
                     .stepSize(unit.getStepSize())
+                    .createdBy(unit.getCreatedBy())
+                    .lastModifiedBy(unit.getLastModifiedBy())
+                    .createdDate(unit.getCreatedDate())
+                    .lastModifiedDate(unit.getLastModifiedDate())
                     .build())
         .collect(Collectors.toList());
   }

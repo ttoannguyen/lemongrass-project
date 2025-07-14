@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.IngredientTemplateController;
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientTemplateCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientTemplateUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientTemplateResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.IngredientTemplateService;
@@ -38,6 +39,22 @@ public class IngredientTemplateControllerImpl implements IngredientTemplateContr
   public ApiResponse<IngredientTemplateResponse> getIngredientTemplateId(String id) {
     return ApiResponse.<IngredientTemplateResponse>builder()
         .result(ingredientTemplateService.getIngredientTemplateId(id))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<IngredientTemplateResponse> update(
+      String id, IngredientTemplateUpdateRequest request) {
+    return ApiResponse.<IngredientTemplateResponse>builder()
+        .result(ingredientTemplateService.update(id, request))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<Void> delete(String id) {
+    return ApiResponse.<Void>builder()
+        .result(ingredientTemplateService.delete(id))
+        .message("success")
         .build();
   }
 }

@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import {
   LayoutDashboard,
-  Users,
   FileText,
   ChefHat,
   ShieldCheck,
@@ -38,31 +37,39 @@ const navSections: {
   {
     title: "Quản lý nội dung",
     links: [
-      { label: "Bài viết", path: "/admin/posts", icon: FileText },
-      { label: "Công thức", path: "/admin/recipes", icon: ChefHat },
+      {
+        label: "Bài viết",
+        path: "/admin/posts",
+        icon: FileText,
+      },
+      {
+        label: "Công thức",
+        path: "/admin/recipes",
+        icon: ChefHat,
+      },
       {
         label: "Danh mục công thức",
         path: "/admin/recipe-categories",
         icon: FolderKanban,
-        requiredPermissions: ["ADMIN"],
+        requiredRoles: ["ADMIN"],
       },
       {
         label: "Nguyên liệu",
         path: "/admin/ingredients",
         icon: Apple,
-        requiredPermissions: ["ADMIN"],
+        requiredRoles: ["ADMIN"],
       },
       {
         label: "Đơn vị đo",
         path: "/admin/units",
         icon: Ruler,
-        requiredPermissions: ["ADMIN"],
+        requiredRoles: ["ADMIN"],
       },
       {
         label: "Thẻ / Tags",
         path: "/admin/tags",
         icon: Tag,
-        requiredPermissions: ["MANAGE_TAGS"],
+        requiredRoles: ["ADMIN"],
       },
     ],
   },
@@ -73,7 +80,7 @@ const navSections: {
         label: "Kiểm duyệt",
         path: "/admin/moderation",
         icon: ShieldCheck,
-        requiredPermissions: ["MODERATE_CONTENT"],
+        requiredRoles: ["ADMIN"],
       },
       {
         label: "Cài đặt",
@@ -97,10 +104,8 @@ const AdminSidebar = () => {
   const isLinkVisible = (link: NavLinkItem) => {
     const { requiredRoles, requiredPermissions } = link;
 
-    // Nếu có yêu cầu role nhưng không match thì ẩn
     if (requiredRoles && !requiredRoles.some(hasRole)) return false;
 
-    // Nếu có yêu cầu permission nhưng không match thì ẩn
     if (requiredPermissions && !requiredPermissions.some(hasPermission))
       return false;
 

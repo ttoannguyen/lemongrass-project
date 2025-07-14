@@ -1,11 +1,11 @@
-import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
-import { ingredientTemplateService } from "@/services/ingredientTemplate.service";
 import { useQuery } from "@tanstack/react-query";
+import { ingredientService } from "@/services/ingredient/ingredient.service";
+import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 
 export const useIngredientTemplates = () => {
-  return useQuery<IngredientTemplateResponse[]>({
-    queryKey: ["ingredient-units"],
-    queryFn: ingredientTemplateService.getTemplate,
+  return useQuery<IngredientResponse[]>({
+    queryKey: ["ingredient_templates"],
+    queryFn: ingredientService.getIngredientsTemplate,
     staleTime: 5 * 60 * 1000,
   });
 };

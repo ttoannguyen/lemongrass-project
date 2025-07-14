@@ -22,4 +22,7 @@ public interface CategoryController {
 
   @PutMapping("/{categoryId}")
   ApiResponse<CategoryResponse> updateCategory(@RequestBody CategoryRequest categoryRequest);
+
+  @DeleteMapping("/{categoryId}")
+  ApiResponse<Void> deleteCategory(@PathVariable("categoryId") String id);
 }

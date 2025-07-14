@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.IngredientUnitController;
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientUnitCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientUnitUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientUnitResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.IngredientUnitService;
@@ -36,6 +37,14 @@ public class IngredientUnitControllerImpl implements IngredientUnitController {
   public ApiResponse<IngredientUnitResponse> getUnitId(String id) {
     return ApiResponse.<IngredientUnitResponse>builder()
         .result(ingredientUnitService.getUnitId(id))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<IngredientUnitResponse> updateUnit(
+      String id, IngredientUnitUpdateRequest request) {
+    return ApiResponse.<IngredientUnitResponse>builder()
+        .result(ingredientUnitService.updateUnit(id, request))
         .build();
   }
 }

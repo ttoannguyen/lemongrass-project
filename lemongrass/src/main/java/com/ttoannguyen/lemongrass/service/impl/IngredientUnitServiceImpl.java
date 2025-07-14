@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientUnitCreateRequest;
+import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientUnitUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientUnitResponse;
 import com.ttoannguyen.lemongrass.entity.IngredientUnit;
 import com.ttoannguyen.lemongrass.exception.AppException;
@@ -34,7 +35,8 @@ public class IngredientUnitServiceImpl implements IngredientUnitService {
 
   @Override
   public List<IngredientUnitResponse> getUnits() {
-    List<IngredientUnit> ingredientUnits = ingredientUnitRepository.findAll();
+    List<IngredientUnit> ingredientUnits =
+        ingredientUnitRepository.findAllByOrderByLastModifiedDateDesc();
     return ingredientUnitMapper.toIngredientUnitResponseList(ingredientUnits);
   }
 
@@ -46,5 +48,24 @@ public class IngredientUnitServiceImpl implements IngredientUnitService {
             .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));
 
     return ingredientUnitMapper.toIngredientUnitResponse(ingredientUnit);
+  }
+
+  @Override
+  public IngredientUnitResponse updateUnit(String id, IngredientUnitUpdateRequest request) {
+    IngredientUnit existing =
+        ingredientUnitRepository
+            .findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));
+
+    if (ingredientUnitRepository.existsByNameAndIdNot(request.getName(), id)) {
+      throw new AppException(ErrorCode.INGREDIENT_UNIT_NAME_EXISTED);
+    }
+
+    existing.setName(request.getName());
+    existing.setMinValue(request.getMinValue());
+    existing.setStepSize(request.getStepSize());
+
+    IngredientUnit updated = ingredientUnitRepository.save(existing);
+    return ingredientUnitMapper.toIngredientUnitResponse(updated);
   }
 }

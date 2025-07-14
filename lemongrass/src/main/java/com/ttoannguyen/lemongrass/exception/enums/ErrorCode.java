@@ -38,6 +38,10 @@ public enum ErrorCode {
 
   CATEGORY_NOT_EXISTED(1020, "Category not exists!", HttpStatus.NOT_FOUND),
   CATEGORY_EXISTED(1021, "Category exists!", HttpStatus.BAD_REQUEST),
+  CATEGORY_IN_USE(1022, "The category has been used by the recipe!", HttpStatus.BAD_REQUEST),
+  INGREDIENT_TEMPLATE_IN_USED(
+      1023, "The ingredient template has been used by the recipe!", HttpStatus.BAD_REQUEST),
+  INGREDIENT_UNIT_NAME_EXISTED(1024, "Ingredient unit name exists!", HttpStatus.BAD_REQUEST),
   ;
 
   private int code;

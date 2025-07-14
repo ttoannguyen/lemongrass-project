@@ -2,7 +2,7 @@ import type { ImageResponse } from "../image/ImageResponse";
 import type { AccountShortResponse } from "../AccountShortResponse";
 import type { IngredientDto } from "../ingredient/IngredientDto";
 import type { TagDto } from "../tag/TagDto";
-import type { CategoryDto } from "../category/CategoryDto";
+import type { CategoryDto } from "../category/CategoryResponse";
 
 export interface RecipeFeedItem {
   id: string;

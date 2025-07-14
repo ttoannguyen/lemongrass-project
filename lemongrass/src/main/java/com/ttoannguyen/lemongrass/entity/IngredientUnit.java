@@ -14,7 +14,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class IngredientUnit {
+public class IngredientUnit extends AbstractAuditingEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)

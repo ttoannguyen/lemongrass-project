@@ -47,4 +47,12 @@ public class CategoryControllerImpl implements CategoryController {
         .result(categoryService.updateCategory(categoryRequest))
         .build();
   }
+
+  @Override
+  public ApiResponse<Void> deleteCategory(String id) {
+    return ApiResponse.<Void>builder()
+        .result(categoryService.deleteCategory(id))
+        .message("success")
+        .build();
+  }
 }
