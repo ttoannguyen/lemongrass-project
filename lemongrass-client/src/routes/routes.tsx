@@ -14,7 +14,7 @@ import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import ManageUsers from "@/pages/admin/ManageUsers";
 import ManagePosts from "@/pages/admin/ManagePosts";
-import ManageRecipes from "@/pages/admin/ManageRecipes";
+import ManageRecipes from "@/pages/admin/manageRecipe/ManageRecipes";
 
 import { type RouteObject } from "react-router-dom";
 import StaffLayout from "@/pages/staff/StaffLayout";

@@ -8,7 +8,7 @@ import AdminHeader from "@/components/admin/AdminHeader";
 const AdminLayout = () => {
   const { account } = useAuth();
   const isAdmin = account?.roles.some((role) => role.name === "ADMIN");
-
+  // const [pageTitle, setPageTitle] = useState("");
   if (!isAdmin) {
     return <Navigate to="/" />;
   }

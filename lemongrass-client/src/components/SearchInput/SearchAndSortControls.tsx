@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 
 type Props = {
   searchTerm: string;
+  // onSearchTermChange: (value: string) => void;
   setSearchTerm: (value: string) => void;
   sortKey: "name" | "createdDate" | "lastModifiedDate";
   setSortKey: (value: "name" | "createdDate" | "lastModifiedDate") => void;

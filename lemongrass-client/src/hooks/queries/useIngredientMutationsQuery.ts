@@ -10,8 +10,10 @@ import extractErrorMessage from "@/utils/extractErrorMessage";
 export const useAddIngredient = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: IngredientRequest) =>
-      ingredientService.createIngredientTemplate(data),
+    mutationFn: (data: IngredientRequest) => {
+      console.log(data);
+      return ingredientService.createIngredientTemplate(data);
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["ingredient_templates"] });
     },

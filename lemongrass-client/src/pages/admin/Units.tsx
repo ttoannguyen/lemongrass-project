@@ -171,18 +171,18 @@ const Units = () => {
       <table className="min-w-full border border-gray-300 text-sm table-auto">
         <thead className="bg-gray-100 text-center border-b border-gray-300">
           <tr>
-            <th className="w-48 py-2 border-r border-gray-300">Tên</th>
-            <th className="w-40 py-2 border-r border-gray-300">
+            <th className="w-40 py-2 border-r border-gray-300">Tên</th>
+            <th className="w-38 py-2 border-r border-gray-300">
               Giá trị nhỏ nhất
             </th>
-            <th className="w-36 py-2 border-r border-gray-300">Bước nhảy</th>
-            <th className="w-36 py-2 border-r border-gray-300">Tạo bởi</th>
+            <th className="w-30 py-2 border-r border-gray-300">Bước nhảy</th>
+            <th className="w-30 py-2 border-r border-gray-300">Tạo bởi</th>
             <th className="w-44 py-2 border-r border-gray-300">Ngày tạo</th>
-            <th className="w-36 py-2 border-r border-gray-300">Cập nhật bởi</th>
+            <th className="w-32 py-2 border-r border-gray-300">Cập nhật bởi</th>
             <th className="w-44 py-2 border-r border-gray-300">
               Ngày cập nhật
             </th>
-            <th className=" w-44  py-2">Hành động</th>
+            <th className=" w-48! py-2">Hành động</th>
           </tr>
         </thead>
         <tbody>
@@ -196,7 +196,7 @@ const Units = () => {
               >
                 <td className="border-r border-gray-300">
                   <Input
-                    className="rounded-none border-none"
+                    className="rounded-none border-none h-10"
                     value={edited.name ?? unit.name}
                     onChange={(e) =>
                       handleFieldChange(unit.id, "name", e.target.value)
@@ -205,10 +205,10 @@ const Units = () => {
                 </td>
                 <td className="border-r border-gray-300">
                   <Input
-                    className="rounded-none border-none"
+                    className="rounded-none border-none h-10"
                     type="number"
-                    min="0.01"
-                    step="0.01"
+                    min="0.1"
+                    step="0.1"
                     value={
                       edited.minValue?.toString() ?? unit.minValue.toString()
                     }
@@ -219,10 +219,10 @@ const Units = () => {
                 </td>
                 <td className="border-r border-gray-300">
                   <Input
-                    className="rounded-none border-none"
+                    className="rounded-none border-none h-10"
                     type="number"
-                    min="0.01"
-                    step="0.01"
+                    min="0.1"
+                    step="0.1"
                     value={
                       edited.stepSize?.toString() ?? unit.stepSize.toString()
                     }
@@ -272,11 +272,11 @@ const Units = () => {
                     // </div>
                     // <div className="w-40">
                     <Button
-                      className="rounded-none w-12 h-8! my-1"
+                      className="rounded-none w-12 h-8! my-1 hover:bg-red-200 cursor-pointer hover:text-red-500"
                       variant="outline"
                       onClick={() => handleDelete(unit.id)}
                     >
-                      Xoá
+                      Xóa
                     </Button>
                     // </div>
                   )}

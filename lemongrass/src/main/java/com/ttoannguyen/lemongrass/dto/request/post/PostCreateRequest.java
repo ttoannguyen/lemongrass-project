@@ -1,22 +1,27 @@
 package com.ttoannguyen.lemongrass.dto.Request.post;
 
+import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
 import com.ttoannguyen.lemongrass.entity.Account;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class PostCreateRequest {
 
-    String title;
+  String title;
 
-    String content;
+  String content;
 
-    String visibility;
+  String visibility;
 
-//    boolean isApproved;
+  //    boolean isApproved;
 
-    Account account;
+  Account account;
+  List<ImageRequest> images;
 
-    String groupId; // optional
+  //    String groupId; // optional
+  //
+  //    String recipeId; // optional
 
-    String recipeId; // optional
 }

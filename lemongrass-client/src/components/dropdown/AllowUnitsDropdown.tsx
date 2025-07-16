@@ -37,6 +37,7 @@ const AllowedUnitsSelector = ({
 
   const toggleUnit = (unitId: string) => {
     onChange([...selectedUnitIds, unitId]);
+    setSearch("");
   };
 
   const removeUnit = (unitId: string) => {
@@ -47,7 +48,6 @@ const AllowedUnitsSelector = ({
 
   return (
     <div className="space-y-3">
-      {/* Selected badges */}
       {selectedUnits.length > 0 && (
         <div className="flex flex-wrap gap-2">
           {selectedUnits.map((unit) => (
@@ -76,28 +76,30 @@ const AllowedUnitsSelector = ({
       />
 
       {/* Units list */}
-      <div className="max-h-48 overflow-y-auto border rounded-md p-2 flex flex-wrap gap-2">
-        {filteredUnits.length > 0 ? (
-          filteredUnits.map((unit) => (
-            <button
-              key={unit.id}
-              type="button"
-              onClick={() => toggleUnit(unit.id)}
-              className="px-3 py-1 text-sm rounded-full border bg-muted text-muted-foreground hover:bg-primary/10 transition"
-            >
-              {unit.name}
-            </button>
-          ))
-        ) : matchedSelectedUnit ? (
-          <p className="text-sm text-green-600 italic w-full">
-            Đơn vị "<strong>{matchedSelectedUnit.name}</strong>" đã được thêm.
-          </p>
-        ) : (
-          <p className="text-sm text-gray-400 italic w-full">
-            Không tìm thấy đơn vị
-          </p>
-        )}
-      </div>
+      {(filteredUnits.length > 0 || matchedSelectedUnit || search.trim()) && (
+        <div className="max-h-48 overflow-y-auto border rounded-md p-2 flex flex-wrap gap-2">
+          {filteredUnits.length > 0 ? (
+            filteredUnits.map((unit) => (
+              <button
+                key={unit.id}
+                type="button"
+                onClick={() => toggleUnit(unit.id)}
+                className="px-3 py-1 text-sm rounded-full border bg-muted text-muted-foreground hover:bg-primary/10 transition"
+              >
+                {unit.name}
+              </button>
+            ))
+          ) : matchedSelectedUnit ? (
+            <p className="text-sm text-green-600 italic w-full">
+              Đơn vị "<strong>{matchedSelectedUnit.name}</strong>" đã được thêm.
+            </p>
+          ) : (
+            <p className="text-sm text-gray-400 italic w-full">
+              Không tìm thấy đơn vị
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

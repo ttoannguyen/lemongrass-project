@@ -51,7 +51,11 @@ const Ingredients = () => {
     allowedUnitIds: string[];
   } | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [newIngredient, setNewIngredient] = useState({ name: "", aliases: "" });
+  const [newIngredient, setNewIngredient] = useState({
+    name: "",
+    aliases: "",
+    allowedUnitIds: [] as string[],
+  });
 
   const {
     searchTerm,
@@ -78,6 +82,46 @@ const Ingredients = () => {
       aliases: ingredient.aliases.join(", "),
       allowedUnitIds: ingredient.allowedUnits.map((u) => u.id),
     });
+  };
+
+  const handleAddIngrediet = () => {
+    if (!newIngredient.name.trim()) {
+      return toast.error("Tên nguyên liệu không được để trống");
+    }
+
+    if (!newIngredient.aliases.trim()) {
+      return toast.error("Tên gọi khác nguyên liệu không được để trống");
+    }
+
+    if (!newIngredient.allowedUnitIds.length) {
+      return toast.error("Tên đơn vị không được để trống");
+    }
+
+    console.log(newIngredient);
+    addIngredient.mutate(
+      {
+        name: newIngredient.name.trim(),
+        aliases: newIngredient.aliases
+          .split(",")
+          .map((a) => a.trim())
+          .filter(Boolean),
+        allowedUnitIds: newIngredient.allowedUnitIds,
+      },
+      {
+        onSuccess: () => {
+          toast.success("Đã thêm nguyên liệu");
+          setNewIngredient({
+            name: "",
+            aliases: "",
+            allowedUnitIds: [] as string[],
+          });
+          setIsDialogOpen(false);
+        },
+        onError: (error) => {
+          toast.error(extractErrorMessage(error));
+        },
+      }
+    );
   };
 
   const handleSave = () => {
@@ -207,36 +251,18 @@ const Ingredients = () => {
               setNewIngredient({ ...newIngredient, aliases: e.target.value })
             }
           />
+          <Label>Đơn vị</Label>
+          <AllowedUnitsSelector
+            selectedUnitIds={newIngredient.allowedUnitIds || []}
+            onChange={(ids) =>
+              setNewIngredient((prev) => ({ ...prev, allowedUnitIds: ids }))
+            }
+          />
           <DialogFooter className="mt-4">
             <DialogClose asChild>
               <Button variant="outline">Hủy</Button>
             </DialogClose>
-            <Button
-              onClick={() => {
-                addIngredient.mutate(
-                  {
-                    name: newIngredient.name.trim(),
-                    aliases: newIngredient.aliases
-                      .split(",")
-                      .map((a) => a.trim())
-                      .filter(Boolean),
-                    allowedUnitIds: [],
-                  },
-                  {
-                    onSuccess: () => {
-                      toast.success("Đã thêm nguyên liệu");
-                      setNewIngredient({ name: "", aliases: "" });
-                      setIsDialogOpen(false);
-                    },
-                    onError: (error) => {
-                      toast.error(extractErrorMessage(error));
-                    },
-                  }
-                );
-              }}
-            >
-              Thêm
-            </Button>
+            <Button onClick={handleAddIngrediet}>Thêm</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
@@ -251,9 +277,6 @@ const Ingredients = () => {
         >
           <SheetHeader>
             <SheetTitle>Chỉnh sửa nguyên liệu</SheetTitle>
-            {/* <SheetClose asChild>
-              <Button variant="ghost">Đóng</Button>
-            </SheetClose> */}
           </SheetHeader>
           {editedData && (
             <div className="space-y-3 pt-4 pb-6 overflow-y-auto flex-grow">

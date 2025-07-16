@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Category {
+public class Category extends AbstractAuditingEntity {
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;

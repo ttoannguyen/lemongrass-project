@@ -3,6 +3,7 @@ package com.ttoannguyen.lemongrass.dto.Response.category;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -13,4 +14,8 @@ import java.util.List;
 public class CategoryResponse {
   String id;
   String name;
+  String createdBy;
+  String lastModifiedBy;
+  LocalDateTime createdDate;
+  LocalDateTime lastModifiedDate;
 }

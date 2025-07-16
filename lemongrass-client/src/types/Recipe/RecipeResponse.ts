@@ -7,6 +7,7 @@ export interface RecipeResponse {
   cookingTime: number;
   difficulty: "EASY" | "MEDIUM" | "HARD";
   servings: number;
+  ratingAvg: number;
   category: {
     id: string;
     name: string;

@@ -101,14 +101,24 @@ const navSections: {
 const AdminSidebar = () => {
   const { hasRole, hasPermission } = useAuth();
 
-  const isLinkVisible = (link: NavLinkItem) => {
+  // const isLinkVisible = (link: NavLinkItem) => {
+  //   const { requiredRoles, requiredPermissions } = link;
+
+  //   if (requiredRoles && !requiredRoles.some(hasRole)) return false;
+
+  //   if (requiredPermissions && !requiredPermissions.some(hasPermission))
+  //     return false;
+
+  //   return true;
+  // };
+
+  const isLinkVisible = (
+    link: (typeof navSections)[number]["links"][number]
+  ) => {
     const { requiredRoles, requiredPermissions } = link;
-
     if (requiredRoles && !requiredRoles.some(hasRole)) return false;
-
     if (requiredPermissions && !requiredPermissions.some(hasPermission))
       return false;
-
     return true;
   };
 

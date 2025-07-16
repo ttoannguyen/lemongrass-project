@@ -1,200 +1,306 @@
-"use client";
-
 import { useState } from "react";
+
+import type { CategoryResponse } from "@/types/category/CategoryResponse";
+import useSearchAndSort from "@/hooks/sort/useSearchAndSort";
+import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Pencil, Trash2, Plus } from "lucide-react";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogFooter,
-  DialogClose,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
+import SearchAndSortControls from "@/components/SearchInput/SearchAndSortControls";
 import { toast } from "sonner";
 import {
   useAddCategory,
-  useUpdateCategory,
   useDeleteCategory,
+  useUpdateCategory,
 } from "@/hooks/queries/useCategoryMutations";
-import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
-import type { CategoryResponse } from "@/types/category/CategoryResponse";
+export default function RecipeCategoryPage() {
+  const { data: categories = [] } = useCategoryQuery();
 
-const RecipeCategory = () => {
-  const { data: categories = [], isLoading } = useCategoryQuery();
-  const addCategory = useAddCategory();
   const updateCategory = useUpdateCategory();
   const deleteCategory = useDeleteCategory();
+  const createCategory = useAddCategory();
 
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [editingRows, setEditingRows] = useState<Record<string, boolean>>({});
+  const [editedData, setEditedData] = useState<
+    Record<string, Partial<CategoryResponse>>
+  >({});
+
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [nameInput, setNameInput] = useState("");
   const [editingCategory, setEditingCategory] =
     useState<CategoryResponse | null>(null);
-  const [nameInput, setNameInput] = useState<string>("");
 
-  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [categoryToDelete, setCategoryToDelete] =
     useState<CategoryResponse | null>(null);
 
-  const openAddDialog = () => {
-    setEditingCategory(null);
-    setNameInput("");
-    setIsDialogOpen(true);
+  const {
+    searchTerm,
+    setSearchTerm,
+    sortKey,
+    setSortKey,
+    sortOrder,
+    setSortOrder,
+    filteredAndSortedItems: filteredCategories,
+  } = useSearchAndSort(categories, {
+    searchKey: "name",
+    sortKeys: ["name", "createdDate", "lastModifiedDate"] as const,
+    initialSortKey: "name",
+    initialSortOrder: "asc",
+  });
+
+  const handleFieldChange = (id: string, value: string) => {
+    setEditedData((prev) => ({
+      ...prev,
+      [id]: { ...prev[id], name: value },
+    }));
+    setEditingRows((prev) => ({ ...prev, [id]: true }));
   };
 
-  const openEditDialog = (category: CategoryResponse) => {
-    setEditingCategory(category);
-    setNameInput(category.name);
-    setIsDialogOpen(true);
+  const handleSaveRow = (id: string) => {
+    const edited = editedData[id];
+    const original = categories.find((c) => c.id === id);
+    if (!original || !edited) return;
+
+    const name = edited.name?.trim() ?? original.name;
+    if (!name) return toast.error("Tên không được để trống");
+
+    updateCategory.mutate(
+      { id, name },
+      {
+        onSuccess: () => {
+          toast.success("Đã cập nhật danh mục");
+          setEditingRows((prev) => ({ ...prev, [id]: false }));
+          setEditedData((prev) => {
+            const newData = { ...prev };
+            delete newData[id];
+            return newData;
+          });
+        },
+        onError: () => toast.error("Cập nhật thất bại"),
+      }
+    );
   };
+
+  const handleCancelEdit = (id: string) => {
+    setEditedData((prev) => {
+      const newData = { ...prev };
+      delete newData[id];
+      return newData;
+    });
+    setEditingRows((prev) => ({ ...prev, [id]: false }));
+  };
+
+  // const openEditDialog = (category: CategoryResponse) => {
+  //   setEditingCategory(category);
+  //   setNameInput(category.name);
+  //   setDialogOpen(true);
+  // };
 
   const openDeleteDialog = (category: CategoryResponse) => {
     setCategoryToDelete(category);
-    setDeleteDialogOpen(true);
   };
 
-  const handleSave = () => {
-    if (!nameInput.trim()) {
-      toast.error("Tên không được để trống");
-      return;
-    }
-    console.log(nameInput);
-    if (editingCategory) {
-      updateCategory.mutate(
-        { id: editingCategory.id, name: nameInput },
-        {
-          onSuccess: () => {
-            toast.success("Đã cập nhật danh mục");
-            setIsDialogOpen(false);
-          },
-          onError: () => {
-            toast.error(`Cập nhật thất bại `);
-          },
-        }
-      );
-    } else {
-      addCategory.mutate(nameInput, {
-        onSuccess: () => {
-          toast.success("Đã thêm danh mục mới");
-          setIsDialogOpen(false);
-        },
-        onError: () => toast.error(`Thêm danh mục ${nameInput} thất bại `),
-      });
-    }
-  };
-
-  const handleConfirmDelete = () => {
+  const handleDelete = () => {
     if (!categoryToDelete) return;
     deleteCategory.mutate(categoryToDelete.id, {
       onSuccess: () => {
         toast.success("Đã xoá danh mục");
-        setDeleteDialogOpen(false);
+        setCategoryToDelete(null);
       },
       onError: () => toast.error("Xoá thất bại"),
     });
   };
 
+  const handleSave = () => {
+    const name = nameInput.trim();
+    if (!name) return toast.error("Tên không được để trống");
+
+    if (editingCategory) {
+      updateCategory.mutate(
+        { id: editingCategory.id, name },
+        {
+          onSuccess: () => {
+            toast.success("Đã cập nhật");
+            setDialogOpen(false);
+            setEditingCategory(null);
+            setNameInput("");
+          },
+          onError: () => toast.error("Lỗi khi lưu"),
+        }
+      );
+    } else {
+      createCategory.mutate(
+        { name },
+        {
+          onSuccess: () => {
+            toast.success("Đã thêm mới");
+            setDialogOpen(false);
+            setNameInput("");
+          },
+          onError: () => toast.error("Lỗi khi lưu"),
+        }
+      );
+    }
+  };
+
   return (
     <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Quản lý danh mục công thức</h1>
-        <Button onClick={openAddDialog}>
-          <Plus className="mr-2" size={16} />
-          Thêm danh mục
-        </Button>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Quản lý Danh muc</h1>
+
+        <div className="flex gap-2">
+          <SearchAndSortControls
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            sortKey={sortKey}
+            setSortKey={setSortKey}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
+          />
+          <Button
+            className="rounded-none cursor-pointer"
+            onClick={() => setDialogOpen(true)}
+          >
+            Thêm danh mục
+          </Button>
+        </div>
       </div>
 
-      {isLoading ? (
-        <p>Đang tải...</p>
-      ) : categories.length === 0 ? (
-        <p className="text-gray-500">Chưa có danh mục nào.</p>
-      ) : (
-        <div className="space-y-3">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-              className="flex items-center justify-between bg-white p-4 rounded shadow-sm border"
-            >
-              <span className="font-medium">{category.name}</span>
-              <div className="flex items-center gap-2">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => openEditDialog(category)}
-                >
-                  <Pencil size={14} />
-                </Button>
-                <Button
-                  size="sm"
-                  variant="destructive"
-                  onClick={() => openDeleteDialog(category)}
-                >
-                  <Trash2 size={14} />
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      {/* <div className="border rounded"> */}
+      <table className="min-w-full border border-gray-300 text-sm table-auto">
+        <thead className="bg-gray-100 text-center border-b border-gray-300">
+          <tr>
+            <th className="w-48 py-2 border-r border-gray-300">Tên danh mục</th>
+            <th className="w-36 py-2 border-r border-gray-300">Tạo bởi</th>
+            <th className="w-44 py-2 border-r border-gray-300">Ngày tạo</th>
+            <th className="w-36 py-2 border-r border-gray-300">Cập nhật bởi</th>
+            <th className="w-44 py-2 border-r border-gray-300">
+              Ngày cập nhật
+            </th>
+            <th className=" w-44 py-2">Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredCategories.map((cat) => {
+            const isEditing = editingRows[cat.id];
+            const edited = editedData[cat.id] || {};
+            return (
+              <tr key={cat.id} className="border-t border-gray-300 text-center">
+                <td className="border-r border-gray-300">
+                  <Input
+                    className="rounded-none border-none h-10"
+                    value={edited.name ?? cat.name}
+                    onChange={(e) => handleFieldChange(cat.id, e.target.value)}
+                  />
+                </td>
+                <td className="border-r border-gray-300">
+                  {cat.createdBy ?? "-"}
+                </td>
+                <td className="border-r border-gray-300">
+                  {cat.createdDate
+                    ? new Date(cat.createdDate).toLocaleString("vi-VN")
+                    : "-"}
+                </td>
+                <td className="border-r border-gray-300">
+                  {cat.lastModifiedBy ?? "-"}
+                </td>
+                <td className="border-r border-gray-300">
+                  {cat.lastModifiedDate
+                    ? new Date(cat.lastModifiedDate).toLocaleString("vi-VN")
+                    : "-"}
+                </td>
+                <td className="flex my-auto justify-center items-center gap-1">
+                  {isEditing ? (
+                    <div className="max-w-40 h-10 my-auto flex justify-center items-center gap-1">
+                      <>
+                        <Button
+                          className="rounded-none w-12 h-8! my-1 cursor-pointer"
+                          disabled={updateCategory.isPending}
+                          onClick={() => handleSaveRow(cat.id)}
+                          size="sm"
+                        >
+                          Lưu
+                        </Button>
+                        <Button
+                          className="rounded-none w-12 h-8! my-1 cursor-pointer"
+                          variant="outline"
+                          onClick={() => handleCancelEdit(cat.id)}
+                          size="sm"
+                        >
+                          Hủy
+                        </Button>
+                      </>
+                    </div>
+                  ) : (
+                    <>
+                      <Button
+                        className="rounded-none w-12 h-8! my-1 hover:bg-red-200 cursor-pointer hover:text-red-500"
+                        variant="outline"
+                        onClick={() => openDeleteDialog(cat)}
+                      >
+                        Xóa
+                      </Button>
+                    </>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      {/* </div> */}
 
-      {/* Add / Edit Dialog */}
-      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+      {/* Create/Edit Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
-          <form
-            className=""
-            onSubmit={(e) => {
-              e.preventDefault(); // tránh reload trang
-              handleSave();
-            }}
-          >
-            <DialogHeader>
-              <DialogTitle className="text-center mb-4">
-                {editingCategory ? "Chỉnh sửa danh mục" : "Thêm danh mục mới"}
-              </DialogTitle>
-            </DialogHeader>
-
-            <div className="space-y-2">
-              <Label htmlFor="name">Tên danh mục</Label>
-              <Input
-                id="name"
-                placeholder="Nhập tên danh mục"
-                value={nameInput}
-                onChange={(e) => setNameInput(e.target.value)}
-              />
-            </div>
-
-            <DialogFooter className="mt-4">
-              <DialogClose asChild>
-                <Button variant="outline" type="button">
-                  Hủy
-                </Button>
-              </DialogClose>
-              <Button type="submit">
-                {editingCategory ? "Cập nhật" : "Thêm mới"}
-              </Button>
-            </DialogFooter>
-          </form>
+          <DialogHeader>
+            <DialogTitle>
+              {editingCategory ? "Chỉnh sửa danh mục" : "Thêm danh mục"}
+            </DialogTitle>
+          </DialogHeader>
+          <Input
+            placeholder="Tên danh mục"
+            value={nameInput}
+            onChange={(e) => setNameInput(e.target.value)}
+          />
+          <DialogFooter className="mt-4">
+            <DialogClose asChild>
+              <Button variant="outline">Hủy</Button>
+            </DialogClose>
+            <Button
+              onClick={handleSave}
+              disabled={createCategory.isPending || updateCategory.isPending}
+            >
+              {editingCategory ? "Lưu" : "Thêm"}
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
 
       {/* Delete Confirmation Dialog */}
-      <Dialog open={deleteDialogOpen} onOpenChange={setDeleteDialogOpen}>
+      <Dialog
+        open={!!categoryToDelete}
+        onOpenChange={(v) => v || setCategoryToDelete(null)}
+      >
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Xác nhận xoá</DialogTitle>
+            <DialogTitle>Bạn có chắc chắn muốn xoá danh mục này?</DialogTitle>
           </DialogHeader>
-          <p>
-            Bạn có chắc muốn xoá danh mục "
-            <strong>{categoryToDelete?.name}</strong>"?
-          </p>
+          <div className="text-muted-foreground">{categoryToDelete?.name}</div>
           <DialogFooter className="mt-4">
             <DialogClose asChild>
               <Button variant="outline">Hủy</Button>
             </DialogClose>
             <Button
               variant="destructive"
-              onClick={handleConfirmDelete}
+              onClick={handleDelete}
               disabled={deleteCategory.isPending}
             >
               Xoá
@@ -204,6 +310,4 @@ const RecipeCategory = () => {
       </Dialog>
     </div>
   );
-};
-
-export default RecipeCategory;
+}
