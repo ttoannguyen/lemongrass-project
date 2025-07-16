@@ -6,12 +6,12 @@ import { Progress } from "@/components/ui/progress";
 import { useSubmitRecipe } from "@/hooks/queries/useSubmitRecipe";
 import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
 import { useNavigate } from "react-router-dom";
-import type { CategoryDto } from "@/types/category/CategoryResponse";
-import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
+import type { CategoryResponse } from "@/types/category/CategoryResponse";
+import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 
 type Props = {
-  categories: CategoryDto[];
-  templates: IngredientTemplateResponse[];
+  categories: CategoryResponse[];
+  templates: IngredientResponse[];
 };
 
 const CreateRecipeForm = ({ categories, templates }: Props) => {
