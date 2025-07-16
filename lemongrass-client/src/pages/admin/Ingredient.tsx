@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import  { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,83 +11,85 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
+
 import { toast } from "sonner";
 
 import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
 import {
   useAddIngredient,
-  useDeleteIngredient,
   useUpdateIngredient,
 } from "@/hooks/queries/useIngredientMutationsQuery";
-import AllowedUnitsDropdown from "@/components/dropdown/AllowUnitsDropdown";
+import { format } from "date-fns";
+import { Badge } from "@/components/ui/badge";
+import AllowedUnitsSelector from "@/components/dropdown/AllowUnitsDropdown";
+import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
+import { Label } from "@/components/ui/label";
+import extractErrorMessage from "@/utils/extractErrorMessage";
+import SearchAndSortControls from "@/components/SearchInput/SearchAndSortControls";
+import useSearchAndSort from "@/hooks/sort/useSearchAndSort";
+
+type SortableIngredientKey = "name" | "createdDate" | "lastModifiedDate";
 
 const Ingredients = () => {
   const { data: ingredients = [] } = useIngredientTemplates();
   const addIngredient = useAddIngredient();
   const updateIngredient = useUpdateIngredient();
-  const deleteIngredient = useDeleteIngredient();
 
-  const [editingRows, setEditingRows] = useState<Record<string, boolean>>({});
-  const [editedData, setEditedData] = useState<
-    Record<
-      string,
-      { name?: string; aliases?: string; allowedUnitIds?: string[] }
-    >
-  >({});
-  const [searchTerm, setSearchTerm] = useState("");
+  const [editedIngredientId, setEditedIngredientId] = useState<string | null>(
+    null
+  );
+  const [editedData, setEditedData] = useState<{
+    id: string;
+    name: string;
+    aliases: string;
+    allowedUnitIds: string[];
+  } | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newIngredient, setNewIngredient] = useState({ name: "", aliases: "" });
 
-  const [sortKey, setSortKey] = useState<
-    "name" | "createdDate" | "lastModifiedDate"
-  >("name");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
-  const sortedIngredients = [...ingredients].sort((a, b) => {
-    const aValue = sortKey === "name" ? a.name.toLowerCase() : a[sortKey] ?? "";
-    const bValue = sortKey === "name" ? b.name.toLowerCase() : b[sortKey] ?? "";
-
-    if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
-    if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
-    return 0;
+  const {
+    searchTerm,
+    setSearchTerm,
+    sortKey,
+    setSortKey,
+    sortOrder,
+    setSortOrder,
+    filteredAndSortedItems: filteredIngredients,
+  } = useSearchAndSort<IngredientResponse, SortableIngredientKey>(ingredients, {
+    searchKey: "name",
+    sortKeys: ["name", "createdDate", "lastModifiedDate"] as const,
+    initialSortKey: "name",
+    initialSortOrder: "asc",
   });
 
-  const filteredIngredients = sortedIngredients.filter((ingredient) =>
-    ingredient.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // ===========/==================== //
 
-  const handleFieldChange = (
-    id: string,
-    field: "name" | "aliases",
-    value: string
-  ) => {
-    setEditedData((prev) => ({
-      ...prev,
-      [id]: {
-        ...prev[id],
-        [field]: value,
-      },
-    }));
-    setEditingRows((prev) => ({ ...prev, [id]: true }));
+  const openEditSheet = (ingredient: IngredientResponse) => {
+    setEditedIngredientId(ingredient.id);
+    setEditedData({
+      id: ingredient.id,
+      name: ingredient.name,
+      aliases: ingredient.aliases.join(", "),
+      allowedUnitIds: ingredient.allowedUnits.map((u) => u.id),
+    });
   };
 
-  const handleSaveRow = (id: string) => {
-    const edited = editedData[id];
-    const original = ingredients.find((i) => i.id === id);
-    if (!original || !edited) return;
-
-    const name = (edited.name ?? original.name).trim();
-    const aliasesStr = edited.aliases ?? original.aliases.join(", ");
-    const allowedUnitIds =
-      edited.allowedUnitIds ?? original.allowedUnits?.map((u) => u.id) ?? [];
-
-    if (!name) return toast.error("Tên không được để trống");
+  const handleSave = () => {
+    if (!editedData) return;
+    const { id, name, aliases, allowedUnitIds } = editedData;
+    if (!name.trim()) return toast.error("Tên không được để trống");
 
     updateIngredient.mutate(
       {
         id,
-        name,
-        aliases: aliasesStr
+        name: name.trim(),
+        aliases: aliases
           .split(",")
           .map((a) => a.trim())
           .filter(Boolean),
@@ -96,63 +98,13 @@ const Ingredients = () => {
       {
         onSuccess: () => {
           toast.success("Đã cập nhật nguyên liệu");
-          setEditingRows((prev) => ({ ...prev, [id]: false }));
-          setEditedData((prev) => {
-            const newData = { ...prev };
-            delete newData[id];
-            return newData;
-          });
+          setEditedIngredientId(null);
+          setEditedData(null);
         },
-        onError: () => toast.error("Cập nhật thất bại"),
-      }
-    );
-  };
-
-  const handleDelete = (id: string) => {
-    if (!confirm("Bạn có chắc chắn muốn xoá nguyên liệu này?")) return;
-    deleteIngredient.mutate(id, {
-      onSuccess: () => toast.success("Xoá thành công"),
-      onError: () => toast.error("Xoá thất bại"),
-    });
-  };
-
-  const handleCancelEdit = (id: string) => {
-    setEditedData((prev) => {
-      const newData = { ...prev };
-      delete newData[id];
-      return newData;
-    });
-    setEditingRows((prev) => ({ ...prev, [id]: false }));
-  };
-
-  const handleAddIngredient = () => {
-    const { name, aliases } = newIngredient;
-
-    if (!name.trim()) return toast.error("Tên không được để trống");
-    if (
-      ingredients.some(
-        (i) => i.name.toLowerCase() === name.trim().toLowerCase()
-      )
-    ) {
-      return toast.error("Nguyên liệu đã tồn tại");
-    }
-
-    addIngredient.mutate(
-      {
-        name: name.trim(),
-        aliases: aliases
-          .split(",")
-          .map((a) => a.trim())
-          .filter(Boolean),
-        allowedUnitIds: [],
-      },
-      {
-        onSuccess: () => {
-          toast.success("Đã thêm nguyên liệu");
-          setIsDialogOpen(false);
-          setNewIngredient({ name: "", aliases: "" });
+        onError: (error) => {
+          console.log(error);
+          toast.error(extractErrorMessage(error));
         },
-        onError: () => toast.error("Thêm nguyên liệu thất bại"),
       }
     );
   };
@@ -161,38 +113,18 @@ const Ingredients = () => {
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Quản lý nguyên liệu</h1>
-        <div className="flex items-center gap-2 flex-wrap">
-          <Input
-            placeholder="Tìm kiếm theo tên..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="max-w-40 rounded-none"
+
+        <div className="flex gap-2">
+          <SearchAndSortControls
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            sortKey={sortKey}
+            setSortKey={setSortKey}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
           />
-          <select
-            className="border h-9 px-2 py-1 text-sm cursor-pointer"
-            value={sortKey}
-            onChange={(e) =>
-              setSortKey(
-                e.target.value as "name" | "createdDate" | "lastModifiedDate"
-              )
-            }
-          >
-            <option value="name">Sắp xếp theo tên</option>
-            <option value="createdDate">Sắp xếp theo ngày tạo</option>
-            <option value="lastModifiedDate">
-              Sắp xếp theo ngày chỉnh sửa
-            </option>
-          </select>
-          <select
-            className="border h-9 px-2 py-1 text-sm cursor-pointer"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value as "asc" | "desc")}
-          >
-            <option value="asc">Tăng dần</option>
-            <option value="desc">Giảm dần</option>
-          </select>
           <Button
-            className="rounded-none"
+            className="rounded-none cursor-pointer"
             onClick={() => setIsDialogOpen(true)}
           >
             Thêm nguyên liệu
@@ -200,183 +132,178 @@ const Ingredients = () => {
         </div>
       </div>
 
-      <table className="min-w-full border border-gray-300 text-sm table-auto">
+      <table className="min-w-full border border-gray-300 text-sm table-auto [&>tbody>tr>td]:py-4 [&>thead>tr>th]:py-4">
         <thead className="bg-gray-100 text-center border-b border-gray-300">
           <tr>
-            <th className="w-38 py-2 border-r">Tên</th>
-            <th className="w-36 py-2 border-r">Tên gọi khác</th>
-            <th className="w-36 py-2 border-r">Đơn vị cho phép</th>
-            <th className="w-20 py-2 border-r">Tạo bởi</th>
-            <th className="w-36 py-2 border-r">Ngày tạo</th>
-            <th className="w-28 py-2 border-r">Cập nhật bởi</th>
-            <th className="w-36 py-2 border-r">Ngày cập nhật</th>
-            <th className="py-2">Hành động</th>
+            <th className="w-48 border-r">Tên</th>
+            {/* <th className="w-48 border-r">Tên gọi khác</th> */}
+            <th className="w-48 border-r">Đơn vị cho phép</th>
+            <th className="w-28 border-r">Người tạo</th>
+            <th className="w-38 border-r">Ngày tạo</th>
+            <th className="w-28 border-r">Cập nhật bởi</th>
+            <th className="w-38 border-r">Ngày cập nhật</th>
           </tr>
         </thead>
         <tbody>
-          {filteredIngredients.map((ingredient) => {
-            const isEditing = editingRows[ingredient.id];
-            const edited = editedData[ingredient.id] || {};
-            return (
-              <tr
-                key={ingredient.id}
-                className="text-center border-t border-gray-300"
-              >
-                <td className="border-r">
-                  {isEditing ? (
-                    <Input
-                      className="rounded-none border-none text-center"
-                      value={edited.name ?? ingredient.name}
-                      onChange={(e) =>
-                        handleFieldChange(ingredient.id, "name", e.target.value)
-                      }
-                    />
-                  ) : (
-                    ingredient.name
-                  )}
-                </td>
-                <td className="border-r">
-                  {isEditing ? (
-                    <Input
-                      className="rounded-none border-none text-center"
-                      value={edited.aliases ?? ingredient.aliases.join(", ")}
-                      onChange={(e) =>
-                        handleFieldChange(
-                          ingredient.id,
-                          "aliases",
-                          e.target.value
-                        )
-                      }
-                    />
-                  ) : (
-                    ingredient.aliases.join(", ")
-                  )}
-                </td>
-                <td className="border-r text-left px-2">
-                  {isEditing ? (
-                    <AllowedUnitsDropdown
-                      selectedUnitIds={
-                        edited.allowedUnitIds ??
-                        ingredient.allowedUnits?.map((u) => u.id) ??
-                        []
-                      }
-                      onChange={(newIds) => {
-                        setEditedData((prev) => ({
-                          ...prev,
-                          [ingredient.id]: {
-                            ...prev[ingredient.id],
-                            allowedUnitIds: newIds,
-                          },
-                        }));
-                      }}
-                    />
-                  ) : ingredient.allowedUnits.length > 0 ? (
-                    <ul className="list-disc list-inside space-y-1">
-                      {ingredient.allowedUnits.map((unit) => (
-                        <li key={unit.id}>{unit.name}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <span className="text-gray-400 italic">Không có</span>
-                  )}
-                </td>
-                <td className="border-r">{ingredient.createdBy ?? "-"}</td>
-                <td className="border-r">
-                  {ingredient.createdDate
-                    ? new Date(ingredient.createdDate).toLocaleString("vi-VN")
-                    : "-"}
-                </td>
-                <td className="border-r">{ingredient.lastModifiedBy ?? "-"}</td>
-                <td className="border-r">
-                  {ingredient.lastModifiedDate
-                    ? new Date(ingredient.lastModifiedDate).toLocaleString(
-                        "vi-VN"
-                      )
-                    : "-"}
-                </td>
-                <td className="flex justify-center items-center gap-1 min-w-40">
-                  {isEditing ? (
-                    <>
-                      <Button
-                        className="rounded-none w-12 h-8"
-                        onClick={() => handleSaveRow(ingredient.id)}
-                        disabled={updateIngredient.isPending}
-                      >
-                        Lưu
-                      </Button>
-                      <Button
-                        className="rounded-none w-12 h-8"
-                        variant="outline"
-                        onClick={() => handleCancelEdit(ingredient.id)}
-                      >
-                        Hủy
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <Button
-                        className="rounded-none w-12 h-8"
-                        variant="outline"
-                        onClick={() =>
-                          setEditingRows((prev) => ({
-                            ...prev,
-                            [ingredient.id]: true,
-                          }))
-                        }
-                      >
-                        Sửa
-                      </Button>
-                      <Button
-                        className="rounded-none w-12 h-8"
-                        variant="destructive"
-                        onClick={() => handleDelete(ingredient.id)}
-                      >
-                        Xoá
-                      </Button>
-                    </>
-                  )}
-                </td>
-              </tr>
-            );
-          })}
+          {filteredIngredients.map((ingredient: IngredientResponse) => (
+            <tr
+              key={ingredient.id}
+              className="text-center border-t border-gray-300 cursor-pointer hover:bg-gray-50"
+              onClick={() => openEditSheet(ingredient)}
+            >
+              <td className="border-r">{ingredient.name}</td>
+              {/* <td className="border-r">{ingredient.aliases.join(", ")}</td> */}
+              <td className="border-r text-left px-2 align-top">
+                {ingredient.allowedUnits.length > 0 ? (
+                  <div className="flex flex-wrap gap-2">
+                    {ingredient.allowedUnits.map((u) => (
+                      <Badge className="bg-primary/10 text-primary" key={u.id}>
+                        {u.name}
+                      </Badge>
+                    ))}
+                  </div>
+                ) : (
+                  <span className="text-gray-400 italic">Không có</span>
+                )}
+              </td>
+
+              <td className="border-r">{ingredient.createdBy}</td>
+              <td className="border-r">
+                {ingredient.createdDate
+                  ? format(new Date(ingredient.createdDate), "dd/MM/yyyy HH:mm")
+                  : "-"}
+              </td>
+
+              <td className="border-r">{ingredient.lastModifiedBy}</td>
+              <td className="border-r">
+                {ingredient.lastModifiedDate
+                  ? format(
+                      new Date(ingredient.lastModifiedDate),
+                      "dd/MM/yyyy HH:mm"
+                    )
+                  : "-"}
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
-      {/* Dialog thêm nguyên liệu */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Thêm nguyên liệu</DialogTitle>
           </DialogHeader>
-          <div className="space-y-3">
-            <Input
-              placeholder="Tên nguyên liệu"
-              value={newIngredient.name}
-              onChange={(e) =>
-                setNewIngredient({ ...newIngredient, name: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Tên gọi khác (phân cách bằng dấu phẩy)"
-              value={newIngredient.aliases}
-              onChange={(e) =>
-                setNewIngredient({ ...newIngredient, aliases: e.target.value })
-              }
-            />
-          </div>
+          <Input
+            placeholder="Tên nguyên liệu"
+            value={newIngredient.name}
+            onChange={(e) =>
+              setNewIngredient({ ...newIngredient, name: e.target.value })
+            }
+          />
+          <Input
+            placeholder="Tên gọi khác"
+            value={newIngredient.aliases}
+            onChange={(e) =>
+              setNewIngredient({ ...newIngredient, aliases: e.target.value })
+            }
+          />
           <DialogFooter className="mt-4">
             <DialogClose asChild>
               <Button variant="outline">Hủy</Button>
             </DialogClose>
             <Button
-              onClick={handleAddIngredient}
-              disabled={addIngredient.isPending}
+              onClick={() => {
+                addIngredient.mutate(
+                  {
+                    name: newIngredient.name.trim(),
+                    aliases: newIngredient.aliases
+                      .split(",")
+                      .map((a) => a.trim())
+                      .filter(Boolean),
+                    allowedUnitIds: [],
+                  },
+                  {
+                    onSuccess: () => {
+                      toast.success("Đã thêm nguyên liệu");
+                      setNewIngredient({ name: "", aliases: "" });
+                      setIsDialogOpen(false);
+                    },
+                    onError: (error) => {
+                      toast.error(extractErrorMessage(error));
+                    },
+                  }
+                );
+              }}
             >
               Thêm
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <Sheet
+        open={!!editedIngredientId}
+        onOpenChange={(open) => !open && setEditedIngredientId(null)}
+      >
+        <SheetContent
+          side="right"
+          className="w-[480px] h-screen flex flex-col p-2"
+        >
+          <SheetHeader>
+            <SheetTitle>Chỉnh sửa nguyên liệu</SheetTitle>
+            {/* <SheetClose asChild>
+              <Button variant="ghost">Đóng</Button>
+            </SheetClose> */}
+          </SheetHeader>
+          {editedData && (
+            <div className="space-y-3 pt-4 pb-6 overflow-y-auto flex-grow">
+              <Label>Tên nguyên liệu</Label>
+              <Input
+                placeholder="Tên nguyên liệu"
+                value={editedData.name}
+                onChange={(e) =>
+                  setEditedData({ ...editedData, name: e.target.value })
+                }
+              />
+              <Label>Tên gọi khác</Label>
+              <Input
+                placeholder="Tên gọi khác"
+                value={editedData.aliases}
+                onChange={(e) =>
+                  setEditedData({ ...editedData, aliases: e.target.value })
+                }
+              />
+              <Label>Đơn vị</Label>
+              <AllowedUnitsSelector
+                selectedUnitIds={editedData.allowedUnitIds}
+                onChange={(ids) =>
+                  setEditedData((prev) =>
+                    prev ? { ...prev, allowedUnitIds: ids } : prev
+                  )
+                }
+              />
+
+              <div className="flex gap-2 justify-end mt-auto">
+                <Button
+                  onClick={handleSave}
+                  disabled={updateIngredient.isPending}
+                >
+                  Lưu
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    setEditedIngredientId(null);
+                    setEditedData(null);
+                  }}
+                >
+                  Hủy
+                </Button>
+              </div>
+            </div>
+          )}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 };

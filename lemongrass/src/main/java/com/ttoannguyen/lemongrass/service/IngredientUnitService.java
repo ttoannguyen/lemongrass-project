@@ -14,4 +14,6 @@ public interface IngredientUnitService {
   IngredientUnitResponse getUnitId(String id);
 
   IngredientUnitResponse updateUnit(String id, IngredientUnitUpdateRequest request);
+
+  Void deleteUnit(String id);
 }

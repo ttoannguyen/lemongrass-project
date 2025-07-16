@@ -20,6 +20,8 @@ import {
   useDeleteUnit,
   useUpdateUnit,
 } from "@/hooks/queries/useUnitMutations";
+import SearchAndSortControls from "@/components/SearchInput/SearchAndSortControls";
+import useSearchAndSort from "@/hooks/sort/useSearchAndSort";
 
 const Units = () => {
   const { data: units = [] } = useUnitQuery();
@@ -27,12 +29,25 @@ const Units = () => {
   const updateUnit = useUpdateUnit();
   const deleteUnit = useDeleteUnit();
 
+  const {
+    searchTerm,
+    setSearchTerm,
+    sortKey,
+    setSortKey,
+    sortOrder,
+    setSortOrder,
+    filteredAndSortedItems: filteredUnits,
+  } = useSearchAndSort(units, {
+    searchKey: "name",
+    sortKeys: ["name", "createdDate", "lastModifiedDate"],
+    initialSortKey: "name",
+    initialSortOrder: "asc",
+  });
+
   const [editingRows, setEditingRows] = useState<Record<string, boolean>>({});
   const [editedData, setEditedData] = useState<
     Record<string, Partial<UnitResponse>>
   >({});
-
-  const [searchTerm, setSearchTerm] = useState("");
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [newUnit, setNewUnit] = useState({
@@ -40,26 +55,6 @@ const Units = () => {
     minValue: "",
     stepSize: "",
   });
-
-  const [sortKey, setSortKey] = useState<
-    "name" | "createdDate" | "lastModifiedDate"
-  >("name");
-  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
-
-  const sortedUnits = [...units].sort((a, b) => {
-    const aValue =
-      sortKey === "name" ? a.name.toLowerCase() : a.createdDate ?? "";
-    const bValue =
-      sortKey === "name" ? b.name.toLowerCase() : b.createdDate ?? "";
-
-    if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
-    if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
-    return 0;
-  });
-
-  const filteredUnits = sortedUnits.filter((unit) =>
-    unit.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   const handleFieldChange = (
     id: string,
@@ -156,35 +151,14 @@ const Units = () => {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Quản lý đơn vị</h1>
         <div className="flex items-center gap-2 flex-wrap">
-          <Input
-            placeholder="Tìm kiếm theo tên..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="max-w-40  rounded-none"
+          <SearchAndSortControls
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            sortKey={sortKey}
+            setSortKey={setSortKey}
+            sortOrder={sortOrder}
+            setSortOrder={setSortOrder}
           />
-          <select
-            className="border cursor-pointer h-9 px-2 py-1 text-sm"
-            value={sortKey}
-            onChange={(e) =>
-              setSortKey(
-                e.target.value as "name" | "createdDate" | "lastModifiedDate"
-              )
-            }
-          >
-            <option value="name">Sắp xếp theo tên</option>
-            <option value="createdDate">Sắp xếp theo ngày tạo</option>
-            <option value="lastModifiedDate">
-              Sắp xếp theo ngày chỉnh sửa
-            </option>
-          </select>
-          <select
-            className="border  cursor-pointer h-9 not-first-of-type:px-2 py-1 text-sm"
-            value={sortOrder}
-            onChange={(e) => setSortOrder(e.target.value as "asc" | "desc")}
-          >
-            <option value="asc">Tăng dần</option>
-            <option value="desc">Giảm dần</option>
-          </select>
           <Button
             className="rounded-none cursor-pointer"
             onClick={() => setIsDialogOpen(true)}
@@ -212,7 +186,7 @@ const Units = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredUnits.map((unit) => {
+          {filteredUnits.map((unit: UnitResponse) => {
             const isEditing = editingRows[unit.id];
             const edited = editedData[unit.id] || {};
             return (

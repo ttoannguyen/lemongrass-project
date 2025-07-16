@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -38,5 +39,6 @@ public class IngredientTemplate extends AbstractAuditingEntity {
       name = "ingredient_template_allowed_unit",
       joinColumns = @JoinColumn(name = "template_id"),
       inverseJoinColumns = @JoinColumn(name = "unit_id"))
+  @NotEmpty(message = "Đơn vị không được để trống!")
   Set<IngredientUnit> allowedUnits;
 }

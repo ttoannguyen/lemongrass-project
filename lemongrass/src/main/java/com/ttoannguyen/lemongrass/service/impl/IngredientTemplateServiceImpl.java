@@ -94,7 +94,7 @@ public class IngredientTemplateServiceImpl implements IngredientTemplateService 
             .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));
 
     if (ingredientRepository.existsByTemplate_IdAndRecipeIsNotNull(id)) {
-      throw new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED);
+      throw new AppException(ErrorCode.INGREDIENT_TEMPLATE_IN_USED);
     }
 
     ingredientTemplateRepository.deleteById(id);

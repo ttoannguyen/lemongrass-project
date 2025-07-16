@@ -7,6 +7,7 @@ import com.ttoannguyen.lemongrass.entity.IngredientUnit;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
 import com.ttoannguyen.lemongrass.mapper.ingredientMapper.IngredientUnitMapper;
+import com.ttoannguyen.lemongrass.repository.IngredientRepository;
 import com.ttoannguyen.lemongrass.repository.IngredientUnitRepository;
 import com.ttoannguyen.lemongrass.service.IngredientUnitService;
 import lombok.AccessLevel;
@@ -22,6 +23,7 @@ import java.util.List;
 public class IngredientUnitServiceImpl implements IngredientUnitService {
   IngredientUnitRepository ingredientUnitRepository;
   IngredientUnitMapper ingredientUnitMapper;
+  IngredientRepository ingredientRepository;
 
   @Override
   public IngredientUnitResponse create(IngredientUnitCreateRequest request) {
@@ -67,5 +69,20 @@ public class IngredientUnitServiceImpl implements IngredientUnitService {
 
     IngredientUnit updated = ingredientUnitRepository.save(existing);
     return ingredientUnitMapper.toIngredientUnitResponse(updated);
+  }
+
+  @Override
+  public Void deleteUnit(String id) {
+    IngredientUnit ingredientUnit =
+        ingredientUnitRepository
+            .findById(id)
+            .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));
+
+    if (ingredientRepository.existsByTemplate_IdAndRecipeIsNotNull(id)) {
+      throw new AppException(ErrorCode.INGREDIENT_UNIT_IN_USED);
+    }
+
+    ingredientUnitRepository.deleteById(id);
+    return null;
   }
 }

@@ -4,6 +4,7 @@ import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientTemplateCreat
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientTemplateUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientTemplateResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 public interface IngredientTemplateController {
   @PostMapping
   ApiResponse<IngredientTemplateResponse> create(
-      @RequestBody IngredientTemplateCreateRequest request);
+      @Valid @RequestBody IngredientTemplateCreateRequest request);
 
   @GetMapping
   ApiResponse<List<IngredientTemplateResponse>> getIngredientTemplates();
@@ -23,7 +24,7 @@ public interface IngredientTemplateController {
 
   @PutMapping("/{id}")
   ApiResponse<IngredientTemplateResponse> update(
-      @PathVariable("id") String id, @RequestBody IngredientTemplateUpdateRequest request);
+      @PathVariable("id") String id, @Valid @RequestBody IngredientTemplateUpdateRequest request);
 
   @DeleteMapping("/{id}")
   ApiResponse<Void> delete(@PathVariable("id") String id);

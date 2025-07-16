@@ -36,15 +36,21 @@ api.interceptors.request.use(
 );
 
 // Response interceptor for error handling
+// api.interceptors.response.use(
+//   (response: AxiosResponse) => response,
+//   (error: AxiosError<ApiError>) => {
+//     const message =
+//       error.response?.data?.error ||
+//       error.message ||
+//       "Something went wrong. Please try again.";
+//     return Promise.reject(message);
+//   }
+// );
+
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
-  (error: AxiosError<ApiError>) => {
-    const message =
-      error.response?.data?.error ||
-      error.message ||
-      "Something went wrong. Please try again.";
-    return Promise.reject(new Error(message));
-  }
+  (error: AxiosError<ApiError>) => Promise.reject(error)
 );
+
 
 export default api;

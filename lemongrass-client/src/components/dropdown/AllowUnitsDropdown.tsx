@@ -1,68 +1,105 @@
-import { useEffect, useState } from "react";
-import { Checkbox } from "@/components/ui/checkbox"; // hoặc component UI bạn đang dùng
-import { ScrollArea } from "@/components/ui/scroll-area"; // tùy chọn
-import { useUnitQuery } from "@/hooks/queries/useUnitQuery";
-// hook lấy danh sách đơn vị
+"use client";
 
-type AllowedUnitsDropdownProps = {
+import { useState, useMemo } from "react";
+import { Input } from "@/components/ui/input";
+import { useUnitQuery } from "@/hooks/queries/useUnitQuery";
+import { CircleX } from "lucide-react";
+
+type AllowedUnitsSelectorProps = {
   selectedUnitIds: string[];
   onChange: (ids: string[]) => void;
 };
 
-const AllowedUnitsDropdown = ({
+const AllowedUnitsSelector = ({
   selectedUnitIds,
   onChange,
-}: AllowedUnitsDropdownProps) => {
-  const { data: units } = useUnitQuery(); // [{id, name}]
-  const [open, setOpen] = useState(false);
-  const [localSelected, setLocalSelected] = useState<string[]>([]);
+}: AllowedUnitsSelectorProps) => {
+  const { data: units = [] } = useUnitQuery();
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    setLocalSelected(selectedUnitIds);
-  }, [selectedUnitIds]);
+  const selectedUnits = useMemo(
+    () => units.filter((u) => selectedUnitIds.includes(u.id)),
+    [units, selectedUnitIds]
+  );
+
+  const filteredUnits = useMemo(() => {
+    return units
+      .filter((u) => !selectedUnitIds.includes(u.id))
+      .filter((u) => u.name.toLowerCase().includes(search.toLowerCase()));
+  }, [units, selectedUnitIds, search]);
+
+  const matchedSelectedUnit = useMemo(() => {
+    if (!search.trim()) return null;
+    return selectedUnits.find((u) =>
+      u.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [selectedUnits, search]);
 
   const toggleUnit = (unitId: string) => {
-    const updated = localSelected.includes(unitId)
-      ? localSelected.filter((id) => id !== unitId)
-      : [...localSelected, unitId];
-    setLocalSelected(updated);
-    onChange(updated);
+    onChange([...selectedUnitIds, unitId]);
   };
 
-  if (!units) return null;
+  const removeUnit = (unitId: string) => {
+    onChange(selectedUnitIds.filter((id) => id !== unitId));
+  };
+
+  if (units.length === 0) return null;
 
   return (
-    <div className="relative inline-block text-left">
-      <button
-        className="border rounded px-2 py-1 w-full text-left"
-        onClick={() => setOpen((prev) => !prev)}
-        type="button"
-      >
-        {localSelected.length > 0
-          ? `${localSelected.length} đơn vị được chọn`
-          : "Chọn đơn vị"}
-      </button>
-
-      {open && (
-        <div className="absolute z-10 bg-white border mt-1 rounded w-full shadow">
-          <ScrollArea className="max-h-48 overflow-y-auto p-2">
-            {units.map((unit) => (
-              <label
-                key={unit.id}
-                className="flex items-center gap-2 py-1 cursor-pointer"
+    <div className="space-y-3">
+      {/* Selected badges */}
+      {selectedUnits.length > 0 && (
+        <div className="flex flex-wrap gap-2">
+          {selectedUnits.map((unit) => (
+            <div
+              key={unit.id}
+              className="relative flex items-center rounded-full bg-primary/10 text-primary px-3 py-1 text-sm"
+            >
+              {unit.name}
+              <button
+                type="button"
+                onClick={() => removeUnit(unit.id)}
+                className="ml-1 hover:text-red-500 transition"
               >
-                <Checkbox
-                  checked={localSelected.includes(unit.id)}
-                  onCheckedChange={() => toggleUnit(unit.id)}
-                />
-                {unit.name}
-              </label>
-            ))}
-          </ScrollArea>
+                <CircleX className="size-4" />
+              </button>
+            </div>
+          ))}
         </div>
       )}
+
+      {/* Search input */}
+      <Input
+        placeholder="Tìm đơn vị..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      {/* Units list */}
+      <div className="max-h-48 overflow-y-auto border rounded-md p-2 flex flex-wrap gap-2">
+        {filteredUnits.length > 0 ? (
+          filteredUnits.map((unit) => (
+            <button
+              key={unit.id}
+              type="button"
+              onClick={() => toggleUnit(unit.id)}
+              className="px-3 py-1 text-sm rounded-full border bg-muted text-muted-foreground hover:bg-primary/10 transition"
+            >
+              {unit.name}
+            </button>
+          ))
+        ) : matchedSelectedUnit ? (
+          <p className="text-sm text-green-600 italic w-full">
+            Đơn vị "<strong>{matchedSelectedUnit.name}</strong>" đã được thêm.
+          </p>
+        ) : (
+          <p className="text-sm text-gray-400 italic w-full">
+            Không tìm thấy đơn vị
+          </p>
+        )}
+      </div>
     </div>
   );
 };
 
-export default AllowedUnitsDropdown;
+export default AllowedUnitsSelector;

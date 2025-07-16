@@ -47,4 +47,12 @@ public class IngredientUnitControllerImpl implements IngredientUnitController {
         .result(ingredientUnitService.updateUnit(id, request))
         .build();
   }
+
+  @Override
+  public ApiResponse<Void> deleteUnit(String id) {
+    return ApiResponse.<Void>builder()
+        .message("success")
+        .result(ingredientUnitService.deleteUnit(id))
+        .build();
+  }
 }

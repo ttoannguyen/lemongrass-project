@@ -4,6 +4,8 @@ import type {
   IngredientUpdateRequest,
 } from "@/types/ingredient/IngredientRequest";
 import { ingredientService } from "@/services/ingredient/ingredient.service";
+import { toast } from "sonner";
+import extractErrorMessage from "@/utils/extractErrorMessage";
 
 export const useAddIngredient = () => {
   const queryClient = useQueryClient();
@@ -23,6 +25,10 @@ export const useUpdateIngredient = () => {
       ingredientService.updateIngredientTemplate(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["ingredient_templates"] });
+    },
+    onError: (error) => {
+      console.error("Lỗi update ingredient:", error);
+      toast.error(extractErrorMessage(error));
     },
   });
 };
