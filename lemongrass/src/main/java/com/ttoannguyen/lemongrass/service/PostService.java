@@ -6,9 +6,9 @@ import com.ttoannguyen.lemongrass.dto.Response.post.PostResponse;
 import java.util.List;
 
 public interface PostService {
-    PostResponse create(PostCreateRequest request, String username);
+  PostResponse create(PostCreateRequest request, String username);
 
-    List<PostResponse> getPosts();
+  List<PostResponse> getPosts();
 
-    PostResponse getPost(String postId);
+  PostResponse getPost(String postId);
 }

@@ -20,7 +20,10 @@ const RecipeItemCard = ({ recipe, savedList }: Props) => {
       </div>
 
       <div className="p-4 ">
-        <AuthorHoverCard author={recipe.accountShortResponse!} />
+        <AuthorHoverCard
+          author={recipe.accountShortResponse!}
+          createdAt={recipe.createAt}
+        />
         <Link to={`/recipe/${recipe.id}`}>
           <p className="text-lg font-semibold mb-2 hover:text-green-500">
             {recipe.title}

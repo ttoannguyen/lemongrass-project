@@ -1,18 +1,16 @@
 package com.ttoannguyen.lemongrass.dto.Response.recipe;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.ttoannguyen.lemongrass.dto.Response.account.AccountShortResponse;
 import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.dto.Response.image.ImageResponse;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientResponse;
 import com.ttoannguyen.lemongrass.dto.Response.instruction.InstructionResponse;
-import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 import com.ttoannguyen.lemongrass.dto.Response.tags.TagResponse;
-import com.ttoannguyen.lemongrass.entity.Recipe;
 import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -35,4 +33,9 @@ public class RecipeResponse {
   List<ImageResponse> images;
   List<IngredientResponse> ingredients;
   List<InstructionResponse> instructions;
+
+  String createdBy;
+  String lastModifiedBy;
+  LocalDateTime createdDate;
+  LocalDateTime lastModifiedDate;
 }

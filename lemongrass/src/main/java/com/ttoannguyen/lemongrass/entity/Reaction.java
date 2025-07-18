@@ -14,22 +14,22 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Reaction extends AbstractAuditingEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    @Column(nullable = false)
-    Integer targetId;
+  @Column(nullable = false)
+  String targetId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    ReactionTargetType targetType;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  ReactionTargetType targetType;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    Account account;
+  @ManyToOne
+  @JoinColumn(name = "account_id", nullable = false)
+  Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "reaction_type_id", nullable = false)
-    ReactionType reactionType;
+  //    @ManyToOne
+  //    @JoinColumn(name = "reaction_type_id", nullable = false)
+  //    ReactionType reactionType;
 }

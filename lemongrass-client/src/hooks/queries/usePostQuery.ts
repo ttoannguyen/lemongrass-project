@@ -1,15 +1,12 @@
 // hooks/useSubmitPost.ts
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { postService } from "@/services/post/post.service";
+import type { PostResponse } from "@/types/post/PostResponse";
 
-export const useSubmitPost = () => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (formData: FormData) => {
-      return await postService.createPost(formData);
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["feeds"] });
-    },
+export const usePostsQuery = () => {
+  return useQuery<PostResponse[]>({
+    queryKey: ["posts"],
+    queryFn: postService.getPosts,
+    staleTime: 5 * 60 * 1000,
   });
 };

@@ -3,14 +3,13 @@ import { Difficulty } from "@/types/enums/difficulty.enum";
 import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientRequest";
 import type { TagDto } from "@/types/tag/TagDto";
 import type { RecipeInstructionRequest } from "@/types/Recipe/RecipeInstructionRequest";
-import type { Unit } from "@/types/units/UnitResponse";
-// import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
-import type { IngredientTemplateResponse } from "@/types/Recipe/IngredientTemplateResponse";
-// import { recipeCreateService } from "../services/recipe/recipe.createFormData.service";
+
 import type { ImageUpload } from "@/types/image/ImageUpload";
+import type { UnitResponse } from "@/types/units/UnitResponse";
+import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 
 type UseCreateRecipeParams = {
-  templates: IngredientTemplateResponse[];
+  templates: IngredientResponse[];
 };
 
 const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
@@ -140,33 +139,10 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
     setTags((prev) => prev.filter((_, i) => i !== index));
   };
 
-  const getAllowedUnits = (ingredientTemplateId: string): Unit[] => {
+  const getAllowedUnits = (ingredientTemplateId: string): UnitResponse[] => {
     const found = templates?.find((t) => t.id === ingredientTemplateId);
     return found?.allowedUnits ?? [];
   };
-
-  // const submitRecipe = async () => {
-  //   const payload: RecipeCreateRequest = {
-  //     title,
-  //     cookingTime,
-  //     description,
-  //     difficulty,
-  //     servings,
-  //     category,
-  //     tags,
-  //     ingredients,
-  //     instructions,
-  //     images: recipeImages,
-  //   };
-
-  //   try {
-  //     const result = await recipeCreateService.createRecipe(payload);
-  //     console.log("Recipe created successfully:", result);
-  //     // TODO: redirect or notify success
-  //   } catch (error) {
-  //     console.error("Failed to create recipe:", error);
-  //   }
-  // };
 
   return {
     title,

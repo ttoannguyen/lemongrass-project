@@ -16,6 +16,6 @@ public interface PostController {
   @GetMapping
   ApiResponse<List<PostResponse>> getPosts();
 
-  @GetMapping("/post")
-  ApiResponse<PostResponse> getPost(@RequestParam("postId") String postId);
+  @GetMapping("/{postId}")
+  ApiResponse<PostResponse> getPost(@PathVariable("postId") String postId);
 }

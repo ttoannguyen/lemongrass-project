@@ -126,7 +126,10 @@ const RecipeDetailPage = () => {
 
       <div className="mt-6 flex items-center gap-4 text-sm text-gray-500">
         <p>Tác giả:</p>
-        <AuthorHoverCard author={recipe.accountShortResponse} />
+        <AuthorHoverCard
+          author={recipe.accountShortResponse}
+          createdAt={recipe.createdDate}
+        />
       </div>
 
       <div className="mt-6 flex gap-4 text-sm text-gray-500">

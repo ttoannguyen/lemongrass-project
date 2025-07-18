@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+// src/pages/Home.tsx
 import { FeedPage } from "@/components/MainFeeds/Feeds";
-// import { PickCreate } from "@/components/Posts/";
 
 const Home = () => {
   return (

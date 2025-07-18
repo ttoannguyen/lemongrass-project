@@ -4,38 +4,54 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "../ui/hover-card";
+import { format, formatDistanceToNow } from "date-fns";
+import type { Account } from "@/types";
 
 type AuthorProps = {
-  author: {
-    id: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-    profilePictureUrl: string | null;
-  };
+  author: Account;
+  createdAt: string;
 };
 
-const AuthorHoverCard = ({ author }: AuthorProps) => {
+const AuthorHoverCard = ({ author, createdAt }: AuthorProps) => {
   const avatarUrl =
-    author.profilePictureUrl ||
+    author?.profilePictureUrl ||
     "https://res.cloudinary.com/didxuklgy/image/upload/v1750257521/27470351_7342052_xx4iiz.jpg";
+
+  const formattedDate = format(new Date(createdAt), "MMM d yyyy");
+  const relativeTime = formatDistanceToNow(new Date(createdAt), {
+    addSuffix: true,
+  });
+
+  const isLessThanOneDay = (date: Date) => {
+    const now = new Date();
+    const diffInMs = now.getTime() - date.getTime();
+    const diffInHours = diffInMs / (1000 * 60 * 60);
+    return diffInHours < 24;
+  };
 
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
-        <Link
-          to={`/profile/${author.id}`}
-          className="inline-flex items-center gap-2 cursor-pointer "
-        >
+        <div className="inline-flex items-center gap-1">
           <img
             src={avatarUrl}
             alt={`${author.firstName} ${author.lastName}`}
             className="w-8 h-8 rounded-full object-cover"
           />
-          <span className="font-medium text-blue-600 hover:underline">
-            {author.firstName + " " + author.lastName}
-          </span>
-        </Link>
+          <Link
+            to={`/profile/${author.id}`}
+            className="flex flex-col cursor-pointer "
+          >
+            <span className="font-medium text-blue-600 hover:underline">
+              {author.firstName + " " + author.lastName}
+            </span>
+            <p className="text-[10px] text-gray-500">
+              {isLessThanOneDay(new Date(createdAt))
+                ? relativeTime
+                : formattedDate}
+            </p>
+          </Link>
+        </div>
       </HoverCardTrigger>
 
       <HoverCardContent

@@ -1,3 +1,5 @@
+import FeedImageTemplate from "@/components/imageTempale/FeedImageTemplate";
+import AuthorHoverCard from "@/components/Profile/AuthorHoverCard";
 import type { PostFeedItem } from "@/types/feed/PostFeedItem";
 import { Link } from "react-router-dom";
 
@@ -7,18 +9,26 @@ type Props = {
 
 const PostItemCard = ({ post }: Props) => {
   return (
-    <div className="border p-4 m-5 rounded shadow ">
-      <Link to={`/post/${post.id}`} className="text-lg font-semibold ">
-        {post.title}
+    <div className="shadow max-w-2xl mt-2 w-full mx-auto overflow-hidden max-h-[500px] flex flex-col">
+      <div className="h-[200px] w-full shrink-0 relative z-0">
+        <FeedImageTemplate image={post.imageResponses} />
+      </div>
+
+      <div className="p-4">
+        <AuthorHoverCard
+          author={post.accountShortResponse!}
+          createdAt={post.createAt}
+        />
+      </div>
+      <Link to={`/post/${post.id}`}>
+        <p className="text-lg font-semibold mb-2 hover:text-green-500">
+          {post.title}
+        </p>
       </Link>
-      <p className="text-sm text-gray-500">{post.content}</p>
-      <p>
-        {post.tags?.map((tag) => (
-          <span key={tag.name} className="mr-2">
-            #{tag.name}
-          </span>
-        ))}
-      </p>
+
+      <div className="flex justify-between">
+        <p className="text-sm text-gray-600 line-clamp-2">{post.content}</p>
+      </div>
     </div>
   );
 };

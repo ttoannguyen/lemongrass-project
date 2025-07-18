@@ -4,9 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 
 export const usePermissionQuery = () => {
   return useQuery<RolePermission[]>({
-    queryKey: ["permission"],
+    queryKey: ["permissions"],
     queryFn: permissionService.getPermissions,
     staleTime: 5 * 60 * 1000,
-    // refetchOnMount: true,
   });
 };

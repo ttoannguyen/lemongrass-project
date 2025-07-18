@@ -22,7 +22,6 @@ const RoleList = () => {
 
   const handleSaveRole = () => {
     setIsModalOpen(false);
-    // Optional: refetch roles if needed
   };
 
   if (isLoading) return <p className="p-4">Đang tải vai trò...</p>;

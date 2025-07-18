@@ -1,6 +1,6 @@
-import type { Tag } from "../tag/TagDto";
 import type { ImageResponse } from "../image/ImageResponse";
 import type { AccountShortResponse } from "../AccountShortResponse";
+import type { TagDto } from "../tag/TagDto";
 
 export interface PostFeedItem {
   id: string;
@@ -11,5 +11,5 @@ export interface PostFeedItem {
   isVerified: boolean | null;
   title: string;
   content: string;
-  tags: Tag[] | null;
+  tags: TagDto[] | null;
 }

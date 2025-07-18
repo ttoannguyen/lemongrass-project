@@ -46,7 +46,7 @@ export interface Account {
   inactive: boolean;
   bio: string;
   roles: Role[];
-  profilePictureUrl: string;
+  profilePictureUrl?: string;
   createdBy: string;
   createdDate: string;
   lastModifiedBy: string;

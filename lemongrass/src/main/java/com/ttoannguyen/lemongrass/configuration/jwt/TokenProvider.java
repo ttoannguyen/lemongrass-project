@@ -32,76 +32,86 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class TokenProvider {
-    InvalidatedTokenRepository invalidatedTokenRepository;
+  InvalidatedTokenRepository invalidatedTokenRepository;
 
-    @NonFinal
-    @Value("${jwt.signer-key}")
-    protected String SIGNER_KEY;
+  @NonFinal
+  @Value("${jwt.signer-key}")
+  protected String SIGNER_KEY;
 
-    @NonFinal
-    @Value("${jwt.valid-duration}")
-    protected long VALID_DURATION;
+  @NonFinal
+  @Value("${jwt.valid-duration}")
+  protected long VALID_DURATION;
 
-    @NonFinal
-    @Value("${jwt.refreshable-duration}")
-    protected long REFRESHABLE_DURATION;
+  @NonFinal
+  @Value("${jwt.refreshable-duration}")
+  protected long REFRESHABLE_DURATION;
 
-    public String generateToken(Account account) {
-        log.info("Signer key {}", SIGNER_KEY);
+  public String generateToken(Account account) {
+    log.info("Signer key {}", SIGNER_KEY);
 
-        JWSHeader jwsHeader = new JWSHeader(JWSAlgorithm.HS512);
-        JWTClaimsSet jwtClaimsSet = new JWTClaimsSet.Builder()
-                .subject(account.getUsername())
-                .issuer("Lemongrass")
-                .issueTime(new Date())
-                .expirationTime(new Date(
-                        Instant.now().plus(VALID_DURATION, ChronoUnit.SECONDS).toEpochMilli()))
-                .claim("scope", buildScope(account))
-                .jwtID(UUID.randomUUID().toString())
-                .build();
+    JWSHeader jwsHeader = new JWSHeader(JWSAlgorithm.HS512);
+    JWTClaimsSet jwtClaimsSet =
+        new JWTClaimsSet.Builder()
+            .subject(account.getUsername())
+            .issuer("Lemongrass")
+            .issueTime(new Date())
+            .expirationTime(
+                new Date(Instant.now().plus(VALID_DURATION, ChronoUnit.SECONDS).toEpochMilli()))
+            .claim("scope", buildScope(account))
+            .claim("uid", account.getId())
+            .jwtID(UUID.randomUUID().toString())
+            .build();
 
-        Payload payload = new Payload(jwtClaimsSet.toJSONObject());
-        JWSObject jwsObject = new JWSObject(jwsHeader, payload);
-        try {
-            jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
-            return jwsObject.serialize();
-        } catch (JOSEException e) {
-            log.error("Cannot create token: ", e);
-            throw new RuntimeException(e);
-        }
+    Payload payload = new Payload(jwtClaimsSet.toJSONObject());
+    JWSObject jwsObject = new JWSObject(jwsHeader, payload);
+    try {
+      jwsObject.sign(new MACSigner(SIGNER_KEY.getBytes()));
+      return jwsObject.serialize();
+    } catch (JOSEException e) {
+      log.error("Cannot create token: ", e);
+      throw new RuntimeException(e);
     }
+  }
 
-    public SignedJWT verifyToken(String token, boolean isRefresh) throws JOSEException, ParseException {
-        JWSVerifier jwsVerifier = new MACVerifier(SIGNER_KEY.getBytes());
-        SignedJWT signedJWT = SignedJWT.parse(token);
-        Date expiryTime = (isRefresh)
-                ? new Date(signedJWT
-                        .getJWTClaimsSet()
-                        .getIssueTime()
-                        .toInstant()
-                        .plus(REFRESHABLE_DURATION, ChronoUnit.SECONDS)
-                        .toEpochMilli())
-                : signedJWT.getJWTClaimsSet().getExpirationTime();
+  public SignedJWT verifyToken(String token, boolean isRefresh)
+      throws JOSEException, ParseException {
+    JWSVerifier jwsVerifier = new MACVerifier(SIGNER_KEY.getBytes());
+    SignedJWT signedJWT = SignedJWT.parse(token);
+    Date expiryTime =
+        (isRefresh)
+            ? new Date(
+                signedJWT
+                    .getJWTClaimsSet()
+                    .getIssueTime()
+                    .toInstant()
+                    .plus(REFRESHABLE_DURATION, ChronoUnit.SECONDS)
+                    .toEpochMilli())
+            : signedJWT.getJWTClaimsSet().getExpirationTime();
 
-        final var verified = signedJWT.verify(jwsVerifier);
+    final var verified = signedJWT.verify(jwsVerifier);
 
-        if (!(verified && expiryTime.after(new Date()))) throw new AppException(ErrorCode.UNAUTHENTICATED);
+    if (!(verified && expiryTime.after(new Date())))
+      throw new AppException(ErrorCode.UNAUTHENTICATED);
 
-        if (invalidatedTokenRepository.existsById(signedJWT.getJWTClaimsSet().getJWTID()))
-            throw new AppException(ErrorCode.UNAUTHENTICATED);
+    if (invalidatedTokenRepository.existsById(signedJWT.getJWTClaimsSet().getJWTID()))
+      throw new AppException(ErrorCode.UNAUTHENTICATED);
 
-        return signedJWT;
-    }
+    return signedJWT;
+  }
 
-    private String buildScope(Account account) {
-        final StringJoiner stringJoiner = new StringJoiner(" ");
-        if (!CollectionUtils.isEmpty(account.getRoles())) {
-            account.getRoles().forEach(role -> {
+  private String buildScope(Account account) {
+    final StringJoiner stringJoiner = new StringJoiner(" ");
+    if (!CollectionUtils.isEmpty(account.getRoles())) {
+      account
+          .getRoles()
+          .forEach(
+              role -> {
                 stringJoiner.add("ROLE_" + role.getName());
                 if (!CollectionUtils.isEmpty(role.getPermissions()))
-                    role.getPermissions().forEach(permission -> stringJoiner.add(permission.getName()));
-            });
-        }
-        return stringJoiner.toString();
+                  role.getPermissions()
+                      .forEach(permission -> stringJoiner.add(permission.getName()));
+              });
     }
+    return stringJoiner.toString();
+  }
 }

@@ -16,7 +16,7 @@ type Props = {
 export const FeedPage = ({ className }: Props) => {
   const { data: feeds, isLoading, error: feedError } = useFeed();
   const { data: savedRecipes } = useSavedRecipes();
-
+  console.log(feeds);
   const savedIds = new Set(savedRecipes?.map((r) => r.id));
 
   if (isLoading) return <p>Đang tải dữ liệu...</p>;

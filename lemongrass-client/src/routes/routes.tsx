@@ -13,7 +13,7 @@ import CreateRecipe from "@/pages/CreateRecipe";
 import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import ManageUsers from "@/pages/admin/ManageUsers";
-import ManagePosts from "@/pages/admin/ManagePosts";
+import ManagePosts from "@/pages/admin/mamagePost/ManagePosts";
 import ManageRecipes from "@/pages/admin/manageRecipe/ManageRecipes";
 
 import { type RouteObject } from "react-router-dom";
@@ -28,6 +28,7 @@ import Units from "@/pages/admin/Units";
 import Tags from "@/pages/admin/Tags";
 import Moderation from "@/pages/admin/system/Moderation";
 import Setting from "@/pages/admin/system/Setting";
+import PostDetailPage from "@/components/Posts/PostDetailPage";
 
 // const routes: RouteObject[] = [
 //   {
@@ -79,6 +80,7 @@ const routes: RouteObject[] = [
       { path: "profile/:accountId", element: wrapProtected(<Profile />) },
       { path: "my-post", element: wrapProtected(<MyPost />) },
       { path: "my-recipe", element: wrapProtected(<MyRecipe />) },
+      { path: "post/:postId", element: <PostDetailPage /> },
       { path: "recipe/:recipeId", element: <RecipeDetailPage /> },
       {
         path: "recipe/:recipeId/image/:imageId",

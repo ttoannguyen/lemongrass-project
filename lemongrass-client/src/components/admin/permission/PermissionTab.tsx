@@ -4,13 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import type { RolePermission } from "@/types";
 import { usePermissionQuery } from "@/hooks/queries/usePermissionQuery";
-// import PermissionForm from "./PermissionForm";s
+import PermissionForm from "./PermissionForm";
+import { useQueryClient } from "@tanstack/react-query";
 
 const PermissionList = () => {
   const { data: permissions = [], isLoading, isError } = usePermissionQuery();
   const [selectedPermission, setSelectedPermission] =
     useState<RolePermission | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const queryClient = useQueryClient();
 
   const handleSelect = (permission: RolePermission) => {
     setSelectedPermission(permission);
@@ -24,7 +27,10 @@ const PermissionList = () => {
   if (isLoading) return <p className="p-4">Đang tải quyền hạn...</p>;
   if (isError)
     return <p className="text-red-500">Không thể tải danh sách quyền hạn.</p>;
-
+  const handleSave = () => {
+    setIsModalOpen(false);
+    queryClient.invalidateQueries({ queryKey: ["permissions"] }); // gọi lại API
+  };
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="flex flex-1 overflow-hidden border-y divide-x">
@@ -97,10 +103,10 @@ const PermissionList = () => {
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-xl w-full">
-          {/* <PermissionForm
+          <PermissionForm
             permission={selectedPermission}
             onSuccess={handleSave}
-          /> */}
+          />
         </DialogContent>
       </Dialog>
     </div>

@@ -1,8 +1,8 @@
 import type { ImageResponse } from "../image/ImageResponse";
 import type { AccountShortResponse } from "../AccountShortResponse";
-import type { IngredientDto } from "../ingredient/IngredientDto";
 import type { TagDto } from "../tag/TagDto";
-import type { CategoryDto } from "../category/CategoryResponse";
+import type { CategoryResponse } from "../category/CategoryResponse";
+import type { IngredientResponse } from "../ingredient/IngredientResponse";
 
 export interface RecipeFeedItem {
   id: string;
@@ -12,11 +12,11 @@ export interface RecipeFeedItem {
   imageResponses: ImageResponse[];
   isVerified: boolean | null;
   title: string;
-  category: CategoryDto[];
+  category: CategoryResponse[];
   difficulty: "EASY" | "MEDIUM" | "HARD";
   cookingTime: number;
   servings: number;
   rating: number | null;
   tags: TagDto[];
-  ingredients: IngredientDto[];
+  ingredients: IngredientResponse[];
 }

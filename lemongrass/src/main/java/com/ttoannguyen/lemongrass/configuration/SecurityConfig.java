@@ -34,6 +34,7 @@ public class SecurityConfig {
     "/api/_v1/feeds",
     "/api/_v1/recipes/**",
     "/api/_v1/posts",
+    "/api/_v1/posts/**",
     "/api/_v1/categories/**",
     "/api/_v1/ingredient_template"
   };
@@ -50,7 +51,7 @@ public class SecurityConfig {
 
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-    http.cors(cors -> {})
+    http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
         .csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
             authorize ->
@@ -58,6 +59,8 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.POST, PUBLIC_POST_ENDPOINTS)
                     .permitAll()
                     .requestMatchers(HttpMethod.GET, PUBLIC_GET_ENDPOINTS)
+                    .permitAll()
+                    .requestMatchers("/ws/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated())
@@ -75,17 +78,21 @@ public class SecurityConfig {
   }
 
   @Bean
-  public CorsFilter corsFilter() {
+  public UrlBasedCorsConfigurationSource corsConfigurationSource() {
     CorsConfiguration config = new CorsConfiguration();
     config.setAllowedOrigins(List.of("http://localhost:5173"));
-    config.setAllowedMethods(List.of("*"));
+    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
     config.setAllowedHeaders(List.of("*"));
     config.setAllowCredentials(true);
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", config);
+    return source;
+  }
 
-    return new CorsFilter(source);
+  @Bean
+  public CorsFilter corsFilter() {
+    return new CorsFilter(corsConfigurationSource());
   }
 
   @Bean
@@ -97,4 +104,28 @@ public class SecurityConfig {
     jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
     return jwtAuthenticationConverter;
   }
+
+  //  @Bean
+  //  public CorsFilter corsFilter() {
+  //    CorsConfiguration config = new CorsConfiguration();
+  //    config.setAllowedOrigins(List.of("http://localhost:5173"));
+  //    config.setAllowedMethods(List.of("*"));
+  //    config.setAllowedHeaders(List.of("*"));
+  //    config.setAllowCredentials(true);
+  //
+  //    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+  //    source.registerCorsConfiguration("/**", config);
+  //
+  //    return new CorsFilter(source);
+  //  }
+  //
+  //  @Bean
+  //  public JwtAuthenticationConverter jwtAuthenticationConverter() {
+  //    JwtGrantedAuthoritiesConverter grantedAuthoritiesConverter =
+  //        new JwtGrantedAuthoritiesConverter();
+  //    grantedAuthoritiesConverter.setAuthorityPrefix("");
+  //    JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+  //    jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(grantedAuthoritiesConverter);
+  //    return jwtAuthenticationConverter;
+  //  }
 }

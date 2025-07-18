@@ -8,6 +8,10 @@ export interface RecipeResponse {
   difficulty: "EASY" | "MEDIUM" | "HARD";
   servings: number;
   ratingAvg: number;
+  createdBy: string;
+  lastModifiedBy: string;
+  createdDate: string;
+  lastModifiedDate: string;
   category: {
     id: string;
     name: string;

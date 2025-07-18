@@ -13,9 +13,10 @@ import { Badge } from "../ui/badge";
 
 type Props = {
   account: Account;
+  currentUser?: Account | null;
 };
 
-const HeaderProfile = ({ account }: Props) => {
+const HeaderProfile = ({ account, currentUser }: Props) => {
   return (
     <div className="bg-background relative">
       {/* Cover Image */}
@@ -33,23 +34,29 @@ const HeaderProfile = ({ account }: Props) => {
           />
         </div>
         <div className="flex md:mt-4 ml-auto md:h-16 z-10">
-          <Button variant={"main"}>Follow</Button>
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger asChild>
-              <EllipsisVertical
-                height={"36px"}
-                className="text-secondary cursor-pointer"
-              />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="end"
-              className="bg-white border-none shadow h-10 md:w-40"
-            >
-              <DropdownMenuItem className="text-text  focus:bg-background">
-                Report Abuse
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {account.id !== currentUser?.id ? (
+            <>
+              <Button variant={"main"}>Follow</Button>
+              <DropdownMenu modal={false}>
+                <DropdownMenuTrigger asChild>
+                  <EllipsisVertical
+                    height={"36px"}
+                    className="text-secondary cursor-pointer"
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  className="bg-white border-none shadow h-10 md:w-40"
+                >
+                  <DropdownMenuItem className="text-text  focus:bg-background">
+                    Report Abuse
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </>
+          ) : (
+            <Button variant={"secondary"}>Edit Profile</Button>
+          )}
         </div>
       </div>
       <div className="flex flex-col mt-4 items-center justify-center">

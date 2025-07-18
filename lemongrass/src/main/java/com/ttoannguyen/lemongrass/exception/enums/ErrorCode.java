@@ -45,7 +45,10 @@ public enum ErrorCode {
   INGREDIENT_UNIT_IN_USED(
       1025, "The unit has been used by the ingredient!", HttpStatus.BAD_REQUEST),
 
-  EMPTY_UNIT_LIST(1026, "List of units must not leave blank!", HttpStatus.BAD_REQUEST);
+  EMPTY_UNIT_LIST(1026, "List of units must not leave blank!", HttpStatus.BAD_REQUEST),
+
+  COMMENT_NOT_EXISTED(1027, "Comment not exists!", HttpStatus.BAD_REQUEST),
+  ;
 
   private int code;
   private String message;

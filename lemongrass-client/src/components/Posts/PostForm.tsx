@@ -1,43 +1,66 @@
-"use client";
-
+import useCreatePost from "@/hooks/useCreatePost";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import ImageUploadPreview from "@/components/imageTempale/ImageUploadPreview";
-import useCreatePost from "@/hooks/useCreatePost";
-
-// type PostFormData = {
-//   title: string;
-//   content: string;
-//   visibility: "PUBLIC" | "PRIVATE" | "GROUP";
-//   groupId?: string;
-//   recipeId?: string;
-// };
+import { useSubmitPost } from "@/hooks/queries/useSubmitPost";
+import type { PostCreate } from "@/types/post/PostCreate";
+import { toast } from "sonner";
 
 type Props = {
-  onSuccess: () => void;
+  onSuccess?: () => void;
 };
 
 const PostForm = ({ onSuccess }: Props) => {
-  const { title, setTitle, content, setContent, images, setImages, submit } =
-    useCreatePost();
+  const {
+    title,
+    setTitle,
+    content,
+    setContent,
+    images,
+    addPostImage,
+    removePostImage,
+  } = useCreatePost();
+
+  const { mutateAsync: submitPostMutation, isPending } = useSubmitPost();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("🔍 Submit Post:");
-    console.log("Tiêu đề:", title);
-    console.log("Nội dung:", content);
-    console.log("Ảnh:", images);
+
+    if (!title.trim()) {
+      alert("Vui lòng nhập tiêu đề bài viết");
+      return;
+    }
+
+    if (!content.trim()) {
+      alert("Vui lòng nhập nội dung bài viết");
+      return;
+    }
+
+    const payload: PostCreate = {
+      title,
+      content,
+      images: images,
+      visibility: "PUBLIC",
+    };
+
     try {
-      await submit();
-      onSuccess();
-    } catch (err) {
-      console.error("Lỗi khi đăng bài:", err);
+      const recipe = await submitPostMutation(payload);
+      console.log("Recipe created:", recipe);
+      toast.success("Đăng bài viết thành công!");
+
+      // Gọi hàm onSuccess để parent đóng modal
+      if (onSuccess) onSuccess();
+    } catch (error) {
+      toast.error(
+        "Lỗi khi tạo bài viết: " +
+          (error instanceof Error ? error.message : "Unknown error")
+      );
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="">
+    <form onSubmit={handleSubmit} className="space-y-4">
       <Input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -49,8 +72,16 @@ const PostForm = ({ onSuccess }: Props) => {
         onChange={(e) => setContent(e.target.value)}
         placeholder="Bạn đang nghĩ gì?"
       />
-      <ImageUploadPreview images={images} setImages={setImages} />
-      <Button type="submit">Đăng bài</Button>
+      {/* <ImageUploadPreview value={images} onChange={addPostImage} /> */}
+      <ImageUploadPreview
+        value={images}
+        addImage={addPostImage}
+        removeImage={removePostImage}
+      />
+
+      <Button type="submit" className="w-full" disabled={isPending}>
+        {isPending ? "Đang đăng..." : "Đăng bài"}
+      </Button>
     </form>
   );
 };
