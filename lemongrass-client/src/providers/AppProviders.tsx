@@ -5,6 +5,7 @@ import { PreloadPublicData } from "@/providers/PreloadPublicData";
 import { PreloadUserData } from "@/providers/PreloadUserData";
 import { PreloadAdminData } from "@/providers/PreloadAdminData";
 import { Toaster } from "@/components/ui/sonner";
+import { WebSocketProvider } from "./WebSocketProvider";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const providers = [
@@ -20,6 +21,9 @@ const providers = [
   (children: React.ReactNode) => <PreloadUserData>{children}</PreloadUserData>,
   (children: React.ReactNode) => (
     <PreloadAdminData>{children}</PreloadAdminData>
+  ),
+  (children: React.ReactNode) => (
+    <WebSocketProvider>{children}</WebSocketProvider>
   ),
 ];
 

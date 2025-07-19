@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.dto.Response.category;
 
+import com.ttoannguyen.lemongrass.entity.enums.CategoryType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -15,6 +16,7 @@ public class CategoryResponse {
   String id;
   String name;
   String createdBy;
+  String type;
   String lastModifiedBy;
   LocalDateTime createdDate;
   LocalDateTime lastModifiedDate;

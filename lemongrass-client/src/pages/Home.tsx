@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-// src/pages/Home.tsx
 import { FeedPage } from "@/components/MainFeeds/Feeds";
 
 const Home = () => {

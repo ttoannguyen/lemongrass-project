@@ -5,10 +5,10 @@ import {
   HoverCardTrigger,
 } from "../ui/hover-card";
 import { format, formatDistanceToNow } from "date-fns";
-import type { Account } from "@/types";
+import type { AccountShortResponse } from "@/types/AccountShortResponse";
 
 type AuthorProps = {
-  author: Account;
+  author: AccountShortResponse;
   createdAt: string;
 };
 

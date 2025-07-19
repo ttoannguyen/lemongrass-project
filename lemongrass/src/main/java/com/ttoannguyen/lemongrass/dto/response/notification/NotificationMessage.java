@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.dto.Response.notification;
 
+import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -9,8 +10,8 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NotificationMessage {
-  String senderId;
-  String receiverId;
+  AccountResponse sender;
+  AccountResponse receiver;
   String message;
   String targetType;
   String targetId;

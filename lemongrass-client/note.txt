@@ -138,3 +138,91 @@ cầu tăng cao, gây ảnh hưởng đến hiệu suất xử lý.
 
 
 font: Poppins
+
+
+
+
+
+
+
+
+
+
+@theme {
+  --font-family: 'Lexend', sans-serif;
+
+  /* Font weights */
+  --font-weight-thin: 100;
+  --font-weight-extralight: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  --font-weight-black: 900;
+
+  /* Font sizes */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+
+  /* Theme color – Light mode */
+  --color-primary: oklch(0.65 0.15 160);      /* Xanh lá tươi */
+  --color-accent: oklch(0.95 0.14 100);       /* Vàng chanh */
+  --color-secondary: oklch(0.55 0.07 30);     /* Nâu nhạt - chữ chính */
+  --color-background: oklch(0.98 0.01 0);     /* Trắng kem */
+  --color-card: oklch(0.95 0.03 160);         /* Xanh lá nhạt */
+  --color-text: oklch(0.55 0.07 30);          /* Nâu nhạt - chữ chính */
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --color-background-d: oklch(0.35 0.08 170);
+  --color-background-l: oklch(0.98 0.01 0);     /* Trắng kem */
+
+
+  --radius: 0.625rem;
+  --radius-sm: 0.425rem;
+  --color-border: oklch(0.922 0 0);
+  --color-ring: oklch(0.708 0 0);
+
+  /* Additional Chart color */
+  --color-chart-1: oklch(0.646 0.222 41.116);
+  --color-chart-2: oklch(0.6 0.118 184.704);
+  --color-chart-3: oklch(0.398 0.07 227.392);
+  --color-chart-4: oklch(0.828 0.189 84.429);
+  --color-chart-5: oklch(0.769 0.188 70.08);
+
+  
+}
+
+/* Base font styles */
+:root {
+  font-family: var(--font-family);
+  line-height: 1.5;
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-size-base);
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  /* overflow: auto !important; */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+    --color-primary: oklch(0.75 0.12 160);     /* Xanh lá sáng */
+    --color-accent: oklch(0.92 0.08 100);     
+    --color-secondary: oklch(0.70 0.05 30);    
+    --color-background: oklch(0.35 0.08 170);
+    --color-card: oklch(0.45 0.10 160);
+    --color-text: #e4dbdd;  
+            /* Xám sáng */
+}

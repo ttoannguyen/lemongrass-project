@@ -32,7 +32,7 @@ public interface RecipeMapper {
   @Mapping(source = "verified", target = "isVerified")
   @Mapping(source = "tags", target = "tags")
   @Mapping(source = "images", target = "images")
-  @Mapping(source = "categories", target = "category")
+  @Mapping(source = "categories", target = "categories")
   RecipeResponse toRecipeResponse(Recipe recipe);
 
   @Mapping(source = "recipe", target = ".")

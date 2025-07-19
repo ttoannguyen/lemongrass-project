@@ -12,9 +12,10 @@ export interface RecipeResponse {
   lastModifiedBy: string;
   createdDate: string;
   lastModifiedDate: string;
-  category: {
+  categories: {
     id: string;
     name: string;
+    type: string;
   }[];
   shareCount: number;
   verified: boolean;

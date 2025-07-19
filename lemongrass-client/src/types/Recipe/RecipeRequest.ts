@@ -10,7 +10,7 @@ export type RecipeCreateRequest = {
   description: string;
   difficulty: Difficulty;
   servings: number;
-  category: string[];
+  categoryIds: string[];
   tags: TagDto[];
   ingredients: RecipeIngredientRequest[];
   instructions: RecipeInstructionRequest[];

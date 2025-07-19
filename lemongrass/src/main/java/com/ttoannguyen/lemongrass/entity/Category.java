@@ -1,5 +1,7 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.ttoannguyen.lemongrass.entity.enums.CategoryType;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -22,4 +24,13 @@ public class Category extends AbstractAuditingEntity {
 
   @Column(unique = true)
   private String name;
+
+  @Enumerated(EnumType.STRING)
+  @Column(unique = true)
+  private CategoryType type;
+
+  @ManyToMany(mappedBy = "categories")
+  @JsonIgnoreProperties("categories") // Ngăn serialize vòng lặp
+  @Builder.Default
+  List<Recipe> recipes = new ArrayList<>();
 }

@@ -4,6 +4,7 @@ import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.category.CategoryRequest;
 import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.entity.Category;
+import com.ttoannguyen.lemongrass.entity.enums.CategoryType;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
 import com.ttoannguyen.lemongrass.mapper.CategoryMapper;
@@ -37,6 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     if (categoryRepository.existsByName(categoryCreationRequest.getName()))
       throw new AppException(ErrorCode.CATEGORY_EXISTED);
     Category category = categoryMapper.toCategory(categoryCreationRequest);
+    category.setType(CategoryType.valueOf(categoryCreationRequest.getType()));
     return categoryMapper.toCategoryResponse(categoryRepository.save(category));
   }
 
@@ -61,6 +63,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     existingCategory.setName(categoryRequest.getName());
+    existingCategory.setType(CategoryType.valueOf(categoryRequest.getType()));
 
     Category updatedCategory = categoryRepository.save(existingCategory);
 

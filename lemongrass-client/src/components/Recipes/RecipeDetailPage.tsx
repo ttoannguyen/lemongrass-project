@@ -65,8 +65,8 @@ const RecipeDetailPage = () => {
         <p>Khẩu phần: {recipe.servings}</p>
         <p>
           Danh mục:{" "}
-          {recipe.category.length > 0 &&
-            recipe.category.map((category) => (
+          {recipe.categories.length > 0 &&
+            recipe.categories.map((category) => (
               <span key={category.id}>{category.name}</span>
             ))}
         </p>

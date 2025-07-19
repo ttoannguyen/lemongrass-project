@@ -61,6 +61,13 @@ public class RecipeServiceImpl implements RecipeService {
       recipe.setTags(tags);
     }
 
+    if (request.getCategoryIds() != null) {
+      List<Category> categories = resolveCategories(request.getCategoryIds());
+      recipe.setCategories(categories);
+      // Đồng bộ phía Category
+      categories.forEach(category -> category.getRecipes().add(recipe));
+    }
+
     if (request.getIngredients() != null) {
       List<Ingredient> ingredients = buildIngredients(request.getIngredients(), recipe);
       ingredientRepository.saveAll(ingredients);
@@ -118,10 +125,6 @@ public class RecipeServiceImpl implements RecipeService {
         .cookingTime(request.getCookingTime())
         .difficulty(request.getDifficulty())
         .servings(request.getServings())
-        .categories(
-            request.getCategoryIds() != null
-                ? resolveCategories(request.getCategoryIds())
-                : List.of())
         .account(account)
         .isVerified(false)
         .shareCount(0)
@@ -129,15 +132,25 @@ public class RecipeServiceImpl implements RecipeService {
   }
 
   private List<Category> resolveCategories(List<String> categoryIds) {
-
     return categoryIds.stream()
         .map(
-            categoryCreationRequest ->
+            categoryId ->
                 categoryRepository
-                    .findById(categoryCreationRequest)
+                    .findById(categoryId)
                     .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED)))
         .toList();
   }
+
+  //  private List<Category> resolveCategories(List<String> categoryIds) {
+  //
+  //    return categoryIds.stream()
+  //        .map(
+  //            categoryCreationRequest ->
+  //                categoryRepository
+  //                    .findById(categoryCreationRequest)
+  //                    .orElseThrow(() -> new AppException(ErrorCode.CATEGORY_NOT_EXISTED)))
+  //        .toList();
+  //  }
 
   private Set<Tag> resolveTags(List<TagCreationRequest> requests) {
     return requests.stream()

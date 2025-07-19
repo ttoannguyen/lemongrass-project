@@ -11,4 +11,5 @@ import lombok.experimental.FieldDefaults;
 public class CategoryRequest {
   String id;
   String name;
+  String type;
 }

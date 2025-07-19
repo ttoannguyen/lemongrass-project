@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 
 type Props = {
   searchTerm: string;
-  // onSearchTermChange: (value: string) => void;
   setSearchTerm: (value: string) => void;
   sortKey: "name" | "createdDate" | "lastModifiedDate";
   setSortKey: (value: "name" | "createdDate" | "lastModifiedDate") => void;
@@ -39,6 +38,7 @@ const SearchAndSortControls = ({
         }
       >
         <option value="name">Sắp xếp theo tên</option>
+        {/* <option value="type">Sắp xếp theo loại</option> */}
         <option value="createdDate">Sắp xếp theo ngày tạo</option>
         <option value="lastModifiedDate">Sắp xếp theo ngày chỉnh sửa</option>
       </select>

@@ -13,21 +13,26 @@ export const categoryService = {
     return res.data.result;
   },
 
-  addCategory: async (name: string): Promise<CategoryResponse> => {
+  addCategory: async (
+    name: string,
+    type: string
+  ): Promise<CategoryResponse> => {
     const res = await api.post<BaseResponse<CategoryResponse>>("categories", {
       name: name,
+      type: type,
     });
     return res.data.result;
   },
 
   updateCategory: async (
     id: string,
-     name: string 
+    name: string,
+    type: string
   ): Promise<CategoryResponse> => {
-    console.log("hello", { id: id, name: name });
+    console.log("hello", { id: id, name: name, type: type });
     const res = await api.put<BaseResponse<CategoryResponse>>(
       `categories/${id}`,
-      { id: id, name: name }
+      { id: id, name: name, type: type }
     );
     return res.data.result;
   },

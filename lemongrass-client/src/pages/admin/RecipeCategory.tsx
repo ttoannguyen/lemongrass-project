@@ -20,6 +20,20 @@ import {
   useDeleteCategory,
   useUpdateCategory,
 } from "@/hooks/queries/useCategoryMutations";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+const CATEGORY_TYPES = [
+  { value: "CUISINE", label: "CUISINE" },
+  { value: "OCCASION", label: "OCCASION" },
+  { value: "MEAL_TYPE", label: "MEAL_TYPE" },
+];
+
 export default function RecipeCategoryPage() {
   const { data: categories = [] } = useCategoryQuery();
 
@@ -34,6 +48,7 @@ export default function RecipeCategoryPage() {
 
   const [dialogOpen, setDialogOpen] = useState(false);
   const [nameInput, setNameInput] = useState("");
+  const [typeInput, setTypeInput] = useState("");
   const [editingCategory, setEditingCategory] =
     useState<CategoryResponse | null>(null);
 
@@ -50,7 +65,7 @@ export default function RecipeCategoryPage() {
     filteredAndSortedItems: filteredCategories,
   } = useSearchAndSort(categories, {
     searchKey: "name",
-    sortKeys: ["name", "createdDate", "lastModifiedDate"] as const,
+    sortKeys: ["name", "type", "createdDate", "lastModifiedDate"] as const,
     initialSortKey: "name",
     initialSortOrder: "asc",
   });
@@ -63,16 +78,43 @@ export default function RecipeCategoryPage() {
     setEditingRows((prev) => ({ ...prev, [id]: true }));
   };
 
+  // const handleSaveRow = (id: string) => {
+  //   const edited = editedData[id];
+  //   const original = categories.find((c) => c.id === id);
+  //   if (!original || !edited) return;
+
+  //   const name = edited.name?.trim() ?? original.name;
+  //   if (!name) return toast.error("Tên không được để trống");
+
+  //   updateCategory.mutate(
+  //     { id, name },
+  //     {
+  //       onSuccess: () => {
+  //         toast.success("Đã cập nhật danh mục");
+  //         setEditingRows((prev) => ({ ...prev, [id]: false }));
+  //         setEditedData((prev) => {
+  //           const newData = { ...prev };
+  //           delete newData[id];
+  //           return newData;
+  //         });
+  //       },
+  //       onError: () => toast.error("Cập nhật thất bại"),
+  //     }
+  //   );
+  // };
+
   const handleSaveRow = (id: string) => {
     const edited = editedData[id];
     const original = categories.find((c) => c.id === id);
     if (!original || !edited) return;
 
     const name = edited.name?.trim() ?? original.name;
+    const type = edited.type ?? original.type;
+
     if (!name) return toast.error("Tên không được để trống");
 
     updateCategory.mutate(
-      { id, name },
+      { id, name, type }, // Thêm type
       {
         onSuccess: () => {
           toast.success("Đã cập nhật danh mục");
@@ -86,6 +128,14 @@ export default function RecipeCategoryPage() {
         onError: () => toast.error("Cập nhật thất bại"),
       }
     );
+  };
+
+  const handleTypeChange = (type: string, id: string) => {
+    setEditedData((prev) => ({
+      ...prev,
+      [id]: { ...prev[id], type },
+    }));
+    setEditingRows((prev) => ({ ...prev, [id]: true }));
   };
 
   const handleCancelEdit = (id: string) => {
@@ -120,11 +170,12 @@ export default function RecipeCategoryPage() {
 
   const handleSave = () => {
     const name = nameInput.trim();
+    const type = typeInput.trim();
     if (!name) return toast.error("Tên không được để trống");
 
     if (editingCategory) {
       updateCategory.mutate(
-        { id: editingCategory.id, name },
+        { id: editingCategory.id, name, type },
         {
           onSuccess: () => {
             toast.success("Đã cập nhật");
@@ -137,7 +188,7 @@ export default function RecipeCategoryPage() {
       );
     } else {
       createCategory.mutate(
-        { name },
+        { name, type },
         {
           onSuccess: () => {
             toast.success("Đã thêm mới");
@@ -178,6 +229,7 @@ export default function RecipeCategoryPage() {
         <thead className="bg-gray-100 text-center border-b border-gray-300">
           <tr>
             <th className="w-48 py-2 border-r border-gray-300">Tên danh mục</th>
+            <th className="w-48 py-2 border-r border-gray-300">Thể loại</th>
             <th className="w-36 py-2 border-r border-gray-300">Tạo bởi</th>
             <th className="w-44 py-2 border-r border-gray-300">Ngày tạo</th>
             <th className="w-36 py-2 border-r border-gray-300">Cập nhật bởi</th>
@@ -199,6 +251,27 @@ export default function RecipeCategoryPage() {
                     value={edited.name ?? cat.name}
                     onChange={(e) => handleFieldChange(cat.id, e.target.value)}
                   />
+                </td>
+                <td className="border-r border-gray-300">
+                  <Select
+                    value={edited.type ?? cat.type}
+                    onValueChange={(v) => handleTypeChange(v, cat.id)}
+                  >
+                    <SelectTrigger className="w-full border-none! ring-0!">
+                      <SelectValue placeholder="Chọn loại danh mục" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-white border-none! rounded-none!">
+                      {CATEGORY_TYPES.map((type) => (
+                        <SelectItem
+                          key={type.value}
+                          value={type.value}
+                          className="focus:bg-[#e6f7f1]! rounded-none! "
+                        >
+                          {type.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </td>
                 <td className="border-r border-gray-300">
                   {cat.createdBy ?? "-"}
@@ -270,6 +343,26 @@ export default function RecipeCategoryPage() {
             value={nameInput}
             onChange={(e) => setNameInput(e.target.value)}
           />
+
+          {/* <Input
+            placeholder="Tên thể loại"
+            value={typeInput}
+            onChange={(e) => setTypeInput(e.target.value)}
+          /> */}
+
+          <select
+            className="w-full border rounded px-2 py-2 mt-2 text-sm"
+            value={typeInput}
+            onChange={(e) => setTypeInput(e.target.value)}
+          >
+            <option value="">-- Chọn thể loại --</option>
+            {CATEGORY_TYPES.map((t) => (
+              <option key={t.value} value={t.value}>
+                {t.label}
+              </option>
+            ))}
+          </select>
+
           <DialogFooter className="mt-4">
             <DialogClose asChild>
               <Button variant="outline">Hủy</Button>

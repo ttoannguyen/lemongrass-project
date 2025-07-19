@@ -1,13 +1,18 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
+import com.ttoannguyen.lemongrass.dto.Response.notification.NotificationMessage;
 import com.ttoannguyen.lemongrass.entity.Account;
 import com.ttoannguyen.lemongrass.entity.Notification;
+import com.ttoannguyen.lemongrass.entity.Post;
 import com.ttoannguyen.lemongrass.entity.enums.NotificationType;
+import com.ttoannguyen.lemongrass.entity.enums.Priority;
 import com.ttoannguyen.lemongrass.entity.enums.ReactionTargetType;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
+import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import com.ttoannguyen.lemongrass.repository.AccountRepository;
 import com.ttoannguyen.lemongrass.repository.NotificationRepository;
+import com.ttoannguyen.lemongrass.repository.PostRepository;
 import com.ttoannguyen.lemongrass.service.NotificationService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +28,8 @@ public class NotificationServiceImpl implements NotificationService {
   NotificationRepository notificationRepository;
   AccountRepository accountRepository;
   SimpMessagingTemplate simpMessagingTemplate;
+  PostRepository postRepository;
+  AccountMapper accountMapper;
 
   @Override
   public void createNotification(
@@ -31,9 +38,16 @@ public class NotificationServiceImpl implements NotificationService {
         accountRepository
             .findById(accountId)
             .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+    Post post =
+        postRepository
+            .findById(targetId)
+            .orElseThrow(() -> new AppException(ErrorCode.POST_NOT_EXISTED));
+
+    Account author = post.getAccount();
     Notification notification =
         Notification.builder()
-            .account(account)
+            .sender(account)
+            .receiver(author)
             .content(message)
             .type(NotificationType.POST)
             .isRead(false)
@@ -41,5 +55,21 @@ public class NotificationServiceImpl implements NotificationService {
     notificationRepository.save(notification);
 
     simpMessagingTemplate.convertAndSendToUser(accountId, "/topic/notifications", notification);
+  }
+
+  @Override
+  public void sendLikeNotification(Account sender, Account receiver, Post post) {
+
+    NotificationMessage notification =
+        NotificationMessage.builder()
+            .sender(accountMapper.toAccountResponse(sender))
+            .receiver(accountMapper.toAccountResponse(receiver))
+            .targetId(post.getId())
+            .message("Hello")
+            .targetType("POST")
+            .build();
+
+    simpMessagingTemplate.convertAndSendToUser(
+        receiver.getId(), "/queue/notifications", notification);
   }
 }

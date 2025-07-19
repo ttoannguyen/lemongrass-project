@@ -5,8 +5,8 @@ export const useAddCategory = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ name }: { name: string }) =>
-      categoryService.addCategory(name),
+    mutationFn: ({ name, type }: { name: string; type: string }) =>
+      categoryService.addCategory(name, type),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });
     },
@@ -17,8 +17,15 @@ export const useUpdateCategory = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ id, name }: { id: string; name: string }) =>
-      categoryService.updateCategory(id, name),
+    mutationFn: ({
+      id,
+      name,
+      type,
+    }: {
+      id: string;
+      name: string;
+      type: string;
+    }) => categoryService.updateCategory(id, name, type),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["categories"] });
     },

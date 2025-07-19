@@ -8,6 +8,7 @@ import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
 import { useNavigate } from "react-router-dom";
 import type { CategoryResponse } from "@/types/category/CategoryResponse";
 import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
+import AllowedCategoriesSelector from "../dropdown/AllowedCategoriesSelector";
 
 type Props = {
   categories: CategoryResponse[];
@@ -109,7 +110,7 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
       description,
       difficulty,
       servings,
-      category,
+      categoryIds: category,
       tags,
       ingredients,
       instructions,
@@ -123,9 +124,10 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
       setTimeout(() => setProgress(100), 500);
       navigate(`/recipe/${recipe.id}`);
     } catch (error) {
-      alert(
-        "Lỗi khi tạo công thức: " +
-          (error instanceof Error ? error.message : "Unknown error")
+      console.log(
+        
+          error 
+          
       );
       setProgress(0);
     }
@@ -144,7 +146,7 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
       )}
       {/* Thông tin cơ bản */}
       <div>
-        <label htmlFor="title">Tên món ăn</label>
+        <label htmlFor="title">Tên món ăn ;;;</label>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -196,8 +198,8 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
         />
       </div>
 
+      {/* <label htmlFor="category">Danh mục</label> */}
       {/* <div>
-        <label htmlFor="category">Danh mục</label>
         <input
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -207,7 +209,30 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
         />
       </div> */}
 
-      <div>
+      {/* Category Selectors for Each Type */}
+      <div className="space-y-4">
+        <label>Danh mục</label>
+        <AllowedCategoriesSelector
+          selectedCategoryIds={category}
+          onChange={setCategory}
+          categories={categories}
+          type="CUISINE"
+        />
+        <AllowedCategoriesSelector
+          selectedCategoryIds={category}
+          onChange={setCategory}
+          categories={categories}
+          type="OCCASION"
+        />
+        <AllowedCategoriesSelector
+          selectedCategoryIds={category}
+          onChange={setCategory}
+          categories={categories}
+          type="MEAL_TYPE"
+        />
+      </div>
+
+      {/* <div>
         <label htmlFor="category">Danh mục</label>
         <select
           // multiple
@@ -227,7 +252,7 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
 
       <div>
         <label htmlFor="description">Mô tả</label>

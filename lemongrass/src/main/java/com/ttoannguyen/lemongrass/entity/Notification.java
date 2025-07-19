@@ -15,36 +15,44 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Notification extends AbstractAuditingEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    Account account;
+  //    @ManyToOne
+  //    @JoinColumn(name = "account_id", nullable = false)
+  //    Account account;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    NotificationType type;
+  @ManyToOne
+  @JoinColumn(name = "account_id", nullable = false)
+  Account receiver;
 
-    @Column(nullable = false)
-    String content;
+  @ManyToOne
+  @JoinColumn(name = "sender_id")
+  Account sender;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    Post post;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  NotificationType type;
 
-    @ManyToOne
-    @JoinColumn(name = "groups_id")
-    Group group;
+  @Column(nullable = false)
+  String content;
 
-    @ManyToOne
-    @JoinColumn(name = "recipe_id")
-    Recipe recipe;
+  @ManyToOne
+  @JoinColumn(name = "post_id")
+  Post post;
 
-    @Column(nullable = false)
-    boolean isRead;
+  @ManyToOne
+  @JoinColumn(name = "groups_id")
+  Group group;
 
-    @Enumerated(EnumType.STRING)
-    Priority priority;
+  @ManyToOne
+  @JoinColumn(name = "recipe_id")
+  Recipe recipe;
+
+  @Column(nullable = false)
+  boolean isRead;
+
+  @Enumerated(EnumType.STRING)
+  Priority priority;
 }

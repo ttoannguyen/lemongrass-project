@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+
 // "use client";
 
 // import { useParams } from "react-router-dom";
@@ -93,64 +93,44 @@ import { usePostDetail } from "@/hooks/queries/usePostDetailQuery";
 import { Skeleton } from "@/components/ui/skeleton";
 import AuthorHoverCard from "../Profile/AuthorHoverCard";
 import { useAuth } from "@/contexts/AuthContext";
-import wsClient from "@/lib/ws";
 import { Heart } from "lucide-react";
-import { useState, useEffect } from "react";
-
-interface NotificationMessage {
-  senderId: string;
-  receiverId: string;
-  message: string;
-  targetType: string;
-  targetId: string;
-}
+import { useState } from "react";
+import axios from "axios";
 
 const PostDetailPage = () => {
-  // Move all hooks to the top
   const { postId } = useParams<{ postId: string }>();
   const { data: post, isLoading, isError } = usePostDetail(postId || "");
   const { account } = useAuth();
   const [isLiked, setIsLiked] = useState(false);
-  const [notifications, setNotifications] = useState<NotificationMessage[]>([]);
-
-  // WebSocket connection and subscription
-  useEffect(() => {
-    if (!account?.id || !postId) return; // Skip WebSocket if no account or postId
-
-    wsClient
-      .connect()
-      .catch((error) => console.error("WebSocket connect failed:", error));
-    const subscription = wsClient.subscribe(account.id, (message) => {
-      setNotifications((prev) => [...prev, message]);
-    });
-
-    return () => {
-      subscription.unsubscribe();
-      wsClient.disconnect();
-    };
-  }, [account?.id, postId]);
 
   const handleToggleHeart = async () => {
     if (!postId || !account?.username || !post?.author?.id) return;
 
     try {
-      await wsClient.connect();
-      wsClient.sendLike(postId, post.author.id, account.username);
-      setIsLiked(!isLiked);
-    } catch (error) {
-      console.error("Failed to toggle heart:", error);
+      await axios.post(
+        `http://localhost:8080/api/_v1/reaction/like/${postId}`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+          },
+        }
+      );
+
+      // // Nếu người dùng không phải là chủ bài viết => gửi WebSocket notification
+      // if (post.author.id !== account.id) {
+      //   await wsClient.connect(); // Đảm bảo kết nối WebSocket
+      //   wsClient.sendLike(postId, post.author.id, account.username);
+      // }
+
+      setIsLiked((prev) => !prev);
+    } catch (err) {
+      console.error("Lỗi khi gửi like:", err);
     }
   };
 
-  // Conditional rendering after hooks
-  if (!account) {
-    return <div>Đang tải...</div>;
-  }
-
-  if (!postId) {
-    return <div>Không tìm thấy ID bài viết</div>;
-  }
-
+  if (!account) return <div>Đang tải...</div>;
+  if (!postId) return <div>Không tìm thấy ID bài viết</div>;
   if (isLoading) {
     return (
       <div className="max-w-3xl mx-auto py-8 px-4">
@@ -160,10 +140,7 @@ const PostDetailPage = () => {
       </div>
     );
   }
-
-  if (isError || !post) {
-    return <div>Lỗi tải bài viết</div>;
-  }
+  if (isError || !post) return <div>Lỗi tải bài viết</div>;
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
@@ -171,6 +148,7 @@ const PostDetailPage = () => {
       <div className="text-sm text-muted-foreground mb-4">
         <AuthorHoverCard author={post.author!} createdAt={post.createdDate} />
       </div>
+
       {post.images && post.images.length > 0 && (
         <div className="mb-6">
           <img
@@ -192,10 +170,12 @@ const PostDetailPage = () => {
           )}
         </div>
       )}
-      <div className="prose dark:prose-invert max-w-none">
+
+      <div className="prose dark:prose-invert max-w-none mb-4">
         <p>{post.content}</p>
       </div>
-      <div className="flex items-center mt-2">
+
+      <div className="flex items-center gap-2 mt-2">
         <button
           onClick={handleToggleHeart}
           className="flex items-center gap-2 text-red-500 hover:text-red-700"
@@ -205,16 +185,6 @@ const PostDetailPage = () => {
           <span>{isLiked ? "Bỏ thích" : "Thích"}</span>
         </button>
       </div>
-      {account.id === post.author.id && (
-        <div className="mt-4">
-          <h3>Thông báo:</h3>
-          <ul>
-            {notifications.map((notif, index) => (
-              <li key={index}>{notif.message}</li>
-            ))}
-          </ul>
-        </div>
-      )}
     </div>
   );
 };

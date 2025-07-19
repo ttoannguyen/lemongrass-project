@@ -25,7 +25,7 @@ public class RecipeResponse {
   Difficulty difficulty;
   Integer servings;
   Float ratingAvg;
-  List<CategoryResponse> category;
+  List<CategoryResponse> categories;
   boolean isVerified;
   Integer shareCount;
   AccountShortResponse accountShortResponse;
