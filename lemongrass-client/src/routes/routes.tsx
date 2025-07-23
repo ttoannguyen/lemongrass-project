@@ -6,9 +6,7 @@ import Layout from "@/pages/Layout";
 import Login from "@/pages/Login";
 import MyPost from "@/pages/MyPost";
 import MyRecipe from "@/pages/MyRecipe";
-import Profile from "@/pages/Profile";
 import Register from "@/pages/Register";
-import CreateRecipe from "@/pages/CreateRecipe";
 
 import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminDashboard from "@/pages/admin/Dashboard";
@@ -29,47 +27,9 @@ import Tags from "@/pages/admin/Tags";
 import Moderation from "@/pages/admin/system/Moderation";
 import Setting from "@/pages/admin/system/Setting";
 import PostDetailPage from "@/components/Posts/PostDetailPage";
-
-// const routes: RouteObject[] = [
-//   {
-//     path: "/",
-//     element: <Layout />,
-//     children: [
-//       { index: true, element: <Home /> },
-//       { path: "profile/:accountId", element: wrapProtected(<Profile />) },
-//       { path: "my-post", element: wrapProtected(<MyPost />) },
-//       { path: "my-recipe", element: wrapProtected(<MyRecipe />) },
-//       { path: "recipe/:recipeId", element: <RecipeDetailPage /> },
-//       {
-//         path: "recipe/:recipeId/image/:imageId",
-//         element: <RecipeDetailPage />,
-//       },
-//     ],
-//   },
-//   {
-//     path: "create-recipe",
-//     element: wrapProtected(<CreateRecipe />),
-//   },
-//   {
-//     path: "/admin",
-//     element: wrapRole(<AdminLayout />, ["ADMIN", "STAFF"]),
-//     children: [
-//       { index: true, element: wrapRole(<AdminDashboard />, ["ADMIN"]) },
-//       { path: "users", element: wrapRole(<ManageUsers />, ["ADMIN"]) },
-//       { path: "posts", element: wrapRole(<ManagePosts />, ["ADMIN"]) },
-//       { path: "recipes", element: wrapRole(<ManageRecipes />, ["ADMIN"]) },
-//       // { path: "staff", element: wrapRole(<ManageStaff />, ["ADMIN", "STAFF"]) },
-//     ],
-//   },
-//   {
-//     path: "login",
-//     element: <Login />,
-//   },
-//   {
-//     path: "register",
-//     element: <Register />,
-//   },
-// ];
+import AccountLayout from "@/pages/account/AccountLayout";
+import CreateRecipeForm from "@/components/Recipes/CreateRecipe";
+import RecipeCategoryListPage from "@/components/Recipes/RecipeCategoryListPage";
 
 const routes: RouteObject[] = [
   {
@@ -77,7 +37,6 @@ const routes: RouteObject[] = [
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
-      { path: "profile/:accountId", element: wrapProtected(<Profile />) },
       { path: "my-post", element: wrapProtected(<MyPost />) },
       { path: "my-recipe", element: wrapProtected(<MyRecipe />) },
       { path: "post/:postId", element: <PostDetailPage /> },
@@ -86,11 +45,25 @@ const routes: RouteObject[] = [
         path: "recipe/:recipeId/image/:imageId",
         element: <RecipeDetailPage />,
       },
+      {
+        path: "recipe/category/:categoryId",
+        element: <RecipeCategoryListPage />,
+      },
+      {
+        path: "account/:accountId", // Xem hồ sơ người khác
+        element: wrapProtected(<AccountLayout />),
+        children: [
+          { index: true, element: <MyRecipe /> },
+          { path: "post", element: <MyPost /> },
+          // { path: "recipe", element: < /> },
+        ],
+      },
+      {
+        path: "account",
+        element: wrapProtected(<AccountLayout />),
+        children: [{ path: "new-recipe", element: <CreateRecipeForm /> }],
+      },
     ],
-  },
-  {
-    path: "create-recipe",
-    element: wrapProtected(<CreateRecipe />),
   },
   // --- ADMIN Routes ---
   {

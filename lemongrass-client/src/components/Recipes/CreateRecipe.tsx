@@ -2,22 +2,29 @@ import useCreateRecipe from "@/hooks/useCreateRecipe";
 import type { Difficulty } from "@/types/enums/difficulty.enum";
 import { useRef, useState } from "react";
 import type { ImageUpload } from "@/types/image/ImageUpload";
-import { Progress } from "@/components/ui/progress";
 import { useSubmitRecipe } from "@/hooks/queries/useSubmitRecipe";
 import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import type { CategoryResponse } from "@/types/category/CategoryResponse";
 import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import AllowedCategoriesSelector from "../dropdown/AllowedCategoriesSelector";
+import type { Account } from "@/types";
 
-type Props = {
+// type Props = {
+//   categories: CategoryResponse[];
+//   templates: IngredientResponse[];
+// };
+
+type OutletContextType = {
+  isMe: boolean;
+  account: Account; // hoặc kiểu bạn định nghĩa
   categories: CategoryResponse[];
   templates: IngredientResponse[];
 };
 
-const CreateRecipeForm = ({ categories, templates }: Props) => {
+const CreateRecipeForm = () => {
   // console.log(categories);
-
+  const { categories, templates } = useOutletContext<OutletContextType>();
   const {
     title,
     setTitle,
@@ -56,7 +63,7 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
   const [tagInput, setTagInput] = useState("");
   const [tagColor, setTagColor] = useState("#FF6666");
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [progress, setProgress] = useState(0);
+  // const [progress, setProgress] = useState(0);
   const navigate = useNavigate();
 
   const handleRecipeImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,7 +108,7 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setProgress(30);
+    // setProgress(30);
     console.log("create recipe");
 
     const payload: RecipeCreateRequest = {
@@ -120,33 +127,29 @@ const CreateRecipeForm = ({ categories, templates }: Props) => {
     try {
       const recipe = await submitRecipeMutation(payload);
       console.log("Recipe created:", recipe);
-      setProgress(60);
-      setTimeout(() => setProgress(100), 500);
+      // setProgress(60);
+      // setTimeout(() => setProgress(100), 500);
       navigate(`/recipe/${recipe.id}`);
     } catch (error) {
-      console.log(
-        
-          error 
-          
-      );
-      setProgress(0);
+      console.log(error);
+      // setProgress(0);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="p-6 max-w-3xl mx-auto space-y-6">
+    <form onSubmit={handleSubmit} className="mx-40 space-y-6">
       <h1 className="text-2xl font-bold">Tạo Công Thức</h1>
-      {progress > 0 && (
+      {/* {progress > 0 && (
         <div className="fixed top-[-1px] left-0 right-0 z-50">
           <Progress
             value={progress}
             className="relative w-full h-1 bg-yellow-400 "
           />
         </div>
-      )}
+      )} */}
       {/* Thông tin cơ bản */}
       <div>
-        <label htmlFor="title">Tên món ăn ;;;</label>
+        <label htmlFor="title">Tên món ăn</label>
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}

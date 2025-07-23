@@ -1,6 +1,5 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import AvataProfile from "../Profile/AvataProfile";
 import ReusableDropdown from "../ReusableDropdown";
 import { authService } from "@/services/auth.service";
@@ -10,7 +9,6 @@ import { useQueryClient } from "@tanstack/react-query";
 const AvatarNav = () => {
   const { account, logout: clearContext } = useAuth();
   const navigate = useNavigate();
-  const username = account?.username || "User";
   const isAdmin = isAccountHasRole(account, "ADMIN");
   const isStaff = isAccountHasRole(account, "STAFF");
   const queryClient = useQueryClient();
@@ -31,7 +29,7 @@ const AvatarNav = () => {
   const items = [
     {
       label: "Profile",
-      onClick: () => navigate(`/profile/${account?.id}`),
+      onClick: () => navigate(`/account/${account?.id}`),
     },
     {
       label: "My Recipe",
@@ -59,29 +57,19 @@ const AvatarNav = () => {
       label: "Logout",
       onClick: handleLogout,
       separatorBefore: true,
-      className: "focus:bg-red-500/30 focus:text-red-600",
+      className: "focus:bg-tertiary/30 focus:text-tertiary",
     },
   ];
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <div className="cursor-pointer">
-          <ReusableDropdown
-            header={username}
-            trigger={
-              <div className="flex items-center justify-center">
-                <AvataProfile account={account ?? undefined} />
-              </div>
-            }
-            items={items}
-          />
+    <ReusableDropdown
+      trigger={
+        <div className="flex items-center justify-center">
+          <AvataProfile account={account ?? undefined} />
         </div>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>{username}</p>
-      </TooltipContent>
-    </Tooltip>
+      }
+      items={items}
+    />
   );
 };
 

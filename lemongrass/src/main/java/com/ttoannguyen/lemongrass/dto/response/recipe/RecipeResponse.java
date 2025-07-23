@@ -22,11 +22,13 @@ public class RecipeResponse {
   String id;
   String title;
   Integer cookingTime;
+  String description;
   Difficulty difficulty;
   Integer servings;
   Float ratingAvg;
   List<CategoryResponse> categories;
   boolean isVerified;
+  boolean isDeleted;
   Integer shareCount;
   AccountShortResponse accountShortResponse;
   List<TagResponse> tags;

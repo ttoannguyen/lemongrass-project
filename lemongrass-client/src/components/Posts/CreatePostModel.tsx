@@ -14,9 +14,9 @@ type Props = {
 export const CreatePostModal = ({ onClose }: Props) => {
   return (
     <Dialog open onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-xl max-h-[90vh] overflow-y-auto bg-background">
         <DialogHeader>
-          <DialogTitle>Tạo bài viết mới</DialogTitle>
+          <DialogTitle className="text-headline">Tạo bài viết mới</DialogTitle>
         </DialogHeader>
         <PostForm onSuccess={onClose} />
         <DialogClose />

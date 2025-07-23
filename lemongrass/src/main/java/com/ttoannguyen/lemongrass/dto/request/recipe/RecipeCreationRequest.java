@@ -21,7 +21,9 @@ public class RecipeCreationRequest {
   String title;
   Integer cookingTime;
   Difficulty difficulty;
+  String description;
   Integer servings;
+  Boolean isDeleted;
   List<String> categoryIds;
   List<TagCreationRequest> tags;
   List<IngredientCreationRequest> ingredients;

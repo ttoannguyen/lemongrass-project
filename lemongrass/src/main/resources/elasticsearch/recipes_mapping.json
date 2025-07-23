@@ -1,0 +1,76 @@
+{
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "text",
+        "analyzer": "icu_analyzer"
+      },
+      "cookingTime": {
+        "type": "integer"
+      },
+      "difficulty": {
+        "type": "keyword"
+      },
+      "description": {
+        "type": "text",
+        "analyzer": "icu_analyzer"
+      },
+      "servings": {
+        "type": "integer"
+      },
+      "authorId": {
+        "type": "keyword"
+      },
+      "authorName": {
+        "type": "text",
+        "analyzer": "icu_analyzer"
+      },
+      "categoryIds": {
+        "type": "keyword"
+      },
+      "tags": {
+        "type": "nested",
+        "properties": {
+          "name": {
+            "type": "keyword"
+          }
+        }
+      },
+      "ingredients": {
+        "type": "nested",
+        "properties": {
+          "name": {
+            "type": "text",
+            "analyzer": "icu_analyzer"
+          },
+          "quantity": {
+            "type": "text"
+          }
+        }
+      },
+      "instructions": {
+        "type": "nested",
+        "properties": {
+          "step": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "text",
+            "analyzer": "icu_analyzer"
+          }
+        }
+      },
+      "images": {
+        "type": "nested",
+        "properties": {
+          "url": {
+            "type": "keyword"
+          }
+        }
+      },
+      "isDeleted": {
+        "type": "boolean"
+      }
+    }
+  }
+}

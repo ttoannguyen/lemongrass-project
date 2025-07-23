@@ -65,7 +65,7 @@ public class NotificationServiceImpl implements NotificationService {
             .sender(accountMapper.toAccountResponse(sender))
             .receiver(accountMapper.toAccountResponse(receiver))
             .targetId(post.getId())
-            .message("Hello")
+            .message(sender.getUsername() + "Đã thích bài viết của bạn")
             .targetType("POST")
             .build();
 

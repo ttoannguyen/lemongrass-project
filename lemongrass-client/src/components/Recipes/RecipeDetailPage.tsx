@@ -22,19 +22,6 @@ const RecipeDetailPage = () => {
   if (isError || !recipe) return <div>Lỗi tải công thức</div>;
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
-      {/* {recipe.images && recipe.images.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-0.5 mb-6">
-          {recipe.images.map((image, index) => (
-            <img
-              key={index}
-              src={image.url}
-              alt={`Recipe image ${index + 1}`}
-              className="w-full h-60 object-center"
-            />
-          ))}
-        </div>
-      )} */}
-
       {recipe.images && recipe.images.length > 0 && (
         <div className="mb-6">
           <img

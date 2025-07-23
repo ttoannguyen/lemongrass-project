@@ -177,16 +177,18 @@ const ImageUploadPreview = ({
 
   return (
     <div className="space-y-2">
-      <Label htmlFor="image">Thêm ảnh</Label>
+      <Label htmlFor="image" className="text-headline">
+        Thêm ảnh
+      </Label>
 
       <div
         ref={dropRef}
         onDrop={handleDrop}
         onDragOver={handleDragOver}
         onClick={() => document.getElementById("image")?.click()}
-        className="border border-dashed border-gray-400 rounded-md p-4 text-center cursor-pointer hover:bg-gray-50"
+        className="border border-dashed border-stroke rounded-md p-4 text-center cursor-pointer hover:bg-gray-50"
       >
-        <p className="text-sm text-gray-500 mb-2">
+        <p className="text-sm text-paragraph mb-2">
           Kéo và thả ảnh vào đây hoặc nhấn để chọn ảnh
         </p>
         <Input
@@ -206,12 +208,12 @@ const ImageUploadPreview = ({
               <img
                 src={url}
                 alt={`preview-${index}`}
-                className="w-full h-32 object-cover rounded-md border"
+                className="w-full h-32 object-cover rounded-md border border-stroke"
               />
               <button
                 type="button"
                 onClick={() => handleRemove(index)}
-                className="absolute top-1 right-1 bg-black bg-opacity-50 text-white rounded-full p-1 group-hover:scale-105 transition"
+                className="absolute cursor-pointer top-1 right-1 bg-headline bg-opacity-50 text-main rounded-full p-1 group-hover:scale-105 transition"
               >
                 <X size={16} />
               </button>

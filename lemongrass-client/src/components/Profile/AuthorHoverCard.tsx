@@ -39,7 +39,7 @@ const AuthorHoverCard = ({ author, createdAt }: AuthorProps) => {
             className="w-8 h-8 rounded-full object-cover"
           />
           <Link
-            to={`/profile/${author.id}`}
+            to={`/account/${author.id}`}
             className="flex flex-col cursor-pointer "
           >
             <span className="font-medium text-blue-600 hover:underline">
@@ -68,7 +68,7 @@ const AuthorHoverCard = ({ author, createdAt }: AuthorProps) => {
           />
           <div>
             <Link
-              to={`/profile/${author.id}`}
+              to={`/account/${author.id}`}
               className="text-base font-semibold hover:underline"
             >
               {author.firstName + " " + author.lastName}

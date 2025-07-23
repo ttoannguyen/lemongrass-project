@@ -26,7 +26,6 @@ public class Category extends AbstractAuditingEntity {
   private String name;
 
   @Enumerated(EnumType.STRING)
-  @Column(unique = true)
   private CategoryType type;
 
   @ManyToMany(mappedBy = "categories")

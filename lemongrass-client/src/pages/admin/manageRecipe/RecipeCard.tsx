@@ -18,30 +18,9 @@ import { CircleCheck, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
 
-// type Recipe = {
-//   id: string;
-//   title: string;
-//   cookingTime: number;
-//   difficulty: string;
-//   servings: number;
-//   ratingAvg: number | null;
-//   verified: boolean;
-//   shareCount: number;
-//   tags: { name: string; color: string }[];
-//   images: { url: string; displayOrder: number }[];
-//   accountShortResponse: {
-//     id: string;
-//     username: string;
-//     firstName: string;
-//     lastName: string;
-//     profilePictureUrl: string | null;
-//   };
-// };
-
 const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
   const imageUrl = recipe.images[0]?.url;
   const navigate = useNavigate();
-
   const handleCardClick = () => {
     navigate(`/recipe/${recipe.id}`);
   };
@@ -58,8 +37,6 @@ const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
           <div className="flex flex-col justify-start flex-1 gap-1">
             <Sheet>
               <SheetTrigger asChild>
-                {/* <Button variant="ghost" size="icon"> */}
-                {/* <Eye className="size-4" /> */}
                 <h2 className="font-semibold text-lg cursor-pointer hover:underline">
                   {recipe.title}
                 </h2>

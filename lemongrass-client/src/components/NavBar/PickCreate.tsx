@@ -12,26 +12,31 @@ import { useNavigate } from "react-router-dom";
 
 export function PickCreate() {
   const [isPostModalOpen, setPostModalOpen] = useState(false);
-  // const [isRecipeModalOpen, setRecipeModalOpen] = useState(false);
-  // console.log(isRecipeModalOpen);
+
   const navegate = useNavigate();
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <div className="flex md:w-20 pl-1 flex-row items-center justify-center border rounded-sm cursor-pointer">
+          <div className="flex text-headline hover:bg-highlight md:w-20 pl-1 flex-row items-center justify-center border border-stroke rounded-sm cursor-pointer">
             <TypographyP className="text-xs">Create</TypographyP>
             <ChevronDown className="ml-1 h-4 w-4" />
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent
           align="end"
-          className="w-32 bg-white dark:bg-white"
+          className="w-32  text-headline bg-white dark:bg-white"
         >
-          <DropdownMenuItem onClick={() => navegate("create-recipe")}>
+          <DropdownMenuItem
+            className="hover:bg-highlight"
+            onClick={() => navegate("/account/new-recipe")}
+          >
             Create Recipe
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setPostModalOpen(true)}>
+          <DropdownMenuItem
+            className="hover:bg-highlight p-0 m-0"
+            onClick={() => setPostModalOpen(true)}
+          >
             Create Post
           </DropdownMenuItem>
         </DropdownMenuContent>

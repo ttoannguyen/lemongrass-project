@@ -33,6 +33,7 @@ public interface RecipeMapper {
   @Mapping(source = "tags", target = "tags")
   @Mapping(source = "images", target = "images")
   @Mapping(source = "categories", target = "categories")
+  @Mapping(source = "isDeleted", target = "isDeleted")
   RecipeResponse toRecipeResponse(Recipe recipe);
 
   @Mapping(source = "recipe", target = ".")

@@ -78,30 +78,6 @@ export default function RecipeCategoryPage() {
     setEditingRows((prev) => ({ ...prev, [id]: true }));
   };
 
-  // const handleSaveRow = (id: string) => {
-  //   const edited = editedData[id];
-  //   const original = categories.find((c) => c.id === id);
-  //   if (!original || !edited) return;
-
-  //   const name = edited.name?.trim() ?? original.name;
-  //   if (!name) return toast.error("Tên không được để trống");
-
-  //   updateCategory.mutate(
-  //     { id, name },
-  //     {
-  //       onSuccess: () => {
-  //         toast.success("Đã cập nhật danh mục");
-  //         setEditingRows((prev) => ({ ...prev, [id]: false }));
-  //         setEditedData((prev) => {
-  //           const newData = { ...prev };
-  //           delete newData[id];
-  //           return newData;
-  //         });
-  //       },
-  //       onError: () => toast.error("Cập nhật thất bại"),
-  //     }
-  //   );
-  // };
 
   const handleSaveRow = (id: string) => {
     const edited = editedData[id];

@@ -2,9 +2,9 @@ package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.RecipeController;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
+import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
-import com.ttoannguyen.lemongrass.entity.Recipe;
 import com.ttoannguyen.lemongrass.service.RecipeService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +25,23 @@ public class RecipeControllerImpl implements RecipeController {
     final String username = SecurityContextHolder.getContext().getAuthentication().getName();
     return ApiResponse.<RecipeResponse>builder()
         .result(recipeService.create(request, username))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<RecipeResponse> update(RecipeUpdateRequest request) {
+    final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<RecipeResponse>builder()
+        .result(recipeService.update(request, username))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<String> delete(String id) {
+    final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<String>builder()
+        .result(recipeService.delete(id, username))
+        .message("success")
         .build();
   }
 

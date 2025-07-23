@@ -32,6 +32,8 @@ public class Recipe extends AbstractAuditingEntity {
   @Column(nullable = false, unique = true)
   String title;
 
+  String description;
+
   Integer cookingTime;
 
   @Enumerated(EnumType.STRING)
@@ -54,21 +56,24 @@ public class Recipe extends AbstractAuditingEntity {
   boolean isVerified;
 
   @Column(nullable = false)
+  Boolean isDeleted = false;
+
+  @Column(nullable = false)
   Integer shareCount;
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-  List<Instruction> instructions;
+  List<Instruction> instructions = new ArrayList<>();
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-  List<Ingredient> ingredients;
+  List<Ingredient> ingredients = new ArrayList<>();
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-  List<Image> images;
+  List<Image> images = new ArrayList<>();
 
   @ManyToMany
   @JoinTable(
       name = "recipe_categories",
       joinColumns = @JoinColumn(name = "recipe_id"),
       inverseJoinColumns = @JoinColumn(name = "category_id"))
-  private List<Category> categories;
+  private List<Category> categories = new ArrayList<>();
 }

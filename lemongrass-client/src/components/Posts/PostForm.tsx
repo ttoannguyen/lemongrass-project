@@ -68,11 +68,10 @@ const PostForm = ({ onSuccess }: Props) => {
       />
       <Textarea
         value={content}
-        className="max-h-[40vh]"
+        className="min-h-[30vh] max-h-[30vh]"
         onChange={(e) => setContent(e.target.value)}
         placeholder="Bạn đang nghĩ gì?"
       />
-      {/* <ImageUploadPreview value={images} onChange={addPostImage} /> */}
       <ImageUploadPreview
         value={images}
         addImage={addPostImage}

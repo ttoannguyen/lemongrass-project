@@ -17,5 +17,12 @@ public interface RecipeRepository extends JpaRepository<Recipe, String> {
 
   boolean existsByCategories_Id(String categoryId);
 
+  Optional<Recipe> findByIdAndIsDeletedFalse(String id);
+
+  Optional<Recipe> findByTitleAndIsDeletedFalse(String title);
+
+  List<Recipe> findAllByIsDeletedFalse();
+
+  List<Recipe> findAllByAccountIdAndIsDeletedFalse(String accountId);
   //  boolean existsByTemplate_Id(String templateId);
 }

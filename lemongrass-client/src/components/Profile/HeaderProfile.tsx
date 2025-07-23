@@ -9,156 +9,96 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { Badge } from "../ui/badge";
+import { Link, useLocation, useParams } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
 
 type Props = {
   account: Account;
   currentUser?: Account | null;
 };
 
-const HeaderProfile = ({ account, currentUser }: Props) => {
+const HeaderProfile = ({ account }: Props) => {
+  const { isLoggedIn, account: currentAccount } = useAuth();
+  const { pathname } = useLocation();
+  const { accountId: rawAccountId } = useParams<{ accountId?: string }>();
+
+  // const accountId = rawAccountId ?? currentAccount?.id ?? ""; // fallback an toàn
+
+  const isMe =
+    (!rawAccountId && !!currentAccount) ||
+    rawAccountId === currentAccount?.id ||
+    (pathname.includes("/new-recipe") && isLoggedIn);
   return (
-    <div className="bg-background relative">
+    <div className="bg-background ">
       {/* Cover Image */}
       <CoverImage
-        ratio={10 / 3}
+        ratio={6 / 1}
         src="https://res.cloudinary.com/didxuklgy/image/upload/v1750404835/2461928_125_r9gdcb.svg"
       />
 
-      {/* Avatar */}
-      <div className="relative flex w-full">
-        <div className="absolute bottom-0 md:right-0 left-4 md:left-0">
-          <AvataProfile
-            account={account}
-            className=" h-20 w-20 md:h-40 md:w-40 rounded-full border-4 border-background bg-background shadow-md mx-auto"
-          />
+      <div className=" bg-white">
+        <div className="px-30 flex bottom-0 md:right-0 left-4 md:left-0">
+          <div className="relative h-30">
+            <AvataProfile
+              account={account}
+              className="absolute bottom-16  h-20 m-2 w-20 md:h-40 md:w-40 rounded-full border-4 border-background bg-background shadow-md"
+            />
+          </div>
+          <h1 className="text-xl ml-1 mt-2 md:text-3xl font-bold ">
+            {`${account?.firstName} ${account?.lastName}`}
+          </h1>
+
+          <div className="flex md:mt-4 ml-auto md:h-16 z-10">
+            {isMe == false ? (
+              <>
+                <Button variant={"main"}>Follow</Button>
+                <DropdownMenu modal={false}>
+                  <DropdownMenuTrigger asChild>
+                    <EllipsisVertical
+                      height={"36px"}
+                      className="text-secondary cursor-pointer"
+                    />
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent
+                    align="end"
+                    className="bg-white border-none shadow h-10 md:w-40"
+                  >
+                    <DropdownMenuItem className="text-text  focus:bg-background">
+                      Report Abuse
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </>
+            ) : (
+              <Button variant={"secondary"}>Edit Profile</Button>
+            )}
+          </div>
         </div>
-        <div className="flex md:mt-4 ml-auto md:h-16 z-10">
-          {account.id !== currentUser?.id ? (
-            <>
-              <Button variant={"main"}>Follow</Button>
-              <DropdownMenu modal={false}>
-                <DropdownMenuTrigger asChild>
-                  <EllipsisVertical
-                    height={"36px"}
-                    className="text-secondary cursor-pointer"
-                  />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="end"
-                  className="bg-white border-none shadow h-10 md:w-40"
-                >
-                  <DropdownMenuItem className="text-text  focus:bg-background">
-                    Report Abuse
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </>
-          ) : (
-            <Button variant={"secondary"}>Edit Profile</Button>
+        <div className="flex gap-2 mx-40 border-b">
+          <Link
+            className="px-4 py-2 hover:bg-[#e5f6f0]"
+            to={`/account/${account.id}`}
+          >
+            Recipe
+          </Link>
+          <Link
+            className="px-4 py-2 hover:bg-[#e5f6f0]"
+            to={`/account/${account.id}/post`}
+          >
+            Post
+          </Link>
+          {isMe && (
+            <Link
+              className="px-4 py-2 hover:bg-[#e5f6f0]"
+              to={"/account/new-recipe"}
+            >
+              Create recipe
+            </Link>
           )}
         </div>
       </div>
-      <div className="flex flex-col mt-4 items-center justify-center">
-        <h1 className="text-xl md:text-3xl font-bold ">
-          {`${account?.firstName} ${account?.lastName}`}
-        </h1>
-        {account?.bio ? (
-          <h3>{account.bio}</h3>
-        ) : (
-          <div className="mt-4">
-            <Badge
-              variant={"outline"}
-              className="cursor-pointer hover:text-secondary"
-            >
-              Thêm bio
-            </Badge>
-          </div>
-        )}
-
-        <p>{account?.createdDate}</p>
-        <p>{account?.createdDate}</p>
-        <p>{account?.createdDate}</p>
-        <p>{account?.createdDate}</p>
-      </div>
-
-      {/* Spacer */}
-      <div className="h-20 md:h-28" />
     </div>
   );
 };
-
-// import type { Account } from "@/types";
-// import AvataProfile from "./AvataProfile";
-// import CoverImage from "./CoverImage";
-// import { Button } from "../ui/button";
-// import { EllipsisVertical } from "lucide-react";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "../ui/dropdown-menu";
-
-// type Props = {
-//   account?: Account | null;
-// };
-
-// const HeaderProfile = ({ account }: Props) => {
-//   return (
-//     <div className="bg-background">
-//       {/* Cover Image */}
-//       <CoverImage
-//         ratio={10 / 3}
-//         src="https://res.cloudinary.com/didxuklgy/image/upload/v1750404835/2461928_125_r9gdcb.svg"
-//       />
-
-//       <div className="md:flex z-1 px-4">
-//         {/* Avatar */}
-//         <div className="relative md:w-40 -top-10 md:-top-20 ml-0 md:mx-auto">
-//           <AvataProfile className="h-30 w-30 md:h-40 md:w-40 rounded-full border-4 border-background bg-background shadow-md" />
-//         </div>
-
-//         {/* Info and Action */}
-//         <div className="flex flex-col gap-2 mt-2 w-full">
-//           {/* Actions: Follow + Report */}
-//           <div className="flex justify-between md:justify-end">
-//             <Button variant="main">Follow</Button>
-//             <DropdownMenu>
-//               <DropdownMenuTrigger asChild>
-//                 <EllipsisVertical
-//                   height="36px"
-//                   className="text-secondary cursor-pointer ml-2"
-//                 />
-//               </DropdownMenuTrigger>
-//               <DropdownMenuContent
-//                 align="end"
-//                 className="bg-white border-none shadow h-10 md:w-40"
-//               >
-//                 <DropdownMenuItem className="focus:bg-background">
-//                   Report Abuse
-//                 </DropdownMenuItem>
-//               </DropdownMenuContent>
-//             </DropdownMenu>
-//           </div>
-
-//           {/* Info */}
-//           <div className="mt-2">
-//             <h1 className="text-xl md:text-3xl font-bold">
-//               {`${account?.firstName} ${account?.lastName}`}
-//             </h1>
-//             <p>{account?.createdDate}</p>
-//             <p>{account?.createdDate}</p>
-//             <p>{account?.createdDate}</p>
-//             <p>{account?.createdDate}</p>
-//           </div>
-//         </div>
-//       </div>
-
-//       {/* Spacer */}
-//       <div className="h-20 md:h-28" />
-//     </div>
-//   );
-// };
 
 export default HeaderProfile;
