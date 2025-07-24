@@ -9,6 +9,7 @@ export interface RecipeResponse {
   servings: number;
   ratingAvg: number;
   createdBy: string;
+  description: string;
   lastModifiedBy: string;
   createdDate: string;
   lastModifiedDate: string;

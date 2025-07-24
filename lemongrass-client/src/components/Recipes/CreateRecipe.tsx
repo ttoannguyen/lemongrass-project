@@ -10,14 +10,9 @@ import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import AllowedCategoriesSelector from "../dropdown/AllowedCategoriesSelector";
 import type { Account } from "@/types";
 
-// type Props = {
-//   categories: CategoryResponse[];
-//   templates: IngredientResponse[];
-// };
-
 type OutletContextType = {
   isMe: boolean;
-  account: Account; // hoặc kiểu bạn định nghĩa
+  account: Account;
   categories: CategoryResponse[];
   templates: IngredientResponse[];
 };

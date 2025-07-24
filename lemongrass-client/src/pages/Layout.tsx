@@ -32,7 +32,7 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className="bg-background min-h-screen h-400">
+    <div className="bg-white min-h-screen h-400">
       <NavBar />
 
       <div
@@ -43,7 +43,7 @@ const Layout = () => {
         <SecondNavBar />
       </div>
 
-      <div className="pt-9 w-250 mx-auto px-4">
+      <div className="pt-9  mx-auto">
         <Outlet />
       </div>
     </div>

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -9,21 +7,34 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Link } from "react-router-dom";
-import { useTypeCategory } from "@/hooks/sort/useTypeCategory";
 import { useCategoryGroupedByType } from "@/hooks/sort/useCategoryGroupedByType";
 import { cn } from "@/lib/utils";
 import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
 
 const SecondNavBar = () => {
-  const categoriesType = useTypeCategory();
   const { grouped } = useCategoryGroupedByType();
   const { data: ingredients } = useIngredientTemplates();
-  console.log("grouped", grouped);
-  console.log(categoriesType);
+
   return (
     <div className="px-48 w-full bg-headline shadow z-40 transition-all duration-300">
       <NavigationMenu viewport={false}>
         <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              className="group inline-flex h-9 w-max items-center justify-center  hover:bg-highlight text-main hover:text-headline px-4 py-2 text-sm font-medium"
+              asChild
+            >
+              <Link to="/recipe">Recipes</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              className="group inline-flex h-9 w-max items-center justify-center  hover:bg-highlight text-main hover:text-headline px-4 py-2 text-sm font-medium"
+              asChild
+            >
+              <Link to="/quick-and-easy">Quick & Easy</Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
           {Object.entries(grouped).map(([type, categories]) => (
             <NavigationMenuItem key={type}>
               <NavigationMenuTrigger className="capitalize text-main data-[state=open]:bg-highlight data-[state=open]:text-headline">
@@ -35,7 +46,7 @@ const SecondNavBar = () => {
                     <li key={cat.id}>
                       <NavigationMenuLink asChild>
                         <Link
-                          to={`/recipes?category=${cat.id}`}
+                          to={`/recipe/category/${cat.id}`}
                           className="block px-2 py-1 text-sm text-headline hover:underline hover:font-bold"
                         >
                           {cat.name}
@@ -75,22 +86,15 @@ const SecondNavBar = () => {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem>
+          {/* <NavigationMenuItem>
             <NavigationMenuLink
               className="group inline-flex h-9 w-max items-center justify-center  hover:bg-highlight text-main hover:text-headline px-4 py-2 text-sm font-medium"
               asChild
             >
               <Link to="/docs">Dinner</Link>
             </NavigationMenuLink>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink
-              className="group inline-flex h-9 w-max items-center justify-center  hover:bg-highlight text-main hover:text-headline px-4 py-2 text-sm font-medium"
-              asChild
-            >
-              <Link to="/docs">Quick and Easy</Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
+          
         </NavigationMenuList>
       </NavigationMenu>
     </div>

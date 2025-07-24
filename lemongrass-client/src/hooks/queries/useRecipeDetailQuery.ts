@@ -7,6 +7,7 @@ export const useRecipeDetail = (id: string) => {
   return useQuery<RecipeResponse>({
     queryKey: ["recipe", id],
     queryFn: () => recipeService.getRecipeById(id),
+    enabled: !!id,
     staleTime: 300_000,
   });
 };
