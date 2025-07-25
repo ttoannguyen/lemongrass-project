@@ -1,5 +1,5 @@
-import MealTypeSelector from "@/components/Recipes/MealTypeSelector";
-import RecipeItem from "@/components/Recipes/RecipeItem";
+import MealTypeSelector from "@/components/recipes/MealTypeSelector";
+import RecipeItem from "@/components/recipes/RecipeItem";
 import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 
 const RecipePage = () => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext"; // thêm dòng này
-import { CreatePostModal } from "./CreatePostModel";
+import { CreatePostModal } from "../community/CreatePostModel";
 import { Input } from "../ui/input";
-import AvataProfile from "../Profile/AvataProfile";
+import AvataProfile from "../profile/AvataProfile";
 
 export const MiniPostComposer = () => {
   const [open, setOpen] = useState(false);

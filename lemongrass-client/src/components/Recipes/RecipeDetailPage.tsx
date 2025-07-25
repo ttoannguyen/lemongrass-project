@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useRecipeDetail } from "@/hooks/queries/useRecipeDetailQuery";
 import { useRef } from "react";
-import AuthorHoverCard from "../Profile/AuthorHoverCard";
+import AuthorHoverCard from "../profile/AuthorHoverCard";
 import { Clock, Flame, Users, ChevronDown } from "lucide-react";
 import { AspectRatio } from "../ui/aspect-ratio";
 

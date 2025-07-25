@@ -1,6 +1,6 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import AvataProfile from "../Profile/AvataProfile";
+import AvataProfile from "../profile/AvataProfile";
 import ReusableDropdown from "../ReusableDropdown";
 import { authService } from "@/services/auth.service";
 import { isAccountHasRole } from "@/lib/utils";

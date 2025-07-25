@@ -7,7 +7,7 @@ import {
 import { ChevronDown } from "lucide-react";
 import { TypographyP } from "../ui/TypographyP";
 import { useState } from "react";
-import { CreatePostModal } from "../Posts/CreatePostModel";
+import { CreatePostModal } from "../community/CreatePostModel";
 import { useNavigate } from "react-router-dom";
 
 export function PickCreate() {

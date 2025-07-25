@@ -1,4 +1,4 @@
-import RecipeBreadcrumbBar from "@/components/Breadcrum/RecipeBreadcrumbBar";
+import RecipeBreadcrumbBar from "@/components/breadcrum/RecipeBreadcrumbBar";
 import { Outlet, useLocation } from "react-router-dom";
 
 const RecipeLayout = () => {

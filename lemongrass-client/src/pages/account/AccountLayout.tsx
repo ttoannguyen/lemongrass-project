@@ -2,7 +2,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom";
 
 import { useAccountQuery } from "@/hooks/queries/useAccountQuery";
-import HeaderProfile from "@/components/Profile/HeaderProfile";
+import HeaderProfile from "@/components/profile/HeaderProfile";
 import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
 import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
 

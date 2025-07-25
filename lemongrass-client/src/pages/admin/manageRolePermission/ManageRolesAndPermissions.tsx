@@ -6,12 +6,6 @@ import PermissionTab from "@/components/admin/permission/PermissionTab";
 const ManageRolesAndPermissions = () => {
   return (
     <div className="flex flex-col h-full text-sm">
-      {/* Header */}
-      <div className="px-4 pt-4 pb-2 border-b">
-        <h1 className="text-xl font-semibold">Vai trò & Quyền hạn</h1>
-      </div>
-
-      {/* Tabs */}
       <Tabs
         defaultValue="roles"
         className="flex-1 flex flex-col overflow-hidden gap-0"

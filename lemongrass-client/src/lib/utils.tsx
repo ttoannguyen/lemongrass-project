@@ -1,6 +1,6 @@
 // utils/routeWrapper.ts
-import ProtectedRoute from "@/components/ProtectedRoute/ProtectedRoute";
-import RoleRoute from "@/components/ProtectedRoute/RoleRoute";
+import ProtectedRoute from "@/components/protectedRoute/ProtectedRoute";
+import RoleRoute from "@/components/protectedRoute/RoleRoute";
 import type { Account } from "@/types";
 import type { ReactNode } from "react";
 

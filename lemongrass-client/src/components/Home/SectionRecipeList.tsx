@@ -8,7 +8,7 @@ import {
   CarouselPrevious,
 } from "../ui/carousel";
 
-import RecipeItem from "../Recipes/RecipeItem";
+import RecipeItem from "../recipes/RecipeItem";
 
 interface Props {
   title: string;

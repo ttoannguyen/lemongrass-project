@@ -1,5 +1,5 @@
 import FeedImageTemplate from "@/components/imageTempale/FeedImageTemplate";
-import AuthorHoverCard from "@/components/Profile/AuthorHoverCard";
+import AuthorHoverCard from "@/components/profile/AuthorHoverCard";
 import type { PostFeedItem } from "@/types/feed/PostFeedItem";
 import { Link } from "react-router-dom";
 

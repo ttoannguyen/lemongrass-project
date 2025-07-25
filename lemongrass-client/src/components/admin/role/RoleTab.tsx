@@ -4,7 +4,12 @@ import { Button } from "@/components/ui/button";
 import RoleForm from "./RoleForm";
 import { useRoleQuery } from "@/hooks/queries/useRoleQuery";
 import type { Role } from "@/types";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const RoleList = () => {
   const { data: roles = [], isLoading, isError } = useRoleQuery();
@@ -20,10 +25,6 @@ const RoleList = () => {
     setIsModalOpen(true);
   };
 
-  const handleSaveRole = () => {
-    setIsModalOpen(false);
-  };
-
   if (isLoading) return <p className="p-4">Đang tải vai trò...</p>;
   if (isError)
     return <p className="text-red-500">Không thể tải danh sách vai trò.</p>;
@@ -31,12 +32,11 @@ const RoleList = () => {
   return (
     <div className="flex flex-col h-full overflow-hidden">
       <div className="flex flex-1 overflow-hidden border-y divide-x">
-        {/* Sidebar - Role List */}
         <div className="w-64 bg-gray-50 overflow-y-auto text-sm">
           <div className="p-3 border-b flex justify-between items-center">
             <span className="font-semibold">Vai trò</span>
             <Button size="sm" onClick={handleCreateNew}>
-              +
+              <p className="text-lg py-2">+</p>
             </Button>
           </div>
           {roles.map((role) => (
@@ -117,7 +117,27 @@ const RoleList = () => {
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
         <DialogContent className="max-w-xl w-full">
-          <RoleForm role={selectedRole} onSuccess={handleSaveRole} />
+          <DialogTitle>
+            {selectedRole ? "Sửa vai trò" : "Tạo vai trò mới"}
+          </DialogTitle>
+          <DialogDescription>
+            {selectedRole
+              ? "Chỉnh sửa thông tin và quyền hạn cho vai trò đã chọn."
+              : "Tạo một vai trò mới và chỉ định quyền hạn cụ thể."}
+          </DialogDescription>
+
+          <RoleForm
+            role={
+              selectedRole
+                ? {
+                    name: selectedRole.name,
+                    description: selectedRole.description,
+                    permissions: selectedRole.permissions.map((p) => p.name),
+                  }
+                : null
+            }
+            onClose={() => setIsModalOpen(false)}
+          />
         </DialogContent>
       </Dialog>
     </div>

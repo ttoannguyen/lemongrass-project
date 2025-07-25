@@ -7,6 +7,5 @@ export const useRoleQuery = () => {
     queryKey: ["roles"],
     queryFn: roleService.getRoles,
     staleTime: 5 * 60 * 1000,
-    // refetchOnMount: true,
   });
 };

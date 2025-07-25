@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
-import NavBar from "@/components/NavBar/NavBar";
-import SecondNavBar from "@/components/NavBar/SecondNavBar";
+import NavBar from "@/components/navbar/NavBar";
+import SecondNavBar from "@/components/navbar/SecondNavBar";
 
 const Layout = () => {
   const [showSecondNav, setShowSecondNav] = useState(true);
@@ -32,11 +32,11 @@ const Layout = () => {
   }, []);
 
   return (
-    <div className="bg-white min-h-screen h-400">
+    <div className="bg-white">
       <NavBar />
 
       <div
-        className={`fixed top-18 left-0 right-0 z-30 transition-transform duration-300 bg-background ${
+        className={`fixed top-17 left-0 right-0 z-30 transition-transform duration-300 bg-background ${
           showSecondNav ? "translate-y-0" : "-translate-y-full"
         }`}
       >

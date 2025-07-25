@@ -1,4 +1,4 @@
-import HeaderProfile from "@/components/Profile/HeaderProfile";
+import HeaderProfile from "@/components/profile/HeaderProfile";
 import { useParams } from "react-router-dom";
 import { useAccountQuery } from "@/hooks/queries/useAccountQuery";
 import { useAuth } from "@/contexts/AuthContext";

@@ -5,7 +5,7 @@ import { isPostFeedItem, isRecipeFeedItem } from "@/types/feed/type-guards";
 import RecipeItemCard from "./Feed/RecipeItemCard";
 import type { PostFeedItem } from "@/types/feed/PostFeedItem";
 import PostItemCard from "./Posts/PostItemCard";
-import { MiniPostComposer } from "../Posts/MiniPostComposer";
+import { MiniPostComposer } from "../posts/MiniPostComposer";
 import { useSavedRecipes } from "@/hooks/queries/useRecipeQuery";
 // import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
 

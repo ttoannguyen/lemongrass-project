@@ -31,7 +31,7 @@ import AllowedUnitsSelector from "@/components/dropdown/AllowUnitsDropdown";
 import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import { Label } from "@/components/ui/label";
 import extractErrorMessage from "@/utils/extractErrorMessage";
-import SearchAndSortControls from "@/components/SearchInput/SearchAndSortControls";
+import SearchAndSortControls from "@/components/searchInput/SearchAndSortControls";
 import useSearchAndSort from "@/hooks/sort/useSearchAndSort";
 
 type SortableIngredientKey = "name" | "createdDate" | "lastModifiedDate";

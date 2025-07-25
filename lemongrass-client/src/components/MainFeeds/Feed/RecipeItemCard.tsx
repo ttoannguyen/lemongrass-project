@@ -1,5 +1,5 @@
 import FeedImageTemplate from "@/components/imageTempale/FeedImageTemplate";
-import AuthorHoverCard from "@/components/Profile/AuthorHoverCard";
+import AuthorHoverCard from "@/components/profile/AuthorHoverCard";
 import { SaveRecipeButton } from "@/components/ui/save-recipe-button-props";
 import { useAuth } from "@/contexts/AuthContext";
 import type { RecipeFeedItem } from "@/types/feed/RecipeFeedItem";

@@ -91,7 +91,7 @@
 import { useParams } from "react-router-dom";
 import { usePostDetail } from "@/hooks/queries/usePostDetailQuery";
 import { Skeleton } from "@/components/ui/skeleton";
-import AuthorHoverCard from "../Profile/AuthorHoverCard";
+import AuthorHoverCard from "../profile/AuthorHoverCard";
 import { useAuth } from "@/contexts/AuthContext";
 import { Heart } from "lucide-react";
 import { useState } from "react";

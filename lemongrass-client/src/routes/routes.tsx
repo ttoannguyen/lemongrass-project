@@ -1,4 +1,4 @@
-import RecipeDetailPage from "@/components/Recipes/RecipeDetailPage";
+import RecipeDetailPage from "@/components/recipes/RecipeDetailPage";
 import { wrapProtected, wrapRole } from "@/lib/utils";
 
 import Home from "@/pages/Home";
@@ -11,7 +11,7 @@ import Register from "@/pages/Register";
 import AdminLayout from "@/pages/admin/AdminLayout";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import ManageUsers from "@/pages/admin/ManageUsers";
-import ManagePosts from "@/pages/admin/mamagePost/ManagePosts";
+import ManagePosts from "@/pages/admin/managePost/ManagePosts";
 import ManageRecipes from "@/pages/admin/manageRecipe/ManageRecipes";
 
 import { Navigate, type RouteObject } from "react-router-dom";
@@ -19,19 +19,24 @@ import StaffLayout from "@/pages/staff/StaffLayout";
 import ManageStaffWork from "@/pages/staff/ManageStaffWork";
 import ReportedContentList from "@/components/staff/ReportedContentList";
 import StaffDashboard from "@/pages/staff/StaffDashboard";
-import ManageRolesAndPermissions from "@/pages/admin/ManageRolesAndPermissions";
+import ManageRolesAndPermissions from "@/pages/admin/manageRolePermission/ManageRolesAndPermissions";
 import Ingredient from "@/pages/admin/Ingredient";
 import Units from "@/pages/admin/Units";
 import Tags from "@/pages/admin/Tags";
 import Moderation from "@/pages/admin/system/Moderation";
 import Setting from "@/pages/admin/system/Setting";
-import PostDetailPage from "@/components/Posts/PostDetailPage";
+import PostDetailPage from "@/components/posts/PostDetailPage";
 import AccountLayout from "@/pages/account/AccountLayout";
-import CreateRecipeForm from "@/components/Recipes/CreateRecipe";
+import CreateRecipeForm from "@/components/recipes/CreateRecipe";
 import RecipeLayout from "@/pages/recipe/RecipeLayout";
 import RecipePage from "@/pages/recipe/RecipePage";
 import AdminRecipeCategoryPage from "@/pages/admin/AdminRecipeCategory";
 import RecipeCategory from "@/pages/recipe/RecipeCategory";
+import CommunityLayout from "@/pages/community/CommunityLayout";
+import FeedPage from "@/pages/community/FeedPage";
+import TrendingPage from "@/pages/community/TrendingPage";
+import MyGroupsPage from "@/pages/community/MyGroupsPage";
+import SearchResultsPage from "@/pages/SearchResult";
 
 const routes: RouteObject[] = [
   {
@@ -51,6 +56,19 @@ const routes: RouteObject[] = [
           { path: ":recipeId", element: <RecipeDetailPage /> },
           { path: "category", element: <Navigate to="/recipe" replace /> },
           { path: "category/:categoryId", element: <RecipeCategory /> },
+        ],
+      },
+      {
+        path: "search",
+        element: <SearchResultsPage />,
+      },
+      {
+        path: "community",
+        element: <CommunityLayout />,
+        children: [
+          { index: true, element: <FeedPage /> },
+          { path: "trending", element: <TrendingPage /> },
+          { path: "my-groups", element: <MyGroupsPage /> },
         ],
       },
       {
@@ -107,6 +125,5 @@ const routes: RouteObject[] = [
     element: <Register />,
   },
 ];
-
 
 export default routes;

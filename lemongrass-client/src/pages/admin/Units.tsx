@@ -20,7 +20,7 @@ import {
   useDeleteUnit,
   useUpdateUnit,
 } from "@/hooks/queries/useUnitMutations";
-import SearchAndSortControls from "@/components/SearchInput/SearchAndSortControls";
+import SearchAndSortControls from "@/components/searchInput/SearchAndSortControls";
 import useSearchAndSort from "@/hooks/sort/useSearchAndSort";
 
 const Units = () => {

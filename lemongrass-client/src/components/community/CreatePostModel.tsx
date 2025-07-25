@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogClose,
 } from "../ui/dialog";
-import PostForm from "./PostForm";
+import PostForm from "../posts/PostForm";
 
 type Props = {
   onClose: () => void;

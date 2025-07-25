@@ -1,5 +1,5 @@
-import RecipeCategoryListPage from "@/components/Recipes/RecipeCategoryListPage";
-import HomeSearch from "@/components/SearchInput/HomeSearch";
+import RecipeCategoryListPage from "@/components/recipes/RecipeCategoryListPage";
+import HomeSearch from "@/components/searchInput/HomeSearch";
 
 const RecipeCategory = () => {
   return (

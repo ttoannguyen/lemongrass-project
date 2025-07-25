@@ -10,12 +10,15 @@ import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 
 @RequestMapping("/api/_v1/roles")
 public interface RoleController {
-    @PostMapping
-    ApiResponse<RoleResponse> create(@RequestBody RoleRequest request);
+  @PostMapping
+  ApiResponse<RoleResponse> create(@RequestBody RoleRequest request);
 
-    @GetMapping
-    ApiResponse<List<RoleResponse>> getRoles();
+  @GetMapping
+  ApiResponse<List<RoleResponse>> getRoles();
 
-    @DeleteMapping("/{roleId}")
-    ApiResponse<Void> deleteRoleById(@PathVariable(name = "roleId") String roleId);
+  @PutMapping()
+  ApiResponse<RoleResponse> updateRole(@RequestBody RoleRequest request);
+
+  @DeleteMapping("/{roleId}")
+  ApiResponse<Void> deleteRoleById(@PathVariable(name = "roleId") String roleId);
 }

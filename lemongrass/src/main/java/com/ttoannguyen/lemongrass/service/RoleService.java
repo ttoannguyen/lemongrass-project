@@ -6,9 +6,11 @@ import com.ttoannguyen.lemongrass.dto.Request.role.RoleRequest;
 import com.ttoannguyen.lemongrass.dto.Response.role.RoleResponse;
 
 public interface RoleService {
-    RoleResponse crate(RoleRequest request);
+  RoleResponse crate(RoleRequest request);
 
-    List<RoleResponse> getRoles();
+  List<RoleResponse> getRoles();
 
-    void delete(String role);
+  RoleResponse update(RoleRequest request, String username);
+
+  void delete(String role);
 }

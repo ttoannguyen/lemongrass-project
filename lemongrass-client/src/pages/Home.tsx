@@ -1,5 +1,5 @@
-import SectionRecipeList from "@/components/Home/SectionRecipeList";
-import HomeSearch from "@/components/SearchInput/HomeSearch";
+import SectionRecipeList from "@/components/home/SectionRecipeList";
+import HomeSearch from "@/components/searchInput/HomeSearch";
 import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 
 const Home = () => {

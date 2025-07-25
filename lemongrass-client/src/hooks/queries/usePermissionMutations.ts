@@ -2,10 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { permissionService } from "@/services/permission/permission.service";
 import { toast } from "sonner";
 import extractErrorMessage from "@/utils/extractErrorMessage";
-import type {
-  PermissionRequest,
-  //   PermissionUpdateRequest,
-} from "@/types/roles/PermissionRequest";
+import type { PermissionRequest } from "@/types/roles/PermissionRequest";
 
 export const useAddPermission = () => {
   const queryClient = useQueryClient();

@@ -17,4 +17,6 @@ export interface PostResponse {
   lastModifiedDate: string;
   approved: boolean;
   isVerified: boolean | null;
+  likeCount?: number;
+  commentCount?: number;
 }

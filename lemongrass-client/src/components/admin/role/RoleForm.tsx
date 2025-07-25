@@ -1,81 +1,160 @@
-// RoleForm.tsx
+// import { useState } from "react";
+// import { Input } from "@/components/ui/input";
+// import { Button } from "@/components/ui/button";
+// import PermissionSelector from "./PermissionSelector";
+// import { usePermissionQuery } from "@/hooks/queries/usePermissionQuery";
+// import type { RoleRequest } from "@/types/roles/RoleRequest";
+// import { useAddRole, useUpdateRole } from "@/hooks/queries/useRoleMutation";
+
+// const RoleForm = ({
+//   role,
+//   onClose,
+// }: {
+//   role: RoleRequest | null;
+//   onClose: () => void;
+// }) => {
+//   const [name, setName] = useState(role?.name || "");
+//   const [description, setDescription] = useState(role?.description || "");
+//   const [permissions, setPermissions] = useState<string[]>(
+//     role?.permissions || []
+//   );
+
+//   const createMutation = useAddRole();
+//   const updateMutation = useUpdateRole();
+
+//   const { data: allPermissions = [] } = usePermissionQuery();
+
+//   const handleSubmit = async () => {
+//     const query: RoleRequest = {
+//       name: name.trim(),
+//       description: description.trim(),
+//       permissions,
+//     };
+
+//     await createMutation.mutateAsync(query);
+//     console.log("Simple role:", query);
+//     onClose();
+//   };
+
+//   return (
+//     <div className="text-sm space-y-4">
+//       <h2 className="text-base font-semibold">
+//         {role ? "Sửa vai trò" : "Tạo vai trò mới"}
+//       </h2>
+
+//       <Input
+//         placeholder="Tên vai trò (VD: REGISTERED)"
+//         value={name}
+//         onChange={(e) => setName(e.target.value)}
+//       />
+
+//       <Input
+//         placeholder="Mô tả vai trò (VD: User normal)"
+//         value={description}
+//         onChange={(e) => setDescription(e.target.value)}
+//       />
+
+//       <PermissionSelector
+//         selected={permissions}
+//         onChange={setPermissions}
+//         availablePermissions={allPermissions}
+//       />
+
+//       <div className="text-right">
+//         <Button
+//           onClick={handleSubmit}
+//           disabled={!name.trim() || permissions.length === 0}
+//         >
+//           {role ? "Lưu thay đổi" : "Tạo mới"}
+//         </Button>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default RoleForm;
+
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import PermissionSelector from "./PermissionSelector";
-import type { Role } from "@/types";
+import { usePermissionQuery } from "@/hooks/queries/usePermissionQuery";
+import type { RoleRequest } from "@/types/roles/RoleRequest";
+import { useAddRole, useUpdateRole } from "@/hooks/queries/useRoleMutation";
 
 const RoleForm = ({
   role,
-  onSuccess,
+  onClose,
 }: {
-  role: Role | null;
-  onSuccess: (role: Role) => void;
+  role: RoleRequest | null;
+  onClose: () => void;
 }) => {
   const [name, setName] = useState(role?.name || "");
   const [description, setDescription] = useState(role?.description || "");
   const [permissions, setPermissions] = useState<string[]>(
-    role?.permissions.map((p) => p.name) || []
+    role?.permissions || []
   );
 
-  const allPermissions = [
-    "manage_users",
-    "manage_posts",
-    "manage_recipes",
-    "moderate_content",
-    "edit_settings",
-  ];
+  const createMutation = useAddRole();
+  const updateMutation = useUpdateRole();
 
-  const handleSubmit = () => {
-    const now = new Date().toISOString();
-    const newRole: Role = {
-      name,
-      description,
-      permissions: permissions.map((perm) => ({
-        name: perm,
-        description: perm,
-        createdBy: "system",
-        createdDate: now,
-        lastModifiedBy: "system",
-        lastModifiedDate: now,
-      })),
-      createdBy: role?.createdBy || "system",
-      createdDate: role?.createdDate || now,
-      lastModifiedBy: "system",
-      lastModifiedDate: now,
+  const { data: allPermissions = [] } = usePermissionQuery();
+
+  const handleSubmit = async () => {
+    const query: RoleRequest = {
+      name: name.trim(),
+      description: description.trim(),
+      permissions,
     };
 
-    onSuccess(newRole);
+    try {
+      if (role) {
+        // Cập nhật vai trò đã có
+        await updateMutation.mutateAsync(query);
+      } else {
+        // Tạo mới vai trò
+        await createMutation.mutateAsync(query);
+      }
+
+      console.log("Role data:", query);
+      onClose();
+    } catch (error) {
+      console.error("Lỗi khi lưu vai trò:", error);
+    }
   };
 
   return (
-    <div className="text-sm">
-      <div className="mb-4">
-        <h2 className="text-base font-semibold">
-          {role ? "Sửa vai trò" : "Tạo vai trò mới"}
-        </h2>
-      </div>
-      <div className="space-y-2">
-        <Input
-          placeholder="Tên vai trò (VD: ADMIN)"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input
-          placeholder="Mô tả vai trò"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <PermissionSelector
-          selected={permissions}
-          onChange={setPermissions}
-          availablePermissions={allPermissions}
-        />
-        <div className="text-right">
-          <Button onClick={handleSubmit}>
-            {role ? "Lưu thay đổi" : "Tạo mới"}
-          </Button>
-        </div>
+    <div className="text-sm space-y-4">
+      <h2 className="text-base font-semibold">
+        {role ? "Sửa vai trò" : "Tạo vai trò mới"}
+      </h2>
+
+      <Input
+        placeholder="Tên vai trò (VD: REGISTERED)"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        disabled={!!role} // Không cho sửa tên khi đang chỉnh sửa
+      />
+
+      <Input
+        placeholder="Mô tả vai trò (VD: Người dùng bình thường)"
+        value={description}
+        onChange={(e) => setDescription(e.target.value)}
+      />
+
+      <PermissionSelector
+        selected={permissions}
+        onChange={setPermissions}
+        availablePermissions={allPermissions}
+      />
+
+      <div className="text-right">
+        <Button
+          onClick={handleSubmit}
+          disabled={!name.trim() || permissions.length === 0}
+        >
+          {role ? "Lưu thay đổi" : "Tạo mới"}
+        </Button>
       </div>
     </div>
   );

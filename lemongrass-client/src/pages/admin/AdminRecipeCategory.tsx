@@ -13,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import SearchAndSortControls from "@/components/SearchInput/SearchAndSortControls";
+import SearchAndSortControls from "@/components/searchInput/SearchAndSortControls";
 import { toast } from "sonner";
 import {
   useAddCategory,

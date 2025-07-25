@@ -46,7 +46,9 @@ public enum ErrorCode {
       1025, "The unit has been used by the ingredient!", HttpStatus.BAD_REQUEST),
   EMPTY_UNIT_LIST(1026, "List of units must not leave blank!", HttpStatus.BAD_REQUEST),
   COMMENT_NOT_EXISTED(1027, "Comment not exists!", HttpStatus.BAD_REQUEST),
-  RECIPE_DOCUMENT_CREATION_FAILED(1028, "Document creation failed!", HttpStatus.BAD_REQUEST);
+  RECIPE_DOCUMENT_CREATION_FAILED(1028, "Document creation failed!", HttpStatus.BAD_REQUEST),
+  PERMISSION_NOT_VALID(1029, "Permission is not valid!", HttpStatus.BAD_REQUEST),
+  ROLE_IN_USED(1030, "The unit has already been assigned to someone else!", HttpStatus.BAD_REQUEST);
 
   private int code;
   private String message;
