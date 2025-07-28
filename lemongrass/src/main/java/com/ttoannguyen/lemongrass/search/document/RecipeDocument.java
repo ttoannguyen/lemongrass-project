@@ -3,6 +3,7 @@ package com.ttoannguyen.lemongrass.search.document;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class RecipeDocument {
   List<Ingredient> ingredients = new ArrayList<>();
   List<Instruction> instructions = new ArrayList<>();
   List<Image> images = new ArrayList<>();
+
+  Instant createdAt;
+  Instant updatedAt;
 
   @Data
   @NoArgsConstructor

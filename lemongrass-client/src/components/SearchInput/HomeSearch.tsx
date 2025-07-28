@@ -2,14 +2,17 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 
 const HomeSearch = () => {
   const [open, setOpen] = useState(false);
+  const {t} = useTranslation();
 
   return (
     <>
       <Input
-        placeholder="Find recipes..."
+        placeholder={t(TRANSLATION_KEYS.recipe.find)}
         onFocus={() => setOpen(true)}
         className="w-full h-10 font-bold bg-main text-paragraph border border-headline rounded"
         readOnly

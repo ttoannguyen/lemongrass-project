@@ -6,6 +6,8 @@ import { PreloadUserData } from "@/providers/PreloadUserData";
 import { PreloadAdminData } from "@/providers/PreloadAdminData";
 import { Toaster } from "@/components/ui/sonner";
 import { WebSocketProvider } from "./WebSocketProvider";
+import { I18nextProvider } from "react-i18next";
+import i18n from "@/utils/i18n";
 // import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const providers = [
@@ -24,6 +26,10 @@ const providers = [
   ),
   (children: React.ReactNode) => (
     <WebSocketProvider>{children}</WebSocketProvider>
+  ),
+
+  (children: React.ReactNode) => (
+    <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
   ),
 ];
 

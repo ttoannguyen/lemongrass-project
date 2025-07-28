@@ -45,7 +45,6 @@ public class AccountServiceImpl implements AccountService {
     Account account = accountMapper.toAccount(request);
     account.setPassword(passwordEncoder.encode(request.getPassword()));
 
-    // Gán vai trò USER mặc định
     Role userRole =
         roleRepository
             .findById(ERole.REGISTERED.name())
@@ -53,6 +52,8 @@ public class AccountServiceImpl implements AccountService {
     Set<Role> roles = new HashSet<>();
     roles.add(userRole);
     account.setRoles(roles);
+    account.setProfilePictureUrl(
+        "https://res.cloudinary.com/didxuklgy/image/upload/v1753470567/user_jc8xbq.png");
 
     return accountMapper.toAccountResponse(accountRepository.save(account));
   }

@@ -19,7 +19,7 @@ const RecipePage = () => {
             />
           </div>
         ))}
-        {recipes.map((recipe) => (
+        {/* {recipes.map((recipe) => (
           <div className="w-60">
             <RecipeItem
               key={recipe.id}
@@ -28,7 +28,7 @@ const RecipePage = () => {
               isFavorite={false}
             />
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );

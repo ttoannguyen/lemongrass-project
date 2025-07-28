@@ -83,8 +83,8 @@ const navSections: {
         requiredRoles: ["ADMIN"],
       },
       {
-        label: "Cài đặt",
-        path: "/admin/settings",
+        label: "Người dùng",
+        path: "/admin/users",
         icon: Settings,
         requiredRoles: ["ADMIN"],
       },

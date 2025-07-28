@@ -25,6 +25,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -114,6 +115,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     log.info("Converting recipe to document for Elasticsearch!");
+    //    recipe.setIsDeleted(false);
     RecipeDocument document;
     try {
       document = mapToDocument(recipe, account);
@@ -353,6 +355,7 @@ public class RecipeServiceImpl implements RecipeService {
         .description(request.getDescription())
         .account(account)
         .isVerified(false)
+        .isDeleted(false)
         .shareCount(0)
         .build();
   }
@@ -530,6 +533,8 @@ public class RecipeServiceImpl implements RecipeService {
                         .toList())
                 : new ArrayList<>())
         .isDeleted(recipe.getIsDeleted())
+        .createdAt(recipe.getCreatedDate().atZone(ZoneId.systemDefault()).toInstant())
+        .updatedAt(recipe.getLastModifiedDate().atZone(ZoneId.systemDefault()).toInstant())
         .build();
   }
 }

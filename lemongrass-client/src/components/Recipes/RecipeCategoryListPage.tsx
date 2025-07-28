@@ -2,7 +2,6 @@ import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
 import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
-import RecipeCard from "@/pages/admin/manageRecipe/RecipeCard";
 import RecipeItem from "./RecipeItem";
 
 const RecipeCategoryListPage = () => {

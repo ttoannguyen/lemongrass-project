@@ -1,0 +1,43 @@
+{
+  "auth": {
+    "login": "Log in",
+    "register": "Register",
+    "logout": "Log out"
+  },
+  "createRecipe": {
+    "name": "Recipe name",
+    "name_placeholder": "Savory stuffed bell peppers",
+    "number": "Number of serving",
+    "duration": "Cook duration",
+    "ingredient": "Ingredient",
+    "recipe_general_info": " Recipe General infomation",
+    "recipe_detail": "Recipe detail"
+  },
+  "recipe": {
+    "create": "Create recipe",
+    "main": "Recipe",
+    "favorite": "Favorite Recipes",
+    "latest": "Latest Recipes",
+    "find": "Find recipes...",
+    "minute": "mins",
+    "recipe-title": "Easily search for your favorite recipes",
+    "category-title": "Explore delicious recipes by category"
+  },
+  "navigation": {
+    "community": "Community",
+    "quickAndEasy": "Quick & Easy",
+    "cuisine": "Cuisine",
+    "ingredient": "Ingredient",
+    "searchPlaceholder": "Search...",
+    "home": "Home",
+    "recipe": "Recipe"
+  },
+  "profile": {
+    "title": "Profile",
+    "myRecipe": "My Recipes",
+    "myPost": "My Post",
+    "adminPanel": "Admin Panel"
+  },
+  "eg": "eg",
+  "or": "or"
+}

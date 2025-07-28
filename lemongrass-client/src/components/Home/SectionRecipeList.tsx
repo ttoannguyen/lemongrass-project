@@ -18,6 +18,7 @@ interface Props {
 }
 
 const SectionRecipeList = ({ title, recipes, className, textTitle }: Props) => {
+ 
   if (recipes.length === 0) return null;
 
   return (
@@ -25,7 +26,7 @@ const SectionRecipeList = ({ title, recipes, className, textTitle }: Props) => {
       <h2
         className={`scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance my-2 mb-8 ${textTitle}`}
       >
-        {title}
+      {title}
       </h2>
 
       <div className="w-250 mx-auto">

@@ -2,19 +2,22 @@ import { useLocation, useParams } from "react-router-dom";
 import BreadcrumbBar from "./BreadcrumBar";
 import { useCategoryQuery } from "@/hooks/queries/useCategoryQuery";
 import { useRecipeDetail } from "@/hooks/queries/useRecipeDetailQuery";
+import { useTranslation } from "react-i18next";
+import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 
 const RecipeBreadcrumbBar = () => {
   const location = useLocation();
   const { categoryId, recipeId } = useParams();
   const { data: categories = [] } = useCategoryQuery();
+  const {t} = useTranslation()
 
   console.log(categoryId, recipeId);
   // Nếu đang ở trang chi tiết công thức, fetch công thức
   const { data: recipe } = useRecipeDetail(recipeId ?? "");
 
   const items = [
-    { label: "Home", href: "/" },
-    { label: "Recipe", href: "/recipe" },
+    { label: t(TRANSLATION_KEYS.navigation.home), href: "/" },
+    { label: t(TRANSLATION_KEYS.navigation.recipe), href: "/recipe" },
   ];
 
   // --- Category page ---

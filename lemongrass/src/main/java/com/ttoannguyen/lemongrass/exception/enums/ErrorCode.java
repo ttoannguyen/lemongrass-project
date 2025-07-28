@@ -48,7 +48,10 @@ public enum ErrorCode {
   COMMENT_NOT_EXISTED(1027, "Comment not exists!", HttpStatus.BAD_REQUEST),
   RECIPE_DOCUMENT_CREATION_FAILED(1028, "Document creation failed!", HttpStatus.BAD_REQUEST),
   PERMISSION_NOT_VALID(1029, "Permission is not valid!", HttpStatus.BAD_REQUEST),
-  ROLE_IN_USED(1030, "The unit has already been assigned to someone else!", HttpStatus.BAD_REQUEST);
+  ROLE_IN_USED(1030, "The unit has already been assigned to someone else!", HttpStatus.BAD_REQUEST),
+  SEARCH_KEYWORD_REQUIRED(1031, "Search keyword required!", HttpStatus.BAD_REQUEST),
+  INVALID_SEARCH_FIELD(1032, "Invalid search field", HttpStatus.BAD_REQUEST),
+  SEARCH_FAILED(1033, "Search failed", HttpStatus.BAD_REQUEST);
 
   private int code;
   private String message;

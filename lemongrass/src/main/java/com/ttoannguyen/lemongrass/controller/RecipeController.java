@@ -4,11 +4,15 @@ import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
+import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
+import com.ttoannguyen.lemongrass.search.dto.SearchRequest;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RequestMapping("/api/_v1/recipes")
 public interface RecipeController {
@@ -30,8 +34,7 @@ public interface RecipeController {
   @GetMapping("/myRecipes")
   ApiResponse<List<RecipeResponse>> getMyRecipes();
 
-  //  @GetMapping("/suggest/{partialProductName}")
-  //  ApiResponse<List<String>> suggest(@PathVariable("partialProductName") String
-  // partialProductName)
-  //      throws IOException;
+  @PostMapping("/search")
+  CompletableFuture<ResponseEntity<List<RecipeDocument>>> searchRecipes(
+      @RequestBody SearchRequest request);
 }

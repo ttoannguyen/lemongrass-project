@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 import { Stars } from "@/components/icons/StarComponent";
 import { AspectRatio } from "../ui/aspect-ratio";
 import clsx from "clsx";
+import { useTranslation } from "react-i18next";
+import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 
 type RecipeItemMainProps = {
   recipe: RecipeResponse;
@@ -22,6 +24,7 @@ export function RecipeItem({
   onToggleFavorite,
   isFavorite = false,
 }: RecipeItemMainProps) {
+  const {t } = useTranslation()
   const imageUrl = recipe.images?.[0]?.url ?? "";
   const minutes = recipe.cookingTime ?? 0;
   const categories = recipe.categories;
@@ -98,7 +101,7 @@ export function RecipeItem({
         <div className="flex  items-center justify-between pt-3">
           <div className="flex items-center gap-1 text-sm text-paragraph">
             <Hourglass className="h-4 w-4" />
-            {minutes} mins
+            {minutes} {t(TRANSLATION_KEYS.recipe.minute)}
           </div>
           <div className="flex items-center gap-2">
             <Stars rating={6} />

@@ -5,6 +5,8 @@ import ReusableDropdown from "../ReusableDropdown";
 import { authService } from "@/services/auth.service";
 import { isAccountHasRole } from "@/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 
 const AvatarNav = () => {
   const { account, logout: clearContext } = useAuth();
@@ -12,6 +14,7 @@ const AvatarNav = () => {
   const isAdmin = isAccountHasRole(account, "ADMIN");
   const isStaff = isAccountHasRole(account, "STAFF");
   const queryClient = useQueryClient();
+  const {t} = useTranslation()
 
   const handleLogout = async () => {
     try {
@@ -28,19 +31,19 @@ const AvatarNav = () => {
 
   const items = [
     {
-      label: "Profile",
+      label: t(TRANSLATION_KEYS.profile.title),
       onClick: () => navigate(`/account/${account?.id}`),
     },
     {
-      label: "My Recipe",
+      label: t(TRANSLATION_KEYS.profile.myPost),
       onClick: () => navigate("/my-recipe"),
     },
     {
-      label: "My Post",
+      label: t(TRANSLATION_KEYS.profile.myRecipe),
       onClick: () => navigate("/my-post"),
     },
     {
-      label: "Admin Panel",
+      label: t(TRANSLATION_KEYS.profile.adminPanel),
       onClick: () => navigate("/admin"),
       show: isAdmin,
       separatorBefore: true,
@@ -54,7 +57,7 @@ const AvatarNav = () => {
       className: "focus:bg-yellow-500/20 focus:text-yellow-700",
     },
     {
-      label: "Logout",
+      label: t(TRANSLATION_KEYS.auth.logout),
       onClick: handleLogout,
       separatorBefore: true,
       className: "focus:bg-tertiary/30 focus:text-tertiary",

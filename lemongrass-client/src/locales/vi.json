@@ -1,0 +1,43 @@
+{
+  "auth": {
+    "login": "Đăng nhập",
+    "register": "Đăng ký",
+    "logout": "Đăng xuất"
+  },
+  "createRecipe": {
+    "name": "Tên công thức",
+    "name_placeholder": "Ớt chuông nhồi thịt thơm ngon",
+    "number": "Phục vụ cho",
+    "duration": "Thời gian nấu",
+    "ingredient": "Nguyên liệu",
+    "recipe_general_info": "Thông tin chung về công thức",
+    "recipe_detail": "Chi tiết công thức"
+  },
+  "recipe": {
+    "create": "Tạo công thức",
+    "main": "Công thức",
+    "favorite": "Công thức yêu thích",
+    "latest": "Công thức mới nhất",
+    "find": "Tìm công thức...",
+    "minute": "phút",
+    "recipe-title": "Dễ dàng tìm kiếm công thức yêu thích của bạn",
+    "category-title": "Khám phá các món ăn ngon theo danh mục"
+  },
+  "navigation": {
+    "community": "Cộng đồng",
+    "quickAndEasy": "Nhanh & Dễ",
+    "cuisine": "Ẩm thực",
+    "ingredient": "Nguyên liệu",
+    "searchPlaceholder": "Tìm kiếm...",
+    "home": "Trang chủ",
+    "recipe": "Công thức"
+  },
+  "profile": {
+    "title": "Hồ sơ",
+    "myRecipe": "Công thức của tôi",
+    "myPost": "Bài viết của tôi",
+    "adminPanel": "Bảng quản trị"
+  },
+  "eg": "vd",
+  "or": "hoặc"
+}

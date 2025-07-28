@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import RoleTab from "@/components/admin/role/RoleTab";
 import PermissionTab from "@/components/admin/permission/PermissionTab";
 
+
 const ManageRolesAndPermissions = () => {
   return (
     <div className="flex flex-col h-full text-sm">

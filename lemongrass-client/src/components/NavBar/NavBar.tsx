@@ -4,7 +4,6 @@ import { Button } from "../ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import AvatarNav from "./AvatarNav";
 import { ModeToggle } from "../mode-toggle";
-// import { PickCreate } from "./PickCreate";
 import { useWebSocket } from "@/providers/WebSocketProvider";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
@@ -16,8 +15,12 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import SearchInput from "../searchInput/SearchInput";
+import { useTranslation } from "react-i18next";
+import i18n from "@/utils/i18n";
+import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 
 const NavBar = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const { notifications } = useWebSocket();
@@ -43,6 +46,13 @@ const NavBar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [showSearch]);
+
+  const handleChangeLanguage = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedLanguage = event.target.value;
+    i18n.changeLanguage(selectedLanguage);
+  };
 
   return (
     <div className="w-full bg-background text-text sticky top-0 z-50 shadow-xs">
@@ -116,27 +126,43 @@ const NavBar = () => {
               <Button
                 variant={"outline"}
                 className="bg-main border border-stroke !text-headline hover:bg-highlight"
-                onClick={() => navigate("/account/new-recipe")}
+                onClick={() => navigate("/new-recipe")}
               >
-                Create Recipe
+                {t(TRANSLATION_KEYS.recipe.create)}
               </Button>
-              {/* <PickCreate /> */}
+
               <AvatarNav />
               <ModeToggle />
             </div>
           ) : (
-            <Button
-              variant="default"
-              className="rounded-full"
-              onClick={() => navigate("/login")}
-            >
-              Đăng nhập
-            </Button>
+            <>
+              <Button
+                variant="outline"
+                className="rounded-full"
+                onClick={() => navigate("/register")}
+              >
+                {t(TRANSLATION_KEYS.auth.register)}
+              </Button>
+              <Button
+                variant="default"
+                className="border border-stroke bg-main text-headline hover:bg-highlight hover:text-headline"
+                onClick={() => navigate("/login")}
+              >
+                {t(TRANSLATION_KEYS.auth.login)}
+              </Button>
+            </>
           )}
+          <select
+            onChange={handleChangeLanguage}
+            value={i18n.language}
+            id="change-language"
+          >
+            <option value="en">English</option>
+            <option value="vi">Việt Nam</option>
+          </select>
         </div>
       </div>
 
-      {/* Thanh tìm kiếm mobile */}
       {searchOpen && (
         <div className="md:hidden px-4 pb-2">
           <Input

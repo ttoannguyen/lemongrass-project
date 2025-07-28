@@ -1,9 +1,81 @@
 {
+  "settings": {
+    "analysis": {
+      "filter": {
+        "vietnamese_stop": {
+          "type": "stop",
+          "stopwords": [
+            "có",
+            "con",
+            "gì",
+            "nào",
+            "là",
+            "thì",
+            "với",
+            "cho",
+            "tại",
+            "này",
+            "đó",
+            "ở",
+            "và",
+            "hôm",
+            "nay",
+            "món",
+            "nấu",
+            "làm",
+            "ăn",
+            "thế",
+            "nào",
+            "hướng",
+            "dẫn",
+            "aromatic"
+          ]
+        },
+        "vietnamese_synonym": {
+          "type": "synonym",
+          "synonyms": [
+            "ngon => tuyệt vời, ngon lành"
+          ]
+        }
+      },
+      "analyzer": {
+        "vietnamese_analyzer": {
+          "type": "custom",
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "icu_folding",
+            "vietnamese_stop",
+            "vietnamese_synonym"
+          ]
+        },
+        "vietnamese_suggest_analyzer": {
+          "type": "custom",
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "icu_folding",
+            "vietnamese_stop"
+          ]
+        }
+      }
+    }
+  },
   "mappings": {
     "properties": {
+      "id": {
+        "type": "keyword"
+      },
       "title": {
         "type": "text",
-        "analyzer": "icu_analyzer"
+        "analyzer": "vietnamese_analyzer",
+        "fields": {
+          "suggest": {
+            "type": "search_as_you_type",
+            "analyzer": "vietnamese_suggest_analyzer",
+            "max_shingle_size": 3
+          }
+        }
       },
       "cookingTime": {
         "type": "integer"
@@ -13,17 +85,17 @@
       },
       "description": {
         "type": "text",
-        "analyzer": "icu_analyzer"
+        "analyzer": "vietnamese_analyzer"
       },
       "servings": {
         "type": "integer"
       },
-      "authorId": {
+      "accountId": {
         "type": "keyword"
       },
-      "authorName": {
+      "accountName": {
         "type": "text",
-        "analyzer": "icu_analyzer"
+        "analyzer": "vietnamese_analyzer"
       },
       "categoryIds": {
         "type": "keyword"
@@ -32,7 +104,8 @@
         "type": "nested",
         "properties": {
           "name": {
-            "type": "keyword"
+            "type": "text",
+            "analyzer": "vietnamese_analyzer"
           }
         }
       },
@@ -41,7 +114,7 @@
         "properties": {
           "name": {
             "type": "text",
-            "analyzer": "icu_analyzer"
+            "analyzer": "vietnamese_analyzer"
           },
           "quantity": {
             "type": "text"
@@ -56,7 +129,7 @@
           },
           "description": {
             "type": "text",
-            "analyzer": "icu_analyzer"
+            "analyzer": "vietnamese_analyzer"
           }
         }
       },
@@ -70,6 +143,12 @@
       },
       "isDeleted": {
         "type": "boolean"
+      },
+      "createdAt": {
+        "type": "date"
+      },
+      "updatedAt": {
+        "type": "date"
       }
     }
   }

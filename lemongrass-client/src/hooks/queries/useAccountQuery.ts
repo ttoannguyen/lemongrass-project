@@ -13,3 +13,13 @@ export const useAccountQuery = (id: string) => {
     staleTime: 5 * 60 * 1000,
   });
 };
+
+
+export const useAllAccountsQuery = () => {
+  return useQuery<Account[]>({
+    queryKey: ["accounts"],
+    queryFn: accountService.getAccounts,
+
+    staleTime: 5 * 60 * 1000,
+  });
+};

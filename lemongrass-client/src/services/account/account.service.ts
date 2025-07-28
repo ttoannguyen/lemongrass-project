@@ -11,4 +11,9 @@ export const accountService = {
     }
     return res.data.result;
   },
+
+  getAccounts: async (): Promise<Account[]> => {
+    const res = await api.get<BaseResponse<Account[]>>("/accounts");
+    return res.data.result;
+  },
 };

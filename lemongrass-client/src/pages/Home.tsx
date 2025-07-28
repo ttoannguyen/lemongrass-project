@@ -2,7 +2,11 @@ import SectionRecipeList from "@/components/home/SectionRecipeList";
 import HomeSearch from "@/components/searchInput/HomeSearch";
 import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 
+import { TRANSLATION_KEYS } from "@/locales/translationKeys";
+import { useTranslation } from "react-i18next";
+
 const Home = () => {
+  const { t } = useTranslation();
   const { data: recipes = [] } = useRecipesQuery();
   console.log(recipes);
   // const favoriteRecipes = recipes.slice(0, 4);
@@ -28,7 +32,7 @@ const Home = () => {
         <SectionRecipeList
           className="bg-main"
           textTitle="text-headline"
-          title="Favorite Recipes"
+          title={t(TRANSLATION_KEYS.recipe.favorite)}
           recipes={recipes}
         />
 
@@ -42,7 +46,7 @@ const Home = () => {
 
         <SectionRecipeList
           className="bg-headline"
-          title="Latest Recipes"
+          title={t(TRANSLATION_KEYS.recipe.latest)}
           textTitle="text-highlight"
           recipes={latestRecipes}
         />
