@@ -2,11 +2,12 @@ import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
 import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { GripVertical } from "lucide-react";
+import { GripVertical, Trash2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import { GenericCombobox } from "../generic-combobox";
+import { GenericCombobox } from "../../generic-combobox";
 import { useTranslation } from "react-i18next";
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
+import { Button } from "../../ui/button";
 
 type IngredientWithExtra = IngredientResponse & {
   quantity?: number;
@@ -18,12 +19,14 @@ type Props = {
   ingredient: IngredientWithExtra;
   allItems: IngredientWithExtra[];
   onChangeIngredient: (id: string, data: Partial<IngredientWithExtra>) => void;
+  onDeleteIngredient: (id: string) => void;
 };
 
 const SortableIngredientItem = ({
   ingredient,
   allItems,
   onChangeIngredient,
+  onDeleteIngredient,
 }: Props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: ingredient.id });
@@ -59,15 +62,15 @@ const SortableIngredientItem = ({
     <div
       ref={setNodeRef}
       style={style}
-      {...attributes}
-      className="flex flex-wrap items-center gap-3 py-3 px-4 border border-stroke/10 rounded bg-white shadow-sm"
+      className="flex items-center p-2 bg-white border border-stroke/10 rounded-md shadow-sm gap-2"
     >
       {/* Drag handle */}
       <div
+        {...attributes}
         {...listeners}
-        className="cursor-grab select-none text-lg text-muted-foreground"
+        className="cursor-move p-2 text-gray-400 hover:text-gray-600"
       >
-        <GripVertical />
+        <GripVertical className="h-5 w-5" />
       </div>
 
       {/* Ingredient Combobox */}
@@ -84,14 +87,14 @@ const SortableIngredientItem = ({
       <div className="flex flex-row border-none overflow-hidden w-[170px]">
         <Input
           type="number"
-          value={ingredient.quantity ?? 0}
+          value={ingredient.quantity}
           min={0}
           onChange={(e) =>
             onChangeIngredient(ingredient.id, {
               quantity: Number(e.target.value),
             })
           }
-          className="rounded-r-none rounded-l border border-r-0 w-20 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="rounded-r-none rounded-l border border-paragraph! border-r-0 w-20 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         <GenericCombobox
           value={ingredient.unitId ?? ""}
@@ -105,7 +108,8 @@ const SortableIngredientItem = ({
             onChangeIngredient(ingredient.id, { unitId: value })
           }
           placeholder={
-            t(TRANSLATION_KEYS.searchText) + " "+
+            t(TRANSLATION_KEYS.searchText) +
+            " " +
             t(TRANSLATION_KEYS.createRecipe.unit)
           }
           buttonClassName="rounded-l-none rounded-r bg-main w-[90px] text-left"
@@ -113,7 +117,6 @@ const SortableIngredientItem = ({
         />
       </div>
 
-      {/* Note input */}
       <Input
         type="text"
         value={ingredient.note ?? ""}
@@ -123,6 +126,15 @@ const SortableIngredientItem = ({
         placeholder={t(TRANSLATION_KEYS.createRecipe.noteIngredient)}
         className="flex-1 min-w-[200px]"
       />
+
+      <Button
+        variant={"none"}
+        size="sm"
+        className="bg-tertiary text-white"
+        onClick={() => onDeleteIngredient(ingredient.id)}
+      >
+        <Trash2 />
+      </Button>
     </div>
   );
 };

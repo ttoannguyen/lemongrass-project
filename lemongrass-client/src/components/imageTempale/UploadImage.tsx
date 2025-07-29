@@ -44,7 +44,7 @@ const UploadImage = ({ onUpload, className }: UploadImageProps) => {
     >
       <div className="flex flex-col items-center justify-center gap-2">
         <UploadIcon className="w-6 h-6 text-gray-500" />
-        <p className="text-sm font-semibold text-orange-500 underline">
+        <p className="text-sm font-semibold text-highlight underline">
           Upload Photo
         </p>
         <p className="text-xs text-gray-500">PNG or JPEG (max. 10MB)</p>

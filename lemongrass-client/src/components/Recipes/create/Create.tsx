@@ -8,6 +8,8 @@ import IngredientList from "./IngredientList";
 
 import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
+import DirectionList from "./DirectionList";
+import CreateNav from "./CreateNav";
 
 const Create = () => {
   const { t } = useTranslation();
@@ -20,7 +22,7 @@ const Create = () => {
     IngredientResponse[]
   >([]);
 
-  console.log(editableIngredients)
+  console.log(editableIngredients);
   useEffect(() => {
     if (templateIngredients.length > 0 && editableIngredients.length === 0) {
       setEditableIngredients([
@@ -54,37 +56,40 @@ const Create = () => {
   };
 
   return (
-    <div className="flex bg-main">
-      <RecipeGeneralInfo
-        title={title}
-        setTitle={setTitle}
-        servings={servings}
-        setServings={setServings}
-        cookingTime={cookingTime}
-        setCookingTime={setCookingTime}
-        onUpload={handleUpload}
-      />
+    <div>
+      <CreateNav />
+      <div className="flex bg-main">
+        <RecipeGeneralInfo
+          title={title}
+          setTitle={setTitle}
+          servings={servings}
+          setServings={setServings}
+          cookingTime={cookingTime}
+          setCookingTime={setCookingTime}
+          onUpload={handleUpload}
+        />
 
-      <div className="w-full flex-2/3 p-2 m-4">
-        <h1 className="text-paragraph font-medium">
-          {t(TRANSLATION_KEYS.createRecipe.detailInfo).toUpperCase()}
-        </h1>
-        <div className="flex gap-2 flex-col">
-          <div className="bg-white p-4 rounded-md">
-            <div className="font-medium text-paragraph flex items-center">
-              <p className="text-sm mr-2">
-                {t(TRANSLATION_KEYS.createRecipe.ingredient)}
-              </p>
-              <CircleAlert className="size-3 text-paragraph my-auto" />
+        <div className="w-full flex-2/3 p-2  m-4">
+          <h1 className="text-paragraph font-medium ">
+            {t(TRANSLATION_KEYS.createRecipe.detailInfo).toUpperCase()}
+          </h1>
+          <div className="flex gap-2 flex-col ">
+            <div className="bg-white p-4 rounded-md pt-12">
+              <div className="font-medium text-paragraph flex items-center mb-4">
+                <p className="text-sm mr-2">
+                  {t(TRANSLATION_KEYS.createRecipe.ingredient)}
+                </p>
+                <CircleAlert className="size-3 text-paragraph my-auto" />
+              </div>
+              <IngredientList
+                ingredients={editableIngredients}
+                setIngredients={setEditableIngredients}
+              />
             </div>
-          </div>
 
-          <div className="bg-white p-4 rounded-md">
-            {/* ✅ Truyền state và setState để cho phép chỉnh sửa */}
-            <IngredientList
-              ingredients={editableIngredients}
-              setIngredients={setEditableIngredients}
-            />
+            <div className="bg-white p-4 rounded-md">
+              <DirectionList />
+            </div>
           </div>
         </div>
       </div>

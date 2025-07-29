@@ -39,7 +39,7 @@ import MyGroupsPage from "@/pages/community/MyGroupsPage";
 import SearchResultsPage from "@/pages/SearchResult";
 import QuickAndEasy from "@/pages/quickAndEasy/QuickAndEasy";
 import NewRecipeLayout from "@/pages/newRecipe/NewRecipeLayout";
-import Create from "@/components/recipes/Create";
+import Create from "@/components/recipes/create/Create";
 
 const routes: RouteObject[] = [
   {

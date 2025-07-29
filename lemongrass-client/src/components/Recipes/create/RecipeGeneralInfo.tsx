@@ -1,6 +1,6 @@
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import UploadImage from "../imageTempale/UploadImage";
+import { Input } from "../../ui/input";
+import { Label } from "../../ui/label";
+import UploadImage from "../../imageTempale/UploadImage";
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 import { useTranslation } from "react-i18next";
 
@@ -27,10 +27,10 @@ const RecipeGeneralInfo = ({
 
   return (
     <div className="w-full flex-1/3 p-2 m-4">
-      <h1 className="text-paragraph font-medium">
+      <h1 className="text-paragraph font-medium ">
         {t(TRANSLATION_KEYS.createRecipe.generalInfo).toUpperCase()}
       </h1>
-      <div className="bg-white p-4 rounded-md">
+      <div className="bg-white p-4  pt-12 rounded-md">
         <UploadImage onUpload={onUpload} />
         <div className="flex flex-col gap-4 mt-10">
           <div>
@@ -42,7 +42,7 @@ const RecipeGeneralInfo = ({
               placeholder={`${t(TRANSLATION_KEYS.eg)}: ${t(
                 TRANSLATION_KEYS.createRecipe.namePlaceholder
               )}`}
-              className="border-stroke/10 border-2 focus-visible:!ring-0 focus-visible:border-stroke/40"
+              className="border-stroke/10 border-2 h-12 font-medium  focus-visible:!ring-0 focus-visible:border-stroke/40"
               value={title}
             />
           </div>
@@ -59,7 +59,7 @@ const RecipeGeneralInfo = ({
                 placeholder={`${t(TRANSLATION_KEYS.eg)}: 4 ${t(
                   TRANSLATION_KEYS.or
                 )} 3-5`}
-                className="pr-16 border-stroke/10 border-2 focus-visible:!ring-0 focus-visible:border-stroke/40"
+                className="pr-16 border-stroke/10   border-2 h-12 font-medium focus-visible:!ring-0 focus-visible:border-stroke/40"
                 value={servings}
               />
               <p className="absolute right-3 top-1/2 -translate-y-1/2 text-paragraph font-medium text-sm">
@@ -69,7 +69,7 @@ const RecipeGeneralInfo = ({
           </div>
 
           <div>
-            <Label className="mb-2">
+            <Label className="mb-2 font-medium text-paragraph">
               {t(TRANSLATION_KEYS.createRecipe.duration)}
             </Label>
             <div className="relative w-full">
@@ -77,7 +77,7 @@ const RecipeGeneralInfo = ({
                 type="number"
                 onChange={(e) => setCookingTime(Number(e.target.value))}
                 placeholder="30"
-                className="pr-16 border-stroke/10 border-2 focus-visible:!ring-0 focus-visible:border-stroke/40"
+                className="pr-16 border-stroke/10 border-2 h-12 font-medium focus-visible:!ring-0 focus-visible:border-stroke/40"
                 value={cookingTime}
               />
               <p className="absolute right-3 top-1/2 -translate-y-1/2 text-paragraph font-medium text-sm">
