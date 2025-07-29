@@ -14,6 +14,9 @@ export const TRANSLATION_KEYS = {
     ingredient: "createRecipe.ingredient",
     generalInfo: "createRecipe.recipe_general_info",
     detailInfo: "createRecipe.recipe_detail",
+    noteIngredient: "createRecipe.note_ingredient",
+    searchUnit: "createRecipe.search_unit",
+    unit: "createRecipe.unit",
   },
   recipe: {
     create: "recipe.create",
@@ -42,6 +45,8 @@ export const TRANSLATION_KEYS = {
   },
   eg: "eg",
   or: "or",
+  searchText: "search_text",
+  selectIngredient: "select_ingredient",
 } as const;
 
 export type TranslationKey =

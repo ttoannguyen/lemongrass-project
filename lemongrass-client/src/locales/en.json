@@ -11,7 +11,10 @@
     "duration": "Cook duration",
     "ingredient": "Ingredient",
     "recipe_general_info": " Recipe General infomation",
-    "recipe_detail": "Recipe detail"
+    "recipe_detail": "Recipe detail",
+    "note_ingredient": "diced tomato",
+    "search_unit": "Search units",
+    "unit": "Units"
   },
   "recipe": {
     "create": "Create recipe",
@@ -39,5 +42,7 @@
     "adminPanel": "Admin Panel"
   },
   "eg": "eg",
-  "or": "or"
+  "or": "or",
+  "search_text": "Search",
+  "select_ingredient": "Find ingredient"
 }

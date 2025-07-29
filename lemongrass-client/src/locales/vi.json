@@ -11,7 +11,10 @@
     "duration": "Thời gian nấu",
     "ingredient": "Nguyên liệu",
     "recipe_general_info": "Thông tin chung về công thức",
-    "recipe_detail": "Chi tiết công thức"
+    "recipe_detail": "Chi tiết công thức",
+    "note_ingredient": "cà chua cắt hạt lựu",
+    "search_unit": "Tìm đơn vị",
+    "unit": "Đơn vị"
   },
   "recipe": {
     "create": "Tạo công thức",
@@ -39,5 +42,7 @@
     "adminPanel": "Bảng quản trị"
   },
   "eg": "vd",
-  "or": "hoặc"
+  "or": "hoặc",
+  "search_text": "Tìm",
+  "select_ingredient": "Chọn nguyên liệu"
 }
