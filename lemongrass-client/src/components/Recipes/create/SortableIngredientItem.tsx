@@ -1,4 +1,3 @@
-import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
 import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -8,43 +7,44 @@ import { GenericCombobox } from "../../generic-combobox";
 import { useTranslation } from "react-i18next";
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 import { Button } from "../../ui/button";
-
-type IngredientWithExtra = IngredientResponse & {
-  quantity?: number;
-  unitId?: string;
-  note?: string;
-};
+import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientRequest";
 
 type Props = {
-  ingredient: IngredientWithExtra;
-  allItems: IngredientWithExtra[];
-  onChangeIngredient: (id: string, data: Partial<IngredientWithExtra>) => void;
-  onDeleteIngredient: (id: string) => void;
+  ingredient: RecipeIngredientRequest;
+  index: number;
+  allItems: RecipeIngredientRequest[];
+  templateIngredients: IngredientResponse[];
+  onChangeIngredient: (
+    index: number,
+    data: Partial<RecipeIngredientRequest>
+  ) => void;
+  onDeleteIngredient: () => void;
 };
 
 const SortableIngredientItem = ({
   ingredient,
+  index,
   allItems,
+  templateIngredients,
   onChangeIngredient,
   onDeleteIngredient,
 }: Props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: ingredient.id });
+    useSortable({ id: ingredient.templateId });
 
   const { t } = useTranslation();
 
-  const { data: allIngredients = [] } = useIngredientTemplates();
-
   const selectedIds = allItems
-    .filter((item) => item.id !== ingredient.id)
-    .map((item) => item.id);
+    .filter((_, i) => i !== index)
+    .map((item) => item.templateId)
+    .filter((id) => id !== "");
 
-  const availableOptions = allIngredients.filter(
+  const availableOptions = templateIngredients.filter(
     (ing) => !selectedIds.includes(ing.id)
   );
 
-  const selectedIngredient = allIngredients.find(
-    (ing) => ing.id === ingredient.id
+  const selectedIngredient = templateIngredients.find(
+    (ing) => ing.id === ingredient.templateId
   );
 
   const mergedOptions =
@@ -75,11 +75,20 @@ const SortableIngredientItem = ({
 
       {/* Ingredient Combobox */}
       <GenericCombobox
-        onChange={(id) => onChangeIngredient(ingredient.id, { id })}
-        value={ingredient.id}
+        defaultValue="Ingredient"
+        onChange={(templateId) => {
+          const selected = templateIngredients.find(
+            (ing) => ing.id === templateId
+          );
+          onChangeIngredient(index, {
+            templateId,
+            unitId: selected?.allowedUnits[0]?.id || "",
+          });
+        }}
+        value={ingredient.templateId}
         options={mergedOptions.map((i) => ({ id: i.id, name: i.name }))}
         placeholder={t(TRANSLATION_KEYS.selectIngredient)}
-        buttonClassName="w-60 justify-between bg-white text-paragraph border-paragraph hover:bg-main"
+        buttonClassName="w-60 justify-between bg-white text-paragraph border-stroke/30 hover:bg-main"
         contentClassName="w-60 p-0 bg-white"
       />
 
@@ -90,29 +99,28 @@ const SortableIngredientItem = ({
           value={ingredient.quantity}
           min={0}
           onChange={(e) =>
-            onChangeIngredient(ingredient.id, {
+            onChangeIngredient(index, {
               quantity: Number(e.target.value),
             })
           }
-          className="rounded-r-none rounded-l border border-paragraph! border-r-0 w-20 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+          className="rounded-r-none rounded-sm focus:ring-0! rounded-l border border-stroke/30! border-r-0 w-20 text-right [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
         <GenericCombobox
           value={ingredient.unitId ?? ""}
+          defaultValue="Units"
           options={
             selectedIngredient?.allowedUnits.map((unit) => ({
               id: unit.id,
               name: unit.name,
             })) ?? []
           }
-          onChange={(value) =>
-            onChangeIngredient(ingredient.id, { unitId: value })
-          }
+          onChange={(value) => onChangeIngredient(index, { unitId: value })}
           placeholder={
             t(TRANSLATION_KEYS.searchText) +
             " " +
             t(TRANSLATION_KEYS.createRecipe.unit)
           }
-          buttonClassName="rounded-l-none rounded-r bg-main w-[90px] text-left"
+          buttonClassName="rounded-l-none rounded-r border-stroke/30 bg-main w-[90px] text-left"
           contentClassName="w-[170px] p-0 bg-white"
         />
       </div>
@@ -120,18 +128,16 @@ const SortableIngredientItem = ({
       <Input
         type="text"
         value={ingredient.note ?? ""}
-        onChange={(e) =>
-          onChangeIngredient(ingredient.id, { note: e.target.value })
-        }
+        onChange={(e) => onChangeIngredient(index, { note: e.target.value })}
         placeholder={t(TRANSLATION_KEYS.createRecipe.noteIngredient)}
-        className="flex-1 min-w-[200px]"
+        className="flex-1 border-stroke/30 focus:ring-0! min-w-[200px]"
       />
 
       <Button
         variant={"none"}
         size="sm"
         className="bg-tertiary text-white"
-        onClick={() => onDeleteIngredient(ingredient.id)}
+        onClick={onDeleteIngredient}
       >
         <Trash2 />
       </Button>

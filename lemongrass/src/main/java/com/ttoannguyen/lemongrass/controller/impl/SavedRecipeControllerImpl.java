@@ -2,7 +2,6 @@ package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.SavedController;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
-import com.ttoannguyen.lemongrass.dto.Response.saved.SavedStatusRecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.SavedRecipeService;
 import lombok.AccessLevel;

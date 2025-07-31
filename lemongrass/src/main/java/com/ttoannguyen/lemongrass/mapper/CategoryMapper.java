@@ -14,18 +14,22 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public interface CategoryMapper {
 
-  //  @Mapping(source = "recipes", target = "recipeId", qualifiedByName = "mapRecipesToIds")
+  // @Mapping(source = "recipes", target = "recipeId", qualifiedByName =
+  // "mapRecipesToIds")
   CategoryResponse toCategoryResponse(Category category);
 
   @Mapping(source = "name", target = "name")
   @Mapping(source = "type", target = "type")
+  @Mapping(target = "id", ignore = true)
+  @Mapping(target = "recipes", ignore = true)
   Category toCategory(CategoryCreationRequest categoryCreationRequest);
 
   List<CategoryResponse> toListCategoryResponse(List<Category> categories);
 
   @Named("mapRecipesToIds")
   static List<String> mapRecipesToIds(List<Recipe> recipes) {
-    if (recipes == null) return null;
+    if (recipes == null)
+      return null;
     return recipes.stream().map(Recipe::getId).collect(Collectors.toList());
   }
 }

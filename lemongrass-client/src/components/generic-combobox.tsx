@@ -14,8 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { useState, useMemo } from "react";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "react-i18next";
-import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 
 type Option = {
   id: string;
@@ -35,6 +33,7 @@ function normalizeVietnamese(str: string): string {
 export function GenericCombobox({
   value,
   options,
+  defaultValue,
   onChange,
   placeholder = "Chọn mục",
   buttonClassName,
@@ -42,6 +41,7 @@ export function GenericCombobox({
 }: {
   value: string;
   options: Option[];
+  defaultValue: string;
   onChange: (value: string) => void;
   placeholder?: string;
   buttonClassName?: string;
@@ -50,9 +50,8 @@ export function GenericCombobox({
   const selected = options.find((opt) => opt.id === value);
   const [open, setOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
-  // Lọc options dựa trên searchValue (chuẩn hóa không dấu)
   const filteredOptions = useMemo(() => {
     if (!searchValue) return options;
     const normalizedSearch = normalizeVietnamese(searchValue);
@@ -72,15 +71,16 @@ export function GenericCombobox({
             buttonClassName
           )}
         >
-          <p className="mr-auto">
-            {selected ? selected.name : t(TRANSLATION_KEYS.createRecipe.unit)}
-          </p>
+          <p className="mr-auto">{selected ? selected.name : defaultValue}</p>
           <ChevronsUpDown className="ml-2 h-4 w-4 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent
         align="end"
-        className={cn("w-60 p-0 bg-white rounded-sm", contentClassName)}
+        className={cn(
+          "w-60 p-0 bg-white border-stroke/20 rounded-sm",
+          contentClassName
+        )}
       >
         <Command
           filter={(value, search) =>
@@ -93,14 +93,16 @@ export function GenericCombobox({
             placeholder={` ${placeholder.toLowerCase()}...`}
             value={searchValue}
             onInput={(e) => setSearchValue(e.currentTarget.value)}
+            className="border-stroke/10! "
           />
           <CommandEmpty className="text-xs text-wrap py-4 text-center">
             Vui lòng chọn nguyên liệu
           </CommandEmpty>
-          <CommandGroup>
+          <CommandGroup className="">
             {filteredOptions.map((option) => (
               <CommandItem
                 key={option.id}
+                defaultValue={"ingredient"}
                 value={normalizeVietnamese(option.name)}
                 onSelect={() => {
                   onChange(option.id);

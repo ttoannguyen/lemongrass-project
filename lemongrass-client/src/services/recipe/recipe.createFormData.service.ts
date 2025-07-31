@@ -15,12 +15,6 @@ const toFormData = (data: RecipeCreateRequest): FormData => {
     formData.append(`categoryIds[${index}]`, cat);
   });
 
-  // Tags
-  data.tags?.forEach((tag, index) => {
-    formData.append(`tags[${index}].color`, tag.color);
-    formData.append(`tags[${index}].name`, tag.name);
-  });
-
   // Ingredients
   data.ingredients?.forEach((ing, i) => {
     formData.append(`ingredients[${i}].templateId`, ing.templateId);
@@ -58,7 +52,10 @@ const toFormData = (data: RecipeCreateRequest): FormData => {
 };
 
 export const recipeCreateService = {
-  createRecipe: async (data: RecipeCreateRequest) => {
+  createRecipe: async (
+    data: RecipeCreateRequest,
+    onProgress?: (progress: number) => void
+  ) => {
     const formData = toFormData(data);
     const res = await api.post<BaseResponse<RecipeResponse>>(
       "/recipes",
@@ -66,6 +63,14 @@ export const recipeCreateService = {
       {
         headers: {
           "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: (progressEvent) => {
+          if (progressEvent.total) {
+            const percent = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total
+            );
+            onProgress?.(percent);
+          }
         },
       }
     );

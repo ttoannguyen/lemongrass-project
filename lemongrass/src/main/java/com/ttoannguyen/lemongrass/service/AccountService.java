@@ -1,8 +1,6 @@
 package com.ttoannguyen.lemongrass.service;
 
 import java.util.List;
-
-import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.ttoannguyen.lemongrass.dto.Request.account.AccountCreateRequest;
@@ -15,7 +13,7 @@ public interface AccountService {
   @PreAuthorize("hasRole('ADMIN')")
   List<AccountResponse> getAccounts();
 
-  //    @PostAuthorize("returnObject.username == authentication.name")
+  // @PostAuthorize("returnObject.username == authentication.name")
   AccountResponse getAccount(String accountId);
 
   AccountResponse getMyInfo();

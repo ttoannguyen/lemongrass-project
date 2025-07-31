@@ -13,6 +13,7 @@ public interface IngredientMapper {
   @Mapping(source = "template.name", target = "name")
   @Mapping(source = "orderIndex", target = "order")
   @Mapping(source = "unit.name", target = "unitName")
+  @Mapping(source = "note", target = "note")
   IngredientResponse toIngredientResponse(Ingredient ingredient);
 
   List<IngredientResponse> toListIngredientResponse(List<Ingredient> ingredients);

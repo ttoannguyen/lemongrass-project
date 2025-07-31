@@ -32,6 +32,7 @@ public class Recipe extends AbstractAuditingEntity {
   @Column(nullable = false, unique = true)
   String title;
 
+  @Column(columnDefinition = "TEXT")
   String description;
 
   Integer cookingTime;
@@ -45,29 +46,34 @@ public class Recipe extends AbstractAuditingEntity {
 
   //  String category;
 
-  @ManyToMany
-  @JoinTable(
-      name = "recipe_tag",
-      joinColumns = @JoinColumn(name = "recipe_id"),
-      inverseJoinColumns = @JoinColumn(name = "tag_name"))
-  Set<Tag> tags = new HashSet<>();
+  //  @ManyToMany
+  //  @JoinTable(
+  //      name = "recipe_tag",
+  //      joinColumns = @JoinColumn(name = "recipe_id"),
+  //      inverseJoinColumns = @JoinColumn(name = "tag_id"))
+  //  @Builder.Default
+  //  Set<Tag> tags = new HashSet<>();
 
   @Column(nullable = false)
   boolean isVerified;
 
   @Column(nullable = false)
+  @Builder.Default
   Boolean isDeleted = false;
 
   @Column(nullable = false)
   Integer shareCount;
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
   List<Instruction> instructions = new ArrayList<>();
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
   List<Ingredient> ingredients = new ArrayList<>();
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+  @Builder.Default
   List<Image> images = new ArrayList<>();
 
   @ManyToMany
@@ -75,5 +81,6 @@ public class Recipe extends AbstractAuditingEntity {
       name = "recipe_categories",
       joinColumns = @JoinColumn(name = "recipe_id"),
       inverseJoinColumns = @JoinColumn(name = "category_id"))
+  @Builder.Default
   private List<Category> categories = new ArrayList<>();
 }

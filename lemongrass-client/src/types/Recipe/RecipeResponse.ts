@@ -36,6 +36,8 @@ export interface RecipeResponse {
     name: string;
     quantity: string;
     order: number;
+    unitName: string;
+    note: string;
   }[];
 
   instructions: {

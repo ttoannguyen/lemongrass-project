@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { UploadIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { ImageUpload } from "@/types/image/ImageUpload";
+import { toast } from "sonner";
 
 type UploadImageProps = {
-  onUpload: (file: File) => void;
+  onUpload: (files: ImageUpload[]) => void;
   className?: string;
 };
 
@@ -11,23 +13,40 @@ const UploadImage = ({ onUpload, className }: UploadImageProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
 
-    const isValidType = ["image/png", "image/jpeg"].includes(file.type);
-    const isValidSize = file.size <= 10 * 1024 * 1024;
+    const validFiles: ImageUpload[] = [];
 
-    if (!isValidType) {
-      alert("Chỉ hỗ trợ PNG hoặc JPEG");
-      return;
+    Array.from(files).forEach((file, index) => {
+      const isValidType = ["image/png", "image/jpeg", "image/webp"].includes(
+        file.type
+      );
+      const isValidSize = file.size <= 10 * 1024 * 1024; // Giới hạn 10MB
+
+      if (!isValidType) {
+        toast.error(
+          `File "${file.name}" không hợp lệ. Chỉ chấp nhận PNG hoặc JPEG.`
+        );
+        return;
+      }
+
+      if (!isValidSize) {
+        toast.error(`File "${file.name}" vượt quá giới hạn 10MB.`);
+        return;
+      }
+
+      validFiles.push({
+        file,
+        displayOrder: index,
+      });
+    });
+
+    if (validFiles.length > 0) {
+      onUpload(validFiles);
     }
 
-    if (!isValidSize) {
-      alert("Dung lượng tối đa là 10MB");
-      return;
-    }
-
-    onUpload(file);
+    e.target.value = "";
   };
 
   const handleClick = () => {
@@ -38,21 +57,24 @@ const UploadImage = ({ onUpload, className }: UploadImageProps) => {
     <div
       onClick={handleClick}
       className={cn(
-        "border-2 border-dashed border-gray-300 rounded-md cursor-pointer p-6 text-center hover:border-primary/50 transition",
+        "border-2 border-dashed border-gray-300 rounded-md cursor-pointer text-center  hover:border-primary/50 transition",
         className
       )}
     >
       <div className="flex flex-col items-center justify-center gap-2">
-        <UploadIcon className="w-6 h-6 text-gray-500" />
+        <UploadIcon className="w-6 h-6 text-paragraph" />
         <p className="text-sm font-semibold text-highlight underline">
-          Upload Photo
+          Tải ảnh công thức
         </p>
-        <p className="text-xs text-gray-500">PNG or JPEG (max. 10MB)</p>
+        <p className="text-xs text-gray-500">
+          PNG hoặc JPEG (tối đa 10MB mỗi ảnh)
+        </p>
       </div>
       <input
         ref={inputRef}
         type="file"
-        accept="image/png, image/jpeg"
+        accept="image/png, image/jpeg, image/webp"
+        multiple
         className="hidden"
         onChange={handleFileChange}
       />

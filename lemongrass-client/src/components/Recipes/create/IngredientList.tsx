@@ -1,4 +1,3 @@
-import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import {
   arrayMove,
   SortableContext,
@@ -12,28 +11,31 @@ import {
   useSensors,
   type DragEndEvent,
 } from "@dnd-kit/core";
-import SortableIngredientItem from "./SortableIngredientItem";
 import { Plus } from "lucide-react";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
+import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientRequest";
+import SortableIngredientItem from "./SortableIngredientItem";
 
 type Props = {
-  ingredients: (IngredientResponse & {
-    quantity?: number;
-    unitId?: string;
-    note?: string;
-  })[];
-  setIngredients: React.Dispatch<
-    React.SetStateAction<
-      (IngredientResponse & {
-        quantity?: number;
-        unitId?: string;
-        note?: string;
-      })[]
-    >
-  >;
+  ingredients: RecipeIngredientRequest[];
+  addIngredient: () => void;
+  updateIngredient: (
+    index: number,
+    updated: Partial<RecipeIngredientRequest>
+  ) => void;
+  removeIngredient: (index: number) => void;
+  templateIngredients: IngredientResponse[];
 };
 
-const IngredientList = ({ ingredients, setIngredients }: Props) => {
+const IngredientList = ({
+  ingredients,
+  addIngredient,
+  updateIngredient,
+  removeIngredient,
+  templateIngredients,
+}: Props) => {
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -46,75 +48,58 @@ const IngredientList = ({ ingredients, setIngredients }: Props) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
 
-    setIngredients((prev) => {
-      const oldIndex = prev.findIndex((i) => i.id === active.id);
-      const newIndex = prev.findIndex((i) => i.id === over.id);
-      return arrayMove(prev, oldIndex, newIndex);
+    const oldIndex = ingredients.findIndex((i) => i.templateId === active.id || `temp-${i.orderIndex}` === active.id);
+    const newIndex = ingredients.findIndex((i) => i.templateId === over.id || `temp-${i.orderIndex}` === over.id);
+
+    const updated = arrayMove(ingredients, oldIndex, newIndex);
+    updated.forEach((_, index) => {
+      updateIngredient(index, { orderIndex: index });
     });
-  };
-
-  const handleAddIngredient = () => {
-    setIngredients((prev) => [
-      ...prev,
-      {
-        id: `temp-${Date.now()}-${Math.random().toString(36).slice(2)}`,
-        name: "",
-        quantity: 0,
-        unitId: "",
-        note: "",
-        aliases: [],
-        allowedUnits: [],
-      },
-    ]);
-  };
-
-  const handleDeleteIngredient = (id: string) => {
-    setIngredients((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
     <div className="space-y-4">
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={ingredients.map((i) => i.id)}
-          strategy={verticalListSortingStrategy}
+      <ScrollArea className="h-52  overflow-hidden border border-stroke/10 rounded-sm">
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
         >
-          <div className="space-y-2">
-            {ingredients.length === 0 ? (
-              <p className="text-gray-500 text-center">
-                No ingredients added yet
-              </p>
-            ) : (
-              ingredients.map((ingredient) => (
-                <SortableIngredientItem
-                  key={ingredient.id}
-                  ingredient={ingredient}
-                  allItems={ingredients}
-                  onChangeIngredient={(id, newData) => {
-                    setIngredients((prev) =>
-                      prev.map((item) =>
-                        item.id === id ? { ...item, ...newData } : item
-                      )
-                    );
-                  }}
-                  onDeleteIngredient={handleDeleteIngredient}
-                />
-              ))
-            )}
-          </div>
-        </SortableContext>
-      </DndContext>
+          <SortableContext
+            items={ingredients.map((i) => i.templateId || `temp-${i.orderIndex}`)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div className="space-y-2 p-2">
+              {ingredients.length === 0 ? (
+                <p className="text-paragraph text-center">
+                  No ingredients added yet
+                </p>
+              ) : (
+                ingredients.map((ingredient, index) => (
+                  <SortableIngredientItem
+                    key={ingredient.templateId || `temp-${index}`}
+                    ingredient={ingredient}
+                    index={index}
+                    allItems={ingredients}
+                    templateIngredients={templateIngredients}
+                    onChangeIngredient={(index, newData) => {
+                      updateIngredient(index, newData);
+                    }}
+                    onDeleteIngredient={() => removeIngredient(index)}
+                  />
+                ))
+              )}
+            </div>
+          </SortableContext>
+        </DndContext>
+      </ScrollArea>
       <Button
         variant="none"
-        className="mt-2 w-full border border-highlight text-highlight cursor-pointer hover: "
-        onClick={handleAddIngredient}
+        className="w-full border border-highlight text-highlight"
+        onClick={addIngredient}
       >
         <Plus className="mr-2 h-4 w-4" />
-        Add Ingredient
+        Add ingredient
       </Button>
     </div>
   );

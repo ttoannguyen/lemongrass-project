@@ -1,8 +1,6 @@
 package com.ttoannguyen.lemongrass.mapper;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.Recipe;
@@ -30,7 +28,7 @@ public interface RecipeMapper {
   @Mapping(source = "ingredients", target = "ingredients")
   @Mapping(source = "instructions", target = "instructions")
   @Mapping(source = "verified", target = "isVerified")
-  @Mapping(source = "tags", target = "tags")
+  //  @Mapping(source = "tags", target = "tags")
   @Mapping(source = "images", target = "images")
   @Mapping(source = "categories", target = "categories")
   @Mapping(source = "isDeleted", target = "isDeleted")

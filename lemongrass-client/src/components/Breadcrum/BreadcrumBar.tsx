@@ -24,7 +24,7 @@ const BreadcrumbBar = ({ items }: { items: BreadcrumbItemType[] }) => {
               {item.href ? (
                 <BreadcrumbLink asChild>
                   <Link
-                    className="capitalize text-paragraph hover:text-main transition-colors duration-200 hover:underline"
+                    className="capitalize text-paragraph hover:text-headline transition-colors duration-200 hover:underline"
                     to={item.href}
                   >
                     {item.label}

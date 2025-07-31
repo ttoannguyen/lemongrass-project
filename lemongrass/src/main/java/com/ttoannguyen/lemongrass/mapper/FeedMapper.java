@@ -18,7 +18,7 @@ import java.util.List;
     componentModel = "spring",
     uses = {
       AccountMapper.class,
-      TagMapper.class,
+      //      TagMapper.class,
       IngredientMapper.class,
       GroupMapper.class,
       InstructionMapper.class,
@@ -52,7 +52,7 @@ public interface FeedMapper {
   @Mapping(source = "servings", target = "servings")
   @Mapping(source = "ratingAvg", target = "ratingAvg")
   @Mapping(source = "shareCount", target = "shareCount")
-  @Mapping(source = "tags", target = "tags")
+  //  @Mapping(source = "tags", target = "tags")
   @Mapping(source = "ingredients", target = "ingredients")
   @Mapping(source = "instructions", target = "instructions")
   @Mapping(source = "images", target = "imageResponses", qualifiedByName = "mapImageUrls")

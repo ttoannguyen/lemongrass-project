@@ -88,7 +88,7 @@ public class IngredientTemplateServiceImpl implements IngredientTemplateService 
 
   @Override
   public Void delete(String id) {
-    IngredientTemplate ingredientTemplate =
+    // IngredientTemplate ingredientTemplate =
         ingredientTemplateRepository
             .findById(id)
             .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));

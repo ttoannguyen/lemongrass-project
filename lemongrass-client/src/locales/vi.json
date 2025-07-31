@@ -10,11 +10,17 @@
     "number": "Phục vụ cho",
     "duration": "Thời gian nấu",
     "ingredient": "Nguyên liệu",
+    "instruction": "Hướng dẫn",
     "recipe_general_info": "Thông tin chung về công thức",
     "recipe_detail": "Chi tiết công thức",
     "note_ingredient": "cà chua cắt hạt lựu",
     "search_unit": "Tìm đơn vị",
-    "unit": "Đơn vị"
+    "unit": "Đơn vị",
+    "meal_type": "Loại bữa ăn",
+    "cuisine": "Kiểm ẩm thực",
+    "occasion": "Dịp",
+    "difficulty": "Độ khó",
+    "no_ingredient": "Không có nguyên liệu"
   },
   "recipe": {
     "create": "Tạo công thức",

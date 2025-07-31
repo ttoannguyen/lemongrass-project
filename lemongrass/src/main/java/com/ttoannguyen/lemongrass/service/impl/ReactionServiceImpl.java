@@ -1,13 +1,9 @@
 package com.ttoannguyen.lemongrass.service.impl;
 
 import com.ttoannguyen.lemongrass.dto.Request.reaction.ReactionRequest;
-import com.ttoannguyen.lemongrass.dto.Response.notification.NotificationMessage;
 import com.ttoannguyen.lemongrass.entity.Account;
-import com.ttoannguyen.lemongrass.entity.Notification;
 import com.ttoannguyen.lemongrass.entity.Post;
 import com.ttoannguyen.lemongrass.entity.Reaction;
-import com.ttoannguyen.lemongrass.entity.enums.NotificationType;
-import com.ttoannguyen.lemongrass.entity.enums.Priority;
 import com.ttoannguyen.lemongrass.entity.enums.ReactionTargetType;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
@@ -19,7 +15,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -30,11 +25,11 @@ public class ReactionServiceImpl implements ReactionService {
   AccountRepository accountRepository;
   ReactionRepository reactionRepository;
   PostRepository postRepository;
-  RecipeRepository recipeRepository;
-  CommentRepository commentRepository;
-  SimpMessagingTemplate messagingTemplate;
+  // RecipeRepository recipeRepository;
+  // CommentRepository commentRepository;
+  // SimpMessagingTemplate messagingTemplate;
   NotificationService notificationService;
-  NotificationRepository notificationRepository;
+  // NotificationRepository notificationRepository;
 
   //  @Override
   //  public void toggleHeart(ReactionRequest request) {

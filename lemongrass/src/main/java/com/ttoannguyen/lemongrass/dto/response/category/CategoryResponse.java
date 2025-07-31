@@ -1,11 +1,9 @@
 package com.ttoannguyen.lemongrass.dto.Response.category;
 
-import com.ttoannguyen.lemongrass.entity.enums.CategoryType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Data
 @NoArgsConstructor

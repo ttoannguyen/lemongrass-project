@@ -5,7 +5,6 @@ import com.ttoannguyen.lemongrass.entity.Account;
 import com.ttoannguyen.lemongrass.entity.Notification;
 import com.ttoannguyen.lemongrass.entity.Post;
 import com.ttoannguyen.lemongrass.entity.enums.NotificationType;
-import com.ttoannguyen.lemongrass.entity.enums.Priority;
 import com.ttoannguyen.lemongrass.entity.enums.ReactionTargetType;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;

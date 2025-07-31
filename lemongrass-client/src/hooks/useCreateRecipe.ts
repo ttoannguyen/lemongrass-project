@@ -1,198 +1,15 @@
-// import { useState } from "react";
-// import { Difficulty } from "@/types/enums/difficulty.enum";
-// import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientRequest";
-// import type { TagDto } from "@/types/tag/TagDto";
-// import type { RecipeInstructionRequest } from "@/types/Recipe/RecipeInstructionRequest";
-
-// import type { ImageUpload } from "@/types/image/ImageUpload";
-// import type { UnitResponse } from "@/types/units/UnitResponse";
-// import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
-
-// type UseCreateRecipeParams = {
-//   templates: IngredientResponse[];
-// };
-
-// const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
-//   const [title, setTitle] = useState("");
-//   const [description, setDescription] = useState("");
-//   const [cookingTime, setCookingTime] = useState(1);
-//   const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.MEDIUM);
-//   const [servings, setServings] = useState(1);
-//   const [category, setCategory] = useState<string[]>([]);
-
-//   const [ingredients, setIngredients] = useState<RecipeIngredientRequest[]>([]);
-//   const [instructions, setInstructions] = useState<RecipeInstructionRequest[]>(
-//     []
-//   );
-//   const [recipeImages, setRecipeImages] = useState<ImageUpload[]>([]);
-//   const [instructionImages, setInstructionImages] = useState<ImageUpload[][]>(
-//     []
-//   );
-//   const [tags, setTags] = useState<TagDto[]>([]);
-
-//   const addIngredient = () => {
-//     setIngredients((prev) => [
-//       ...prev,
-//       {
-//         templateId: "",
-//         unitId: "",
-//         order: 0,
-//         note: "",
-//         orderIndex: 0,
-//         quantity: 0,
-//       },
-//     ]);
-//   };
-
-//   const updateIngredient = (
-//     index: number,
-//     updated: Partial<RecipeIngredientRequest>
-//   ) => {
-//     setIngredients((prev) =>
-//       prev.map((item, i) => (i === index ? { ...item, ...updated } : item))
-//     );
-//   };
-
-//   const removeIngredient = (index: number) => {
-//     setIngredients((prev) => prev.filter((_, i) => i !== index));
-//   };
-
-//   const addInstruction = () => {
-//     setInstructions((prev) => [
-//       ...prev,
-//       {
-//         stepNumber: prev.length + 1,
-//         description: "",
-//         images: [],
-//       },
-//     ]);
-//     setInstructionImages((prev) => [...prev, []]);
-//   };
-
-//   const updateInstruction = (
-//     index: number,
-//     updated: Partial<RecipeInstructionRequest>
-//   ) => {
-//     setInstructions((prev) =>
-//       prev.map((item, i) => (i === index ? { ...item, ...updated } : item))
-//     );
-//   };
-
-//   const removeInstruction = (index: number) => {
-//     setInstructions((prev) => prev.filter((_, i) => i !== index));
-//     setInstructionImages((prev) => prev.filter((_, i) => i !== index));
-//   };
-
-//   const addRecipeImage = (image: ImageUpload) => {
-//     setRecipeImages((prev) => [...prev, image]);
-//   };
-
-//   const removeRecipeImage = (index: number) => {
-//     setRecipeImages((prev) => prev.filter((_, i) => i !== index));
-//   };
-
-//   const addInstructionImage = (
-//     instructionIndex: number,
-//     image: ImageUpload
-//   ) => {
-//     setInstructionImages((prev) => {
-//       const newImages = [...prev];
-//       const current = newImages[instructionIndex] || [];
-//       const updatedImages = [...current, image];
-//       newImages[instructionIndex] = updatedImages;
-
-//       setInstructions((prevIns) =>
-//         prevIns.map((ins, i) =>
-//           i === instructionIndex ? { ...ins, images: updatedImages } : ins
-//         )
-//       );
-
-//       return newImages;
-//     });
-//   };
-
-//   const removeInstructionImage = (
-//     instructionIndex: number,
-//     imageIndex: number
-//   ) => {
-//     setInstructionImages((prev) => {
-//       const newImages = [...prev];
-//       const current = newImages[instructionIndex] || [];
-//       const updatedImages = current.filter((_, i) => i !== imageIndex);
-//       newImages[instructionIndex] = updatedImages;
-
-//       setInstructions((prevIns) =>
-//         prevIns.map((ins, i) =>
-//           i === instructionIndex ? { ...ins, images: updatedImages } : ins
-//         )
-//       );
-
-//       return newImages;
-//     });
-//   };
-
-//   const addTag = (tag: TagDto) => {
-//     setTags((prev) => [...prev, tag]);
-//   };
-
-//   const removeTag = (index: number) => {
-//     setTags((prev) => prev.filter((_, i) => i !== index));
-//   };
-
-//   const getAllowedUnits = (ingredientTemplateId: string): UnitResponse[] => {
-//     const found = templates?.find((t) => t.id === ingredientTemplateId);
-//     return found?.allowedUnits ?? [];
-//   };
-
-//   return {
-//     title,
-//     setTitle,
-//     description,
-//     setDescription,
-//     cookingTime,
-//     setCookingTime,
-//     difficulty,
-//     setDifficulty,
-//     servings,
-//     setServings,
-//     category,
-//     setCategory,
-//     ingredients,
-//     addIngredient,
-//     updateIngredient,
-//     removeIngredient,
-//     instructions,
-//     addInstruction,
-//     updateInstruction,
-//     removeInstruction,
-//     recipeImages,
-//     addRecipeImage,
-//     removeRecipeImage,
-//     instructionImages,
-//     addInstructionImage,
-//     removeInstructionImage,
-//     tags,
-//     addTag,
-//     removeTag,
-//     getAllowedUnits,
-//     // submitRecipe,
-//   };
-// };
-
-// export default useCreateRecipe;
-
 import { useState } from "react";
+import { nanoid } from "nanoid";
 import { Difficulty } from "@/types/enums/difficulty.enum";
-// import type {
-//   RecipeIngredientRequest,
-//   RecipeInstructionRequest,
-// } from "@/types/Recipe";
 import type { TagDto } from "@/types/tag/TagDto";
 import type { ImageUpload } from "@/types/image/ImageUpload";
 import type { UnitResponse } from "@/types/units/UnitResponse";
 import type { IngredientResponse } from "@/types/ingredient/IngredientResponse";
 import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientRequest";
 import type { RecipeInstructionRequest } from "@/types/Recipe/RecipeInstructionRequest";
+import { toast } from "sonner";
+
+export type UIInstruction = RecipeInstructionRequest & { id: string };
 
 type UseCreateRecipeParams = {
   templates: IngredientResponse[];
@@ -218,8 +35,7 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
         unitId: "",
         quantity: 0,
         note: "",
-        order: 0,
-        orderIndex: 0,
+        orderIndex: prev.length,
       },
     ]);
   };
@@ -242,84 +58,102 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
   };
 
   // ========== Instructions ==========
-  const [instructions, setInstructions] = useState<RecipeInstructionRequest[]>(
-    []
-  );
-  const [instructionImages, setInstructionImages] = useState<ImageUpload[][]>(
-    []
-  );
+  const [instructions, setInstructions] = useState<UIInstruction[]>([]);
 
   const addInstruction = () => {
+    const newId = nanoid();
     setInstructions((prev) => [
       ...prev,
       {
+        id: newId,
         stepNumber: prev.length + 1,
         description: "",
         images: [],
       },
     ]);
-    setInstructionImages((prev) => [...prev, []]);
   };
 
   const updateInstruction = (
-    index: number,
+    id: string,
     updated: Partial<RecipeInstructionRequest>
   ) => {
     setInstructions((prev) =>
-      prev.map((ins, i) => (i === index ? { ...ins, ...updated } : ins))
+      prev.map((ins) => (ins.id === id ? { ...ins, ...updated } : ins))
     );
   };
 
-  const removeInstruction = (index: number) => {
-    setInstructions((prev) => prev.filter((_, i) => i !== index));
-    setInstructionImages((prev) => prev.filter((_, i) => i !== index));
+  const removeInstruction = (id: string) => {
+    setInstructions((prev) => prev.filter((ins) => ins.id !== id));
   };
 
   const addInstructionImage = (
-    instructionIndex: number,
-    image: ImageUpload
+    instructionId: string,
+    images: ImageUpload[]
   ) => {
-    setInstructionImages((prev) => {
-      const updated = [...prev];
-      const newList = [...(updated[instructionIndex] || []), image];
-      updated[instructionIndex] = newList;
+    setInstructions((prev) =>
+      prev.map((ins) => {
+        if (ins.id === instructionId) {
+          const currentImages = ins.images || [];
+          const newImages = [...currentImages];
 
-      setInstructions((ins) =>
-        ins.map((item, i) =>
-          i === instructionIndex ? { ...item, images: newList } : item
-        )
-      );
+          // Kiểm tra trùng lặp và giới hạn 3 ảnh
+          images.forEach((image) => {
+            const isDuplicate = currentImages.some(
+              (existing) =>
+                existing.file.name === image.file.name &&
+                existing.file.size === image.file.size
+            );
+            if (isDuplicate) {
+              toast.error("Hình ảnh bị trùng lặp");
+              return ins;
+            }
+            if (!isDuplicate && newImages.length < 3) {
+              newImages.push({
+                ...image,
+                displayOrder: newImages.length,
+              });
+            }
+          });
 
-      return updated;
-    });
+          if (newImages.length > 3) {
+            toast.error("Tối đa 3 ảnh mỗi hướng dẫn");
+            return ins;
+          }
+
+          return { ...ins, images: newImages };
+        }
+        return ins;
+      })
+    );
   };
 
-  const removeInstructionImage = (
-    instructionIndex: number,
-    imageIndex: number
-  ) => {
-    setInstructionImages((prev) => {
-      const updated = [...prev];
-      const filtered = (updated[instructionIndex] || []).filter(
-        (_, i) => i !== imageIndex
-      );
-      updated[instructionIndex] = filtered;
-
-      setInstructions((ins) =>
-        ins.map((item, i) =>
-          i === instructionIndex ? { ...item, images: filtered } : item
-        )
-      );
-
-      return updated;
-    });
+  const removeInstructionImage = (instructionId: string, index: number) => {
+    setInstructions((prev) =>
+      prev.map((ins) =>
+        ins.id === instructionId
+          ? {
+              ...ins,
+              images: ins.images?.filter((_, i) => i !== index) || [],
+            }
+          : ins
+      )
+    );
   };
+
+  
 
   // ========== Recipe Images ==========
   const [recipeImages, setRecipeImages] = useState<ImageUpload[]>([]);
 
-  const addRecipeImage = (image: ImageUpload) => {
-    setRecipeImages((prev) => [...prev, image]);
+
+  const addRecipeImage = (images: ImageUpload[]) => {
+    setRecipeImages((prev) => [
+      ...prev,
+      ...images.map((image, index) => ({
+        ...image,
+        displayOrder: prev.length + index,
+      })),
+    ]);
   };
 
   const removeRecipeImage = (index: number) => {
@@ -364,7 +198,6 @@ const useCreateRecipe = ({ templates }: UseCreateRecipeParams) => {
     addInstruction,
     updateInstruction,
     removeInstruction,
-    instructionImages,
     addInstructionImage,
     removeInstructionImage,
 

@@ -21,12 +21,13 @@ public class RecipeDocument {
   Integer servings;
   String accountId;
   String accountName;
-  Boolean isDeleted = false;
-  List<String> categoryIds = new ArrayList<>();
-  List<Tag> tags = new ArrayList<>();
-  List<Ingredient> ingredients = new ArrayList<>();
-  List<Instruction> instructions = new ArrayList<>();
-  List<Image> images = new ArrayList<>();
+  @Builder.Default Boolean isDeleted = false;
+  @Builder.Default List<String> categoryIds = new ArrayList<>();
+  //  @Builder.Default
+  //  List<Tag> tags = new ArrayList<>();
+  @Builder.Default List<Ingredient> ingredients = new ArrayList<>();
+  @Builder.Default List<Instruction> instructions = new ArrayList<>();
+  @Builder.Default List<Image> images = new ArrayList<>();
 
   Instant createdAt;
   Instant updatedAt;

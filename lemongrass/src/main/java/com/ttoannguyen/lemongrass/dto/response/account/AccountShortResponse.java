@@ -1,6 +1,5 @@
 package com.ttoannguyen.lemongrass.dto.Response.account;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

@@ -1,6 +1,5 @@
 package com.ttoannguyen.lemongrass.dto.Request.category;
 
-import com.ttoannguyen.lemongrass.entity.enums.CategoryType;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

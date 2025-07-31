@@ -6,12 +6,9 @@ import com.ttoannguyen.lemongrass.dto.Response.post.PostResponse;
 import com.ttoannguyen.lemongrass.entity.*;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
-import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import com.ttoannguyen.lemongrass.mapper.PostMapper;
 import com.ttoannguyen.lemongrass.repository.AccountRepository;
-import com.ttoannguyen.lemongrass.repository.GroupRepository;
 import com.ttoannguyen.lemongrass.repository.PostRepository;
-import com.ttoannguyen.lemongrass.repository.RecipeRepository;
 import com.ttoannguyen.lemongrass.service.CloudinaryService;
 import com.ttoannguyen.lemongrass.service.PostService;
 import jakarta.transaction.Transactional;
@@ -29,10 +26,10 @@ import java.util.stream.Collectors;
 public class PostServiceImpl implements PostService {
   PostRepository postRepository;
   AccountRepository accountRepository;
-  GroupRepository groupRepository;
-  RecipeRepository recipeRepository;
+  // GroupRepository groupRepository;
+  // RecipeRepository recipeRepository;
   PostMapper postMapper;
-  AccountMapper accountMapper;
+  // AccountMapper accountMapper;
   CloudinaryService cloudinaryService;
 
   //  @Override

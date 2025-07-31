@@ -36,7 +36,6 @@ const CATEGORY_TYPES = [
 
 export default function AdminRecipeCategoryPage() {
   const { data: categories = [] } = useCategoryQuery();
-
   const updateCategory = useUpdateCategory();
   const deleteCategory = useDeleteCategory();
   const createCategory = useAddCategory();
@@ -89,7 +88,7 @@ export default function AdminRecipeCategoryPage() {
     if (!name) return toast.error("Tên không được để trống");
 
     updateCategory.mutate(
-      { id, name, type }, // Thêm type
+      { id, name, type },
       {
         onSuccess: () => {
           toast.success("Đã cập nhật danh mục");

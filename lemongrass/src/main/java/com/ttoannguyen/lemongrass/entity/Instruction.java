@@ -34,6 +34,7 @@ public class Instruction extends AbstractAuditingEntity {
   @Column(nullable = false)
   private String description;
 
+  @Builder.Default
   @OneToMany(mappedBy = "instruction", cascade = CascadeType.ALL, orphanRemoval = true)
   List<Image> images = new ArrayList<>();
 }

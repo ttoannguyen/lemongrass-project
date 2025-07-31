@@ -73,7 +73,7 @@ public class IngredientUnitServiceImpl implements IngredientUnitService {
 
   @Override
   public Void deleteUnit(String id) {
-    IngredientUnit ingredientUnit =
+    // IngredientUnit ingredientUnit =
         ingredientUnitRepository
             .findById(id)
             .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_UNIT_NOT_EXISTED));

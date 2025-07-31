@@ -9,12 +9,18 @@
     "name_placeholder": "Savory stuffed bell peppers",
     "number": "Number of serving",
     "duration": "Cook duration",
+    "instruction": "Instruction",
     "ingredient": "Ingredient",
     "recipe_general_info": " Recipe General infomation",
     "recipe_detail": "Recipe detail",
     "note_ingredient": "diced tomato",
     "search_unit": "Search units",
-    "unit": "Units"
+    "unit": "Units",
+    "meal_type": "Meal Type",
+    "cuisine": "Cuisine",
+    "occasion": "Occasion",
+    "difficulty": "Difficulty",
+    "no_ingredient": "No ingredient"
   },
   "recipe": {
     "create": "Create recipe",

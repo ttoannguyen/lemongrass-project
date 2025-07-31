@@ -7,12 +7,12 @@ import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientCreationReque
 import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
-import com.ttoannguyen.lemongrass.dto.Request.tag.TagCreationRequest;
+// import com.ttoannguyen.lemongrass.dto.Request.tag.TagCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.*;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
-import com.ttoannguyen.lemongrass.mapper.AccountMapper;
+// import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import com.ttoannguyen.lemongrass.mapper.RecipeMapper;
 import com.ttoannguyen.lemongrass.repository.*;
 import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
@@ -38,8 +38,8 @@ public class RecipeServiceImpl implements RecipeService {
 
   ElasticsearchAsyncClient elasticsearchAsyncClient;
   RecipeMapper recipeMapper;
-  AccountMapper accountMapper;
-  TagRepository tagRepository;
+  // AccountMapper accountMapper;
+  //  TagRepository tagRepository;
   ImageRepository imageRepository;
   RecipeRepository recipeRepository;
   CloudinaryService cloudinaryService;
@@ -61,12 +61,12 @@ public class RecipeServiceImpl implements RecipeService {
     Recipe recipe = buildBaseRecipe(request, account);
     recipeRepository.save(recipe);
 
-    if (request.getTags() != null) {
-      log.info("Resolving tags: {}", request.getTags());
-      Set<Tag> tags = resolveTags(request.getTags());
-      recipe.setTags(new HashSet<>(tags));
-      log.info("Tags set, type: {}", recipe.getTags().getClass().getName());
-    }
+    //    if (request.getTags() != null) {
+    //      log.info("Resolving tags: {}", request.getTags());
+    //      Set<Tag> tags = resolveTags(request.getTags());
+    //      recipe.setTags(new HashSet<>(tags));
+    //      log.info("Tags set, type: {}", recipe.getTags().getClass().getName());
+    //    }
 
     if (request.getCategoryIds() != null) {
       log.info("Resolving categories: {}", request.getCategoryIds());
@@ -175,12 +175,12 @@ public class RecipeServiceImpl implements RecipeService {
     recipe.setServings(request.getServings());
     recipeRepository.save(recipe);
 
-    if (request.getTags() != null) {
-      recipe.getTags().clear();
-      Set<Tag> tags = resolveTags(request.getTags());
-      recipe.setTags(new HashSet<>(tags));
-      log.info("Tags updated, type: {}", recipe.getTags().getClass().getName());
-    }
+    //    if (request.getTags() != null) {
+    //      recipe.getTags().clear();
+    //      Set<Tag> tags = resolveTags(request.getTags());
+    //      recipe.setTags(new HashSet<>(tags));
+    //      log.info("Tags updated, type: {}", recipe.getTags().getClass().getName());
+    //    }
 
     if (request.getCategoryIds() != null) {
       recipe
@@ -373,36 +373,37 @@ public class RecipeServiceImpl implements RecipeService {
         .collect(Collectors.toCollection(ArrayList::new));
   }
 
-  private Set<Tag> resolveTags(List<TagCreationRequest> requests) {
-    log.info("- Resolving tags: {}", requests);
-    return requests.stream()
-        .map(
-            tagCreationRequest -> {
-              log.info("Processing tag: {}", tagCreationRequest.getName());
-              return tagRepository
-                  .findByName(tagCreationRequest.getName())
-                  .map(
-                      existing -> {
-                        if (!Objects.equals(existing.getColor(), tagCreationRequest.getColor())) {
-                          existing.setColor(tagCreationRequest.getColor());
-                          log.info("Saving updated tag: {}", existing.getName());
-                          tagRepository.save(existing);
-                        }
-                        return existing;
-                      })
-                  .orElseGet(
-                      () -> {
-                        Tag newTag =
-                            Tag.builder()
-                                .name(tagCreationRequest.getName())
-                                .color(tagCreationRequest.getColor())
-                                .build();
-                        log.info("Saving new tag: {}", newTag.getName());
-                        return tagRepository.save(newTag);
-                      });
-            })
-        .collect(Collectors.toCollection(HashSet::new));
-  }
+  //  private Set<Tag> resolveTags(List<TagCreationRequest> requests) {
+  //    log.info("- Resolving tags: {}", requests);
+  //    return requests.stream()
+  //        .map(
+  //            tagCreationRequest -> {
+  //              log.info("Processing tag: {}", tagCreationRequest.getName());
+  //              return tagRepository
+  //                  .findByName(tagCreationRequest.getName())
+  //                  .map(
+  //                      existing -> {
+  //                        if (!Objects.equals(existing.getColor(), tagCreationRequest.getColor()))
+  // {
+  //                          existing.setColor(tagCreationRequest.getColor());
+  //                          log.info("Saving updated tag: {}", existing.getName());
+  //                          tagRepository.save(existing);
+  //                        }
+  //                        return existing;
+  //                      })
+  //                  .orElseGet(
+  //                      () -> {
+  //                        Tag newTag =
+  //                            Tag.builder()
+  //                                .name(tagCreationRequest.getName())
+  //                                .color(tagCreationRequest.getColor())
+  //                                .build();
+  //                        log.info("Saving new tag: {}", newTag.getName());
+  //                        return tagRepository.save(newTag);
+  //                      });
+  //            })
+  //        .collect(Collectors.toCollection(HashSet::new));
+  //  }
 
   private List<Ingredient> buildIngredients(
       List<IngredientCreationRequest> requests, Recipe recipe) {
@@ -498,13 +499,13 @@ public class RecipeServiceImpl implements RecipeService {
             recipe.getCategories() != null
                 ? new ArrayList<>(recipe.getCategories().stream().map(Category::getId).toList())
                 : new ArrayList<>())
-        .tags(
-            recipe.getTags() != null
-                ? new ArrayList<>(
-                    recipe.getTags().stream()
-                        .map(tag -> new RecipeDocument.Tag(tag.getName()))
-                        .toList())
-                : new ArrayList<>())
+        //        .tags(
+        //            recipe.getTags() != null
+        //                ? new ArrayList<>(
+        //                    recipe.getTags().stream()
+        //                        .map(tag -> new RecipeDocument.Tag(tag.getName()))
+        //                        .toList())
+        //                : new ArrayList<>())
         .ingredients(
             recipe.getIngredients() != null
                 ? new ArrayList<>(

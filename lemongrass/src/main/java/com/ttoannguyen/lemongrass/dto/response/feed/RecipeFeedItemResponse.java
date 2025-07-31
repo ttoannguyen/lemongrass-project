@@ -1,12 +1,9 @@
 package com.ttoannguyen.lemongrass.dto.Response.feed;
 
-import com.ttoannguyen.lemongrass.dto.Response.account.AccountResponse;
 import com.ttoannguyen.lemongrass.dto.Response.category.CategoryResponse;
 import com.ttoannguyen.lemongrass.dto.Response.image.ImageResponse;
 import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientResponse;
-import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientShortResponse;
 import com.ttoannguyen.lemongrass.dto.Response.instruction.InstructionResponse;
-import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.Response.tags.TagResponse;
 import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import lombok.*;
@@ -31,7 +28,7 @@ public class RecipeFeedItemResponse extends FeedItemResponse {
   List<CategoryResponse> category;
   boolean isVerified;
   Integer shareCount;
-  List<TagResponse> tags;
+  //  List<TagResponse> tags;
   List<ImageResponse> images;
   List<IngredientResponse> ingredients;
   List<InstructionResponse> instructions;

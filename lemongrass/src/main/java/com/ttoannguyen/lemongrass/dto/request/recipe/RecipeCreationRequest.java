@@ -1,11 +1,9 @@
 package com.ttoannguyen.lemongrass.dto.Request.recipe;
 
-import com.ttoannguyen.lemongrass.dto.Request.category.CategoryCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationRequest;
-import com.ttoannguyen.lemongrass.dto.Request.tag.TagCreationRequest;
-import com.ttoannguyen.lemongrass.entity.Image;
+// import com.ttoannguyen.lemongrass.dto.Request.tag.TagCreationRequest;
 import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -25,7 +23,7 @@ public class RecipeCreationRequest {
   Integer servings;
   Boolean isDeleted;
   List<String> categoryIds;
-  List<TagCreationRequest> tags;
+  //  List<TagCreationRequest> tags;
   List<IngredientCreationRequest> ingredients;
   List<InstructionCreationRequest> instructions;
   List<ImageRequest> images;

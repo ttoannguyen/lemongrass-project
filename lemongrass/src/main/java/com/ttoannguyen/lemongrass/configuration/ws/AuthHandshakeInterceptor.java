@@ -16,7 +16,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
@@ -43,7 +42,7 @@ public class AuthHandshakeInterceptor extends HttpSessionHandshakeInterceptor
     log.info(request.getHeaders().toString());
     if (authHeaders == null || authHeaders.isEmpty()) {
       log.warn(
-          "❌ Missing Authorization header in WebSocket handshake for {}",
+          "Missing Authorization header in WebSocket handshake for {}",
           request.getRemoteAddress());
       return false;
     }
@@ -51,7 +50,7 @@ public class AuthHandshakeInterceptor extends HttpSessionHandshakeInterceptor
     String bearer = authHeaders.get(0);
     if (!bearer.startsWith("Bearer ")) {
       log.warn(
-          "❌ Invalid Authorization header format: {} for {}", bearer, request.getRemoteAddress());
+          "Invalid Authorization header format: {} for {}", bearer, request.getRemoteAddress());
       return false;
     }
 
@@ -61,14 +60,14 @@ public class AuthHandshakeInterceptor extends HttpSessionHandshakeInterceptor
       String userId = jwt.getClaimAsString("uid"); // Giả định claim chứa userId
       log.info(userId);
       if (userId == null) {
-        log.warn("❌ JWT token does not contain userId claim");
+        log.warn("JWT token does not contain userId claim");
         return false;
       }
-      log.info("✅ Valid JWT token in handshake, userId: {}", userId);
+      log.info("Valid JWT token in handshake, userId: {}", userId);
       attributes.put("userId", userId);
       return true;
     } catch (Exception e) {
-      log.warn("❌ Invalid JWT token in WebSocket handshake: {}", e.getMessage());
+      log.warn("Invalid JWT token in WebSocket handshake: {}", e.getMessage());
       return false;
     }
   }
@@ -81,7 +80,7 @@ public class AuthHandshakeInterceptor extends HttpSessionHandshakeInterceptor
       Exception exception) {
     if (exception != null) {
       log.error(
-          "❌ WebSocket handshake failed for {}: {}",
+          "WebSocket handshake failed for {}: {}",
           request.getRemoteAddress(),
           exception.getMessage());
     }
@@ -94,14 +93,14 @@ public class AuthHandshakeInterceptor extends HttpSessionHandshakeInterceptor
     List<String> authHeaders = accessor.getNativeHeader("Authorization");
     if (authHeaders == null || authHeaders.isEmpty()) {
       log.warn(
-          "❌ Missing Authorization header in STOMP message for command: {}", accessor.getCommand());
+          "Missing Authorization header in STOMP message for command: {}", accessor.getCommand());
       return message;
     }
 
     String bearer = authHeaders.get(0);
     if (!bearer.startsWith("Bearer ")) {
       log.warn(
-          "❌ Invalid Authorization header format in STOMP message: {} for command: {}",
+          "Invalid Authorization header format in STOMP message: {} for command: {}",
           bearer,
           accessor.getCommand());
       return message;
@@ -111,16 +110,16 @@ public class AuthHandshakeInterceptor extends HttpSessionHandshakeInterceptor
       Jwt jwt = jwtDecoder.decode(token);
       String userId = jwt.getClaimAsString("uid"); // Giả định claim chứa userId
       if (userId == null) {
-        log.warn("❌ JWT token does not contain userId claim in STOMP message");
+        log.warn("JWT token does not contain userId claim in STOMP message");
         return message;
       }
       Authentication auth = new UsernamePasswordAuthenticationToken(userId, null, List.of());
       SecurityContextHolder.getContext().setAuthentication(auth);
       accessor.setUser(auth);
       log.info(
-          "✅ Authenticated WebSocket userId: {} for command: {}", userId, accessor.getCommand());
+          "Authenticated WebSocket userId: {} for command: {}", userId, accessor.getCommand());
     } catch (Exception e) {
-      log.warn("❌ Invalid JWT token in STOMP message: {}", e.getMessage());
+      log.warn("Invalid JWT token in STOMP message: {}", e.getMessage());
     }
 
     return message;
@@ -142,9 +141,9 @@ public class AuthHandshakeInterceptor extends HttpSessionHandshakeInterceptor
     //
     //          accessor.setUser(auth);
     //
-    //          log.info("✅ Authenticated WebSocket userId: {}", username);
+    //          log.info("Authenticated WebSocket userId: {}", username);
     //        } catch (Exception e) {
-    //          log.warn("❌ Invalid JWT token in WebSocket handshake: {}", e.getMessage());
+    //          log.warn("Invalid JWT token in WebSocket handshake: {}", e.getMessage());
     //        }
     //      }
     //    }
