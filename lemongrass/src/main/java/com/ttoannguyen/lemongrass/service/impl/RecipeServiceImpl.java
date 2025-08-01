@@ -23,6 +23,8 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.ZoneId;
@@ -38,8 +40,7 @@ public class RecipeServiceImpl implements RecipeService {
 
   ElasticsearchAsyncClient elasticsearchAsyncClient;
   RecipeMapper recipeMapper;
-  // AccountMapper accountMapper;
-  //  TagRepository tagRepository;
+
   ImageRepository imageRepository;
   RecipeRepository recipeRepository;
   CloudinaryService cloudinaryService;
@@ -316,9 +317,19 @@ public class RecipeServiceImpl implements RecipeService {
   }
 
   @Override
-  public List<RecipeResponse> getRecipes() {
-    List<Recipe> recipes = recipeRepository.findAll();
-    return recipeMapper.toRecipeResponseList(recipes);
+  public Page<RecipeResponse> getRecipes(
+      Pageable pageable, String keyword, List<String> categoryIds) {
+
+    if (keyword != null && keyword.trim().isEmpty()) {
+      keyword = "";
+    }
+
+    if (categoryIds != null && categoryIds.isEmpty()) {
+      categoryIds = null;
+    }
+
+    Page<Recipe> recipePage = recipeRepository.findAllWithFilters(pageable, keyword, categoryIds);
+    return recipePage.map(recipeMapper::toRecipeResponse);
   }
 
   @Override

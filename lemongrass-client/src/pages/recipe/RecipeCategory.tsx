@@ -1,4 +1,4 @@
-import RecipeCategoryListPage from "@/components/recipes/RecipeCategoryListPage";
+import RecipeCategoryListPage from "@/components/recipes/category/RecipeCategoryListPage";
 import HomeSearch from "@/components/searchInput/HomeSearch";
 
 const RecipeCategory = () => {

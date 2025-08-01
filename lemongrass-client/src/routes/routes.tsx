@@ -1,4 +1,4 @@
-import RecipeDetailPage from "@/components/recipes/RecipeDetailPage";
+import RecipeDetailPage from "@/components/recipes/detail/RecipeDetailPage";
 import { wrapProtected, wrapRole } from "@/lib/utils";
 
 import Home from "@/pages/Home";
@@ -27,7 +27,6 @@ import Moderation from "@/pages/admin/system/Moderation";
 import Setting from "@/pages/admin/system/Setting";
 import PostDetailPage from "@/components/posts/PostDetailPage";
 import AccountLayout from "@/pages/account/AccountLayout";
-import CreateRecipeForm from "@/components/recipes/CreateRecipe";
 import RecipeLayout from "@/pages/recipe/RecipeLayout";
 import RecipePage from "@/pages/recipe/RecipePage";
 import AdminRecipeCategoryPage from "@/pages/admin/AdminRecipeCategory";

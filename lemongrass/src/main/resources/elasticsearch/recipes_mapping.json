@@ -100,15 +100,6 @@
       "categoryIds": {
         "type": "keyword"
       },
-      "tags": {
-        "type": "nested",
-        "properties": {
-          "name": {
-            "type": "text",
-            "analyzer": "vietnamese_analyzer"
-          }
-        }
-      },
       "ingredients": {
         "type": "nested",
         "properties": {

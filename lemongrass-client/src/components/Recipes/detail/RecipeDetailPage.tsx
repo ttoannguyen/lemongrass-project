@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import { useRecipeDetail } from "@/hooks/queries/useRecipeDetailQuery";
 import { useRef } from "react";
-import AuthorHoverCard from "../profile/AuthorHoverCard";
+import AuthorHoverCard from "../../profile/AuthorHoverCard";
 import { Flame, Users } from "lucide-react";
-import { AspectRatio } from "../ui/aspect-ratio";
-import AvatarAuthor from "../AvatarAuhtor";
+import { AspectRatio } from "../../ui/aspect-ratio";
+import AvatarAuthor from "../../AvatarAuhtor";
 import { format } from "date-fns";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
-import { Stars } from "../icons/StarComponent";
+import { Stars } from "../../icons/StarComponent";
 
 const RecipeDetailPage = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
@@ -100,7 +100,7 @@ const RecipeDetailPage = () => {
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6 mb-10">
-        <p className="text-paragraph text-justify text-lg leading-relaxed break-words max-w-2xl">
+        <p className="text-paragraph md:min-w-lg text-justify text-lg leading-relaxed break-words max-w-2xl">
           {recipe.description}
         </p>
         <AspectRatio ratio={16 / 9} className="min-w-[300px]">
@@ -129,31 +129,20 @@ const RecipeDetailPage = () => {
           {recipe.ingredients
             .sort((a, b) => a.order - b.order)
             .map((ing) => (
-              <>
-                <div
-                  key={ing.id}
-                  className="bg-white p-4 rounded-xl shadow-sm border border-stroke/10 hover:shadow-md transition-all"
-                >
-                  <p className="text-lg flex items-baseline justify-between font-medium text-paragraph capitalize">
-                    {ing.name}
-                    <span className="text-sm  text-paragraph/70">
-                      {ing.quantity} {ing.unitName}
-                    </span>
-                  </p>
-                  <p className="text-sm  text-paragraph/70">{ing.note}</p>
-                </div>
-                <div
-                  key={ing.id}
-                  className="bg-white p-4 rounded-xl shadow-sm border border-stroke/10 hover:shadow-md transition-all"
-                >
-                  <p className="text-lg font-medium text-paragraph capitalize">
+              <div
+                key={ing.id}
+                className="bg-white p-4 rounded-xl shadow-sm border border-stroke/10 hover:shadow-md transition-all"
+              >
+                <div className="flex items-baseline justify-between  capitalize ">
+                  <p className="text-lg mr-10 font-medium text-paragraph">
                     {ing.name}
                   </p>
-                  <p className="text-sm  text-paragraph/70">
+                  <p className="text-sm text-paragraph/70">
                     {ing.quantity} {ing.unitName}
                   </p>
                 </div>
-              </>
+                <p className="text-sm  text-paragraph/70">{ing.note}</p>
+              </div>
             ))}
         </div>
       </section>
@@ -173,12 +162,12 @@ const RecipeDetailPage = () => {
                     {step.stepNumber}
                   </div>
                   {/* <div className=""> */}
-                    <p className="text-paragraph text-justify text-lg leading-relaxed break-words">
-                      {step.description +
-                        step.description +
-                        step.description +
-                        step.description}
-                    </p>
+                  <p className="text-paragraph text-justify text-lg leading-relaxed break-words">
+                    {step.description +
+                      step.description +
+                      step.description +
+                      step.description}
+                  </p>
                   {/* </div> */}
                 </div>
 

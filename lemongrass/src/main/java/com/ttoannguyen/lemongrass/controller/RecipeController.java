@@ -6,6 +6,7 @@ import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
 import com.ttoannguyen.lemongrass.search.dto.SearchRequest;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,11 @@ public interface RecipeController {
   ApiResponse<String> delete(@PathVariable("recipeId") String id);
 
   @GetMapping
-  ApiResponse<List<RecipeResponse>> getRecipes();
+  ApiResponse<Page<RecipeResponse>> getRecipes(
+      @RequestParam(defaultValue = "0") int page,
+      @RequestParam(defaultValue = "10") int size,
+      @RequestParam(required = false) String keyword,
+      @RequestParam(required = false) List<String> categoryIds);
 
   @GetMapping("/{recipeId}")
   ApiResponse<RecipeResponse> getRecipeById(@PathVariable("recipeId") String id);

@@ -128,6 +128,7 @@ const Create = () => {
         title,
         cookingTime,
         servings,
+        
         description,
         difficulty,
         categoryIds: category,

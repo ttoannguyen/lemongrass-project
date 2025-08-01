@@ -7,9 +7,9 @@ import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const { t } = useTranslation();
-  const { data: recipes = [] } = useRecipesQuery();
+  const { data } = useRecipesQuery();
+  const recipes = Array.isArray(data?.content) ? data.content : [];
   console.log(recipes);
-  // const favoriteRecipes = recipes.slice(0, 4);
   const trendingRecipes = recipes.slice(4, 8);
   const highlyRatedRecipes = recipes.slice(8, 12);
   const latestRecipes = [...recipes].reverse().slice(0, 4);

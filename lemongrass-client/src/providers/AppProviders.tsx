@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { WebSocketProvider } from "./WebSocketProvider";
 import { I18nextProvider } from "react-i18next";
 import i18n from "@/utils/i18n";
-// import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const providers = [
   (children: React.ReactNode) => (
@@ -42,7 +42,7 @@ export const AppProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {wrapped}
-      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      <ReactQueryDevtools initialIsOpen={false} />
       <Toaster position="top-right" richColors />
     </>
   );

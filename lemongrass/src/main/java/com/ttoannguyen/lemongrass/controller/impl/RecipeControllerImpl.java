@@ -13,6 +13,10 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -55,8 +59,11 @@ public class RecipeControllerImpl implements RecipeController {
   }
 
   @Override
-  public ApiResponse<List<RecipeResponse>> getRecipes() {
-    return ApiResponse.<List<RecipeResponse>>builder().result(recipeService.getRecipes()).build();
+  public ApiResponse<Page<RecipeResponse>> getRecipes(
+      int page, int size, String keyword, List<String> categoryIds) {
+    PageRequest pageRequest = PageRequest.of(page, size);
+    Page<RecipeResponse> result = recipeService.getRecipes(pageRequest, keyword, categoryIds);
+    return ApiResponse.<Page<RecipeResponse>>builder().result(result).build();
   }
 
   @Override

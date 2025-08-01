@@ -57,7 +57,6 @@ const NavBar = () => {
   return (
     <div className="w-full bg-background text-text sticky top-0 z-50 shadow-xs">
       <div className="flex items-center justify-between px-4 py-2 max-w-screen-2xl mx-auto">
-        {/* Logo */}
         <h1
           onClick={() => navigate("/")}
           className="text-xl md:text-3xl text-headline font-bold cursor-pointer py-2 ml-0 md:ml-28"
@@ -65,8 +64,7 @@ const NavBar = () => {
           Lemongrass
         </h1>
 
-        {/* Thanh tìm kiếm trên PC */}
-        {(isHome ? showSearch : true) && (
+        {isHome && showSearch && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -78,7 +76,6 @@ const NavBar = () => {
           </motion.div>
         )}
 
-        {/* Nút search trên mobile */}
         <div className="md:hidden">
           <Button
             variant="ghost"
@@ -89,7 +86,6 @@ const NavBar = () => {
           </Button>
         </div>
 
-        {/* Action bên phải */}
         <div className="flex items-center gap-2 ml-auto">
           {isLoggedIn ? (
             <div className="flex items-center gap-2">

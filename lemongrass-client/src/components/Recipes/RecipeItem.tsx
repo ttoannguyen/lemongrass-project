@@ -20,15 +20,14 @@ type RecipeItemMainProps = {
 
 export function RecipeItem({
   recipe,
-  // ratingCount,
   onToggleFavorite,
   isFavorite = false,
 }: RecipeItemMainProps) {
-  const {t } = useTranslation()
+  const { t } = useTranslation();
   const imageUrl = recipe.images?.[0]?.url ?? "";
   const minutes = recipe.cookingTime ?? 0;
   const categories = recipe.categories;
-  console.log(recipe);
+  // console.log(recipe);
   const handleFavClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
@@ -36,7 +35,7 @@ export function RecipeItem({
   };
 
   return (
-    <div className="group flex md:flex-col bg-white md:h-100 md:w-full rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
+    <div className="group flex md:flex-col bg-white md:h-85 md:w-full rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
       <AspectRatio ratio={16 / 9}>
         <Link to={`/recipe/${recipe.id}`}>
           {imageUrl ? (
@@ -70,7 +69,7 @@ export function RecipeItem({
         </button>
       </AspectRatio>
 
-      <div className="p-4 flex flex-col justify-between gap-2 md:h-65">
+      <div className="pt-4 px-4 pb-2 flex flex-col justify-between gap-2 md:h-54">
         <div className="flex flex-col">
           <Link
             to={`/recipe/${recipe.id}`}
@@ -97,17 +96,13 @@ export function RecipeItem({
           </div>
         </div>
 
-        {/* Footer: Rating + Time */}
-        <div className="flex  items-center justify-between pt-3">
+        <div className="flex items-center justify-between">
           <div className="flex items-center gap-1 text-sm text-paragraph">
             <Hourglass className="h-4 w-4" />
             {minutes} {t(TRANSLATION_KEYS.recipe.minute)}
           </div>
           <div className="flex items-center gap-2">
             <Stars rating={6} />
-            {/* {typeof ratingCount === "number" && (
-              <span className="text-xs text-paragraph">({ratingCount})</span>
-            )} */}
           </div>
         </div>
       </div>

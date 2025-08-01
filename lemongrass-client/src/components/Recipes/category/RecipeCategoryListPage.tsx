@@ -2,11 +2,10 @@ import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 import { useParams } from "react-router-dom";
 import { useMemo } from "react";
 import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
-import RecipeItem from "./RecipeItem";
+import RecipeItem from "../RecipeItem";
 
 const RecipeCategoryListPage = () => {
   const { categoryId } = useParams();
-  // const { data: cate, isLoading: loadingCate } = useCategoryQuery();
   const { data: recipes, isLoading: loadingRecipes } = useRecipesQuery();
 
   const filteredRecipes = useMemo(() => {
@@ -20,7 +19,7 @@ const RecipeCategoryListPage = () => {
 
   return (
     <div className="max-w-screen-lg mx-auto px-4 py-6">
-      {/* helo */}
+      helo
       {filteredRecipes.length > 0 ? (
         <ul className="flex flex-col mt-6">
           {filteredRecipes.map((recipe: RecipeResponse) => (
