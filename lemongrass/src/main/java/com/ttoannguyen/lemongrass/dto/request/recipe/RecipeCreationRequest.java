@@ -23,7 +23,6 @@ public class RecipeCreationRequest {
   Integer servings;
   Boolean isDeleted;
   List<String> categoryIds;
-  //  List<TagCreationRequest> tags;
   List<IngredientCreationRequest> ingredients;
   List<InstructionCreationRequest> instructions;
   List<ImageRequest> images;

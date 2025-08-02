@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 
 import com.nimbusds.jose.JOSEException;
 import com.ttoannguyen.lemongrass.dto.Request.auth.IntrospectRequest;
+import com.ttoannguyen.lemongrass.exception.AppException;
+import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
 import com.ttoannguyen.lemongrass.service.AuthenticationService;
 
 import lombok.AccessLevel;
@@ -41,7 +43,7 @@ public class CustomJwtDecoder implements JwtDecoder {
             final var response = authenticationService.introspect(
                     IntrospectRequest.builder().token(token).build());
 
-            if (!response.isValid()) throw new JwtException("Token invalid!");
+            if (!response.isValid()) throw new AppException(ErrorCode.UNAUTHENTICATED);
         } catch (ParseException | JOSEException e) {
             throw new JwtException(e.getMessage());
         }

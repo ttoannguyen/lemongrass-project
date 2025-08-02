@@ -36,6 +36,9 @@
     "community": "Community",
     "quickAndEasy": "Quick & Easy",
     "cuisine": "Cuisine",
+    "occasion": "Occasion",
+    "meal_type": "Meal Type",
+
     "ingredient": "Ingredient",
     "searchPlaceholder": "Search...",
     "home": "Home",

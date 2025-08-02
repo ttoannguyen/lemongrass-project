@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.service.impl;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
 import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationRequest;
@@ -40,7 +41,7 @@ public class RecipeServiceImpl implements RecipeService {
 
   ElasticsearchAsyncClient elasticsearchAsyncClient;
   RecipeMapper recipeMapper;
-
+  ObjectMapper objectMapper = new ObjectMapper();
   ImageRepository imageRepository;
   RecipeRepository recipeRepository;
   CloudinaryService cloudinaryService;
@@ -61,13 +62,6 @@ public class RecipeServiceImpl implements RecipeService {
 
     Recipe recipe = buildBaseRecipe(request, account);
     recipeRepository.save(recipe);
-
-    //    if (request.getTags() != null) {
-    //      log.info("Resolving tags: {}", request.getTags());
-    //      Set<Tag> tags = resolveTags(request.getTags());
-    //      recipe.setTags(new HashSet<>(tags));
-    //      log.info("Tags set, type: {}", recipe.getTags().getClass().getName());
-    //    }
 
     if (request.getCategoryIds() != null) {
       log.info("Resolving categories: {}", request.getCategoryIds());
@@ -116,11 +110,14 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     log.info("Converting recipe to document for Elasticsearch!");
-    //    recipe.setIsDeleted(false);
     RecipeDocument document;
     try {
       document = mapToDocument(recipe, account);
       log.info("RecipeDocument created: {}", document.getId());
+      String prettyJson =
+          objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(document);
+      System.out.println(prettyJson);
+
     } catch (Exception e) {
       log.error(
           "Failed to create RecipeDocument for recipe {}: {}", recipe.getId(), e.getMessage(), e);
@@ -318,7 +315,7 @@ public class RecipeServiceImpl implements RecipeService {
 
   @Override
   public Page<RecipeResponse> getRecipes(
-      Pageable pageable, String keyword, List<String> categoryIds) {
+    Pageable pageable, String keyword, List<String> categoryIds) {
 
     if (keyword != null && keyword.trim().isEmpty()) {
       keyword = "";
@@ -508,15 +505,8 @@ public class RecipeServiceImpl implements RecipeService {
         .accountName(account.getUsername())
         .categoryIds(
             recipe.getCategories() != null
-                ? new ArrayList<>(recipe.getCategories().stream().map(Category::getId).toList())
+                ? new ArrayList<>(recipe.getCategories().stream().map(Category::getName).toList())
                 : new ArrayList<>())
-        //        .tags(
-        //            recipe.getTags() != null
-        //                ? new ArrayList<>(
-        //                    recipe.getTags().stream()
-        //                        .map(tag -> new RecipeDocument.Tag(tag.getName()))
-        //                        .toList())
-        //                : new ArrayList<>())
         .ingredients(
             recipe.getIngredients() != null
                 ? new ArrayList<>(
@@ -545,8 +535,8 @@ public class RecipeServiceImpl implements RecipeService {
                         .toList())
                 : new ArrayList<>())
         .isDeleted(recipe.getIsDeleted())
-        .createdAt(recipe.getCreatedDate().atZone(ZoneId.systemDefault()).toInstant())
-        .updatedAt(recipe.getLastModifiedDate().atZone(ZoneId.systemDefault()).toInstant())
+        .createdAt(recipe.getCreatedDate().toString())
+        .updatedAt(recipe.getLastModifiedDate().toString())
         .build();
   }
 }

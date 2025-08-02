@@ -41,4 +41,10 @@ public interface RecipeController {
   @PostMapping("/search")
   CompletableFuture<ResponseEntity<List<RecipeDocument>>> searchRecipes(
       @RequestBody SearchRequest request);
+
+  @PostMapping("/autocomplete")
+  CompletableFuture<List<RecipeDocument>> autocomplete(@RequestBody String keyword);
+
+  @PostMapping("/natural-search")
+  CompletableFuture<List<RecipeDocument>> naturalSearch(@RequestParam String keyword);
 }

@@ -15,8 +15,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -95,5 +93,15 @@ public class RecipeControllerImpl implements RecipeController {
               log.error("Search failed: {}", throwable.getMessage(), throwable);
               return ResponseEntity.status(500).body(null);
             });
+  }
+
+  @Override
+  public CompletableFuture<List<RecipeDocument>> autocomplete(String keyword) {
+    return searchService.autocomplete(keyword);
+  }
+
+  @Override
+  public CompletableFuture<List<RecipeDocument>> naturalSearch(String keyword) {
+    return searchService.naturalSearch(keyword);
   }
 }

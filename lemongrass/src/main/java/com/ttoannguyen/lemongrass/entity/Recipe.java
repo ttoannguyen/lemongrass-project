@@ -1,10 +1,7 @@
 package com.ttoannguyen.lemongrass.entity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import com.ttoannguyen.lemongrass.entity.enums.Difficulty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -44,16 +41,6 @@ public class Recipe extends AbstractAuditingEntity {
 
   Float ratingAvg;
 
-  //  String category;
-
-  //  @ManyToMany
-  //  @JoinTable(
-  //      name = "recipe_tag",
-  //      joinColumns = @JoinColumn(name = "recipe_id"),
-  //      inverseJoinColumns = @JoinColumn(name = "tag_id"))
-  //  @Builder.Default
-  //  Set<Tag> tags = new HashSet<>();
-
   @Column(nullable = false)
   boolean isVerified;
 
@@ -65,15 +52,12 @@ public class Recipe extends AbstractAuditingEntity {
   Integer shareCount;
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-  @Builder.Default
   List<Instruction> instructions = new ArrayList<>();
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-  @Builder.Default
   List<Ingredient> ingredients = new ArrayList<>();
 
   @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-  @Builder.Default
   List<Image> images = new ArrayList<>();
 
   @ManyToMany
@@ -81,6 +65,5 @@ public class Recipe extends AbstractAuditingEntity {
       name = "recipe_categories",
       joinColumns = @JoinColumn(name = "recipe_id"),
       inverseJoinColumns = @JoinColumn(name = "category_id"))
-  @Builder.Default
   private List<Category> categories = new ArrayList<>();
 }

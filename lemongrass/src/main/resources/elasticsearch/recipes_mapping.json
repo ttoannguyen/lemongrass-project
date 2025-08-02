@@ -1,6 +1,43 @@
 {
   "settings": {
     "analysis": {
+      "analyzer": {
+        "vietnamese_analyzer": {
+          "type": "custom",
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "icu_folding",
+            "vietnamese_stop",
+            "vietnamese_synonym"
+          ]
+        },
+        "vietnamese_suggest_analyzer": {
+          "type": "custom",
+          "tokenizer": "icu_tokenizer",
+          "filter": [
+            "lowercase",
+            "icu_folding",
+            "vietnamese_stop"
+          ]
+        },
+        "trigram": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "shingle"
+          ]
+        },
+        "reverse": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "reverse"
+          ]
+        }
+      },
       "filter": {
         "vietnamese_stop": {
           "type": "stop",
@@ -28,35 +65,41 @@
             "nào",
             "hướng",
             "dẫn",
+            "một",
+            "những",
+            "của",
+            "trong",
+            "từ",
+            "được",
+            "ra",
+            "vào",
+            "bằng",
+            "trên",
+            "dưới",
+            "ngoài",
+            "gần",
+            "xa",
+            "khi",
+            "sau",
+            "trước",
             "aromatic"
           ]
         },
         "vietnamese_synonym": {
           "type": "synonym",
           "synonyms": [
-            "ngon => tuyệt vời, ngon lành"
-          ]
-        }
-      },
-      "analyzer": {
-        "vietnamese_analyzer": {
-          "type": "custom",
-          "tokenizer": "icu_tokenizer",
-          "filter": [
-            "lowercase",
-            "icu_folding",
-            "vietnamese_stop",
-            "vietnamese_synonym"
+            "ngon => tuyệt vời, ngon lành, hấp dẫn",
+            "chả giò => chả ram, nem rán",
+            "cá => cá thu, cá hồi, cá lóc",
+            "thịt => thịt heo, thịt bò, thịt gà",
+            "bún => bún gạo, bún tươi",
+            "nước mắm => mắm nêm, mắm tôm"
           ]
         },
-        "vietnamese_suggest_analyzer": {
-          "type": "custom",
-          "tokenizer": "icu_tokenizer",
-          "filter": [
-            "lowercase",
-            "icu_folding",
-            "vietnamese_stop"
-          ]
+        "shingle": {
+          "type": "shingle",
+          "min_shingle_size": 2,
+          "max_shingle_size": 3
         }
       }
     }
@@ -74,6 +117,14 @@
             "type": "search_as_you_type",
             "analyzer": "vietnamese_suggest_analyzer",
             "max_shingle_size": 3
+          },
+          "trigram": {
+            "type": "text",
+            "analyzer": "trigram"
+          },
+          "reverse": {
+            "type": "text",
+            "analyzer": "reverse"
           }
         }
       },
@@ -85,7 +136,22 @@
       },
       "description": {
         "type": "text",
-        "analyzer": "vietnamese_analyzer"
+        "analyzer": "vietnamese_analyzer",
+        "fields": {
+          "suggest": {
+            "type": "search_as_you_type",
+            "analyzer": "vietnamese_suggest_analyzer",
+            "max_shingle_size": 3
+          },
+          "trigram": {
+            "type": "text",
+            "analyzer": "trigram"
+          },
+          "reverse": {
+            "type": "text",
+            "analyzer": "reverse"
+          }
+        }
       },
       "servings": {
         "type": "integer"
@@ -95,7 +161,17 @@
       },
       "accountName": {
         "type": "text",
-        "analyzer": "vietnamese_analyzer"
+        "analyzer": "vietnamese_analyzer",
+        "fields": {
+          "trigram": {
+            "type": "text",
+            "analyzer": "trigram"
+          },
+          "reverse": {
+            "type": "text",
+            "analyzer": "reverse"
+          }
+        }
       },
       "categoryIds": {
         "type": "keyword"
@@ -105,7 +181,22 @@
         "properties": {
           "name": {
             "type": "text",
-            "analyzer": "vietnamese_analyzer"
+            "analyzer": "vietnamese_analyzer",
+            "fields": {
+              "suggest": {
+                "type": "search_as_you_type",
+                "analyzer": "vietnamese_suggest_analyzer",
+                "max_shingle_size": 3
+              },
+              "trigram": {
+                "type": "text",
+                "analyzer": "trigram"
+              },
+              "reverse": {
+                "type": "text",
+                "analyzer": "reverse"
+              }
+            }
           },
           "quantity": {
             "type": "text"
@@ -120,7 +211,22 @@
           },
           "description": {
             "type": "text",
-            "analyzer": "vietnamese_analyzer"
+            "analyzer": "vietnamese_analyzer",
+            "fields": {
+              "suggest": {
+                "type": "search_as_you_type",
+                "analyzer": "vietnamese_suggest_analyzer",
+                "max_shingle_size": 3
+              },
+              "trigram": {
+                "type": "text",
+                "analyzer": "trigram"
+              },
+              "reverse": {
+                "type": "text",
+                "analyzer": "reverse"
+              }
+            }
           }
         }
       },
@@ -136,9 +242,6 @@
         "type": "boolean"
       },
       "createdAt": {
-        "type": "date"
-      },
-      "updatedAt": {
         "type": "date"
       }
     }

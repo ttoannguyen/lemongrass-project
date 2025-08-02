@@ -62,9 +62,9 @@ const RecipeDetailPage = () => {
                 " " +
                 recipe.accountShortResponse.lastName}
             </p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm font-medium text-paragraph/50">
               Modified:{" "}
-              {format(new Date(recipe.lastModifiedDate), "MMM dd, yyyy")}
+              {format(new Date(recipe.lastModifiedDate), "MMM d, yyyy")}
             </p>
           </div>
         </div>

@@ -38,6 +38,8 @@ export const TRANSLATION_KEYS = {
     community: "navigation.community",
     quickAndEasy: "navigation.quickAndEasy",
     cuisine: "navigation.cuisine",
+    occasion: "navigation.occasion",
+    meal_type: "navigation.meal_type",
     ingredient: "navigation.ingredient",
     searchPlaceholder: "navigation.searchPlaceholder",
     home: "navigation.home",

@@ -12,11 +12,17 @@ import { cn } from "@/lib/utils";
 import { useIngredientTemplates } from "@/hooks/queries/useIngredientTemplate";
 import { useTranslation } from "react-i18next";
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
+import { useState } from "react";
 
 const SecondNavBar = () => {
   const {t} = useTranslation()
   const { grouped } = useCategoryGroupedByType();
   const { data: ingredients } = useIngredientTemplates();
+  const [showAll, setShowAll] = useState(false);
+
+  const maxToShow = 5;
+  const visibleIngredients = showAll ? ingredients : ingredients?.slice(0, maxToShow);
+  const hasMore = ingredients && ingredients.length > maxToShow;
 
   return (
     <div className="relative w-full bg-headline shadow z-40 px-4 sm:px-48">
@@ -74,33 +80,45 @@ const SecondNavBar = () => {
           ))}
 
           <NavigationMenuItem className="relative">
-            <NavigationMenuTrigger className="text-main data-[state=open]:bg-highlight data-[state=open]:text-headline">
-              {t(`navigation.ingredient`)}
-            </NavigationMenuTrigger>
-            <NavigationMenuContent className="absolute left-0 top-full w-screen sm:w-[300px] sm:left-auto sm:right-0 bg-white shadow-md z-50">
-              <ul className="grid gap-3 p-4 grid-cols-1 sm:grid-cols-2">
-                {ingredients?.map((component) => (
-                  <li key={component.name}>
-                    <NavigationMenuLink asChild>
-                      <Link
-                        className={cn(
-                          "block select-none space-y-1 rounded-md p-3 leading-none no-underline transition-colors hover:bg-accent hover:text-accent-foreground"
-                        )}
-                        to={component.name}
-                      >
-                        <div className="text-sm font-medium truncate">
-                          {component.name}
-                        </div>
-                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                          {component.createdBy}
-                        </p>
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+      <NavigationMenuTrigger className="text-main data-[state=open]:bg-highlight data-[state=open]:text-headline">
+        {t(`navigation.ingredient`)}
+      </NavigationMenuTrigger>
+
+      <NavigationMenuContent className="absolute left-0 top-full w-screen sm:w-72 sm:right-0 bg-white shadow-md z-50 rounded-md border">
+        <ul className="grid gap-1 p-2 max-h-[350px] overflow-y-auto">
+          {visibleIngredients?.map((component) => (
+            <li key={component.name}>
+              <NavigationMenuLink asChild>
+                <Link
+                  to={`/recipe/ingredient/${component.id}`}
+                  className={cn(
+                    "block select-none space-y-1 rounded-md p-3 transition-colors hover:bg-accent hover:text-accent-foreground"
+                  )}
+                >
+                  <div className="text-sm font-medium truncate">
+                    {component.name}
+                  </div>
+                  <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                    {component.createdBy}
+                  </p>
+                </Link>
+              </NavigationMenuLink>
+            </li>
+          ))}
+
+          {hasMore && (
+            <li className="mt-1">
+              <button
+                onClick={() => setShowAll((prev) => !prev)}
+                className="w-full text-sm text-center text-blue-500 hover:underline"
+              >
+                {showAll ? "Thu gọn" : "Xem thêm"}
+              </button>
+            </li>
+          )}
+        </ul>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </div>

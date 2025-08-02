@@ -26,8 +26,15 @@ public class ElasticsearchConfig {
     return RestClient.builder(new HttpHost(host, port, scheme)).build();
   }
 
+  // @Bean
+  // public ElasticsearchTransport elasticsearchTransport(
+  //     RestClient restClient, ObjectMapper objectMapper) {
+  //   return new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
+  // }
+
   @Bean
   public ElasticsearchClient elasticsearchClient(ElasticsearchTransport transport) {
+
     return new ElasticsearchClient(transport);
   }
 

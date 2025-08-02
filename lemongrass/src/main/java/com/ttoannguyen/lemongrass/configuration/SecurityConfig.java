@@ -43,8 +43,11 @@ public class SecurityConfig {
     "/api/_v1/auth/login",
     "/api/_v1/auth/logout",
     "/api/_v1/auth/introspect",
+    "/api/_v1/recipes/search",
+    "/api/_v1/recipes/autocomplete",
+    "/api/_v1/recipes/natural-search",
     "/api/_v1/auth/refresh",
-    "/api/_v1/accounts/register"
+    "/api/_v1/accounts/register",
   };
 
   CustomJwtDecoder customJwtDecoder;

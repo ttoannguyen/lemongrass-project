@@ -1,11 +1,13 @@
 package com.ttoannguyen.lemongrass.search.document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Data
 @Builder
@@ -21,24 +23,15 @@ public class RecipeDocument {
   Integer servings;
   String accountId;
   String accountName;
-  @Builder.Default Boolean isDeleted = false;
-  @Builder.Default List<String> categoryIds = new ArrayList<>();
-  //  @Builder.Default
-  //  List<Tag> tags = new ArrayList<>();
-  @Builder.Default List<Ingredient> ingredients = new ArrayList<>();
-  @Builder.Default List<Instruction> instructions = new ArrayList<>();
-  @Builder.Default List<Image> images = new ArrayList<>();
+  Map<String, List<String>> highlight;
+  Boolean isDeleted = false;
+  List<String> categoryIds = new ArrayList<>();
+  List<Ingredient> ingredients = new ArrayList<>();
+  List<Instruction> instructions = new ArrayList<>();
+  List<Image> images = new ArrayList<>();
 
-  Instant createdAt;
-  Instant updatedAt;
-
-  @Data
-  @NoArgsConstructor
-  @AllArgsConstructor
-  @Builder
-  public static class Tag {
-    private String name;
-  }
+  String createdAt;
+  String updatedAt;
 
   @Data
   @NoArgsConstructor

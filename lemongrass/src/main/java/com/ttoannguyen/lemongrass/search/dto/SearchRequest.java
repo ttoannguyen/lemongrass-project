@@ -17,4 +17,5 @@ public class SearchRequest {
   // instructions.description
   private List<String> categoryIds;
   private String difficulty;
+  private boolean isAutocomplete;
 }

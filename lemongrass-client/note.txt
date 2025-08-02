@@ -226,3 +226,270 @@ font: Poppins
     --color-text: #e4dbdd;  
             /* Xám sáng */
 }
+
+
+
+//// search:
+package com.ttoannguyen.lemongrass.search.service;
+
+import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.elasticsearch._types.query_dsl.TextQueryType;
+import co.elastic.clients.elasticsearch.core.search.Hit;
+import com.ttoannguyen.lemongrass.exception.AppException;
+import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
+import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
+import com.ttoannguyen.lemongrass.search.dto.SearchRequest;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+
+@Slf4j
+@Service
+@RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+public class SearchService {
+  ElasticsearchAsyncClient elasticsearchAsyncClient;
+
+  public CompletableFuture<List<RecipeDocument>> search(SearchRequest request) {
+    log.debug("Starting search with request: {}", request);
+
+    if (request.getKeyword() == null || request.getKeyword().isEmpty()) {
+      log.error("Search keyword is required");
+      throw new AppException(ErrorCode.SEARCH_KEYWORD_REQUIRED);
+    }
+
+    // Build query
+    List<Query> shouldQueries = new ArrayList<>();
+    List<Query> filterQueries = new ArrayList<>();
+
+    // Always filter out deleted recipes
+    filterQueries.add(Query.of(q -> q.term(t -> t.field("isDeleted").value(false))));
+
+    // If only keyword is provided, perform natural search; otherwise, include additional filters
+    if (request.getCategoryIds() == null && request.getDifficulty() == null) {
+      // Natural search: Query for title, ingredients, description
+      shouldQueries.add(
+          Query.of(
+              q ->
+                  q.multiMatch(
+                      m ->
+                          m.query(request.getKeyword())
+                              .fields(List.of("title^2", "title.suggest^1.5", "title.trigram"))
+                              .analyzer("vietnamese_analyzer")
+                              .type(TextQueryType.BestFields))));
+
+      shouldQueries.add(
+          Query.of(
+              q ->
+                  q.nested(
+                      n ->
+                          n.path("ingredients")
+                              .query(
+                                  nq ->
+                                      nq.multiMatch(
+                                          m ->
+                                              m.query(request.getKeyword())
+                                                  .fields(
+                                                      List.of(
+                                                          "ingredients.name^1.5",
+                                                          "ingredients.name.suggest"))
+                                                  .analyzer("vietnamese_analyzer")
+                                                  .type(TextQueryType.BestFields))))));
+
+      shouldQueries.add(
+          Query.of(
+              q ->
+                  q.multiMatch(
+                      m ->
+                          m.query(request.getKeyword())
+                              .fields(List.of("description", "description.suggest"))
+                              .analyzer("vietnamese_analyzer")
+                              .type(TextQueryType.BestFields))));
+    } else {
+      // Regular search: Include query_string for non-nested fields
+      shouldQueries.add(
+          Query.of(
+              q ->
+                  q.queryString(
+                      qs ->
+                          qs.fields(List.of("title^2", "description", "accountName"))
+                              .query(request.getKeyword())
+                              .defaultOperator(
+                                  co.elastic.clients.elasticsearch._types.query_dsl.Operator.And)
+                              .fuzziness("AUTO"))));
+
+      // Nested query for ingredients.name
+      shouldQueries.add(
+          Query.of(
+              q ->
+                  q.nested(
+                      n ->
+                          n.path("ingredients")
+                              .query(
+                                  nq ->
+                                      nq.match(
+                                          m ->
+                                              m.field("ingredients.name")
+                                                  .query(request.getKeyword())
+                                                  .operator(
+                                                      co.elastic.clients.elasticsearch._types.query_dsl
+                                                          .Operator.And)
+                                                  .fuzziness("AUTO"))))));
+
+      // Nested query for instructions.description
+      shouldQueries.add(
+          Query.of(
+              q ->
+                  q.nested(
+                      n ->
+                          n.path("instructions")
+                              .query(
+                                  nq ->
+                                      nq.match(
+                                          m ->
+                                              m.field("instructions.description")
+                                                  .query(request.getKeyword())
+                                                  .operator(
+                                                      co.elastic.clients.elasticsearch._types.query_dsl
+                                                          .Operator.And)
+                                                  .fuzziness("AUTO"))))));
+    }
+
+    // Add filters for categoryIds and difficulty if provided
+    if (request.getCategoryIds() != null && !request.getCategoryIds().isEmpty()) {
+      filterQueries.add(
+          Query.of(
+              q ->
+                  q.terms(
+                      t ->
+                          t.field("categoryIds")
+                              .terms(
+                                  ts ->
+                                      ts.value(
+                                          request.getCategoryIds().stream()
+                                              .map(FieldValue::of)
+                                              .collect(Collectors.toList()))))));
+    }
+
+    if (request.getDifficulty() != null && !request.getDifficulty().isEmpty()) {
+      filterQueries.add(
+          Query.of(q -> q.term(t -> t.field("difficulty").value(request.getDifficulty()))));
+    }
+
+    // Build final bool query
+    Query finalQuery =
+        Query.of(
+            q ->
+                q.bool(b -> b.should(shouldQueries).filter(filterQueries).minimumShouldMatch("1")));
+
+    // Execute search
+    return elasticsearchAsyncClient
+        .search(
+            s ->
+                s.index("recipes")
+                    .query(finalQuery)
+                    .from(0)
+                    .size(10)
+                    .source(
+                        src ->
+                            src.filter(
+                                f ->
+                                    f.includes(
+                                        List.of("title", "ingredients.name", "description"))))
+                    .highlight(
+                        h ->
+                            h.fields("title", f -> f)
+                                .fields("title.suggest", f -> f)
+                                .fields("ingredients.name", f -> f)
+                                .fields("ingredients.name.suggest", f -> f)
+                                .fields("description", f -> f)
+                                .fields("description.suggest", f -> f)),
+            RecipeDocument.class)
+        .thenApply(
+            response -> {
+              log.debug("Search completed, hits: {}", response.hits().hits().size());
+              return response.hits().hits().stream()
+                  .filter(hit -> hit.source() != null)
+                  .map(
+                      hit -> {
+                        RecipeDocument doc = hit.source();
+                        doc.setHighlight(hit.highlight()); // Lưu highlight
+                        return doc;
+                      })
+                  .collect(Collectors.toList());
+            })
+        .exceptionally(
+            throwable -> {
+              log.error("Search failed: {}", throwable.getMessage(), throwable);
+              throw new AppException(ErrorCode.SEARCH_FAILED);
+            });
+  }
+
+  public CompletableFuture<List<RecipeDocument>> autocomplete(String keyword) {
+    log.debug("Starting autocomplete with keyword: {}", keyword);
+    if (keyword == null || keyword.isEmpty()) {
+      log.error("Autocomplete keyword is required");
+      throw new AppException(ErrorCode.SEARCH_KEYWORD_REQUIRED);
+    }
+
+    Query autocompleteQuery =
+        Query.of(
+            q ->
+                q.multiMatch(
+                    m ->
+                        m.query(keyword)
+                            .fields(List.of("title.suggest", "ingredients.name.suggest"))
+                            .type(TextQueryType.BoolPrefix)
+                            .analyzer("vietnamese_suggest_analyzer")));
+
+    Query finalQuery =
+        Query.of(
+            q ->
+                q.bool(
+                    b ->
+                        b.must(autocompleteQuery)
+                            .filter(
+                                Query.of(f -> f.term(t -> t.field("isDeleted").value(false))))));
+
+    return elasticsearchAsyncClient
+        .search(
+            s ->
+                s.index("recipes")
+                    .query(finalQuery)
+                    .size(5)
+                    .source(
+                        src -> src.filter(f -> f.includes(List.of("title", "ingredients.name"))))
+                    .highlight(
+                        h ->
+                            h.fields("title.suggest", f -> f)
+                                .fields("ingredients.name.suggest", f -> f)),
+            RecipeDocument.class)
+        .thenApply(
+            response -> {
+              log.debug("Autocomplete completed, hits: {}", response.hits().hits().size());
+              return response.hits().hits().stream()
+                  .filter(hit -> hit.source() != null)
+                  .map(
+                      hit -> {
+                        RecipeDocument doc = hit.source();
+                        doc.setHighlight(hit.highlight()); // Lưu highlight
+                        return doc;
+                      })
+                  .collect(Collectors.toList());
+            })
+        .exceptionally(
+            throwable -> {
+              log.error("Autocomplete failed: {}", throwable.getMessage(), throwable);
+              throw new AppException(ErrorCode.SEARCH_FAILED);
+            });
+  }
+}
