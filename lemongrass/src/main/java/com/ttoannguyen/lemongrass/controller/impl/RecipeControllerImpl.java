@@ -58,9 +58,10 @@ public class RecipeControllerImpl implements RecipeController {
 
   @Override
   public ApiResponse<Page<RecipeResponse>> getRecipes(
-      int page, int size, String keyword, List<String> categoryIds) {
+      int page, int size, String keyword, List<String> categoryIds, Integer maxTime) {
     PageRequest pageRequest = PageRequest.of(page, size);
-    Page<RecipeResponse> result = recipeService.getRecipes(pageRequest, keyword, categoryIds);
+    Page<RecipeResponse> result =
+        recipeService.getRecipes(pageRequest, keyword, categoryIds, maxTime);
     return ApiResponse.<Page<RecipeResponse>>builder().result(result).build();
   }
 

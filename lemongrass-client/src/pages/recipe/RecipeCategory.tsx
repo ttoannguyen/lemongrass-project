@@ -1,9 +1,8 @@
 import RecipeCategoryListPage from "@/components/recipes/category/RecipeCategoryListPage";
-import HomeSearch from "@/components/searchInput/HomeSearch";
 
 const RecipeCategory = () => {
   return (
-    <div>
+    <div className="w-250 mx-auto">
       <RecipeCategoryListPage />
     </div>
   );

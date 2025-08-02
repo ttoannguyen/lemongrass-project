@@ -8,12 +8,10 @@ import com.ttoannguyen.lemongrass.dto.Request.ingredient.IngredientCreationReque
 import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
-// import com.ttoannguyen.lemongrass.dto.Request.tag.TagCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.*;
 import com.ttoannguyen.lemongrass.exception.AppException;
 import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
-// import com.ttoannguyen.lemongrass.mapper.AccountMapper;
 import com.ttoannguyen.lemongrass.mapper.RecipeMapper;
 import com.ttoannguyen.lemongrass.repository.*;
 import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
@@ -28,7 +26,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.ZoneId;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
@@ -315,7 +312,7 @@ public class RecipeServiceImpl implements RecipeService {
 
   @Override
   public Page<RecipeResponse> getRecipes(
-    Pageable pageable, String keyword, List<String> categoryIds) {
+      Pageable pageable, String keyword, List<String> categoryIds, Integer maxTime) {
 
     if (keyword != null && keyword.trim().isEmpty()) {
       keyword = "";
@@ -325,7 +322,8 @@ public class RecipeServiceImpl implements RecipeService {
       categoryIds = null;
     }
 
-    Page<Recipe> recipePage = recipeRepository.findAllWithFilters(pageable, keyword, categoryIds);
+    Page<Recipe> recipePage =
+        recipeRepository.findAllWithFilters(pageable, keyword, categoryIds, maxTime);
     return recipePage.map(recipeMapper::toRecipeResponse);
   }
 

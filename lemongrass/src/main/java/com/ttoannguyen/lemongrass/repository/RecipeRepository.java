@@ -36,9 +36,11 @@ public interface RecipeRepository extends JpaRepository<Recipe, String> {
   LEFT JOIN r.categories c
   WHERE (:keyword IS NULL OR LOWER(r.title) LIKE LOWER(CONCAT('%', CAST(:keyword AS text), '%')))
     AND (:categoryIds IS NULL OR c.id IN :categoryIds)
+    AND (:maxTime IS NULL OR r.cookingTime <= :maxTime)
 """)
   Page<Recipe> findAllWithFilters(
       Pageable pageable,
       @Param("keyword") String keyword,
-      @Param("categoryIds") List<String> categoryIds);
+      @Param("categoryIds") List<String> categoryIds,
+      @Param("maxTime") Integer maxTime);
 }

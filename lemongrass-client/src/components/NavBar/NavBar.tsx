@@ -26,7 +26,7 @@ const NavBar = () => {
   const { notifications } = useWebSocket();
   const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
+  const isHome = location.pathname === "/" ;
 
   const [searchOpen, setSearchOpen] = useState(false);
 

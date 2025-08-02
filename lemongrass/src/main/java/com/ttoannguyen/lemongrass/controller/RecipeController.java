@@ -30,7 +30,9 @@ public interface RecipeController {
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "10") int size,
       @RequestParam(required = false) String keyword,
-      @RequestParam(required = false) List<String> categoryIds);
+      @RequestParam(required = false) List<String> categoryIds,
+      @RequestParam(required = false) Integer maxTime
+      );
 
   @GetMapping("/{recipeId}")
   ApiResponse<RecipeResponse> getRecipeById(@PathVariable("recipeId") String id);

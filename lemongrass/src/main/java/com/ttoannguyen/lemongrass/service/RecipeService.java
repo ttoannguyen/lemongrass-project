@@ -15,7 +15,7 @@ public interface RecipeService {
 
   String delete(String recipeId, String username);
 
-  Page<RecipeResponse> getRecipes(Pageable pageable, String keyword, List<String> categoryIds);
+  Page<RecipeResponse> getRecipes(Pageable pageable, String keyword, List<String> categoryIds, Integer maxTime);
 
   RecipeResponse getRecipeId(String id);
 

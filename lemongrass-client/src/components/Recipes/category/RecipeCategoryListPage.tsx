@@ -7,12 +7,11 @@ const RecipeCategoryListPage = () => {
   const { categoryId } = useParams();
   const [filters, setFilters] = useState({
     page: 0,
-    size: 8,
+    size: 20,
     keyword: "",
     categoryIds: [] as string[],
   });
 
-  // Khi categoryId thay đổi, reset filters
   useEffect(() => {
     if (categoryId) {
       setFilters((prev) => ({

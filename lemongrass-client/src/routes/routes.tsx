@@ -36,7 +36,7 @@ import FeedPage from "@/pages/community/FeedPage";
 import TrendingPage from "@/pages/community/TrendingPage";
 import MyGroupsPage from "@/pages/community/MyGroupsPage";
 import SearchResultsPage from "@/pages/SearchResult";
-import QuickAndEasy from "@/pages/quickAndEasy/QuickAndEasy";
+import QuickAndEasy from "@/pages/recipe/QuickAndEasy";
 import NewRecipeLayout from "@/pages/newRecipe/NewRecipeLayout";
 import Create from "@/components/recipes/create/Create";
 
@@ -48,9 +48,7 @@ const routes: RouteObject[] = [
       { index: true, element: <Home /> },
       { path: "my-post", element: wrapProtected(<MyPost />) },
       { path: "my-recipe", element: wrapProtected(<MyRecipe />) },
-      { path: "quick-and-easy", element: <QuickAndEasy /> },
       { path: "post/:postId", element: <PostDetailPage /> },
-
       {
         path: "search",
         element: <SearchResultsPage />,
@@ -61,6 +59,7 @@ const routes: RouteObject[] = [
         children: [
           { index: true, element: <RecipePage /> },
           { path: ":recipeId", element: <RecipeDetailPage /> },
+          { path: "quick-and-easy", element: <QuickAndEasy /> },
           { path: "category", element: <Navigate to="/recipe" replace /> },
           { path: "category/:categoryId", element: <RecipeCategory /> },
         ],

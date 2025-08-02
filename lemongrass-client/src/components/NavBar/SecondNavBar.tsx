@@ -42,7 +42,7 @@ const SecondNavBar = () => {
               className="group inline-flex h-9 items-center justify-center hover:bg-highlight text-main hover:text-headline px-4 py-2 text-sm font-medium"
               asChild
             >
-              <Link to="/quick-and-easy">{t(TRANSLATION_KEYS.navigation.quickAndEasy)}</Link>
+              <Link to="/recipe/quick-and-easy">{t(TRANSLATION_KEYS.navigation.quickAndEasy)}</Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
 

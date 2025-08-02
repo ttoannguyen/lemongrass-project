@@ -7,6 +7,7 @@ type RecipeFilterParams = {
   size?: number;
   keyword?: string;
   categoryIds?: string[];
+  maxTime?: number;
 };
 export const recipeService = {
   getRecipes: async (
@@ -23,6 +24,7 @@ export const recipeService = {
           size: params?.size ?? 10,
           keyword: params?.keyword,
           categoryIds: params?.categoryIds?.join(","),
+          maxTime: params?.maxTime ?? 99999,
         },
       }
     );

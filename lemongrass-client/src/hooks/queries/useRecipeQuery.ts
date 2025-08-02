@@ -9,6 +9,7 @@ type RecipeFilterParams = {
   size?: number;
   keyword?: string;
   categoryIds?: string[];
+  maxTime?: number;
 };
 export const useSavedRecipes = () => {
   const { isLoggedIn } = useAuth();
