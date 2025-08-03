@@ -19,9 +19,9 @@ public interface GroupMapper {
   @Mapping(target = "account", ignore = true)
   @Mapping(source = "name", target = "name")
   @Mapping(source = "description", target = "description")
-  @Mapping(source = "category", target = "category")
+  //  @Mapping(source = "category", target = "category")
   @Mapping(target = "coverImageUrl", ignore = true)
-  @Mapping(source = "rules", target = "rules")
+  //  @Mapping(source = "rules", target = "rules")
   @Mapping(source = "requirePostApproval", target = "requirePostApproval")
   @Mapping(source = "visibility", target = "visibility")
   Group toGroup(GroupCreateRequest groupCreateRequest);

@@ -17,20 +17,22 @@ const recentPosts = [
 
 const RightSidebar = () => {
   return (
-    <aside className="w-[250px] hidden xl:block h-full  px-4 py-6 bg-background">
+    <aside className="w-[320px] hidden xl:block h-full pt-32 pr-4 py-6 bg-background">
       <div className="space-y-8">
-        {/* Notifications or Activity */}
         <div>
           <h2 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-1">
             <Bell className="w-4 h-4" /> Activity
           </h2>
-          <ul className="text-sm space-y-1 text-muted-foreground">
-            <li>🍳 New post in Vegan Lovers</li>
-            <li>💬 You got 3 new replies</li>
-          </ul>
+          <div className="text-sm space-y-1 text-muted-foreground">
+            <div className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10 rounded-lg flex items-center gap-1">
+              🍳 New post in Vegan Lovers
+            </div>
+            <div className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10 rounded-lg flex items-center gap-1">
+              💬 You got 3 new replies
+            </div>
+          </div>
         </div>
 
-        {/* Trending Hashtags */}
         <div>
           <h2 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-1">
             <Hash className="w-4 h-4" /> Trending Hashtags
@@ -40,15 +42,13 @@ const RightSidebar = () => {
               <Link
                 key={tag}
                 to={`/community/hashtag/${tag.replace("#", "")}`}
-                className="text-sm text-blue-600 hover:underline"
+                className="text-sm p-2 hover:underline rounded-lg text-secondary"
               >
                 {tag}
               </Link>
             ))}
           </div>
         </div>
-
-        {/* Suggested Users */}
         <div>
           <h2 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-1">
             <Users className="w-4 h-4" /> People to follow

@@ -1,6 +1,6 @@
 // src/components/Community/LeftSidebar.tsx
 import { Link } from "react-router-dom";
-import { Plus, Hash, Users, TrendingUp } from "lucide-react";
+import { Users, TrendingUp, HomeIcon, Plus } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import CreateGroupForm from "../group/CreateGroupForm";
@@ -25,34 +25,34 @@ const mockHashtags = ["#mealprep", "#budgetfriendly", "#glutenfree"];
 const LeftSidebar = () => {
   const [openDialog, setOpenDialog] = useState(false);
   return (
-    <aside className="w-[250px] hidden lg:block h-full px-4 py-6 bg-background">
+    <aside className="w-[320px] hidden lg:block h-full pt-32 px-4  py-6 bg-background">
       <div className="space-y-6">
         <div className="space-y-2">
-          <h2 className="text-sm font-semibold text-muted-foreground">
-            Community
-          </h2>
           <nav className="flex flex-col gap-2 text-sm">
-            <Link to="/community" className="hover:underline">
-              🏠 Home Feed
+            <Link
+              to="/community"
+              className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10 rounded-lg flex items-center gap-1"
+            >
+              <HomeIcon className="w-5 h-5" /> Home
             </Link>
             <Link
               to="/community/trending"
-              className="hover:underline flex items-center gap-1"
+              className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10  rounded-lg flex items-center gap-1"
             >
-              <TrendingUp className="w-4 h-4" /> Trending
+              <TrendingUp className="w-5 h-5" /> Trending
             </Link>
             <Link
               to="/community/my-groups"
-              className="hover:underline flex items-center gap-1"
+              className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10  rounded-lg flex items-center gap-1"
             >
-              <Users className="w-4 h-4" /> My Groups
+              <Users className="w-6 h-6" /> My Groups
             </Link>
           </nav>
         </div>
 
         <div>
           <div className="flex items-center justify-between mb-1">
-            <h2 className="text-sm font-semibold text-muted-foreground">
+            <h2 className="text-sm font-semibold text-highlight">
               Your Groups
             </h2>
             <Dialog open={openDialog} onOpenChange={setOpenDialog}>
@@ -65,10 +65,9 @@ const LeftSidebar = () => {
                 <DialogHeader>
                   <DialogTitle>Create New Group</DialogTitle>
                   <DialogDescription>
-                    Fill in the details to create a new community group.
+                    <CreateGroupForm onSuccess={() => setOpenDialog(false)} />
                   </DialogDescription>
                 </DialogHeader>
-                <CreateGroupForm onSuccess={() => setOpenDialog(false)} />
               </DialogContent>
             </Dialog>
           </div>
@@ -78,9 +77,9 @@ const LeftSidebar = () => {
                 <Link
                   key={group.id}
                   to={`/community/group/${group.id}`}
-                  className="text-sm hover:underline text-foreground"
+                  className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10  rounded-lg flex items-center gap-1"
                 >
-                  • {group.name}
+                  {group.name}
                 </Link>
               ))}
             </div>
@@ -96,9 +95,9 @@ const LeftSidebar = () => {
               <Link
                 key={tag}
                 to={`/community/hashtag/${tag.replace("#", "")}`}
-                className="text-sm hover:underline text-blue-600"
+                className="text-sm p-2 hover:underline rounded-lg text-secondary"
               >
-                <Hash className="inline-block w-4 h-4 mr-1" /> {tag}
+                {tag}
               </Link>
             ))}
           </div>

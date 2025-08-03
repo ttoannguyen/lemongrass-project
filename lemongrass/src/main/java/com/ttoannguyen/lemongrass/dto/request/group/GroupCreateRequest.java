@@ -1,8 +1,11 @@
 package com.ttoannguyen.lemongrass.dto.Request.group;
 
+import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
 import com.ttoannguyen.lemongrass.entity.enums.Visibility;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -12,10 +15,9 @@ import lombok.experimental.FieldDefaults;
 public class GroupCreateRequest {
   String name;
   String description;
-  String category;
-  //  String coverImageUrl;
-  String rules;
   boolean requirePostApproval;
-  //    Integer memberCount;
   Visibility visibility;
+  //  String category;
+  //  List<ImageRequest> images;
+  //  String rules;
 }

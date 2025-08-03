@@ -12,7 +12,6 @@ const CommunityLayout = () => {
     return (
       <div className="h-[calc(100vh-110px)] overflow-hidden bg-headline flex items-center justify-center px-4">
         <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 items-center gap-8  rounded-xl p-10 ">
-          {/* Text section */}
           <div className="space-y-4">
             <h1 className="text-4xl font-bold text-highlight">
               Join the Conversation!
@@ -54,11 +53,18 @@ const CommunityLayout = () => {
   // Logged in layout (scroll vẫn bình thường)
   return (
     <div className=" flex bg-background gap-4 w-full max-w-[1440px] mx-auto">
-      <LeftSidebar />
-      <main className="flex-1">
-        <Outlet context={{ account }} />
+      <div className="fixed top-0 left-0 h-screen w-[250px] bg-background z-10 hidden lg:block">
+        <LeftSidebar />
+      </div>
+
+      <main className="flex-1 flex justify-center px-4 py-6">
+        <div className="w-full max-w-2xl">
+          <Outlet context={{ account }} />
+        </div>
       </main>
-      <RightSidebar />
+      <div className="fixed top-0 right-0 h-screen w-[250px] bg-background z-10 hidden xl:block">
+        <RightSidebar />
+      </div>
     </div>
   );
 };

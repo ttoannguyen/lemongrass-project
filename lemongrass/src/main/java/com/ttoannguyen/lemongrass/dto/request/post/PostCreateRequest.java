@@ -8,20 +8,9 @@ import java.util.List;
 
 @Data
 public class PostCreateRequest {
-
   String title;
-
   String content;
-
   String visibility;
-
-  //    boolean isApproved;
-
   Account account;
   List<ImageRequest> images;
-
-  //    String groupId; // optional
-  //
-  //    String recipeId; // optional
-
 }
