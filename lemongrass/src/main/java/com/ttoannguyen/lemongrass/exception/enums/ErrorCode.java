@@ -51,7 +51,12 @@ public enum ErrorCode {
   ROLE_IN_USED(1030, "The unit has already been assigned to someone else!", HttpStatus.BAD_REQUEST),
   SEARCH_KEYWORD_REQUIRED(1031, "Search keyword required!", HttpStatus.BAD_REQUEST),
   INVALID_SEARCH_FIELD(1032, "Invalid search field", HttpStatus.BAD_REQUEST),
-  SEARCH_FAILED(1033, "Search failed", HttpStatus.BAD_REQUEST);
+  SEARCH_FAILED(1033, "Search failed", HttpStatus.BAD_REQUEST),
+  INVALID_GROUP_NAME(1034, "Invalid group name!", HttpStatus.BAD_REQUEST),
+  GROUP_NAME_TOO_LONG(1035, "Group name too long", HttpStatus.BAD_REQUEST),
+  ALREADY_JOINED_GROUP(1036, "You already joined group!", HttpStatus.BAD_REQUEST),
+  NOT_A_MEMBER(1037, "You not a member", HttpStatus.BAD_REQUEST),
+  OWNER_CANNOT_LEAVE(1038, "Owner cannot leave", HttpStatus.BAD_REQUEST);
 
   private int code;
   private String message;

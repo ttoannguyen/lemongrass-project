@@ -10,12 +10,12 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GroupCreateRequest {
-    String name;
-    String description;
-    String category;
-    String coverImageUrl;
-    String rules;
-    boolean requirePostApproval;
-    Integer memberCount;
-    Visibility visibility;
+  String name;
+  String description;
+  String category;
+  //  String coverImageUrl;
+  String rules;
+  boolean requirePostApproval;
+  //    Integer memberCount;
+  Visibility visibility;
 }

@@ -3,6 +3,16 @@ import { Link } from "react-router-dom";
 import { Plus, Hash, Users, TrendingUp } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
+import CreateGroupForm from "../group/CreateGroupForm";
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 
 const mockGroups = [
   { id: "1", name: "Healthy Eating" },
@@ -13,10 +23,10 @@ const mockGroups = [
 const mockHashtags = ["#mealprep", "#budgetfriendly", "#glutenfree"];
 
 const LeftSidebar = () => {
+  const [openDialog, setOpenDialog] = useState(false);
   return (
     <aside className="w-[250px] hidden lg:block h-full px-4 py-6 bg-background">
       <div className="space-y-6">
-        {/* Section: Navigation */}
         <div className="space-y-2">
           <h2 className="text-sm font-semibold text-muted-foreground">
             Community
@@ -40,17 +50,27 @@ const LeftSidebar = () => {
           </nav>
         </div>
 
-        {/* Section: Groups */}
         <div>
           <div className="flex items-center justify-between mb-1">
             <h2 className="text-sm font-semibold text-muted-foreground">
               Your Groups
             </h2>
-            <Button variant="ghost" size="icon" className="h-5 w-5" asChild>
-              <Link to="/community/create-group">
-                <Plus className="w-4 h-4" />
-              </Link>
-            </Button>
+            <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+              <DialogTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-5 w-5">
+                  <Plus className="w-4 h-4" />
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-[500px]">
+                <DialogHeader>
+                  <DialogTitle>Create New Group</DialogTitle>
+                  <DialogDescription>
+                    Fill in the details to create a new community group.
+                  </DialogDescription>
+                </DialogHeader>
+                <CreateGroupForm onSuccess={() => setOpenDialog(false)} />
+              </DialogContent>
+            </Dialog>
           </div>
           <ScrollArea className="h-32">
             <div className="flex flex-col gap-1">
@@ -67,7 +87,6 @@ const LeftSidebar = () => {
           </ScrollArea>
         </div>
 
-        {/* Section: Hashtags */}
         <div>
           <h2 className="text-sm font-semibold text-muted-foreground mb-1">
             Popular Hashtags
