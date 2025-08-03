@@ -5,7 +5,7 @@ import type { PostResponse } from "@/types/post/PostResponse";
 
 export const usePostsQuery = () => {
   return useQuery<PostResponse[]>({
-    queryKey: ["posts"],
+    queryKey: ["posts", "feeds"],
     queryFn: postService.getPosts,
     staleTime: 5 * 60 * 1000,
   });

@@ -14,7 +14,7 @@ export const useSubmitPost = () => {
       return await postService.createPost(payload);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["feeds"] });
+      queryClient.invalidateQueries({ queryKey: ["feeds", "posts"] });
     },
   });
 

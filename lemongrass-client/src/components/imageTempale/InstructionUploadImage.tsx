@@ -16,8 +16,8 @@ const InstructionUploadImage = ({
   onRemove,
   className,
   imageUrl: initialImageUrl,
-  displayOrder = 0,
-}: UploadIngredientImageProps) => {
+}: // displayOrder = 0,
+UploadIngredientImageProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(
     initialImageUrl || null
@@ -58,7 +58,7 @@ const InstructionUploadImage = ({
         return;
       }
 
-      validImages.push({ file, displayOrder: index }); // Gán displayOrder tạm thời
+      validImages.push({ file, displayOrder: index });
     });
 
     if (validImages.length > 0) {
