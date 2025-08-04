@@ -352,6 +352,11 @@ public class RecipeServiceImpl implements RecipeService {
     return recipeMapper.toRecipeResponseList(recipeRepository.findAllByAccountId(account.getId()));
   }
 
+  @Override
+  public List<RecipeResponse> getAccountRecipe(String id) {
+    return recipeMapper.toRecipeResponseList(recipeRepository.findAllByAccountId(id));
+  }
+
   private Recipe buildBaseRecipe(RecipeCreationRequest request, Account account) {
     return Recipe.builder()
         .title(request.getTitle())

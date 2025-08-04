@@ -3,6 +3,7 @@ package com.ttoannguyen.lemongrass.controller.impl;
 import com.ttoannguyen.lemongrass.controller.PostController;
 import com.ttoannguyen.lemongrass.dto.Request.post.PostCreateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.post.PostResponse;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.service.PostService;
 import lombok.AccessLevel;
@@ -17,27 +18,30 @@ import java.util.List;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PostControllerImpl implements PostController {
-    PostService postService;
+  PostService postService;
 
-    @Override
-    public ApiResponse<PostResponse> create(PostCreateRequest postRequest) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        return ApiResponse.<PostResponse>builder()
-                .result(postService.create(postRequest, username))
-                .build();
-    }
+  @Override
+  public ApiResponse<PostResponse> create(PostCreateRequest postRequest) {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<PostResponse>builder()
+        .result(postService.create(postRequest, username))
+        .build();
+  }
 
-    @Override
-    public ApiResponse<List<PostResponse>> getPosts() {
-        return ApiResponse.<List<PostResponse>>builder()
-                .result(postService.getPosts())
-                .build();
-    }
+  @Override
+  public ApiResponse<List<PostResponse>> getPosts() {
+    return ApiResponse.<List<PostResponse>>builder().result(postService.getPosts()).build();
+  }
 
-    @Override
-    public ApiResponse<PostResponse> getPost(String postId) {
-        return ApiResponse.<PostResponse>builder()
-                .result(postService.getPost(postId))
-                .build();
-    }
+  @Override
+  public ApiResponse<PostResponse> getPost(String postId) {
+    return ApiResponse.<PostResponse>builder().result(postService.getPost(postId)).build();
+  }
+
+  @Override
+  public ApiResponse<List<PostResponse>> getAccountPosts(String id) {
+    return ApiResponse.<List<PostResponse>>builder()
+        .result(postService.getAccountPosts(id))
+        .build();
+  }
 }

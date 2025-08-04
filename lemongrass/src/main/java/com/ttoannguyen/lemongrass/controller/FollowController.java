@@ -42,4 +42,7 @@ public interface FollowController {
   // Lấy số follower/following của user theo id
   @GetMapping("/follow-count-by-id/{id}")
   ApiResponse<FollowCountResponse> getFollowCountById(@PathVariable String id);
+
+  @GetMapping("/is-following/{targetId}")
+  ApiResponse<Boolean> isFollowing(@PathVariable("targetId") String targetId);
 }

@@ -52,4 +52,11 @@ export const postService = {
     });
     return res.data.result;
   },
+
+  getAccountPost: async (id: string): Promise<PostResponse[]> => {
+    const res = await api.get<BaseResponse<PostResponse[]>>(
+      `/posts/account/${id}`
+    );
+    return res.data.result;
+  },
 };

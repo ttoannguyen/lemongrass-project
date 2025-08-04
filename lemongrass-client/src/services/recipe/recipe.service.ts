@@ -47,4 +47,14 @@ export const recipeService = {
     );
     return res.data.result;
   },
+
+  getAccountRecipe: async (id: string): Promise<RecipeResponse[]> => {
+    const res = await api.get<BaseResponse<RecipeResponse[]>>(
+      `/recipes/account/${id}`
+    );
+
+    return res.data.result;
+  },
 };
+
+

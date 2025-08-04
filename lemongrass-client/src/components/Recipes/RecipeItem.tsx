@@ -35,7 +35,7 @@ export function RecipeItem({
   };
 
   return (
-    <div className="group flex md:flex-col bg-white md:h-85 md:w-full rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
+    <div className="group flex md:flex-col bg-white md:h-85 md:w-50 rounded-lg overflow-hidden shadow hover:shadow-lg transition-shadow">
       <AspectRatio ratio={16 / 9}>
         <Link to={`/recipe/${recipe.id}`}>
           {imageUrl ? (

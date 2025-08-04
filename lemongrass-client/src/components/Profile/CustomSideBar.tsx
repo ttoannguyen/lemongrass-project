@@ -22,12 +22,11 @@ type Props = {
   onFollow: () => void;
   onUnfollow: () => void;
   onEdit: () => void;
-  stats?: {
-    posts: number;
-    recipes: number;
-    followers: number;
-    following: number;
-  };
+
+  posts?: number;
+  recipes?: number;
+  followers: number;
+  following: number;
 };
 
 const CustomSidebar = ({
@@ -39,15 +38,10 @@ const CustomSidebar = ({
   onFollow,
   onUnfollow,
   onEdit,
-  stats,
+
+  followers,
+  following,
 }: Props) => {
-  //   const [isSidebarOpen, setIsSidebarOpen] = React.useState(true);
-  //   const [isMobileSheetOpen, setIsMobileSheetOpen] = React.useState(false);
-
-  //   const toggleSidebar = () => {
-  //     setIsSidebarOpen((prev) => !prev);
-  //   };
-
   return (
     <div className="w-[320px] hidden lg:block h-full pt-32 px-4 py-6 bg-white">
       <div className="flex flex-col items-center gap-3 mb-10">
@@ -69,26 +63,21 @@ const CustomSidebar = ({
             )}
           </div>
         </div>
-        {stats && (
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <div className="text-center">
-              <span className="font-medium text-foreground">{stats.posts}</span>
-              <p>Bài viết</p>
+        <div className="flex space-x-4 mt-4">
+          <div className="text-center">
+            <div className="font-semibold">
+              <p>{followers}</p>
             </div>
-            <div className="text-center">
-              <span className="font-medium text-foreground">
-                {stats.recipes}
-              </span>
-              <p>Công thức</p>
-            </div>
-            <div className="text-center">
-              <span className="font-medium text-foreground">
-                {stats.followers}
-              </span>
-              <p>Người theo dõi</p>
-            </div>
+            <div className="text-xs text-muted-foreground">Người theo dõi</div>
           </div>
-        )}
+          <div className="text-center">
+            <div className="font-semibold">
+              <p>{following}</p>
+            </div>
+            <div className="text-xs text-muted-foreground">Đang theo dõi</div>
+          </div>
+        </div>
+
         {isMe ? (
           <Button
             onClick={onEdit}
@@ -145,69 +134,6 @@ const CustomSidebar = ({
             ))}
         </ul>
       </nav>
-      {/* <Sheet open={isMobileSheetOpen} onOpenChange={setIsMobileSheetOpen}>
-        <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden fixed top-4 left-4 z-50"
-          >
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Toggle menu</span>
-          </Button>
-        </SheetTrigger>
-        <SheetContent side="left" className="w-80 p-0 bg-white">
-          <div className="p-6">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="absolute top-4 right-4"
-              onClick={() => setIsMobileSheetOpen(false)}
-            >
-              <X className="h-6 w-6" />
-              <span className="sr-only">Close menu</span>
-            </Button>
-            <SidebarProfileCard
-              account={account}
-              isMe={isMe}
-              onEdit={() => {
-                onEdit();
-                setIsMobileSheetOpen(false);
-              }}
-              onFollow={onFollow}
-              onUnfollow={onUnfollow}
-              isFollowing={isFollowing}
-              stats={stats}
-            />
-          </div>
-          <nav className="px-4">
-            <ul className="space-y-2">
-              {tabs
-                .filter((tab) => !tab.restricted || (tab.restricted && isMe))
-                .map((tab) => (
-                  <li key={tab.to}>
-                    <NavLink
-                      to={`/account/${accountId}${tab.to}`}
-                      end
-                      className={({ isActive }) =>
-                        cn(
-                          "block p-3 rounded-md text-sm font-medium transition-colors",
-                          isActive
-                            ? "bg-primary/10 text-primary"
-                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                        )
-                      }
-                      onClick={() => setIsMobileSheetOpen(false)}
-                      title={tab.tooltip}
-                    >
-                      {tab.label}
-                    </NavLink>
-                  </li>
-                ))}
-            </ul>
-          </nav>
-        </SheetContent>
-      </Sheet> */}
     </div>
   );
 };

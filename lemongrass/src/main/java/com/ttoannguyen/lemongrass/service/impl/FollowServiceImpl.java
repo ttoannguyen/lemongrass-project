@@ -167,4 +167,16 @@ public class FollowServiceImpl implements FollowService {
 
     return followRepository.countByTargetIdAndTargetType(target.getId(), FollowTargetType.USER);
   }
+
+  @Override
+  public boolean isFollowing(String targetId, String username) {
+    Account follower =
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+    return followRepository
+        .findByFollowerAndTargetIdAndTargetType(follower, targetId, FollowTargetType.USER)
+        .isPresent();
+  }
 }

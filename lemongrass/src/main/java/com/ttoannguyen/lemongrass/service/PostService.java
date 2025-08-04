@@ -11,4 +11,6 @@ public interface PostService {
   List<PostResponse> getPosts();
 
   PostResponse getPost(String postId);
+
+  List<PostResponse> getAccountPosts(String accountId);
 }

@@ -29,3 +29,15 @@ export const useRecipesQuery = (params?: RecipeFilterParams) => {
     placeholderData: keepPreviousData,
   });
 };
+
+
+export const useAccountRecipeQuery = (id?: string) => {
+  const { isLoggedIn } = useAuth();
+
+  return useQuery<RecipeResponse[]>({
+    queryKey: ["account-recipe", id],
+    queryFn: () => recipeService.getAccountRecipe(id!),
+    enabled: !!id && isLoggedIn,
+    staleTime: 5 * 60 * 1000,
+  });
+};

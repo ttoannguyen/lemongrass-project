@@ -31,14 +31,16 @@ public interface RecipeController {
       @RequestParam(defaultValue = "10") int size,
       @RequestParam(required = false) String keyword,
       @RequestParam(required = false) List<String> categoryIds,
-      @RequestParam(required = false) Integer maxTime
-      );
+      @RequestParam(required = false) Integer maxTime);
 
   @GetMapping("/{recipeId}")
   ApiResponse<RecipeResponse> getRecipeById(@PathVariable("recipeId") String id);
 
   @GetMapping("/myRecipes")
   ApiResponse<List<RecipeResponse>> getMyRecipes();
+
+  @GetMapping("/account/{accountId}")
+  ApiResponse<List<RecipeResponse>> getAccountRecipes(@PathVariable("accountId") String id);
 
   @PostMapping("/search")
   CompletableFuture<ResponseEntity<List<RecipeDocument>>> searchRecipes(

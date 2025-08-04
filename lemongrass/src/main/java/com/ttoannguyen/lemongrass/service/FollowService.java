@@ -25,4 +25,6 @@ public interface FollowService {
   long countFollowing(String id);
 
   long countFollower(String id);
+
+  boolean isFollowing(String targetId, String username);
 }

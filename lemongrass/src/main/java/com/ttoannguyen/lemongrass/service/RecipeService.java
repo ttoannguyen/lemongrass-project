@@ -15,11 +15,14 @@ public interface RecipeService {
 
   String delete(String recipeId, String username);
 
-  Page<RecipeResponse> getRecipes(Pageable pageable, String keyword, List<String> categoryIds, Integer maxTime);
+  Page<RecipeResponse> getRecipes(
+      Pageable pageable, String keyword, List<String> categoryIds, Integer maxTime);
 
   RecipeResponse getRecipeId(String id);
 
   RecipeResponse getRecipeName(String name);
 
   List<RecipeResponse> getMyRecipes(String username);
+
+  List<RecipeResponse> getAccountRecipe(String id);
 }

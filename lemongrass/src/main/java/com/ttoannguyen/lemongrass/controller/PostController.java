@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.controller;
 
 import com.ttoannguyen.lemongrass.dto.Request.post.PostCreateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.post.PostResponse;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
@@ -18,4 +19,7 @@ public interface PostController {
 
   @GetMapping("/{postId}")
   ApiResponse<PostResponse> getPost(@PathVariable("postId") String postId);
+
+  @GetMapping("/account/{accountId}")
+  ApiResponse<List<PostResponse>> getAccountPosts(@PathVariable("accountId") String id);
 }

@@ -79,6 +79,13 @@ public class RecipeControllerImpl implements RecipeController {
   }
 
   @Override
+  public ApiResponse<List<RecipeResponse>> getAccountRecipes(String id) {
+    return ApiResponse.<List<RecipeResponse>>builder()
+        .result(recipeService.getAccountRecipe(id))
+        .build();
+  }
+
+  @Override
   public CompletableFuture<ResponseEntity<List<RecipeDocument>>> searchRecipes(
       @RequestBody SearchRequest request) {
     log.debug("Received search request with keyword: {}", request.getKeyword());

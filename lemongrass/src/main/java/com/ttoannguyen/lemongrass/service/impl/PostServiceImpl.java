@@ -100,7 +100,7 @@ public class PostServiceImpl implements PostService {
     if (request.getImages() != null && !request.getImages().isEmpty()) {
       List<Image> images = uploadImages(request.getImages(), savedPost);
       savedPost.setImages(images);
-      postRepository.save(savedPost); // update lại sau khi thêm images
+      postRepository.save(savedPost);
     }
 
     return postMapper.toPostResponse(savedPost);
@@ -117,6 +117,11 @@ public class PostServiceImpl implements PostService {
         postRepository
             .findById(postId)
             .orElseThrow(() -> new AppException(ErrorCode.POST_NOT_EXISTED)));
+  }
+
+  @Override
+  public List<PostResponse> getAccountPosts(String accountId) {
+    return postMapper.toListPostResponse(postRepository.findByAccountId(accountId));
   }
 
   private List<Image> uploadImages(List<ImageRequest> imageRequests, Post post) {

@@ -39,6 +39,11 @@ import SearchResultsPage from "@/pages/SearchResult";
 import QuickAndEasy from "@/pages/recipe/QuickAndEasy";
 import NewRecipeLayout from "@/pages/newRecipe/NewRecipeLayout";
 import Create from "@/components/recipes/create/Create";
+import Follower from "@/components/profile/Follower";
+import Following from "@/components/profile/Following";
+import Favorite from "@/components/profile/Favorite";
+import { Info } from "lucide-react";
+import General from "@/components/profile/General";
 
 const routes: RouteObject[] = [
   {
@@ -78,8 +83,13 @@ const routes: RouteObject[] = [
         path: "account/:accountId",
         element: wrapProtected(<AccountLayout />),
         children: [
-          { index: true, element: <MyRecipe /> },
+          { index: true, element: <General /> },
+          { path: "recipe", element: <MyRecipe /> },
           { path: "post", element: <MyPost /> },
+          { path: "favorites", element: <Favorite /> },
+          { path: "info", element: <Info /> },
+          { path: "follower", element: <Follower /> },
+          { path: "following", element: <Following /> },
         ],
       },
       {
