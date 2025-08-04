@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import com.ttoannguyen.lemongrass.service.CloudinaryService;
+import jakarta.transaction.Transactional;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,6 +27,7 @@ import com.ttoannguyen.lemongrass.service.AccountService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @RequiredArgsConstructor
@@ -35,6 +38,8 @@ public class AccountServiceImpl implements AccountService {
   AccountMapper accountMapper;
   PasswordEncoder passwordEncoder;
   RoleRepository roleRepository;
+
+  CloudinaryService cloudinaryService;
 
   @Override
   public AccountResponse createAccount(AccountCreateRequest request) {
@@ -80,6 +85,26 @@ public class AccountServiceImpl implements AccountService {
             .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
 
     return accountMapper.toAccountResponse(account);
+  }
+
+  @Override
+  @Transactional
+  public AccountResponse updateMyInfo(
+      String username, AccountUpdateRequest request, MultipartFile avatar) {
+    Account account =
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+    accountMapper.updateAccount(account, request);
+
+    if (request.getPassword() != null && !request.getPassword().isBlank()) {
+      account.setPassword(passwordEncoder.encode(request.getPassword()));
+    }
+    if (avatar != null && !avatar.isEmpty()) {
+      String url = cloudinaryService.uploadImage(avatar);
+      account.setProfilePictureUrl(url);
+    }
+    return accountMapper.toAccountResponse(accountRepository.save(account));
   }
 
   @Override

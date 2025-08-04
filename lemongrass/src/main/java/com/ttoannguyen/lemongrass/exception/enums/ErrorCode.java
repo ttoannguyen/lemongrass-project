@@ -56,7 +56,8 @@ public enum ErrorCode {
   GROUP_NAME_TOO_LONG(1035, "Group name too long", HttpStatus.BAD_REQUEST),
   ALREADY_JOINED_GROUP(1036, "You already joined group!", HttpStatus.BAD_REQUEST),
   NOT_A_MEMBER(1037, "You not a member", HttpStatus.BAD_REQUEST),
-  OWNER_CANNOT_LEAVE(1038, "Owner cannot leave", HttpStatus.BAD_REQUEST);
+  OWNER_CANNOT_LEAVE(1038, "Owner cannot leave", HttpStatus.BAD_REQUEST),
+  ALREADY_FOLLOWED(1039, "Already followed", HttpStatus.BAD_REQUEST);
 
   private int code;
   private String message;

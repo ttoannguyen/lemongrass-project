@@ -16,4 +16,35 @@ export const accountService = {
     const res = await api.get<BaseResponse<Account[]>>("/accounts");
     return res.data.result;
   },
+
+  myInfo: async (): Promise<Account> => {
+    const res = await api.get<BaseResponse<Account>>("/accounts/myInfo");
+    return res.data.result;
+  },
+
+  updateMyInfo: async (
+    data: Partial<Omit<Account, "id" | "avatarUrl">>,
+    avatar?: File | null
+  ): Promise<Account> => {
+    const formData = new FormData();
+    formData.append(
+      "data",
+      new Blob([JSON.stringify(data)], { type: "application/json" })
+    );
+    if (avatar) {
+      formData.append("avatar", avatar);
+    }
+
+    const res = await api.put<BaseResponse<Account>>(
+      "/accounts/myInfo",
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return res.data.result;
+  },
 };

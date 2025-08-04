@@ -25,10 +25,10 @@ const RightSidebar = () => {
           </h2>
           <div className="text-sm space-y-1 text-muted-foreground">
             <div className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10 rounded-lg flex items-center gap-1">
-              🍳 New post in Vegan Lovers
+              New post in Vegan Lovers
             </div>
             <div className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10 rounded-lg flex items-center gap-1">
-              💬 You got 3 new replies
+              You got 3 new replies
             </div>
           </div>
         </div>

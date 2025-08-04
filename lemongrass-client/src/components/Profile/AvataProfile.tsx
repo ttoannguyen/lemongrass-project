@@ -15,8 +15,8 @@ const AvataProfile = ({ className, account }: Props) => {
       <AvatarImage
         src={
           account?.profilePictureUrl
-            ? account.profilePictureUrl
-            : "https://res.cloudinary.com/didxuklgy/image/upload/v1750257521/27470351_7342052_xx4iiz.jpg"
+            // ? account.profilePictureUrl
+            // : "https://res.cloudinary.com/didxuklgy/image/upload/v1750257521/27470351_7342052_xx4iiz.jpg"
         }
         alt="Avatar"
         className="object-cover"

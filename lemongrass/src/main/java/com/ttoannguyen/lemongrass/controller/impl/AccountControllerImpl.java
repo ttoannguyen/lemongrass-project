@@ -16,50 +16,62 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class AccountControllerImpl implements AccountController {
-    AccountService accountService;
+  AccountService accountService;
 
-    @Override
-    public ApiResponse<AccountResponse> register(AccountCreateRequest request) {
-        return ApiResponse.<AccountResponse>builder()
-                .result(accountService.createAccount(request))
-                .build();
-    }
+  @Override
+  public ApiResponse<AccountResponse> register(AccountCreateRequest request) {
+    return ApiResponse.<AccountResponse>builder()
+        .result(accountService.createAccount(request))
+        .build();
+  }
 
-    @Override
-    public ApiResponse<List<AccountResponse>> getAccounts() {
-        final var authentication = SecurityContextHolder.getContext().getAuthentication();
-        log.info("Username {}", authentication.getName());
-        authentication.getAuthorities().forEach(grantedAuthority -> log.info(grantedAuthority.getAuthority()));
+  @Override
+  public ApiResponse<List<AccountResponse>> getAccounts() {
+    final var authentication = SecurityContextHolder.getContext().getAuthentication();
+    log.info("Username {}", authentication.getName());
+    authentication
+        .getAuthorities()
+        .forEach(grantedAuthority -> log.info(grantedAuthority.getAuthority()));
 
-        return ApiResponse.<List<AccountResponse>>builder()
-                .result(accountService.getAccounts())
-                .build();
-    }
+    return ApiResponse.<List<AccountResponse>>builder()
+        .result(accountService.getAccounts())
+        .build();
+  }
 
-    @Override
-    public ApiResponse<AccountResponse> getAccount(String accountId) {
-        return ApiResponse.<AccountResponse>builder()
-                .result(accountService.getAccount(accountId))
-                .build();
-    }
+  @Override
+  public ApiResponse<AccountResponse> getAccount(String accountId) {
+    return ApiResponse.<AccountResponse>builder()
+        .result(accountService.getAccount(accountId))
+        .build();
+  }
 
-    @Override
-    public ApiResponse<AccountResponse> getMyInfo() {
-        return ApiResponse.<AccountResponse>builder()
-                .result(accountService.getMyInfo())
-                .build();
-    }
+  @Override
+  public ApiResponse<AccountResponse> getMyInfo() {
+    return ApiResponse.<AccountResponse>builder().result(accountService.getMyInfo()).build();
+  }
 
-    @Override
-    public ApiResponse<AccountResponse> updateAccount(String accountId, AccountUpdateRequest request) {
-        return ApiResponse.<AccountResponse>builder()
-                .result(accountService.updateAccount(accountId, request))
-                .build();
-    }
+  @Override
+  public ApiResponse<AccountResponse> updateMyInfo(
+      AccountUpdateRequest request, MultipartFile avatar) {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
+    return ApiResponse.<AccountResponse>builder()
+        .result(accountService.updateMyInfo(username, request, avatar))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<AccountResponse> updateAccount(
+      String accountId, AccountUpdateRequest request) {
+    return ApiResponse.<AccountResponse>builder()
+        .result(accountService.updateAccount(accountId, request))
+        .build();
+  }
 }

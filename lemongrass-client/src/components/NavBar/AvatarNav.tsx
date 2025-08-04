@@ -36,11 +36,11 @@ const AvatarNav = () => {
     },
     {
       label: t(TRANSLATION_KEYS.profile.myPost),
-      onClick: () => navigate("/my-recipe"),
+      onClick: () => navigate(`/account/${account?.id}/post`),
     },
     {
       label: t(TRANSLATION_KEYS.profile.myRecipe),
-      onClick: () => navigate("/my-post"),
+      onClick: () => navigate(`/account/${account?.id}`),
     },
     {
       label: t(TRANSLATION_KEYS.profile.adminPanel),

@@ -17,7 +17,4 @@ public class GroupCreateRequest {
   String description;
   boolean requirePostApproval;
   Visibility visibility;
-  //  String category;
-  //  List<ImageRequest> images;
-  //  String rules;
 }

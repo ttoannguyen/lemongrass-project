@@ -1,9 +1,7 @@
 package com.ttoannguyen.lemongrass.mapper;
 
 import com.ttoannguyen.lemongrass.dto.Response.account.AccountShortResponse;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
+import org.mapstruct.*;
 
 import com.ttoannguyen.lemongrass.dto.Request.account.AccountCreateRequest;
 import com.ttoannguyen.lemongrass.dto.Request.account.AccountUpdateRequest;
@@ -19,5 +17,7 @@ public interface AccountMapper {
   AccountShortResponse toAccountShortResponse(Account account);
 
   @Mapping(target = "roles", ignore = true)
+  @Mapping(target = "profilePictureUrl", ignore = true)
+  @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
   void updateAccount(@MappingTarget Account account, AccountUpdateRequest accountUpdateRequest);
 }

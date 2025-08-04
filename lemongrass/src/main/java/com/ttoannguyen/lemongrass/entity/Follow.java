@@ -14,18 +14,18 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Follow extends AbstractAuditingEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    @ManyToOne
-    @JoinColumn(name = "follower_id", nullable = false)
-    Account follower;
+  @ManyToOne
+  @JoinColumn(name = "follower_id", nullable = false)
+  Account follower;
 
-    @Column(nullable = false)
-    Integer targetId;
+  @Column(nullable = false)
+  String targetId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    FollowTargetType targetType;
+  @Enumerated(EnumType.STRING)
+  @Column(nullable = false)
+  FollowTargetType targetType;
 }
