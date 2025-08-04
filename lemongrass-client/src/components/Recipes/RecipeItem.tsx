@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Link } from "react-router-dom";
 import { Heart, Hourglass } from "lucide-react";
 import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
@@ -9,29 +8,31 @@ import { AspectRatio } from "../ui/aspect-ratio";
 import clsx from "clsx";
 import { useTranslation } from "react-i18next";
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
+import {
+  useLikedRecipeIdsQuery,
+  useToggleHeartRecipeMutation,
+} from "@/hooks/queries/useHeartMutation";
 
 type RecipeItemMainProps = {
   recipe: RecipeResponse;
   className?: string;
   ratingCount?: number;
-  onToggleFavorite?: (recipeId: string) => void;
-  isFavorite?: boolean;
 };
 
-export function RecipeItem({
-  recipe,
-  onToggleFavorite,
-  isFavorite = false,
-}: RecipeItemMainProps) {
+export function RecipeItem({ recipe }: RecipeItemMainProps) {
   const { t } = useTranslation();
   const imageUrl = recipe.images?.[0]?.url ?? "";
   const minutes = recipe.cookingTime ?? 0;
   const categories = recipe.categories;
-  // console.log(recipe);
-  const handleFavClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    e.preventDefault();
-    onToggleFavorite?.(recipe.id);
+
+   const { data: likedIds = [], refetch } = useLikedRecipeIdsQuery();
+  const toggleHeart = useToggleHeartRecipeMutation();
+
+  const isLiked = likedIds.includes(recipe.id)
+  console.log(likedIds)
+  const handleClick = (recipeId: string) => {
+    toggleHeart.mutate(recipeId);
+    refetch()
   };
 
   return (
@@ -53,17 +54,17 @@ export function RecipeItem({
         </Link>
         <button
           type="button"
-          onClick={handleFavClick}
-          aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+          onClick={()=>handleClick(recipe.id)}
+          aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
           className={cn(
             "absolute top-2 right-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white shadow transition",
-            isFavorite ? "text-tertiary" : "text-paragraph hover:text-tertiary"
+            isLiked ? "text-tertiary" : "text-paragraph hover:text-tertiary"
           )}
         >
           <Heart
             className={cn(
               "h-4 w-4",
-              isFavorite ? "fill-current" : "stroke-current"
+              isLiked ? "fill-current" : "stroke-current"
             )}
           />
         </button>

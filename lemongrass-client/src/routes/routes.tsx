@@ -25,7 +25,7 @@ import Units from "@/pages/admin/Units";
 import Tags from "@/pages/admin/Tags";
 import Moderation from "@/pages/admin/system/Moderation";
 import Setting from "@/pages/admin/system/Setting";
-import PostDetailPage from "@/components/posts/PostDetailPage";
+// import PostDetailPage from "@/components/posts/PostDetailPage";
 import AccountLayout from "@/pages/account/AccountLayout";
 import RecipeLayout from "@/pages/recipe/RecipeLayout";
 import RecipePage from "@/pages/recipe/RecipePage";
@@ -53,7 +53,7 @@ const routes: RouteObject[] = [
       { index: true, element: <Home /> },
       { path: "my-post", element: wrapProtected(<MyPost />) },
       { path: "my-recipe", element: wrapProtected(<MyRecipe />) },
-      { path: "post/:postId", element: <PostDetailPage /> },
+      // { path: "post/:postId", element: <PostDetailPage /> },
       {
         path: "search",
         element: <SearchResultsPage />,

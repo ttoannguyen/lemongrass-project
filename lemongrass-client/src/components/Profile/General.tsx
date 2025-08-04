@@ -4,7 +4,6 @@ import { useAccountQuery } from "@/hooks/queries/useAccountQuery";
 import { useAccountRecipeQuery } from "@/hooks/queries/useRecipeQuery";
 import { Skeleton } from "../ui/skeleton";
 import { useAccountPostsQuery } from "@/hooks/queries/usePostQuery";
-import PostItemCard from "../MainFeeds/Posts/PostItemCard";
 
 const General = () => {
   const { accountId: rawAccountId } = useParams<{ accountId?: string }>();

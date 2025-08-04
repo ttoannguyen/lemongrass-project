@@ -10,7 +10,6 @@ export default function MealTypeSelector({
   const { grouped } = useCategoryGroupedByType();
 
   const mealTypes = grouped?.MEAL_TYPE || [];
-  // console.log(mealTypes);
 
   const [selected, setSelected] = useState(mealTypes[0]?.name || "");
   const handleClick = (type: string) => {

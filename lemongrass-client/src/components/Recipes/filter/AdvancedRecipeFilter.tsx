@@ -10,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { RecipeSearchBox } from "@/components/search/SearchBox";
 
 interface FilterParams {
   keyword?: string;
@@ -26,6 +27,7 @@ interface AdvancedRecipeFilterProps {
   initialCategoryIds?: string[];
   initialPageSize?: number;
   onFilterChange: (filters: FilterParams) => void;
+  onSearchResult?: (ids: string[]) => void;
 }
 
 const AdvancedRecipeFilter = ({
@@ -33,6 +35,7 @@ const AdvancedRecipeFilter = ({
   initialCategoryIds = [],
   initialPageSize = 8,
   onFilterChange,
+  onSearchResult,
 }: AdvancedRecipeFilterProps) => {
   const [keyword, setKeyword] = useState(initialKeyword);
   const [size, setSize] = useState(initialPageSize);
@@ -77,13 +80,15 @@ const AdvancedRecipeFilter = ({
           >
             Từ khóa
           </Label>
-          <Input
+          {/* <Input
             id="keyword"
             placeholder="Nhập tên công thức..."
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             className="rounded-md border-gray-300 focus:ring-primary focus:border-primary transition-colors duration-200"
-          />
+          /> */}
+
+          <RecipeSearchBox onSearchResult={onSearchResult} />
         </div>
 
         <div className="space-y-2">
@@ -96,13 +101,13 @@ const AdvancedRecipeFilter = ({
           >
             <SelectTrigger
               id="size"
-              className="rounded-md border-gray-300 focus:ring-primary focus:border-primary transition-colors duration-200"
+              className="rounded-md bg-white border-gray-300 focus:ring-primary focus:border-highlight transition-colors duration-200"
             >
               <SelectValue placeholder="Chọn số lượng hiển thị" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-white ">
               {[8, 12, 16, 20].map((n) => (
-                <SelectItem key={n} value={n.toString()}>
+                <SelectItem key={n} value={n.toString()} className="hover:bg-highlight">
                   {n}/trang
                 </SelectItem>
               ))}

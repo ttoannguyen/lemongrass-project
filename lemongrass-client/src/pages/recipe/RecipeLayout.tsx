@@ -1,39 +1,3 @@
-// import { TRANSLATION_KEYS } from "@/locales/translationKeys";
-// import { useTranslation } from "react-i18next";
-// import { Outlet, useLocation } from "react-router-dom";
-
-// const RecipeLayout = () => {
-//   const { pathname } = useLocation();
-//   const { t } = useTranslation();
-
-//   const isCategoryPage = pathname.includes("/category/");
-
-//   return (
-//     <div className="bg-white min-h-screen">
-//       <div className="relative w-full h-48 md:h-72 flex items-center justify-center overflow-hidden">
-//         <img
-//           src="/src/assets/images/food-vegetable-colorful-background-tasty-fresh-vegetables-wooden-table-top-view-with-copy-space.jpg"
-//           alt="Recipe Header"
-//           className="absolute inset-0 w-full h-full object-cover opacity-70"
-//         />
-//         <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent"></div>
-//         <h1 className="relative z-10 text-center text-3xl md:text-5xl font-bold tracking-tight text-white drop-shadow-md">
-//           {isCategoryPage
-//             ? t(TRANSLATION_KEYS.recipe.categoryTitle)
-//             : t(TRANSLATION_KEYS.recipe.title)}
-//         </h1>
-//       </div>
-
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mt-6">
-//         <Outlet />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default RecipeLayout;
-
-// import RecipeBreadcrumbBar from "@/components/breadcrum/RecipeBreadcrumbBar";
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
 import { useTranslation } from "react-i18next";
 import { Outlet, useLocation } from "react-router-dom";

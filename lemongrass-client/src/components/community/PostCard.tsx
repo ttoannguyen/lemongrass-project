@@ -1,12 +1,28 @@
 import { Heart, MessageCircle } from "lucide-react";
 import { type PostResponse } from "@/types/post/PostResponse";
+import { format, formatDistanceToNow } from "date-fns";
+import { Link } from "react-router-dom";
 
 const PostCard = ({ post }: { post: PostResponse }) => {
   const { author, content, images, createdDate, likeCount, commentCount } =
     post;
+  const formattedDate = format(new Date(createdDate), "MMM d yyyy");
+  const relativeTime = formatDistanceToNow(new Date(createdDate), {
+    addSuffix: true,
+  });
+
+  const isLessThanOneDay = (date: Date) => {
+    const now = new Date();
+    const diffInMs = now.getTime() - date.getTime();
+    const diffInHours = diffInMs / (1000 * 60 * 60);
+    return diffInHours < 24;
+  };
+
+  const capitalizeFirstLetter = (str: string) =>
+    str.charAt(0).toUpperCase() + str.slice(1);
 
   return (
-    <div className="bg-white rounded-xl shadow p-4 space-y-2 border">
+    <div className="bg-white rounded-xl shadow p-4 space-y-2">
       <div className="flex items-center gap-3">
         <img
           src={author.profilePictureUrl}
@@ -14,9 +30,18 @@ const PostCard = ({ post }: { post: PostResponse }) => {
           className="w-10 h-10 rounded-full object-cover"
         />
         <div>
-          <p className="font-semibold">{author.username}</p>
-          <p className="text-xs text-gray-500">
-            {new Date(createdDate).toLocaleString()}
+          <Link
+            to={`/account/${author.id}`}
+            className="font-semibold text-headline hover:underline"
+          >
+            {author.firstName + " " + author.lastName}
+          </Link>
+          <p className="text-[10px] text-paragraph/50 ">
+            {capitalizeFirstLetter(
+              isLessThanOneDay(new Date(createdDate))
+                ? relativeTime
+                : formattedDate
+            )}
           </p>
         </div>
       </div>
