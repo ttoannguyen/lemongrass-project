@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.controller;
 
+import com.ttoannguyen.lemongrass.dto.PageResponse.PageResponse;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
@@ -26,7 +27,7 @@ public interface RecipeController {
   ApiResponse<String> delete(@PathVariable("recipeId") String id);
 
   @GetMapping
-  ApiResponse<Page<RecipeResponse>> getRecipes(
+  ApiResponse<PageResponse<RecipeResponse>> getRecipes(
       @RequestParam(defaultValue = "0") int page,
       @RequestParam(defaultValue = "10") int size,
       @RequestParam(required = false) String keyword,

@@ -56,19 +56,54 @@ public class NotificationServiceImpl implements NotificationService {
     simpMessagingTemplate.convertAndSendToUser(accountId, "/topic/notifications", notification);
   }
 
+  //  @Override
+  //  public void sendLikeNotification(Account sender, Account receiver, Post post) {
+  //
+  //    NotificationMessage notification =
+  //        NotificationMessage.builder()
+  //            .sender(accountMapper.toAccountResponse(sender))
+  //            .receiver(accountMapper.toAccountResponse(receiver))
+  //            .targetId(post.getId())
+  //            .message(sender.getUsername() + "Đã thích bài viết của bạn")
+  //            .targetType("POST")
+  //            .build();
+  //
+  //    simpMessagingTemplate.convertAndSendToUser(
+  //        receiver.getId(), "/queue/notifications", notification);
+  //  }
+
   @Override
-  public void sendLikeNotification(Account sender, Account receiver, Post post) {
+  public void sendLikeNotification(
+      Account sender, Account receiver, String targetId, String targetType, String title) {
+    // Không gửi thông báo nếu tự like chính mình
+    if (sender.getId().equals(receiver.getId())) {
+      return;
+    }
+
+    // Xây dựng nội dung thông báo theo loại target
+    String message;
+    switch (targetType) {
+      case "POST":
+        message = sender.getUsername() + " đã thích bài viết của bạn: " + title;
+        break;
+      case "RECIPE":
+        message = sender.getUsername() + " đã thích công thức của bạn: " + title;
+        break;
+      default:
+        message = sender.getUsername() + " đã thích nội dung của bạn";
+        break;
+    }
 
     NotificationMessage notification =
         NotificationMessage.builder()
             .sender(accountMapper.toAccountResponse(sender))
             .receiver(accountMapper.toAccountResponse(receiver))
-            .targetId(post.getId())
-            .message(sender.getUsername() + "Đã thích bài viết của bạn")
-            .targetType("POST")
+            .targetId(targetId)
+            .targetType(targetType)
+            .message(message)
             .build();
 
     simpMessagingTemplate.convertAndSendToUser(
-        receiver.getId(), "/queue/notifications", notification);
+        receiver.getId().toString(), "/queue/notifications", notification);
   }
 }

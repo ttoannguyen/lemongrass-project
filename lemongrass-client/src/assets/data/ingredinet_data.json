@@ -1,0 +1,3600 @@
+[
+  {
+    "name": "Bắp cải",
+    "aliases": ["Cabbage", "Cải bắp"],
+    "allowedUnitNames": ["gram", "cái", "lá"]
+  },
+  {
+    "name": "Cải thảo",
+    "aliases": ["Napa Cabbage", "Bắp cải Tàu"],
+    "allowedUnitNames": ["gram", "cái", "lá"]
+  },
+  {
+    "name": "Củ sen",
+    "aliases": ["Lotus Root", "Ngó sen"],
+    "allowedUnitNames": ["gram", "củ", "lát"]
+  },
+  {
+    "name": "Măng tươi",
+    "aliases": ["Fresh Bamboo Shoots", "Măng non"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Măng khô",
+    "aliases": ["Dried Bamboo Shoots"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Đu đủ xanh",
+    "aliases": ["Green Papaya"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Khoai lang",
+    "aliases": ["Sweet Potato", "Củ khoai lang"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Khoai môn",
+    "aliases": ["Taro", "Củ khoai môn"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ sắn",
+    "aliases": ["Cassava", "Củ đậu"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Cá basa",
+    "aliases": ["Basa Fish", "Cá tra"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lóc",
+    "aliases": ["Snakehead Fish", "Cá quả"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Chả cá",
+    "aliases": ["Fish Paste", "Chả cá Lã Vọng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Nước cốt me",
+    "aliases": ["Tamarind Juice", "Nước me"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Hạt sen",
+    "aliases": ["Lotus Seeds"],
+    "allowedUnitNames": ["gram", "hạt", "chén"]
+  },
+  {
+    "name": "Đậu xanh",
+    "aliases": ["Mung Beans"],
+    "allowedUnitNames": ["gram", "chén", "hộp"]
+  },
+  {
+    "name": "Bánh tráng",
+    "aliases": ["Rice Paper", "Bánh tráng cuốn"],
+    "allowedUnitNames": ["gram", "tấm", "miếng"]
+  },
+  {
+    "name": "Bột năng",
+    "aliases": ["Tapioca Starch", "Bột sắn dây"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Dưa cải muối",
+    "aliases": ["Pickled Mustard Greens", "Cải chua"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Cà pháo",
+    "aliases": ["Thai Eggplant", "Cà dầm"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Lá mơ",
+    "aliases": ["Houttuynia Cordata", "Rau diếp cá"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Sườn bò",
+    "aliases": ["Beef Ribs", "Sườn bò ngắn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Gân bò",
+    "aliases": ["Beef Tendon"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Lòng heo",
+    "aliases": ["Pork Intestines", "Lòng lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Mật ong rừng",
+    "aliases": ["Wild Honey", "Mật ong nguyên chất"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Đường thốt nốt",
+    "aliases": ["Palm Sugar", "Đường thốt nốt miếng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "miếng"]
+  },
+  {
+    "name": "Bột nghệ tươi",
+    "aliases": ["Fresh Turmeric Paste"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Củ kiệu",
+    "aliases": ["Pickled Leek", "Kiệu muối"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Bắp non",
+    "aliases": ["Baby Corn", "Ngô non"],
+    "allowedUnitNames": ["gram", "cái", "chén"]
+  },
+  {
+    "name": "Củ dền",
+    "aliases": ["Beetroot", "Củ cải đỏ"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Cải ngọt",
+    "aliases": ["Choy Sum", "Cải chíp"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Bánh chưng",
+    "aliases": ["Sticky Rice Cake", "Bánh tét"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Nước cốt dừa lon",
+    "aliases": ["Canned Coconut Milk", "Sữa dừa đóng hộp"],
+    "allowedUnitNames": ["mililit", "hộp", "chén"]
+  },
+  {
+    "name": "Bắp cải",
+    "aliases": ["Cabbage", "Cải bắp"],
+    "allowedUnitNames": ["gram", "cái", "lá"]
+  },
+  {
+    "name": "Cải thảo",
+    "aliases": ["Napa Cabbage", "Bắp cải Tàu"],
+    "allowedUnitNames": ["gram", "cái", "lá"]
+  },
+  {
+    "name": "Củ sen",
+    "aliases": ["Lotus Root", "Ngó sen"],
+    "allowedUnitNames": ["gram", "củ", "lát"]
+  },
+  {
+    "name": "Măng tươi",
+    "aliases": ["Fresh Bamboo Shoots", "Măng non"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Măng khô",
+    "aliases": ["Dried Bamboo Shoots"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Đu đủ xanh",
+    "aliases": ["Green Papaya"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Khoai lang",
+    "aliases": ["Sweet Potato", "Củ khoai lang"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Khoai môn",
+    "aliases": ["Taro", "Củ khoai môn"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ sắn",
+    "aliases": ["Cassava", "Củ đậu"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Cá basa",
+    "aliases": ["Basa Fish", "Cá tra"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lóc",
+    "aliases": ["Snakehead Fish", "Cá quả"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Chả cá",
+    "aliases": ["Fish Paste", "Chả cá Lã Vọng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Nước cốt me",
+    "aliases": ["Tamarind Juice", "Nước me"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Hạt sen",
+    "aliases": ["Lotus Seeds"],
+    "allowedUnitNames": ["gram", "hạt", "chén"]
+  },
+  {
+    "name": "Đậu xanh",
+    "aliases": ["Mung Beans"],
+    "allowedUnitNames": ["gram", "chén", "hộp"]
+  },
+  {
+    "name": "Bánh tráng",
+    "aliases": ["Rice Paper", "Bánh tráng cuốn"],
+    "allowedUnitNames": ["gram", "tấm", "miếng"]
+  },
+  {
+    "name": "Bột năng",
+    "aliases": ["Tapioca Starch", "Bột sắn dây"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Dưa cải muối",
+    "aliases": ["Pickled Mustard Greens", "Cải chua"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Cà pháo",
+    "aliases": ["Thai Eggplant", "Cà dầm"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Lá mơ",
+    "aliases": ["Houttuynia Cordata", "Rau diếp cá"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Sườn bò",
+    "aliases": ["Beef Ribs", "Sườn bò ngắn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Gân bò",
+    "aliases": ["Beef Tendon"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Lòng heo",
+    "aliases": ["Pork Intestines", "Lòng lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Mật ong rừng",
+    "aliases": ["Wild Honey", "Mật ong nguyên chất"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Đường thốt nốt",
+    "aliases": ["Palm Sugar", "Đường thốt nốt miếng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "miếng"]
+  },
+  {
+    "name": "Bột nghệ tươi",
+    "aliases": ["Fresh Turmeric Paste"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Củ kiệu",
+    "aliases": ["Pickled Leek", "Kiệu muối"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Bắp non",
+    "aliases": ["Baby Corn", "Ngô non"],
+    "allowedUnitNames": ["gram", "cái", "chén"]
+  },
+  {
+    "name": "Củ dền",
+    "aliases": ["Beetroot", "Củ cải đỏ"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Cải ngọt",
+    "aliases": ["Choy Sum", "Cải chíp"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Bánh chưng",
+    "aliases": ["Sticky Rice Cake", "Bánh tét"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Nước cốt dừa lon",
+    "aliases": ["Canned Coconut Milk", "Sữa dừa đóng hộp"],
+    "allowedUnitNames": ["mililit", "hộp", "chén"]
+  },
+  {
+    "name": "Bắp cải",
+    "aliases": ["Cabbage", "Cải bắp"],
+    "allowedUnitNames": ["gram", "cái", "lá"]
+  },
+  {
+    "name": "Cải thảo",
+    "aliases": ["Napa Cabbage", "Bắp cải Tàu"],
+    "allowedUnitNames": ["gram", "cái", "lá"]
+  },
+  {
+    "name": "Củ sen",
+    "aliases": ["Lotus Root", "Ngó sen"],
+    "allowedUnitNames": ["gram", "củ", "lát"]
+  },
+  {
+    "name": "Măng tươi",
+    "aliases": ["Fresh Bamboo Shoots", "Măng non"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Măng khô",
+    "aliases": ["Dried Bamboo Shoots"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Đu đủ xanh",
+    "aliases": ["Green Papaya"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Khoai lang",
+    "aliases": ["Sweet Potato", "Củ khoai lang"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Khoai môn",
+    "aliases": ["Taro", "Củ khoai môn"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ sắn",
+    "aliases": ["Cassava", "Củ đậu"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Cá basa",
+    "aliases": ["Basa Fish", "Cá tra"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lóc",
+    "aliases": ["Snakehead Fish", "Cá quả"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Chả cá",
+    "aliases": ["Fish Paste", "Chả cá Lã Vọng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Nước cốt me",
+    "aliases": ["Tamarind Juice", "Nước me"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Hạt sen",
+    "aliases": ["Lotus Seeds"],
+    "allowedUnitNames": ["gram", "hạt", "chén"]
+  },
+  {
+    "name": "Đậu xanh",
+    "aliases": ["Mung Beans"],
+    "allowedUnitNames": ["gram", "chén", "hộp"]
+  },
+  {
+    "name": "Bánh tráng",
+    "aliases": ["Rice Paper", "Bánh tráng cuốn"],
+    "allowedUnitNames": ["gram", "tấm", "miếng"]
+  },
+  {
+    "name": "Bột năng",
+    "aliases": ["Tapioca Starch", "Bột sắn dây"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Dưa cải muối",
+    "aliases": ["Pickled Mustard Greens", "Cải chua"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Cà pháo",
+    "aliases": ["Thai Eggplant", "Cà dầm"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Lá mơ",
+    "aliases": ["Houttuynia Cordata", "Rau diếp cá"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Sườn bò",
+    "aliases": ["Beef Ribs", "Sườn bò ngắn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Gân bò",
+    "aliases": ["Beef Tendon"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Lòng heo",
+    "aliases": ["Pork Intestines", "Lòng lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Mật ong rừng",
+    "aliases": ["Wild Honey", "Mật ong nguyên chất"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Đường thốt nốt",
+    "aliases": ["Palm Sugar", "Đường thốt nốt miếng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "miếng"]
+  },
+  {
+    "name": "Bột nghệ tươi",
+    "aliases": ["Fresh Turmeric Paste"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Củ kiệu",
+    "aliases": ["Pickled Leek", "Kiệu muối"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Bắp non",
+    "aliases": ["Baby Corn", "Ngô non"],
+    "allowedUnitNames": ["gram", "cái", "chén"]
+  },
+  {
+    "name": "Củ dền",
+    "aliases": ["Beetroot", "Củ cải đỏ"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Cải ngọt",
+    "aliases": ["Choy Sum", "Cải chíp"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Bánh chưng",
+    "aliases": ["Sticky Rice Cake", "Bánh tét"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Nước cốt dừa lon",
+    "aliases": ["Canned Coconut Milk", "Sữa dừa đóng hộp"],
+    "allowedUnitNames": ["mililit", "hộp", "chén"]
+  },
+  {
+    "name": "Rau đắng",
+    "aliases": ["Bitter Herb", "Rau đắng đất"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cải xanh",
+    "aliases": ["Mustard Greens", "Cải bẹ xanh"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Hẹ",
+    "aliases": ["Chinese Chives", "Lá hẹ"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cá rô phi",
+    "aliases": ["Tilapia", "Cá diêu hồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá thu đao",
+    "aliases": ["Spanish Mackerel", "Cá nục"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Bột báng",
+    "aliases": ["Tapioca Pearls", "Hạt báng"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Lá giang",
+    "aliases": ["Sour Leaf", "Lá chua"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Đọt bí",
+    "aliases": ["Pumpkin Shoots", "Ngọn bí"],
+    "allowedUnitNames": ["gram", "bó", "miếng"]
+  },
+  {
+    "name": "Đọt su su",
+    "aliases": ["Chayote Shoots", "Ngọn su su"],
+    "allowedUnitNames": ["gram", "bó", "miếng"]
+  },
+  {
+    "name": "Su su",
+    "aliases": ["Chayote", "Su su trái"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Bầu",
+    "aliases": ["Daikon Gourd", "Trái bầu"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Mít non",
+    "aliases": ["Green Jackfruit", "Mít xanh"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Đậu rồng",
+    "aliases": ["Winged Beans", "Đậu cánh"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Củ năn",
+    "aliases": ["Water Chestnut", "Củ mã thầy"],
+    "allowedUnitNames": ["gram", "củ", "chén"]
+  },
+  {
+    "name": "Dọc mùng",
+    "aliases": ["Taro Stem", "Bạc hà"],
+    "allowedUnitNames": ["gram", "cây", "miếng"]
+  },
+  {
+    "name": "Cá chép",
+    "aliases": ["Carp", "Cá chép sông"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Chả mực",
+    "aliases": ["Squid Paste", "Chả mực Hạ Long"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Nước mắm nhĩ",
+    "aliases": ["First-Press Fish Sauce", "Nước mắm nguyên chất"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm ruốc",
+    "aliases": ["Shrimp Paste Sauce", "Mắm ruốc Huế"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Bột ớt khô",
+    "aliases": ["Dried Chili Powder", "Ớt bột Việt Nam"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Hạt tiêu Phú Quốc",
+    "aliases": ["Phu Quoc Black Pepper", "Tiêu đen Phú Quốc"],
+    "allowedUnitNames": ["gram", "hạt", "muỗng cà phê"]
+  },
+  {
+    "name": "Bánh đa nem",
+    "aliases": ["Spring Roll Wrappers", "Bánh tráng rế"],
+    "allowedUnitNames": ["gram", "tấm", "miếng"]
+  },
+  {
+    "name": "Mì trứng",
+    "aliases": ["Egg Noodles", "Mì vàng"],
+    "allowedUnitNames": ["gram", "bó", "chén"]
+  },
+  {
+    "name": "Giá đỗ",
+    "aliases": ["Bean Sprouts", "Giá sống"],
+    "allowedUnitNames": ["gram", "chén", "bó"]
+  },
+  {
+    "name": "Mè rang",
+    "aliases": ["Toasted Sesame Seeds", "Vừng rang"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Lá cách",
+    "aliases": ["Hopea Odorata Leaves", "Lá vọng cách"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cá cơm",
+    "aliases": ["Anchovies", "Cá cơm khô"],
+    "allowedUnitNames": ["gram", "chén", "con"]
+  },
+  {
+    "name": "Nước xương hầm",
+    "aliases": ["Bone Broth", "Nước dùng xương"],
+    "allowedUnitNames": ["mililit", "chén", "lit"]
+  },
+  {
+    "name": "Bột bánh xèo",
+    "aliases": ["Vietnamese Pancake Mix", "Bột chiên bánh xèo"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Cá linh",
+    "aliases": ["Siamese Mud Carp", "Cá linh sông"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá linh",
+    "aliases": ["Fermented Siamese Mud Carp", "Mắm cá linh Nam Bộ"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Rau nhút",
+    "aliases": ["Water Mimosa", "Nhút"],
+    "allowedUnitNames": ["gram", "bó", "miếng"]
+  },
+  {
+    "name": "Cải bẹ trắng",
+    "aliases": ["White Mustard Greens", "Cải bẹ mỡ"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau dền",
+    "aliases": ["Amaranth Greens", "Rau dền đỏ", "Rau dền trắng"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau lang",
+    "aliases": ["Sweet Potato Leaves", "Ngọn khoai lang"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau má",
+    "aliases": ["Pennywort", "Gotu Kola"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cải thìa",
+    "aliases": ["Bok Choy", "Cải ngọt nhỏ"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cải ngồng",
+    "aliases": ["Flowering Choy", "Cải hoa"],
+    "allowedUnitNames": ["gram", "bó", "cây"]
+  },
+  {
+    "name": "Rau mồng tơi",
+    "aliases": ["Malabar Spinach", "Rau mùng tơi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cải xoong",
+    "aliases": ["Watercress", "Xà lách xoong"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau ngót",
+    "aliases": ["Katuk", "Lá ngót"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Lá sung",
+    "aliases": ["Fig Leaves", "Lá vả"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Đọt mù tạt",
+    "aliases": ["Mustard Sprouts", "Ngọn cải cay"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau sam",
+    "aliases": ["Purslane", "Rau sam đất"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cần nước",
+    "aliases": ["Water Celery", "Rau cần ta"],
+    "allowedUnitNames": ["gram", "bó", "cây"]
+  },
+  {
+    "name": "Đọt khoai sọ",
+    "aliases": ["Taro Shoots", "Ngọn khoai sọ"],
+    "allowedUnitNames": ["gram", "bó", "miếng"]
+  },
+  {
+    "name": "Củ khoai sọ",
+    "aliases": ["Taro Root", "Khoai sọ"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ từ",
+    "aliases": ["Yam", "Củ khoai từ"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ ráy",
+    "aliases": ["Giant Taro", "Củ nưa"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ gừng non",
+    "aliases": ["Young Ginger", "Gừng non"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ cải trắng",
+    "aliases": ["Daikon Radish", "Củ cải dài"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ cải muối",
+    "aliases": ["Pickled Radish", "Củ cải dầm"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Hành hoa",
+    "aliases": ["Green Onions", "Hành lá tươi"],
+    "allowedUnitNames": ["gram", "bó", "cây"]
+  },
+  {
+    "name": "Bí đao",
+    "aliases": ["Winter Melon", "Bí xanh"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Đậu que",
+    "aliases": ["String Beans", "Đậu cô ve"],
+    "allowedUnitNames": ["gram", "chén", "bó"]
+  },
+  {
+    "name": "Đậu bắp",
+    "aliases": ["Okra", "Bắp cải nhỏ"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Cà rốt baby",
+    "aliases": ["Baby Carrots", "Cà rốt mini"],
+    "allowedUnitNames": ["gram", "củ", "chén"]
+  },
+  {
+    "name": "Cà chua bi đỏ",
+    "aliases": ["Red Cherry Tomatoes", "Cà chua bi đỏ nhỏ"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Cà chua bi vàng",
+    "aliases": ["Yellow Cherry Tomatoes", "Cà chua bi vàng nhỏ"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Susu",
+    "aliases": ["Chayote Fruit", "Trái susu"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Mướp hương",
+    "aliases": ["Luffa", "Mướp ta"],
+    "allowedUnitNames": ["gram", "trái", "miếng"]
+  },
+  {
+    "name": "Đọt mướp",
+    "aliases": ["Luffa Shoots", "Ngọn mướp"],
+    "allowedUnitNames": ["gram", "bó", "miếng"]
+  },
+  {
+    "name": "Củ hũ dừa",
+    "aliases": ["Coconut Shoot", "Củ hũ dừa tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Dưa leo baby",
+    "aliases": ["Baby Cucumber", "Dưa leo mini"],
+    "allowedUnitNames": ["gram", "trái", "chén"]
+  },
+  {
+    "name": "Đậu hũ chiên",
+    "aliases": ["Fried Tofu", "Đậu phụ chiên"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Đậu hũ non",
+    "aliases": ["Soft Tofu", "Đậu hũ lụa"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả chiên",
+    "aliases": ["Fried Pork Paste", "Chả lụa chiên"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả quế",
+    "aliases": ["Cinnamon Pork Paste", "Giò quế"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả bò",
+    "aliases": ["Beef Paste", "Giò bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cốm",
+    "aliases": ["Green Sticky Rice Paste", "Giò cốm"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Nem chua",
+    "aliases": ["Fermented Pork Roll", "Nem chua Thanh Hóa"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Mắm cá sặc",
+    "aliases": ["Fermented Snakehead Fish", "Mắm cá sặc miền Tây"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá thu",
+    "aliases": ["Fermented Mackerel", "Mắm cá thu Đà Nẵng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm tôm chà",
+    "aliases": ["Ground Shrimp Paste", "Mắm tôm chà Huế"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm thái",
+    "aliases": ["Fermented Fish Paste", "Mắm thái miền Trung"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm ba khía",
+    "aliases": ["Fermented Crab Paste", "Mắm ba khía Bạc Liêu"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá khô",
+    "aliases": ["Dried Fish", "Cá khô tẩm"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chỉ vàng",
+    "aliases": ["Dried Yellowstripe Scad", "Cá khô chỉ vàng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá bống",
+    "aliases": ["Goby Fish", "Cá bống sông"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá bống",
+    "aliases": ["Fermented Goby Fish", "Mắm bống miền Trung"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tép khô",
+    "aliases": ["Dried Small Shrimp", "Tôm tép khô"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Bột ngọt",
+    "aliases": ["MSG", "Mì chính"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Hạt nêm",
+    "aliases": ["Seasoning Powder", "Bột nêm"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tương ớt",
+    "aliases": ["Chili Sauce", "Tương ớt Việt Nam"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tương đen",
+    "aliases": ["Hoisin Sauce", "Tương hột đen"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Bột chiên giòn",
+    "aliases": ["Crispy Frying Flour", "Bột tẩm chiên"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bột bánh cuốn",
+    "aliases": ["Rice Roll Flour", "Bột làm bánh cuốn"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bột bánh bò",
+    "aliases": ["Steamed Rice Cake Flour", "Bột làm bánh bò"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bột bánh khoai",
+    "aliases": ["Sweet Potato Cake Flour", "Bột làm bánh khoai"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Thịt ba chỉ",
+    "aliases": ["Pork Belly", "Ba rọi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Xương ống heo",
+    "aliases": ["Pork Bone", "Xương heo hầm"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Thịt vịt",
+    "aliases": ["Duck Meat", "Vịt tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Má heo",
+    "aliases": ["Pork Cheek", "Má lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Gan heo",
+    "aliases": ["Pork Liver", "Gan lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò nạm",
+    "aliases": ["Beef Brisket", "Nạm bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò gầu",
+    "aliases": ["Beef Fatty Brisket", "Gầu bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Bò viên",
+    "aliases": ["Beef Meatballs", "Viên bò"],
+    "allowedUnitNames": ["gram", "viên", "chén"]
+  },
+  {
+    "name": "Cá viên",
+    "aliases": ["Fish Balls", "Viên cá"],
+    "allowedUnitNames": ["gram", "viên", "chén"]
+  },
+  {
+    "name": "Hàu",
+    "aliases": ["Oysters", "Hàu tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Sò điệp",
+    "aliases": ["Scallops", "Sò điệp tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Sò huyết",
+    "aliases": ["Blood Cockles", "Sò huyết tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mực tươi",
+    "aliases": ["Fresh Squid", "Mực lá"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Bạch tuộc",
+    "aliases": ["Octopus", "Bạch tuộc tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cua biển",
+    "aliases": ["Sea Crab", "Cua tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Tôm càng xanh",
+    "aliases": ["Giant Freshwater Prawn", "Tôm càng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Tôm bạc",
+    "aliases": ["Silver Shrimp", "Tôm sú nhỏ"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm tôm rươi",
+    "aliases": ["Fermented Roesel’s Worm Paste", "Mắm rươi"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cáy",
+    "aliases": ["Fermented Crab Paste", "Mắm cáy Hải Phòng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Bột bánh canh",
+    "aliases": ["Rice Noodle Flour", "Bột làm bánh canh"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bánh canh tươi",
+    "aliases": ["Fresh Thick Rice Noodles", "Bánh canh"],
+    "allowedUnitNames": ["gram", "bó", "chén"]
+  },
+  {
+    "name": "Bánh ướt",
+    "aliases": ["Steamed Rice Rolls", "Bánh cuốn ướt"],
+    "allowedUnitNames": ["gram", "tấm", "miếng"]
+  },
+  {
+    "name": "Bánh phở khô",
+    "aliases": ["Dried Phở Noodles", "Phở khô"],
+    "allowedUnitNames": ["gram", "bó", "chén"]
+  },
+  {
+    "name": "Mì Quảng",
+    "aliases": ["Quảng Noodles", "Mì Quảng tươi"],
+    "allowedUnitNames": ["gram", "bó", "chén"]
+  },
+  {
+    "name": "Bún bò Huế",
+    "aliases": ["Huế Beef Noodle", "Bún Huế"],
+    "allowedUnitNames": ["gram", "bó", "chén"]
+  },
+  {
+    "name": "Bột lọc",
+    "aliases": ["Tapioca Flour for Dumplings", "Bột làm bánh lọc"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bánh bột lọc",
+    "aliases": ["Tapioca Dumplings", "Bánh lọc lá"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Bánh nậm",
+    "aliases": ["Steamed Rice Dumplings", "Bánh nậm Huế"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Bánh bèo",
+    "aliases": ["Steamed Rice Cakes", "Bánh bèo Huế"],
+    "allowedUnitNames": ["gram", "cái", "chén"]
+  },
+  {
+    "name": "Bánh ít trần",
+    "aliases": ["Steamed Sticky Rice Dumplings", "Bánh ít"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Lá chuối",
+    "aliases": ["Banana Leaves", "Lá chuối tươi"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Lá dong",
+    "aliases": ["Phrynium Leaves", "Lá dong gói bánh"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Cốm xanh",
+    "aliases": ["Young Green Sticky Rice", "Cốm tươi"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Cốm khô",
+    "aliases": ["Dried Green Sticky Rice", "Cốm làng Vòng"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Nếp cái hoa vàng",
+    "aliases": ["Golden Sticky Rice", "Gạo nếp cái"],
+    "allowedUnitNames": ["gram", "chén", "lit"]
+  },
+  {
+    "name": "Gạo tám thơm",
+    "aliases": ["Fragrant Rice", "Gạo tám Điện Biên"],
+    "allowedUnitNames": ["gram", "chén", "lit"]
+  },
+  {
+    "name": "Mè đen",
+    "aliases": ["Black Sesame Seeds", "Vừng đen"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Đậu đen",
+    "aliases": ["Black Beans", "Đậu đen hạt"],
+    "allowedUnitNames": ["gram", "chén", "hộp"]
+  },
+  {
+    "name": "Đậu đỏ",
+    "aliases": ["Red Beans", "Đậu đỏ hạt"],
+    "allowedUnitNames": ["gram", "chén", "hộp"]
+  },
+  {
+    "name": "Thịt trâu",
+    "aliases": ["Buffalo Meat", "Trâu tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt ngan",
+    "aliases": ["Muscovy Duck Meat", "Ngan tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt gà ta",
+    "aliases": ["Free-range Chicken", "Gà thả vườn"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Thịt chó",
+    "aliases": ["Dog Meat", "Thịt cầy"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Lươn",
+    "aliases": ["Eel", "Lươn đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Ếch",
+    "aliases": ["Frog", "Ếch đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá trê",
+    "aliases": ["Catfish", "Cá trê đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lăng",
+    "aliases": ["Hemibagrus", "Cá lăng sông"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chình",
+    "aliases": ["Freshwater Eel", "Cá chình sông"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mắm cá chình",
+    "aliases": ["Fermented Freshwater Eel", "Mắm chình"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Rau cải trời",
+    "aliases": ["Wild Mustard Greens", "Cải trời"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau húng chanh",
+    "aliases": ["Thick Leaf Mint", "Húng chanh tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau kinh giới",
+    "aliases": ["Vietnamese Balm", "Kinh giới tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau om",
+    "aliases": ["Rice Paddy Herb", "Ngò om"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau diếp cá",
+    "aliases": ["Fish Mint", "Lá giấp cá"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Cải cay",
+    "aliases": ["Spicy Mustard Greens", "Cải bẹ cay"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau muối",
+    "aliases": ["Saltbush", "Rau muối biển"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Ngọn mồng tơi",
+    "aliases": ["Malabar Spinach Shoots", "Đọt mồng tơi"],
+    "allowedUnitNames": ["gram", "bó", "miếng"]
+  },
+  {
+    "name": "Rau cần tây",
+    "aliases": ["Vietnamese Celery", "Cần tây ta"],
+    "allowedUnitNames": ["gram", "bó", "cây"]
+  },
+  {
+    "name": "Rau đay",
+    "aliases": ["Jute Leaves", "Lá đay"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Lá lấu",
+    "aliases": ["Piper Sarmentosum", "Lá lấu tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau thơm hỗn hợp",
+    "aliases": ["Mixed Vietnamese Herbs", "Rau thơm tổng hợp"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Củ nghệ tươi",
+    "aliases": ["Fresh Turmeric Root", "Củ nghệ vàng"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ sâm bổ lượng",
+    "aliases": ["Chinese Yam", "Củ hoài sơn"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ dong riềng",
+    "aliases": ["Canna Root", "Củ dong"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ bình bát",
+    "aliases": ["Soursop Root", "Củ sầu riêng nước"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ ấu",
+    "aliases": ["Water Caltrop", "Củ ấu tươi"],
+    "allowedUnitNames": ["gram", "củ", "chén"]
+  },
+  {
+    "name": "Củ gấu",
+    "aliases": ["Nut Grass", "Củ gấu tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Khoai mì",
+    "aliases": ["Cassava Root", "Củ sắn tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ năng",
+    "aliases": ["Water Chestnut Root", "Củ năng tươi"],
+    "allowedUnitNames": ["gram", "củ", "chén"]
+  },
+  {
+    "name": "Củ hành tây tím",
+    "aliases": ["Purple Onion", "Hành tím tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ tỏi tây",
+    "aliases": ["Leek Root", "Tỏi tây tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ hẹ",
+    "aliases": ["Chive Root", "Củ hẹ tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ riềng non",
+    "aliases": ["Young Galangal", "Riềng non"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ sả non",
+    "aliases": ["Young Lemongrass", "Sả non"],
+    "allowedUnitNames": ["gram", "cây", "miếng"]
+  },
+  {
+    "name": "Củ tỏi Lý Sơn",
+    "aliases": ["Ly Son Garlic", "Tỏi đảo"],
+    "allowedUnitNames": ["gram", "củ", "tép"]
+  },
+  {
+    "name": "Cá nục",
+    "aliases": ["Indian Mackerel", "Cá nục tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chim",
+    "aliases": ["White Pomfret", "Cá chim trắng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đối",
+    "aliases": ["Mullet Fish", "Cá đối biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá hố",
+    "aliases": ["Gizzard Shad", "Cá hố tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá ngân",
+    "aliases": ["Threadfin Bream", "Cá ngân biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bạc má",
+    "aliases": ["Silver Croaker", "Cá bạc má tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá khoai",
+    "aliases": ["Short-arm Octopus", "Cá khoai biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá kèo",
+    "aliases": ["Mudskipper", "Cá kèo đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá lóc bông",
+    "aliases": ["Flower Snakehead", "Cá lóc đồng bông"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá thu Nhật",
+    "aliases": ["Japanese Mackerel", "Cá thu Nhật Bản"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá trích",
+    "aliases": ["Herring", "Cá trích biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá ba sa khô",
+    "aliases": ["Dried Basa Fish", "Cá ba sa phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lóc khô",
+    "aliases": ["Dried Snakehead Fish", "Cá lóc phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mắm cá trích",
+    "aliases": ["Fermented Herring", "Mắm cá trích miền Trung"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá nục",
+    "aliases": ["Fermented Indian Mackerel", "Mắm nục"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá đối",
+    "aliases": ["Fermented Mullet Fish", "Mắm cá đối biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá kèo",
+    "aliases": ["Fermented Mudskipper", "Mắm cá kèo đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tôm đất",
+    "aliases": ["Land Shrimp", "Tôm đất tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Tôm rảo",
+    "aliases": ["Small Shrimp", "Tôm rảo đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Tôm chì",
+    "aliases": ["Pencil Shrimp", "Tôm chì biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Tôm tích",
+    "aliases": ["Mantis Shrimp", "Tôm tít"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cua đồng",
+    "aliases": ["Field Crab", "Cua đồng tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cua lông",
+    "aliases": ["Hairy Crab", "Cua lông tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Ghẹ xanh",
+    "aliases": ["Blue Crab", "Ghẹ biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mực ống",
+    "aliases": ["Cuttlefish", "Mực ống tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mực nang",
+    "aliases": ["Short-arm Cuttlefish", "Mực nang tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Sò lông",
+    "aliases": ["Hairy Clams", "Sò lông biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Sò mai",
+    "aliases": ["Razor Clams", "Sò mai tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Ốc bươu",
+    "aliases": ["Apple Snail", "Ốc bươu đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Ốc móng tay",
+    "aliases": ["Jackknife Clam", "Ốc móng tay biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Ốc hương",
+    "aliases": ["Babylonia Snail", "Ốc hương biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Ốc vôi",
+    "aliases": ["White Snail", "Ốc vôi đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Ốc đắng",
+    "aliases": ["Bitter Snail", "Ốc đắng đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Thịt ốc bươu",
+    "aliases": ["Apple Snail Meat", "Thịt ốc bươu tươi"],
+    "allowedUnitNames": ["gram", "chén", "miếng"]
+  },
+  {
+    "name": "Thịt bò tái",
+    "aliases": ["Raw Beef Slices", "Bò tái phở"],
+    "allowedUnitNames": ["gram", "lát", "miếng"]
+  },
+  {
+    "name": "Thịt bò đùi",
+    "aliases": ["Beef Shank", "Bắp bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò vai",
+    "aliases": ["Beef Shoulder", "Vai bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo vai",
+    "aliases": ["Pork Shoulder", "Vai lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo đùi",
+    "aliases": ["Pork Leg", "Đùi lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo nạc",
+    "aliases": ["Lean Pork", "Nạc lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Xương bò",
+    "aliases": ["Beef Bones", "Xương bò hầm"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Xương gà",
+    "aliases": ["Chicken Bones", "Xương gà hầm"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Mỡ gà",
+    "aliases": ["Chicken Fat", "Mỡ gà tươi"],
+    "allowedUnitNames": ["gram", "muỗng canh", "miếng"]
+  },
+  {
+    "name": "Da heo",
+    "aliases": ["Pork Skin", "Bì lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Mề gà",
+    "aliases": ["Chicken Gizzard", "Mề gà tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Gan gà",
+    "aliases": ["Chicken Liver", "Gan gà tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Tim heo",
+    "aliases": ["Pork Heart", "Tim lợn"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Tim gà",
+    "aliases": ["Chicken Heart", "Tim gà tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Cật heo",
+    "aliases": ["Pork Kidney", "Cật lợn"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Thịt dê",
+    "aliases": ["Goat Meat", "Thịt dê tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt thỏ",
+    "aliases": ["Rabbit Meat", "Thịt thỏ tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt chim cút",
+    "aliases": ["Quail Meat", "Chim cút tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Trứng cút",
+    "aliases": ["Quail Eggs", "Trứng cút tươi"],
+    "allowedUnitNames": ["quả", "gram", "chén"]
+  },
+  {
+    "name": "Trứng vịt lộn",
+    "aliases": ["Balut", "Trứng vịt lộn tươi"],
+    "allowedUnitNames": ["quả", "gram", "cái"]
+  },
+  {
+    "name": "Trứng vịt muối",
+    "aliases": ["Salted Duck Eggs", "Trứng muối"],
+    "allowedUnitNames": ["quả", "gram", "cái"]
+  },
+  {
+    "name": "Trứng vịt tươi",
+    "aliases": ["Fresh Duck Eggs", "Trứng vịt"],
+    "allowedUnitNames": ["quả", "gram", "cái"]
+  },
+  {
+    "name": "Bột khoai",
+    "aliases": ["Potato Starch", "Bột khoai tây"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bột gạo tẻ",
+    "aliases": ["Regular Rice Flour", "Bột gạo thường"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bột gạo lứt",
+    "aliases": ["Brown Rice Flour", "Bột gạo nâu"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Bột đậu xanh",
+    "aliases": ["Mung Bean Flour", "Bột đậu xanh rang"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Nước màu",
+    "aliases": ["Caramel Sauce for Cooking", "Nước hàng"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tương bần",
+    "aliases": ["Fermented Soybean Paste", "Tương bần Hưng Yên"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tương ớt chua ngọt",
+    "aliases": ["Sweet Chili Sauce", "Tương ớt chua"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Muối ớt",
+    "aliases": ["Chili Salt", "Muối ớt xanh"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Muối tiêu",
+    "aliases": ["Pepper Salt", "Muối tiêu chanh"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Bột lá dứa",
+    "aliases": ["Pandan Powder", "Bột lá nếp"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Nước lá dứa",
+    "aliases": ["Pandan Extract", "Nước cốt lá nếp"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Lá dứa",
+    "aliases": ["Pandan Leaves", "Lá nếp tươi"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Cá bống mú",
+    "aliases": ["Grouper Goby", "Cá bống mú biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bớp",
+    "aliases": ["Cobia", "Cá bớp tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mè",
+    "aliases": ["Silver Carp", "Cá mè trắng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chày",
+    "aliases": ["Mud Carp", "Cá chày đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá ngựa biển",
+    "aliases": ["Seahorse", "Cá ngựa khô"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá mú đỏ",
+    "aliases": ["Red Grouper", "Cá mú đỏ biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá hồng",
+    "aliases": ["Red Snapper", "Cá hồng biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bò",
+    "aliases": ["Leatherjacket Fish", "Cá bò da"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá nhám",
+    "aliases": ["Shark", "Cá nhám biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đuối",
+    "aliases": ["Stingray", "Cá đuối tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá sơn",
+    "aliases": ["Painted Sweetlips", "Cá sơn biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá thu phấn",
+    "aliases": ["Short Mackerel", "Cá thu phấn biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mối",
+    "aliases": ["Threadfin Fish", "Cá mối biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá hanh",
+    "aliases": ["Yellow Croaker", "Cá hanh biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chim đen",
+    "aliases": ["Black Pomfret", "Cá chim đen biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lưỡi trâu",
+    "aliases": ["Sole Fish", "Cá lưỡi trâu biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bống thệ",
+    "aliases": ["Marble Goby", "Cá bống thệ đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá thòi lòi",
+    "aliases": ["Mudskipper Fish", "Cá thòi lòi đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá chốt",
+    "aliases": ["Mystus Catfish", "Cá chốt đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá sặc rằn",
+    "aliases": ["Climbing Perch", "Cá sặc đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá tai tượng",
+    "aliases": ["Giant Gourami", "Cá tai tượng đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá quả",
+    "aliases": ["Channa Fish", "Cá quả đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá diếc",
+    "aliases": ["Bitterling", "Cá diếc đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá chép giòn",
+    "aliases": ["Crispy Carp", "Cá chép giòn đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mè hoa",
+    "aliases": ["Bighead Carp", "Cá mè hoa đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mè vinh",
+    "aliases": ["Grass Carp", "Cá mè vinh đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá trắm đen",
+    "aliases": ["Black Carp", "Cá trắm đen đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá trắm cỏ",
+    "aliases": ["Grass Carp", "Cá trắm cỏ đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mương",
+    "aliases": ["Rasbora Fish", "Cá mương đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá lòng tong",
+    "aliases": ["Small-scale Croaker", "Cá lòng tong đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá ngát",
+    "aliases": ["Sea Catfish", "Cá ngát sông"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá vồ",
+    "aliases": ["Pangasius", "Cá vồ đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá he",
+    "aliases": ["Yellowstripe Trevally", "Cá he biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá nâu",
+    "aliases": ["Brown-marbled Grouper", "Cá nâu biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá hố khô",
+    "aliases": ["Dried Gizzard Shad", "Cá hố phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá ngân khô",
+    "aliases": ["Dried Threadfin Bream", "Cá ngân phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bò khô",
+    "aliases": ["Dried Leatherjacket Fish", "Cá bò phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chỉ vàng khô",
+    "aliases": ["Dried Yellowstripe Scad", "Cá chỉ vàng phơi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá thu khô",
+    "aliases": ["Dried Mackerel", "Cá thu phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chim khô",
+    "aliases": ["Dried Pomfret", "Cá chim phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đối khô",
+    "aliases": ["Dried Mullet Fish", "Cá đối phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bống khô",
+    "aliases": ["Dried Goby Fish", "Cá bống phơi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá sặc khô",
+    "aliases": ["Dried Climbing Perch", "Cá sặc phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá tai tượng khô",
+    "aliases": ["Dried Giant Gourami", "Cá tai tượng phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chốt khô",
+    "aliases": ["Dried Mystus Catfish", "Cá chốt phơi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá mương khô",
+    "aliases": ["Dried Rasbora Fish", "Cá mương phơi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá mè khô",
+    "aliases": ["Dried Silver Carp", "Cá mè phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá trắm khô",
+    "aliases": ["Dried Grass Carp", "Cá trắm phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chép khô",
+    "aliases": ["Dried Carp", "Cá chép phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mắm cá mè",
+    "aliases": ["Fermented Silver Carp", "Mắm cá mè đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chày",
+    "aliases": ["Fermented Mud Carp", "Mắm cá chày đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá mú",
+    "aliases": ["Fermented Grouper", "Mắm cá mú biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá hồng",
+    "aliases": ["Fermented Red Snapper", "Mắm cá hồng biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bò",
+    "aliases": ["Fermented Leatherjacket Fish", "Mắm cá bò biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá nhám",
+    "aliases": ["Fermented Shark", "Mắm cá nhám biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá đuối",
+    "aliases": ["Fermented Stingray", "Mắm cá đuối biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá sơn",
+    "aliases": ["Fermented Painted Sweetlips", "Mắm cá sơn biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá hanh",
+    "aliases": ["Fermented Yellow Croaker", "Mắm cá hanh biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá lưỡi trâu",
+    "aliases": ["Fermented Sole Fish", "Mắm cá lưỡi trâu biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống thệ",
+    "aliases": ["Fermented Marble Goby", "Mắm cá bống thệ đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá thòi lòi",
+    "aliases": ["Fermented Mudskipper Fish", "Mắm cá thòi lòi đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chốt",
+    "aliases": ["Fermented Mystus Catfish", "Mắm cá chốt đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá sặc rằn",
+    "aliases": ["Fermented Climbing Perch", "Mắm cá sặc đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá tai tượng",
+    "aliases": ["Fermented Giant Gourami", "Mắm cá tai tượng đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá quả",
+    "aliases": ["Fermented Channa Fish", "Mắm cá quả đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá diếc",
+    "aliases": ["Fermented Bitterling", "Mắm cá diếc đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chép giòn",
+    "aliases": ["Fermented Crispy Carp", "Mắm cá chép giòn đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá mè hoa",
+    "aliases": ["Fermented Bighead Carp", "Mắm cá mè hoa đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá mè vinh",
+    "aliases": ["Fermented Grass Carp", "Mắm cá mè vinh đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá trắm đen",
+    "aliases": ["Fermented Black Carp", "Mắm cá trắm đen đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá trắm cỏ",
+    "aliases": ["Fermented Grass Carp", "Mắm cá trắm cỏ đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá mương",
+    "aliases": ["Fermented Rasbora Fish", "Mắm cá mương đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá lòng tong",
+    "aliases": ["Fermented Small-scale Croaker", "Mắm cá lòng tong đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá ngát",
+    "aliases": ["Fermented Sea Catfish", "Mắm cá ngát sông"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá vồ",
+    "aliases": ["Fermented Pangasius", "Mắm cá vồ đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá he",
+    "aliases": ["Fermented Yellowstripe Trevally", "Mắm cá he biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá nâu",
+    "aliases": ["Fermented Brown-marbled Grouper", "Mắm cá nâu biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá ngừ",
+    "aliases": ["Tuna", "Cá ngừ biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá ngừ khô",
+    "aliases": ["Dried Tuna", "Cá ngừ phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mắm cá ngừ",
+    "aliases": ["Fermented Tuna", "Mắm cá ngừ biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá mòi",
+    "aliases": ["Sardine", "Cá mòi biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá mòi khô",
+    "aliases": ["Dried Sardine", "Cá mòi phơi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá mòi",
+    "aliases": ["Fermented Sardine", "Mắm cá mòi biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá cơm biển",
+    "aliases": ["Sea Anchovy", "Cá cơm tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá cơm khô",
+    "aliases": ["Dried Sea Anchovy", "Cá cơm phơi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá cơm biển",
+    "aliases": ["Fermented Sea Anchovy", "Mắm cá cơm biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá bống kèo",
+    "aliases": ["Spotted Goby", "Cá bống kèo đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá bống kèo",
+    "aliases": ["Fermented Spotted Goby", "Mắm cá bống kèo đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá bống trứng",
+    "aliases": ["Egg Goby", "Cá bống trứng đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá bống trứng",
+    "aliases": ["Fermented Egg Goby", "Mắm cá bống trứng đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá bống dừa",
+    "aliases": ["Coconut Goby", "Cá bống dừa đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá bống dừa",
+    "aliases": ["Fermented Coconut Goby", "Mắm cá bống dừa đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá bống sao",
+    "aliases": ["Starry Goby", "Cá bống sao đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá bống sao",
+    "aliases": ["Fermented Starry Goby", "Mắm cá bống sao đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá bống cát",
+    "aliases": ["Sand Goby", "Cá bống cát đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá bống cát",
+    "aliases": ["Fermented Sand Goby", "Mắm cá bống cát đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá bống tượng",
+    "aliases": ["Giant Goby", "Cá bống tượng đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mắm cá bống tượng",
+    "aliases": ["Fermented Giant Goby", "Mắm cá bống tượng đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Cá bống lau",
+    "aliases": ["Cleaner Goby", "Cá bống lau đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mắm cá bống lau",
+    "aliases": ["Fermented Cleaner Goby", "Mắm cá bống lau đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Thịt bò thăn",
+    "aliases": ["Beef Tenderloin", "Thăn bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò diềm thăn",
+    "aliases": ["Beef Flank", "Diềm thăn bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò bắp",
+    "aliases": ["Beef Shank", "Bắp bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò lõi rùa",
+    "aliases": ["Beef Chuck Tender", "Lõi rùa bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò sấn",
+    "aliases": ["Beef Chuck", "Sấn bò"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò dăm",
+    "aliases": ["Beef Cube", "Bò dăm xúc"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò xay",
+    "aliases": ["Ground Beef", "Bò băm"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Thịt heo thăn",
+    "aliases": ["Pork Loin", "Thăn lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo mông",
+    "aliases": ["Pork Butt", "Mông lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo xay",
+    "aliases": ["Ground Pork", "Heo băm"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Thịt heo sấn",
+    "aliases": ["Pork Chuck", "Sấn lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo nạc dăm",
+    "aliases": ["Lean Pork Cube", "Nạc dăm lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Sườn heo non",
+    "aliases": ["Pork Baby Ribs", "Sườn non lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Xương sườn heo",
+    "aliases": ["Pork Rib Bones", "Xương sườn lợn"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Xương đuôi heo",
+    "aliases": ["Pork Tail Bones", "Xương đuôi lợn"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Thịt gà đùi",
+    "aliases": ["Chicken Thigh", "Đùi gà tươi"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Thịt gà cánh",
+    "aliases": ["Chicken Wing", "Cánh gà tươi"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Thịt gà lườn",
+    "aliases": ["Chicken Breast", "Lườn gà tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt gà xay",
+    "aliases": ["Ground Chicken", "Gà băm"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Thịt gà nòi",
+    "aliases": ["Free-range Chicken Meat", "Gà nòi tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt vịt xiêm",
+    "aliases": ["Muscovy Duck Meat", "Vịt xiêm tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt vịt đùi",
+    "aliases": ["Duck Thigh", "Đùi vịt tươi"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Thịt vịt lườn",
+    "aliases": ["Duck Breast", "Lườn vịt tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt ngỗng",
+    "aliases": ["Goose Meat", "Ngỗng tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt chim bồ câu",
+    "aliases": ["Pigeon Meat", "Bồ câu tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Thịt đà điểu",
+    "aliases": ["Ostrich Meat", "Đà điểu tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt nai",
+    "aliases": ["Venison", "Thịt nai tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo rừng",
+    "aliases": ["Wild Boar Meat", "Heo rừng tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò rừng",
+    "aliases": ["Wild Beef", "Bò rừng tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt trâu gác bếp",
+    "aliases": ["Smoked Buffalo Meat", "Trâu gác bếp Tây Bắc"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo gác bếp",
+    "aliases": ["Smoked Pork", "Heo gác bếp Tây Bắc"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò khô",
+    "aliases": ["Beef Jerky", "Bò khô Việt Nam"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo khô",
+    "aliases": ["Pork Jerky", "Heo khô Việt Nam"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả heo",
+    "aliases": ["Pork Paste", "Chả heo tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả gà",
+    "aliases": ["Chicken Paste", "Chả gà tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả vịt",
+    "aliases": ["Duck Paste", "Chả vịt tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả bò lá lốt",
+    "aliases": ["Beef Wrapped in Betel Leaf", "Chả bò lá lốt nướng"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Chả heo lá lốt",
+    "aliases": ["Pork Wrapped in Betel Leaf", "Chả heo lá lốt nướng"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Chả trứng",
+    "aliases": ["Egg Pork Paste", "Chả trứng hấp"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cốm heo",
+    "aliases": ["Pork with Sticky Rice Paste", "Chả cốm lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả rươi",
+    "aliases": ["Roesel’s Worm Paste", "Chả rươi Hải Phòng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Nem chua rán",
+    "aliases": ["Fried Fermented Pork Roll", "Nem chua rán Hà Nội"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Nem lụi",
+    "aliases": ["Grilled Pork Skewer Paste", "Nem lụi Huế"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Nem nắm",
+    "aliases": ["Fermented Pork Ball", "Nem nắm Nam Định"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Nem chạo",
+    "aliases": ["Raw Pork Paste", "Nem chạo Thanh Hóa"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Giò thủ",
+    "aliases": ["Pork Head Cheese", "Giò thủ heo"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Giò bê",
+    "aliases": ["Veal Paste", "Giò bê Nghệ An"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Giò gà",
+    "aliases": ["Chicken Paste Roll", "Giò gà tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Giò lụa bò",
+    "aliases": ["Beef Sausage", "Giò lụa bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Giò lụa heo",
+    "aliases": ["Pork Sausage", "Giò lụa heo tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Mọc heo",
+    "aliases": ["Pork Meatball Paste", "Mọc lợn"],
+    "allowedUnitNames": ["gram", "viên", "chén"]
+  },
+  {
+    "name": "Mọc gà",
+    "aliases": ["Chicken Meatball Paste", "Mọc gà tươi"],
+    "allowedUnitNames": ["gram", "viên", "chén"]
+  },
+  {
+    "name": "Lạp xưởng heo",
+    "aliases": ["Pork Sausage", "Lạp xưởng tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Lạp xưởng gà",
+    "aliases": ["Chicken Sausage", "Lạp xưởng gà tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Lạp xưởng bò",
+    "aliases": ["Beef Sausage", "Lạp xưởng bò tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Lạp xưởng tôm",
+    "aliases": ["Shrimp Sausage", "Lạp xưởng tôm tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Thịt heo muối",
+    "aliases": ["Salted Pork", "Heo muối Việt Nam"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt bò muối",
+    "aliases": ["Salted Beef", "Bò muối Việt Nam"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt gà muối",
+    "aliases": ["Salted Chicken", "Gà muối Việt Nam"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt vịt muối",
+    "aliases": ["Salted Duck", "Vịt muối Việt Nam"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Dồi heo",
+    "aliases": ["Pork Blood Sausage", "Dồi lợn"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Dồi gà",
+    "aliases": ["Chicken Blood Sausage", "Dồi gà tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Dồi bò",
+    "aliases": ["Beef Blood Sausage", "Dồi bò tươi"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Dồi trường",
+    "aliases": ["Pork Intestine Sausage", "Dồi trường heo"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Lòng bò",
+    "aliases": ["Beef Intestines", "Lòng bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Dạ dày bò",
+    "aliases": ["Beef Tripe", "Dạ dày bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Dạ dày heo",
+    "aliases": ["Pork Stomach", "Dạ dày lợn"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Lá lách heo",
+    "aliases": ["Pork Spleen", "Lá lách lợn"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Lá lách bò",
+    "aliases": ["Beef Spleen", "Lá lách bò"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Phổi heo",
+    "aliases": ["Pork Lung", "Phổi lợn"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Phổi bò",
+    "aliases": ["Beef Lung", "Phổi bò"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Thận bò",
+    "aliases": ["Beef Kidney", "Thận bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Óc heo",
+    "aliases": ["Pork Brain", "Óc lợn"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Óc bò",
+    "aliases": ["Beef Brain", "Óc bò"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Lưỡi heo",
+    "aliases": ["Pork Tongue", "Lưỡi lợn"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Lưỡi bò",
+    "aliases": ["Beef Tongue", "Lưỡi bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Mỡ bò",
+    "aliases": ["Beef Fat", "Mỡ bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "muỗng canh"]
+  },
+  {
+    "name": "Thịt gà ri",
+    "aliases": ["Ri Chicken Meat", "Gà ri tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt gà tam hoàng",
+    "aliases": ["Tam Hoang Chicken Meat", "Gà tam hoàng tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt gà chọi",
+    "aliases": ["Fighting Cock Meat", "Gà chọi tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt gà ác",
+    "aliases": ["Silkie Chicken Meat", "Gà ác tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt vịt cỏ",
+    "aliases": ["Grass Duck Meat", "Vịt cỏ tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt ngỗng xám",
+    "aliases": ["Grey Goose Meat", "Ngỗng xám tươi"],
+    "allowedUnitNames": ["gram", "miếng", "con"]
+  },
+  {
+    "name": "Thịt chim sẻ",
+    "aliases": ["Sparrow Meat", "Chim sẻ tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Thịt chim trĩ",
+    "aliases": ["Pheasant Meat", "Chim trĩ tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Thịt đà điểu xay",
+    "aliases": ["Ground Ostrich Meat", "Đà điểu băm"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Thịt nai xay",
+    "aliases": ["Ground Venison", "Nai băm"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Chả lụa gà",
+    "aliases": ["Chicken Sausage Roll", "Chả lụa gà tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả lụa vịt",
+    "aliases": ["Duck Sausage Roll", "Chả lụa vịt tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Nem chua bò",
+    "aliases": ["Fermented Beef Roll", "Nem chua bò tươi"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Nem chua gà",
+    "aliases": ["Fermented Chicken Roll", "Nem chua gà tươi"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Mắm thịt heo",
+    "aliases": ["Fermented Pork Paste", "Mắm thịt lợn"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm thịt bò",
+    "aliases": ["Fermented Beef Paste", "Mắm thịt bò"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Thịt bò tẩm ướp",
+    "aliases": ["Marinated Beef", "Bò ướp nướng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt heo tẩm ướp",
+    "aliases": ["Marinated Pork", "Heo ướp nướng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Thịt gà tẩm ướp",
+    "aliases": ["Marinated Chicken", "Gà ướp nướng"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Thịt vịt tẩm ướp",
+    "aliases": ["Marinated Duck", "Vịt ướp nướng"],
+    "allowedUnitNames": ["gram", "miếng", "cái"]
+  },
+  {
+    "name": "Cá chạch lấu",
+    "aliases": ["Spiny Eel", "Cá chạch lấu đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lẹp",
+    "aliases": ["Yellowtail Scad", "Cá lẹp biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chìa vôi",
+    "aliases": ["Filefish", "Cá chìa vôi biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bống sông",
+    "aliases": ["River Goby", "Cá bống sông đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá thát lát",
+    "aliases": ["Featherback Fish", "Cá thát lát đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chép rồng",
+    "aliases": ["Dragon Carp", "Cá chép rồng đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mè đầu",
+    "aliases": ["Bighead Carp", "Cá mè đầu đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá tra dầu",
+    "aliases": ["Giant Pangasius", "Cá tra dầu sông"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bống tượng",
+    "aliases": ["Marble Goby", "Cá bống tượng đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá nhồng",
+    "aliases": ["Barracuda", "Cá nhồng biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bàng",
+    "aliases": ["Sergeant Fish", "Cá bàng biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bè",
+    "aliases": ["Milkfish", "Cá bè biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chình mun",
+    "aliases": ["Shortfin Eel", "Cá chình mun sông"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đù",
+    "aliases": ["Grunt Fish", "Cá đù biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá hố bơi",
+    "aliases": ["Swimming Gizzard Shad", "Cá hố bơi biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá nhụ",
+    "aliases": ["Sweetlip Fish", "Cá nhụ biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đục",
+    "aliases": ["Silver Sillago", "Cá đục biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chim vây vàng",
+    "aliases": ["Golden Fin Pomfret", "Cá chim vàng biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bơn",
+    "aliases": ["Flounder", "Cá bơn biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mối biển",
+    "aliases": ["Sea Threadfin", "Cá mối biển tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lóc đồng",
+    "aliases": ["Wild Snakehead", "Cá lóc đồng tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá rô đồng",
+    "aliases": ["Wild Climbing Perch", "Cá rô đồng tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá măng",
+    "aliases": ["Mangrove Jack", "Cá măng biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chẽm",
+    "aliases": ["Barramundi", "Cá chẽm biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lù đù",
+    "aliases": ["Croaker Fish", "Cá lù đù biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bống suối",
+    "aliases": ["Stream Goby", "Cá bống suối đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá bống đá",
+    "aliases": ["Rock Goby", "Cá bống đá đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá bống vàng",
+    "aliases": ["Yellow Goby", "Cá bống vàng đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá bống tre",
+    "aliases": ["Bamboo Goby", "Cá bống tre đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá bống vạch",
+    "aliases": ["Striped Goby", "Cá bống vạch đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá chạch đồng",
+    "aliases": ["Paddy Eel", "Cá chạch đồng tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá thia",
+    "aliases": ["Siamese Fighting Fish", "Cá thia đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá sặc bổi",
+    "aliases": ["Spotted Climbing Perch", "Cá sặc bổi đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá kình",
+    "aliases": ["Milkfish", "Cá kình biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đối mục",
+    "aliases": ["Goat Mullet", "Cá đối mục biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá nâu đỏ",
+    "aliases": ["Red Brown Grouper", "Cá nâu đỏ biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá mú sao",
+    "aliases": ["Star Grouper", "Cá mú sao biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá trích ép",
+    "aliases": ["Pressed Herring", "Cá trích ép khô"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá thát lát khô",
+    "aliases": ["Dried Featherback Fish", "Cá thát lát phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chạch lấu khô",
+    "aliases": ["Dried Spiny Eel", "Cá chạch lấu phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá lẹp khô",
+    "aliases": ["Dried Yellowtail Scad", "Cá lẹp phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chìa vôi khô",
+    "aliases": ["Dried Filefish", "Cá chìa vôi phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bống sông khô",
+    "aliases": ["Dried River Goby", "Cá bống sông phơi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Cá chép rồng khô",
+    "aliases": ["Dried Dragon Carp", "Cá chép rồng phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá tra dầu khô",
+    "aliases": ["Dried Giant Pangasius", "Cá tra dầu phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chình mun khô",
+    "aliases": ["Dried Shortfin Eel", "Cá chình mun phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đù khô",
+    "aliases": ["Dried Grunt Fish", "Cá đù phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá nhụ khô",
+    "aliases": ["Dried Sweetlip Fish", "Cá nhụ phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá đục khô",
+    "aliases": ["Dried Silver Sillago", "Cá đ�uc phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chim vây vàng khô",
+    "aliases": ["Dried Golden Fin Pomfret", "Cá chim vàng phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bơn khô",
+    "aliases": ["Dried Flounder", "Cá bơn phơi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Mắm cá chạch lấu",
+    "aliases": ["Fermented Spiny Eel", "Mắm cá chạch lấu đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá lẹp",
+    "aliases": ["Fermented Yellowtail Scad", "Mắm cá lẹp biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chìa vôi",
+    "aliases": ["Fermented Filefish", "Mắm cá chìa vôi biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống sông",
+    "aliases": ["Fermented River Goby", "Mắm cá bống sông đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá thát lát",
+    "aliases": ["Fermented Featherback Fish", "Mắm cá thát lát đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chép rồng",
+    "aliases": ["Fermented Dragon Carp", "Mắm cá chép rồng đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá mè đầu",
+    "aliases": ["Fermented Bighead Carp", "Mắm cá mè đầu đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá tra dầu",
+    "aliases": ["Fermented Giant Pangasius", "Mắm cá tra dầu sông"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống tượng",
+    "aliases": ["Fermented Marble Goby", "Mắm cá bống tượng đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá nhồng",
+    "aliases": ["Fermented Barracuda", "Mắm cá nhồng biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bàng",
+    "aliases": ["Fermented Sergeant Fish", "Mắm cá bàng biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bè",
+    "aliases": ["Fermented Milkfish", "Mắm cá bè biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chình mun",
+    "aliases": ["Fermented Shortfin Eel", "Mắm cá chình mun sông"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá đù",
+    "aliases": ["Fermented Grunt Fish", "Mắm cá đù biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá nhụ",
+    "aliases": ["Fermented Sweetlip Fish", "Mắm cá nhụ biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá đục",
+    "aliases": ["Fermented Silver Sillago", "Mắm cá đục biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chim vây vàng",
+    "aliases": ["Fermented Golden Fin Pomfret", "Mắm cá chim vàng biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bơn",
+    "aliases": ["Fermented Flounder", "Mắm cá bơn biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá lóc đồng",
+    "aliases": ["Fermented Wild Snakehead", "Mắm cá lóc đồng tươi"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá rô đồng",
+    "aliases": ["Fermented Wild Climbing Perch", "Mắm cá rô đồng tươi"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá măng",
+    "aliases": ["Fermented Mangrove Jack", "Mắm cá măng biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chẽm",
+    "aliases": ["Fermented Barramundi", "Mắm cá chẽm biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá lù đù",
+    "aliases": ["Fermented Croaker Fish", "Mắm cá lù đù biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống suối",
+    "aliases": ["Fermented Stream Goby", "Mắm cá bống suối đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống đá",
+    "aliases": ["Fermented Rock Goby", "Mắm cá bống đá đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống vàng",
+    "aliases": ["Fermented Yellow Goby", "Mắm cá bống vàng đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống tre",
+    "aliases": ["Fermented Bamboo Goby", "Mắm cá bống tre đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá bống vạch",
+    "aliases": ["Fermented Striped Goby", "Mắm cá bống vạch đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá chạch đồng",
+    "aliases": ["Fermented Paddy Eel", "Mắm cá chạch đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá thia",
+    "aliases": ["Fermented Siamese Fighting Fish", "Mắm cá thia đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá sặc bổi",
+    "aliases": ["Fermented Spotted Climbing Perch", "Mắm cá sặc bổi đồng"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá kình",
+    "aliases": ["Fermented Milkfish", "Mắm cá kình biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá đối mục",
+    "aliases": ["Fermented Goat Mullet", "Mắm cá đối mục biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá nâu đỏ",
+    "aliases": ["Fermented Red Brown Grouper", "Mắm cá nâu đỏ biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm cá mú sao",
+    "aliases": ["Fermented Star Grouper", "Mắm cá mú sao biển"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Chả cá thát lát",
+    "aliases": ["Featherback Fish Paste", "Chả cá thát lát tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cá chạch lấu",
+    "aliases": ["Spiny Eel Fish Paste", "Chả cá chạch lấu đồng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cá lẹp",
+    "aliases": ["Yellowtail Scad Fish Paste", "Chả cá lẹp biển"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cá bống sông",
+    "aliases": ["River Goby Fish Paste", "Chả cá bống sông đồng"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cá chình mun",
+    "aliases": ["Shortfin Eel Fish Paste", "Chả cá chình mun sông"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cá chim vây vàng",
+    "aliases": ["Golden Fin Pomfret Fish Paste", "Chả cá chim vàng biển"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cá chẽm",
+    "aliases": ["Barramundi Fish Paste", "Chả cá chẽm biển"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Chả cá rô đồng",
+    "aliases": ["Wild Climbing Perch Fish Paste", "Chả cá rô đồng tươi"],
+    "allowedUnitNames": ["gram", "miếng", "lát"]
+  },
+  {
+    "name": "Cá lóc muối sả",
+    "aliases": ["Salted Snakehead with Lemongrass", "Cá lóc muối sả đồng"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá thát lát muối sả",
+    "aliases": ["Salted Featherback with Lemongrass", "Cá thát lát muối sả"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá chạch lấu muối sả",
+    "aliases": ["Salted Spiny Eel with Lemongrass", "Cá chạch lấu muối sả"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá rô đồng muối sả",
+    "aliases": [
+      "Salted Wild Climbing Perch with Lemongrass",
+      "Cá rô đồng muối sả"
+    ],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cá bống sông muối sả",
+    "aliases": ["Salted River Goby with Lemongrass", "Cá bống sông muối sả"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Rau sắng",
+    "aliases": ["Chayote Shoot", "Rau sắng tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau bò khai",
+    "aliases": ["Eryngium Foetidum", "Rau bò khai miền núi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau muống biển",
+    "aliases": ["Sea Morning Glory", "Rau muống biển tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau cần nước",
+    "aliases": ["Water Dropwort", "Rau cần nước tươi"],
+    "allowedUnitNames": ["gram", "bó", "cây"]
+  },
+  {
+    "name": "Rau nhút",
+    "aliases": ["Water Mimosa", "Rau nhút đồng"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau ngót rừng",
+    "aliases": ["Wild Katuk", "Rau ngót rừng tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau má đá",
+    "aliases": ["Rock Pennywort", "Rau má đá tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau tiến vua",
+    "aliases": ["King's Vegetable", "Rau tiến vua miền núi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau đắng đất",
+    "aliases": ["Bitter Herb", "Rau đắng đất tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Rau sam",
+    "aliases": ["Purslane", "Rau sam tươi"],
+    "allowedUnitNames": ["gram", "bó", "lá"]
+  },
+  {
+    "name": "Củ nâu",
+    "aliases": ["Yam Bean", "Củ nâu tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ từ",
+    "aliases": ["Taro Root", "Củ từ tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ hà thủ ô",
+    "aliases": ["Fo-ti Root", "Củ hà thủ ô tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ đinh lăng",
+    "aliases": ["Polyscias Root", "Củ đinh lăng tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ sắn dây",
+    "aliases": ["Kudzu Root", "Củ sắn dây tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ gừng gió",
+    "aliases": ["Wild Ginger Root", "Củ gừng gió tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ khoai sáp",
+    "aliases": ["Waxy Potato", "Củ khoai sáp tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ khoai mỡ",
+    "aliases": ["Purple Yam", "Củ khoai mỡ tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ khoai vạc",
+    "aliases": ["Arrowroot", "Củ khoai vạc tươi"],
+    "allowedUnitNames": ["gram", "củ", "miếng"]
+  },
+  {
+    "name": "Củ cải muối",
+    "aliases": ["Pickled Radish", "Củ cải muối chua"],
+    "allowedUnitNames": ["gram", "miếng", "chén"]
+  },
+  {
+    "name": "Sầu riêng",
+    "aliases": ["Durian", "Sầu riêng tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Măng cụt",
+    "aliases": ["Mangosteen", "Măng cụt tươi"],
+    "allowedUnitNames": ["gram", "quả", "chén"]
+  },
+  {
+    "name": "Chôm chôm",
+    "aliases": ["Rambutan", "Chôm chôm tươi"],
+    "allowedUnitNames": ["gram", "quả", "chén"]
+  },
+  {
+    "name": "Nhãn",
+    "aliases": ["Longan", "Nhãn tươi"],
+    "allowedUnitNames": ["gram", "quả", "chén"]
+  },
+  {
+    "name": "Vải",
+    "aliases": ["Lychee", "Vải tươi"],
+    "allowedUnitNames": ["gram", "quả", "chén"]
+  },
+  {
+    "name": "Xoài",
+    "aliases": ["Mango", "Xoài tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Thanh long",
+    "aliases": ["Dragon Fruit", "Thanh long tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Mít",
+    "aliases": ["Jackfruit", "Mít tươi"],
+    "allowedUnitNames": ["gram", "múi", "miếng"]
+  },
+  {
+    "name": "Bưởi",
+    "aliases": ["Pomelo", "Bưởi tươi"],
+    "allowedUnitNames": ["gram", "quả", "múi"]
+  },
+  {
+    "name": "Cam",
+    "aliases": ["Orange", "Cam tươi"],
+    "allowedUnitNames": ["gram", "quả", "múi"]
+  },
+  {
+    "name": "Quýt",
+    "aliases": ["Mandarin", "Quýt tươi"],
+    "allowedUnitNames": ["gram", "quả", "múi"]
+  },
+  {
+    "name": "Dứa",
+    "aliases": ["Pineapple", "Dứa tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Ổi",
+    "aliases": ["Guava", "Ổi tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Na",
+    "aliases": ["Custard Apple", "Na tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Chuối",
+    "aliases": ["Banana", "Chuối tươi"],
+    "allowedUnitNames": ["gram", "quả", "nải"]
+  },
+  {
+    "name": "Dưa hấu",
+    "aliases": ["Watermelon", "Dưa hấu tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Dưa gang",
+    "aliases": ["Cantaloupe", "Dưa gang tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Mận",
+    "aliases": ["Plum", "Mận tươi"],
+    "allowedUnitNames": ["gram", "quả", "chén"]
+  },
+  {
+    "name": "Đào",
+    "aliases": ["Peach", "Đào tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Hồng",
+    "aliases": ["Persimmon", "Hồng tươi"],
+    "allowedUnitNames": ["gram", "quả", "miếng"]
+  },
+  {
+    "name": "Nước mắm gừng",
+    "aliases": ["Ginger Fish Sauce", "Nước mắm gừng pha"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm tôm pha",
+    "aliases": ["Prepared Shrimp Paste", "Mắm tôm pha chấm"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Mắm kho quẹt",
+    "aliases": ["Caramelized Fish Sauce Dip", "Mắm kho quẹt miền Tây"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Muối ớt rang",
+    "aliases": ["Roasted Chili Salt", "Muối ớt rang chấm"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Bột gia vị bò kho",
+    "aliases": ["Beef Stew Seasoning", "Bột bò kho"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Bột gia vị lẩu",
+    "aliases": ["Hot Pot Seasoning", "Bột lẩu"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Nước cốt sấu",
+    "aliases": ["Sour Plum Extract", "Nước cốt sấu tươi"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Nước cốt chanh dây",
+    "aliases": ["Passion Fruit Extract", "Nước cốt chanh dây"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Nước cốt bưởi",
+    "aliases": ["Pomelo Extract", "Nước cốt bưởi"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tôm khô",
+    "aliases": ["Dried Shrimp", "Tôm khô Việt Nam"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Mực khô",
+    "aliases": ["Dried Squid", "Mực khô Việt Nam"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Tôm hùm",
+    "aliases": ["Lobster", "Tôm hùm biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cua Cà Mau",
+    "aliases": ["Ca Mau Crab", "Cua Cà Mau tươi"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Sò huyết",
+    "aliases": ["Blood Cockle", "Sò huyết biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Ốc bươu vàng",
+    "aliases": ["Golden Apple Snail", "Ốc bươu vàng đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Nấm mối",
+    "aliases": ["Termite Mushroom", "Nấm mối tươi"],
+    "allowedUnitNames": ["gram", "chén", "cái"]
+  },
+  {
+    "name": "Nấm tràm",
+    "aliases": ["Trametes Mushroom", "Nấm tràm tươi"],
+    "allowedUnitNames": ["gram", "chén", "cái"]
+  },
+  {
+    "name": "Nấm ngọc cẩu",
+    "aliases": ["Baliospermum Mushroom", "Nấm ngọc cẩu tươi"],
+    "allowedUnitNames": ["gram", "chén", "cái"]
+  },
+  {
+    "name": "Nấm sò trắng",
+    "aliases": ["White Oyster Mushroom", "Nấm sò trắng tươi"],
+    "allowedUnitNames": ["gram", "chén", "cái"]
+  },
+  {
+    "name": "Nấm sò vàng",
+    "aliases": ["Golden Oyster Mushroom", "Nấm sò vàng tươi"],
+    "allowedUnitNames": ["gram", "chén", "cái"]
+  },
+  {
+    "name": "Bánh chưng",
+    "aliases": ["Square Sticky Rice Cake", "Bánh chưng truyền thống"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Bánh giầy",
+    "aliases": ["Round Sticky Rice Cake", "Bánh giầy truyền thống"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Bánh tét",
+    "aliases": ["Cylindrical Sticky Rice Cake", "Bánh tét miền Nam"],
+    "allowedUnitNames": ["gram", "cái", "lát"]
+  },
+  {
+    "name": "Bánh bèo",
+    "aliases": ["Steamed Rice Cake", "Bánh bèo Huế"],
+    "allowedUnitNames": ["gram", "cái", "chén"]
+  },
+  {
+    "name": "Bánh xèo",
+    "aliases": ["Vietnamese Pancake", "Bánh xèo miền Tây"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Bánh cuốn",
+    "aliases": ["Steamed Rice Roll", "Bánh cuốn Thanh Trì"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Bánh đúc",
+    "aliases": ["Rice Flour Cake", "Bánh đúc miền Bắc"],
+    "allowedUnitNames": ["gram", "miếng", "chén"]
+  },
+  {
+    "name": "Bánh gio",
+    "aliases": ["Ash Rice Cake", "Bánh gio miền Bắc"],
+    "allowedUnitNames": ["gram", "cái", "miếng"]
+  },
+  {
+    "name": "Mứt gừng",
+    "aliases": ["Candied Ginger", "Mứt gừng truyền thống"],
+    "allowedUnitNames": ["gram", "miếng", "chén"]
+  },
+  {
+    "name": "Mứt dừa",
+    "aliases": ["Candied Coconut", "Mứt dừa Bến Tre"],
+    "allowedUnitNames": ["gram", "miếng", "chén"]
+  },
+  {
+    "name": "Mứt khoai lang",
+    "aliases": ["Candied Sweet Potato", "Mứt khoai lang tươi"],
+    "allowedUnitNames": ["gram", "miếng", "chén"]
+  },
+  {
+    "name": "Hạt sen khô",
+    "aliases": ["Dried Lotus Seeds", "Hạt sen khô Huế"],
+    "allowedUnitNames": ["gram", "chén", "muỗng canh"]
+  },
+  {
+    "name": "Hạt dẻ",
+    "aliases": ["Chestnut", "Hạt dẻ tươi"],
+    "allowedUnitNames": ["gram", "chén", "hạt"]
+  },
+  {
+    "name": "Dế chiên",
+    "aliases": ["Fried Cricket", "Dế chiên giòn"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Châu chấu chiên",
+    "aliases": ["Fried Grasshopper", "Châu chấu chiên giòn"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Nhộng tằm",
+    "aliases": ["Silkworm Pupae", "Nhộng tằm tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Lá đinh lăng",
+    "aliases": ["Polyscias Leaves", "Lá đinh lăng tươi"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Lá xương sông",
+    "aliases": ["Blumea Leaves", "Lá xương sông tươi"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Lá cách",
+    "aliases": ["Hopea Leaves", "Lá cách tươi"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Lá sung",
+    "aliases": ["Fig Leaves", "Lá sung tươi"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Lá ổi",
+    "aliases": ["Guava Leaves", "Lá ổi tươi"],
+    "allowedUnitNames": ["gram", "lá", "bó"]
+  },
+  {
+    "name": "Hạt mắc khén",
+    "aliases": ["Zanthoxylum Seeds", "Hạt mắc khén Tây Bắc"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Hạt dổi",
+    "aliases": ["Dipping Pepper Seeds", "Hạt dổi Tây Bắc"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Muối tiêu chanh",
+    "aliases": ["Lemon Pepper Salt", "Muối tiêu chanh pha"],
+    "allowedUnitNames": ["gram", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Nước mắm Phú Quốc",
+    "aliases": ["Phu Quoc Fish Sauce", "Nước mắm Phú Quốc nguyên chất"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Nước mắm Nha Trang",
+    "aliases": ["Nha Trang Fish Sauce", "Nước mắm Nha Trang nguyên chất"],
+    "allowedUnitNames": ["mililit", "muỗng canh", "muỗng cà phê"]
+  },
+  {
+    "name": "Tôm chà",
+    "aliases": ["Shrimp Floss", "Tôm chà Huế"],
+    "allowedUnitNames": ["gram", "muỗng canh", "chén"]
+  },
+  {
+    "name": "Mực một nắng",
+    "aliases": ["Sun-dried Squid", "Mực một nắng Phú Quốc"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Sò điệp",
+    "aliases": ["Scallop", "Sò điệp biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Hàu",
+    "aliases": ["Oyster", "Hàu biển tươi"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Bào ngư",
+    "aliases": ["Abalone", "Bào ngư biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Cua hoàng đế",
+    "aliases": ["King Crab", "Cua hoàng đế biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  },
+  {
+    "name": "Tôm sú",
+    "aliases": ["Tiger Prawn", "Tôm sú biển"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Tôm càng xanh",
+    "aliases": ["Green Prawn", "Tôm càng xanh đồng"],
+    "allowedUnitNames": ["gram", "con", "chén"]
+  },
+  {
+    "name": "Mực lá",
+    "aliases": ["Broad Squid", "Mực lá biển"],
+    "allowedUnitNames": ["gram", "con", "miếng"]
+  }
+]

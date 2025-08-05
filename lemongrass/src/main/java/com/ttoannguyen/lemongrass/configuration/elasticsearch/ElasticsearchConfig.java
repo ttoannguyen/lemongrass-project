@@ -34,7 +34,6 @@ public class ElasticsearchConfig {
 
   @Bean
   public ElasticsearchClient elasticsearchClient(ElasticsearchTransport transport) {
-
     return new ElasticsearchClient(transport);
   }
 

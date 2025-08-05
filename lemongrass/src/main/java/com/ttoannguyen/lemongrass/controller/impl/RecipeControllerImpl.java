@@ -1,6 +1,7 @@
 package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.RecipeController;
+import com.ttoannguyen.lemongrass.dto.PageResponse.PageResponse;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
@@ -57,12 +58,14 @@ public class RecipeControllerImpl implements RecipeController {
   }
 
   @Override
-  public ApiResponse<Page<RecipeResponse>> getRecipes(
+  public ApiResponse<PageResponse<RecipeResponse>> getRecipes(
       int page, int size, String keyword, List<String> categoryIds, Integer maxTime) {
     PageRequest pageRequest = PageRequest.of(page, size);
     Page<RecipeResponse> result =
         recipeService.getRecipes(pageRequest, keyword, categoryIds, maxTime);
-    return ApiResponse.<Page<RecipeResponse>>builder().result(result).build();
+    return ApiResponse.<PageResponse<RecipeResponse>>builder()
+        .result(PageResponse.from(result))
+        .build();
   }
 
   @Override

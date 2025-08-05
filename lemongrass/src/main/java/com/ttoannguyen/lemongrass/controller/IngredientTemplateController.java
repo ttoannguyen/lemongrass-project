@@ -6,6 +6,7 @@ import com.ttoannguyen.lemongrass.dto.Response.ingredient.IngredientTemplateResp
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -28,4 +29,7 @@ public interface IngredientTemplateController {
 
   @DeleteMapping("/{id}")
   ApiResponse<Void> delete(@PathVariable("id") String id);
+
+  @PostMapping("/upload-csv")
+  ApiResponse<Void> uploadIngredientTemplatesFromCSV(@RequestParam("file") MultipartFile file);
 }

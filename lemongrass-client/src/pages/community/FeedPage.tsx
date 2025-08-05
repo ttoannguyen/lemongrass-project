@@ -6,7 +6,7 @@ const FeedPage = () => {
   const { data: posts = [] } = usePostsQuery();
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 min-h-screen">
       <PostComposer />
       {posts.map((post) => (
         <PostCard key={post.id} post={post} />

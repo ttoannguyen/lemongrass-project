@@ -10,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -55,5 +56,10 @@ public class IngredientTemplateControllerImpl implements IngredientTemplateContr
         .result(ingredientTemplateService.delete(id))
         .message("success")
         .build();
+  }
+
+  @Override
+  public ApiResponse<Void> uploadIngredientTemplatesFromCSV(MultipartFile file) {
+    return null;
   }
 }

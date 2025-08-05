@@ -16,6 +16,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashSet;
 import java.util.List;
@@ -89,9 +90,9 @@ public class IngredientTemplateServiceImpl implements IngredientTemplateService 
   @Override
   public Void delete(String id) {
     // IngredientTemplate ingredientTemplate =
-        ingredientTemplateRepository
-            .findById(id)
-            .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));
+    ingredientTemplateRepository
+        .findById(id)
+        .orElseThrow(() -> new AppException(ErrorCode.INGREDIENT_TEMPLATE_NOT_EXISTED));
 
     if (ingredientRepository.existsByTemplate_IdAndRecipeIsNotNull(id)) {
       throw new AppException(ErrorCode.INGREDIENT_TEMPLATE_IN_USED);

@@ -23,7 +23,7 @@ public class Post extends AbstractAuditingEntity {
   @Column(unique = true, nullable = false)
   String title;
 
-  @Column(unique = true, nullable = false)
+  @Column(columnDefinition = "TEXT")
   String content;
 
   @Column(nullable = false)

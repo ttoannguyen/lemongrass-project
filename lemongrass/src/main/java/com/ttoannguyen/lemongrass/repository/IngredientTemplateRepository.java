@@ -12,4 +12,6 @@ public interface IngredientTemplateRepository extends JpaRepository<IngredientTe
   boolean existsByName(String name);
 
   Optional<IngredientTemplate> findByName(String name);
+
+  Optional<IngredientTemplate> findByNameIgnoreCase(String name);
 }

@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-
 @Entity
 @Table(name = "ingredient")
 @Getter
@@ -35,7 +34,7 @@ public class Ingredient extends AbstractAuditingEntity {
   IngredientUnit unit;
 
   @Column(nullable = true)
-  String note; // "băm nhỏ", "rửa sạch"
+  String note;
 
   @Column(nullable = false)
   Float quantity;

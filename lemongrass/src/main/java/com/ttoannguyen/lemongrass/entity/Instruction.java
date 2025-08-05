@@ -31,7 +31,7 @@ public class Instruction extends AbstractAuditingEntity {
   @Column(nullable = false)
   private Integer stepNumber;
 
-  @Column(nullable = false)
+  @Column(columnDefinition = "TEXT")
   private String description;
 
   @Builder.Default

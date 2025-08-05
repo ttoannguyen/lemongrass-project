@@ -16,4 +16,6 @@ public interface IngredientUnitRepository extends JpaRepository<IngredientUnit, 
   boolean existsByName(String name);
 
   boolean existsByNameAndIdNot(String name, String id);
+
+  Optional<IngredientUnit> findByNameIgnoreCase(String name);
 }

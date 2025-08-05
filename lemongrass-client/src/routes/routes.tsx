@@ -79,6 +79,7 @@ const routes: RouteObject[] = [
           { path: "my-groups", element: <MyGroupsPage /> },
         ],
       },
+
       {
         path: "account/:accountId",
         element: wrapProtected(<AccountLayout />),
