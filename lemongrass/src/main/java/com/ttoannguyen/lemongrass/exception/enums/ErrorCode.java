@@ -57,7 +57,8 @@ public enum ErrorCode {
   ALREADY_JOINED_GROUP(1036, "You already joined group!", HttpStatus.BAD_REQUEST),
   NOT_A_MEMBER(1037, "You not a member", HttpStatus.BAD_REQUEST),
   OWNER_CANNOT_LEAVE(1038, "Owner cannot leave", HttpStatus.BAD_REQUEST),
-  ALREADY_FOLLOWED(1039, "Already followed", HttpStatus.BAD_REQUEST);
+  ALREADY_FOLLOWED(1039, "Already followed", HttpStatus.BAD_REQUEST),
+  INVALID_FILE_FORMAT(1040, "Invalid file format", HttpStatus.BAD_REQUEST);
 
   private int code;
   private String message;

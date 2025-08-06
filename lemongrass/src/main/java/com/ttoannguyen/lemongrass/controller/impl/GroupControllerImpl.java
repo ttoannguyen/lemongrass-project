@@ -39,6 +39,20 @@ public class GroupControllerImpl implements GroupController {
   }
 
   @Override
+  public ApiResponse<Boolean> checkJoin(String groupId) {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<Boolean>builder().result(groupService.checkJoin(groupId, username)).build();
+  }
+
+  @Override
+  public ApiResponse<List<GroupResponse>> getMyGroup() {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<List<GroupResponse>>builder()
+        .result(groupService.getGroupsByUsername(username))
+        .build();
+  }
+
+  @Override
   public ApiResponse<GroupResponse> getGroupByName(String name) {
     return ApiResponse.<GroupResponse>builder().result(groupService.getGroupByName(name)).build();
   }

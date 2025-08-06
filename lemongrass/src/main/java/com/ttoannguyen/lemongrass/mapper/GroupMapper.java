@@ -14,6 +14,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface GroupMapper {
   @Mapping(source = "account.id", target = "ownerId")
+  @Mapping(source = "account.username", target = "ownerName")
+  @Mapping(source = "account.firstName", target = "ownerFirstname")
+  @Mapping(source = "account.lastName", target = "ownerLastname")
   GroupResponse toGroupResponse(Group group);
 
   @Mapping(target = "account", ignore = true)

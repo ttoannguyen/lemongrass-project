@@ -1,12 +1,14 @@
 import LeftSidebar from "@/components/community/LeftSidebar";
 import RightSidebar from "@/components/community/RightSidebar";
 import { useAuth } from "@/contexts/AuthContext";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const CommunityLayout = () => {
   const { isLoggedIn, account } = useAuth();
+  const { pathname } = useLocation();
+  const isGroupPage = pathname.includes("/community/group/");
 
   if (!isLoggedIn) {
     return (
@@ -53,18 +55,22 @@ const CommunityLayout = () => {
   // Logged in layout (scroll vẫn bình thường)
   return (
     <div className=" flex bg-background gap-4 w-full max-w-[1440px] mx-auto">
-      <div className="fixed top-0 left-0 h-screen w-[250px] bg-background z-10 hidden lg:block">
-        <LeftSidebar />
-      </div>
+      {!isGroupPage && (
+        <div className="fixed top-0 left-0 h-screen w-[250px] bg-background z-10 hidden lg:block">
+          <LeftSidebar />
+        </div>
+      )}
 
       <main className="flex-1 flex justify-center px-4 py-6">
         <div className="w-full max-w-2xl">
           <Outlet context={{ account }} />
         </div>
       </main>
-      <div className="fixed top-0 right-0 h-screen w-[250px] bg-background z-10 hidden xl:block">
-        <RightSidebar />
-      </div>
+      {!isGroupPage && (
+        <div className="fixed top-0 right-0 h-screen w-[250px] bg-background z-10 hidden xl:block">
+          <RightSidebar />
+        </div>
+      )}
     </div>
   );
 };

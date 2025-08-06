@@ -20,6 +20,12 @@ public interface GroupController {
   @GetMapping("/{groupId}")
   ApiResponse<GroupResponse> getGroupById(@PathVariable("groupId") String groupId);
 
+  @GetMapping("/check-join/{groupId}")
+  ApiResponse<Boolean> checkJoin(@PathVariable("groupId") String groupId);
+
+  @GetMapping("/myGroup")
+  ApiResponse<List<GroupResponse>> getMyGroup();
+
   @GetMapping("/name/{name}")
   ApiResponse<GroupResponse> getGroupByName(@PathVariable("name") String name);
 

@@ -13,7 +13,11 @@ public interface GroupService {
 
   GroupResponse getGroupByName(String name);
 
+  List<GroupResponse> getGroupsByUsername(String username);
+
   GroupResponse getGroupById(String groupId);
+
+  boolean checkJoin(String groupId, String username);
 
   GroupJoinResponse joinGroup(String groupId, String username);
 

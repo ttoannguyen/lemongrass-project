@@ -44,6 +44,8 @@ import Following from "@/components/profile/Following";
 import Favorite from "@/components/profile/Favorite";
 import { Info } from "lucide-react";
 import General from "@/components/profile/General";
+import GroupPage from "@/pages/community/groups/GroupPage";
+import GroupLayout from "@/pages/community/groups/GroupLayout";
 
 const routes: RouteObject[] = [
   {
@@ -75,8 +77,19 @@ const routes: RouteObject[] = [
         element: <CommunityLayout />,
         children: [
           { index: true, element: <FeedPage /> },
+          // { path: "group/:groupId", element: <GroupPage /> },
           { path: "trending", element: <TrendingPage /> },
           { path: "my-groups", element: <MyGroupsPage /> },
+
+          {
+            path: "group/:groupId",
+            element: <GroupLayout />, // layout riêng cho nhóm
+            children: [
+              { index: true, element: <GroupPage /> },
+              // { path: "admin", element: <GroupAdminPage /> },
+              // các route khác như /member, /setting,...
+            ],
+          },
         ],
       },
 

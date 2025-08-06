@@ -1,6 +1,6 @@
 "use client";
 
-import  { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -33,6 +33,7 @@ import { Label } from "@/components/ui/label";
 import extractErrorMessage from "@/utils/extractErrorMessage";
 import SearchAndSortControls from "@/components/searchInput/SearchAndSortControls";
 import useSearchAndSort from "@/hooks/sort/useSearchAndSort";
+import { useImportFileExcelMutation } from "@/hooks/queries/useImportFile";
 
 type SortableIngredientKey = "name" | "createdDate" | "lastModifiedDate";
 
@@ -153,11 +154,43 @@ const Ingredients = () => {
     );
   };
 
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const upload = useImportFileExcelMutation();
+  const handleUpload = async () => {
+    if (!fileInputRef.current?.files?.[0]) return;
+
+    const file = fileInputRef.current.files[0];
+
+    setUploading(true);
+    upload.mutate(file, {
+      onSuccess: () => {
+        alert("✅ Upload thành công");
+      },
+      onError: (err) => {
+        console.error(err);
+        alert("❌ Upload thất bại");
+      },
+      onSettled: () => {
+        setUploading(false);
+      },
+    });
+  };
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Quản lý nguyên liệu</h1>
-
+        <div className="p-4">
+          <input type="file" accept=".xlsx, .xls" ref={fileInputRef} />
+          <button
+            onClick={handleUpload}
+            disabled={uploading}
+            className="ml-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            {uploading ? "Uploading..." : "Upload Excel"}
+          </button>
+        </div>
         <div className="flex gap-2">
           <SearchAndSortControls
             searchTerm={searchTerm}

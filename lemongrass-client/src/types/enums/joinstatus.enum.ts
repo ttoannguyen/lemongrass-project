@@ -1,0 +1,5 @@
+export enum JOINSTATUS {
+  APPROVED = "APPROVED",
+  PENDING = "PENDING",
+  BLOCKED = "BLOCKED",
+}

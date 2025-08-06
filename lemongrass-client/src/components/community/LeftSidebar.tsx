@@ -13,17 +13,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { useMyGroupQuery } from "@/hooks/queries/useGroupQuery";
 
-const mockGroups = [
-  { id: "1", name: "Healthy Eating" },
-  { id: "2", name: "Vegan Lovers" },
-  { id: "3", name: "Quick Meals" },
-];
-
-const mockHashtags = ["#mealprep", "#budgetfriendly", "#glutenfree"];
+// const mockHashtags = ["#mealprep", "#budgetfriendly", "#glutenfree"];
 
 const LeftSidebar = () => {
   const [openDialog, setOpenDialog] = useState(false);
+  const { data: myGroups } = useMyGroupQuery();
   return (
     <aside className="w-[320px] hidden lg:block h-full pt-32 px-4  py-6 bg-background">
       <div className="space-y-6">
@@ -73,20 +69,21 @@ const LeftSidebar = () => {
           </div>
           <ScrollArea className="h-32">
             <div className="flex flex-col gap-1">
-              {mockGroups.map((group) => (
-                <Link
-                  key={group.id}
-                  to={`/community/group/${group.id}`}
-                  className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10  rounded-lg flex items-center gap-1"
-                >
-                  {group.name}
-                </Link>
-              ))}
+              {myGroups &&
+                myGroups.map((group) => (
+                  <Link
+                    key={group.groupId}
+                    to={`/community/group/${group.groupId}`}
+                    className="p-2 text-lg font-medium text-paragraph hover:bg-headline/10  rounded-lg flex items-center gap-1"
+                  >
+                    {group.name}
+                  </Link>
+                ))}
             </div>
           </ScrollArea>
         </div>
 
-        <div>
+        {/* <div>
           <h2 className="text-sm font-semibold text-muted-foreground mb-1">
             Popular Hashtags
           </h2>
@@ -101,7 +98,7 @@ const LeftSidebar = () => {
               </Link>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </aside>
   );

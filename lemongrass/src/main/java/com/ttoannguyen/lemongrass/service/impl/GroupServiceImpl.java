@@ -82,11 +82,38 @@ public class GroupServiceImpl implements GroupService {
   }
 
   @Override
+  public List<GroupResponse> getGroupsByUsername(String username) {
+    Account account =
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+
+    List<GroupMembership> memberships = groupMembershipRepository.findByAccount(account);
+
+    List<Group> groups = memberships.stream().map(GroupMembership::getGroup).toList();
+
+    return groupMapper.toListGroupResponse(groups);
+  }
+
+  @Override
   public GroupResponse getGroupById(String groupId) {
     return groupMapper.toGroupResponse(
         groupRepository
             .findById(groupId)
             .orElseThrow(() -> new AppException(ErrorCode.GROUP_NOT_EXISTED)));
+  }
+
+  @Override
+  public boolean checkJoin(String groupId, String username) {
+    Account account =
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+    Group group =
+        groupRepository
+            .findById(groupId)
+            .orElseThrow(() -> new AppException(ErrorCode.GROUP_NOT_EXISTED));
+    return groupMembershipRepository.existsByGroupAndAccount(group, account);
   }
 
   @Override

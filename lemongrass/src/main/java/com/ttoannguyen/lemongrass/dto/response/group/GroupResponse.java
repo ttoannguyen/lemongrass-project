@@ -10,13 +10,17 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GroupResponse {
-    String groupId;
-    String name;
-    String description;
-    String ownerId;
-    String category;
-    Visibility visibility;
-    String coverImageUrl;
-    String rules;
-    boolean requirePostApproval;
+  String groupId;
+  String name;
+  String description;
+  String ownerId;
+  String ownerName;
+  String ownerFirstname;
+  String ownerLastname;
+  String category;
+  Visibility visibility;
+  String coverImageUrl;
+  Integer memberCount;
+  String rules;
+  boolean requirePostApproval;
 }
