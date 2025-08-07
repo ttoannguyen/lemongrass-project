@@ -20,6 +20,7 @@ type SortableInstructionItemProps = {
   removeInstructionImage: (id: string, index: number) => void;
 };
 
+
 const SortableInstructionItem = ({
   instruction,
   onChangeInstruction,

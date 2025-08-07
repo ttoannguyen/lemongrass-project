@@ -33,3 +33,23 @@ const useCreatePost = () => {
 };
 
 export default useCreatePost;
+
+
+// hooks/useCreatePost.ts
+// import type { BlogSection } from "@/components/posts/BlogSectionList";
+// // import type { ImageUpload } from "@/types/image/ImageUpload";
+// import { useState } from "react";
+
+// const useCreatePost = () => {
+//   const [title, setTitle] = useState("");
+//   const [sections, setSections] = useState<BlogSection[]>([]);
+
+//   return {
+//     title,
+//     setTitle,
+//     sections,
+//     setSections,
+//   };
+// };
+
+// export default useCreatePost;

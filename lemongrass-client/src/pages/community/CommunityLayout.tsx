@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const CommunityLayout = () => {
-  const { isLoggedIn, account } = useAuth();
+  const { isLoggedIn, account,  } = useAuth();
   const { pathname } = useLocation();
   const isGroupPage = pathname.includes("/community/group/");
 

@@ -4,13 +4,21 @@ import { format, formatDistanceToNow } from "date-fns";
 import { Link } from "react-router-dom";
 
 const PostCard = ({ post }: { post: PostResponse }) => {
-  const { author, content, images, createdDate, likeCount, commentCount } =
-    post;
+  const {
+    author,
+    title,
+    content,
+    images,
+    createdDate,
+    likeCount,
+    commentCount,
+  } = post;
   const formattedDate = format(new Date(createdDate), "MMM d yyyy");
   const relativeTime = formatDistanceToNow(new Date(createdDate), {
     addSuffix: true,
   });
 
+  console.log(images);
   const isLessThanOneDay = (date: Date) => {
     const now = new Date();
     const diffInMs = now.getTime() - date.getTime();
@@ -46,11 +54,13 @@ const PostCard = ({ post }: { post: PostResponse }) => {
         </div>
       </div>
 
+      <h1 className="text-headline font-semibold text-3xl whitespace-pre-line">{title}</h1>
       <p className="text-gray-800 whitespace-pre-line">{content}</p>
 
       {images && (
         <img
           src={images[0].url}
+          // src="a"
           alt="Ảnh bài viết"
           className="w-full rounded-md object-cover"
         />
