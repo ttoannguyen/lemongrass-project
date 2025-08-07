@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import ImageUploadPreview from "@/components/imageTempale/ImageUploadPreview";
 import { useSubmitPost } from "@/hooks/queries/useSubmitPost";
 import type { PostCreate } from "@/types/post/PostCreate";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import useCreatePost from "@/hooks/useCreatePost";
+import { EditorInstance } from 'novel';
+import {
+  EditorBubble,
+  EditorBubbleItem,
+  EditorCommand,
+  EditorCommandItem,
+  EditorContent,
+  EditorRoot,
+} from "novel";
 
 interface PostFormProps {
   onSuccess?: () => void;
@@ -66,10 +74,7 @@ const PostForm = ({ onSuccess }: PostFormProps) => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
-        <label
-          htmlFor="title"
-          className="text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="title" className="text-sm font-medium text-gray-700">
           Tiêu đề
         </label>
         <Input
@@ -83,27 +88,22 @@ const PostForm = ({ onSuccess }: PostFormProps) => {
       </div>
 
       <div className="space-y-2">
-        <label
-          htmlFor="content"
-          className="text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="content" className="text-sm font-medium text-gray-700">
           Nội dung
         </label>
-        <Textarea
+        {/* <Textarea
           id="content"
           value={content}
           onChange={(e) => setContent(e.target.value)}
           placeholder="Bạn đang nghĩ gì?"
           className="min-h-[150px] max-h-[300px] rounded-md border-gray-300 focus:ring-primary focus:border-primary transition-colors duration-200"
           required
-        />
+        /> */}
+       <Editor/>
       </div>
 
       <div className="space-y-2">
-        <label
-          htmlFor="images"
-          className="text-sm font-medium text-gray-700"
-        >
+        <label htmlFor="images" className="text-sm font-medium text-gray-700">
           Tải lên ảnh (tối đa 5)
         </label>
         <ImageUploadPreview

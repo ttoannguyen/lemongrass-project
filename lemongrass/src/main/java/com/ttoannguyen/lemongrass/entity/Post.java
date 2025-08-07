@@ -23,7 +23,7 @@ public class Post extends AbstractAuditingEntity {
   @Column(unique = true, nullable = false)
   String title;
 
-  @Column(columnDefinition = "TEXT")
+  @Column(columnDefinition = "jsonb", nullable = false)
   String content;
 
   @Column(nullable = false)

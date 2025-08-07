@@ -83,7 +83,7 @@ const routes: RouteObject[] = [
 
           {
             path: "group/:groupId",
-            element: <GroupLayout />, // layout riêng cho nhóm
+            element: <GroupLayout />,
             children: [
               { index: true, element: <GroupPage /> },
               // { path: "admin", element: <GroupAdminPage /> },
