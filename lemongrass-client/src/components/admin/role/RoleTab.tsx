@@ -268,7 +268,7 @@ const RoleTab = () => {
     <div className="p-6">
       {/* Search + Sort + Thêm */}
       <div className="flex justify-between items-center mb-4">
-        <div className="flex gap-2">
+        <div className="flex ml-auto gap-2">
           <SearchAndSortControls
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}

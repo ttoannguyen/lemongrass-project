@@ -59,7 +59,7 @@ const LeftSidebar = () => {
               </DialogTrigger>
               <DialogContent className="sm:max-w-[500px]">
                 <DialogHeader>
-                  <DialogTitle>Create New Group</DialogTitle>
+                  <DialogTitle>Tạo nhóm mới</DialogTitle>
                   <DialogDescription>
                     <CreateGroupForm onSuccess={() => setOpenDialog(false)} />
                   </DialogDescription>

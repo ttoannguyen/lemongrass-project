@@ -6,7 +6,7 @@ import com.ttoannguyen.lemongrass.dto.Request.role.RoleRequest;
 import com.ttoannguyen.lemongrass.dto.Response.role.RoleResponse;
 
 public interface RoleService {
-  RoleResponse crate(RoleRequest request);
+  RoleResponse create(RoleRequest request);
 
   List<RoleResponse> getRoles();
 

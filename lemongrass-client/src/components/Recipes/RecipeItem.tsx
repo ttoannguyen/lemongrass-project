@@ -74,7 +74,7 @@ export function RecipeItem({ recipe }: RecipeItemMainProps) {
         <div className="flex flex-col">
           <Link
             to={`/recipe/${recipe.id}`}
-            className="scroll-m-20 text-xl font-bold tracking-tight"
+            className="scroll-m-20 text-sm font-bold tracking-tight"
           >
             {recipe.title}
           </Link>
@@ -92,7 +92,7 @@ export function RecipeItem({ recipe }: RecipeItemMainProps) {
               </button>
             ))}
           </div>
-          <div className="text-sm mt-2 text-paragraph line-clamp-3 flex-grow">
+          <div className="text-sm mt-2 text-paragraph line-clamp-2 flex-grow">
             {recipe.description}
           </div>
         </div>

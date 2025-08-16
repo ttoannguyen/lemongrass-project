@@ -54,7 +54,7 @@ const PermissionForm = ({ permission, onSuccess }: PermissionFormProps) => {
       <div className="flex justify-end">
         <Button type="submit" disabled={createMutation.isPending}>
           {/* {isEdit ? "Cập nhật" :  */}
-          "Tạo mới"
+          Tạo mới
           {/* } */}
         </Button>
       </div>

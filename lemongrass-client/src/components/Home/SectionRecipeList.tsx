@@ -39,22 +39,6 @@ const SectionRecipeList = ({ title, recipes, className, textTitle }: Props) => {
               >
                 <RecipeItem recipe={recipe} />
               </CarouselItem>
-            ))}{" "}
-            {recipes.map((recipe) => (
-              <CarouselItem
-                key={recipe.id}
-                className="pl-4 basis-[calc(100%/2)] md:basis-[calc(100%/3)] lg:basis-[calc(100%/4)]"
-              >
-                <RecipeItem recipe={recipe} />
-              </CarouselItem>
-            ))}{" "}
-            {recipes.map((recipe) => (
-              <CarouselItem
-                key={recipe.id}
-                className="pl-4 basis-[calc(100%/2)] md:basis-[calc(100%/3)] lg:basis-[calc(100%/4)]"
-              >
-                <RecipeItem recipe={recipe} />
-              </CarouselItem>
             ))}
           </CarouselContent>
           <CarouselPrevious />

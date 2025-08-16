@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.mapper;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeGetUpdateResponse;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.Recipe;
 import com.ttoannguyen.lemongrass.entity.SavedRecipe;
@@ -32,7 +33,20 @@ public interface RecipeMapper {
   @Mapping(source = "images", target = "images")
   @Mapping(source = "categories", target = "categories")
   @Mapping(source = "isDeleted", target = "isDeleted")
+  @Mapping(target = "ratingAvg", source = "ratingAvg")
+  @Mapping(target = "ratingCount", source = "ratingCount")
   RecipeResponse toRecipeResponse(Recipe recipe);
+
+  @Mapping(source = "account", target = "accountShortResponse")
+  @Mapping(source = "ingredients", target = "ingredients")
+  @Mapping(source = "instructions", target = "instructions")
+  @Mapping(source = "verified", target = "isVerified")
+  @Mapping(source = "images", target = "images")
+  @Mapping(source = "categories", target = "categories")
+  @Mapping(source = "isDeleted", target = "isDeleted")
+  @Mapping(target = "ratingAvg", source = "ratingAvg")
+  @Mapping(target = "ratingCount", source = "ratingCount")
+  RecipeGetUpdateResponse toRecipeGetUpdateResponse(Recipe recipe);
 
   @Mapping(source = "recipe", target = ".")
   RecipeResponse savedRecipeToRecipeResponse(SavedRecipe savedRecipe);

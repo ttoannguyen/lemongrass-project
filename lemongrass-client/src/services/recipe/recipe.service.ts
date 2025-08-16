@@ -55,6 +55,12 @@ export const recipeService = {
 
     return res.data.result;
   },
+
+  rating: async (id: string, rating: number)=>{
+    const res = await api.post<BaseResponse>(`/recipes/${id}/rate`, {rating: rating})
+
+    return res.data.message;
+  }
 };
 
 

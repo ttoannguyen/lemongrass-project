@@ -25,7 +25,8 @@ public class RecipeResponse {
   String description;
   Difficulty difficulty;
   Integer servings;
-  Float ratingAvg;
+  Double ratingAvg;
+  Integer ratingCount;
   List<CategoryResponse> categories;
   boolean isVerified;
   boolean isDeleted;

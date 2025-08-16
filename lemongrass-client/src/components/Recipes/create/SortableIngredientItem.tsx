@@ -12,6 +12,7 @@ import type { RecipeIngredientRequest } from "@/types/Recipe/RecipeIngredientReq
 type Props = {
   ingredient: RecipeIngredientRequest;
   index: number;
+  sortableId: string;
   allItems: RecipeIngredientRequest[];
   templateIngredients: IngredientResponse[];
   onChangeIngredient: (
@@ -24,14 +25,15 @@ type Props = {
 const SortableIngredientItem = ({
   ingredient,
   index,
+  sortableId,
   allItems,
   templateIngredients,
   onChangeIngredient,
   onDeleteIngredient,
 }: Props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: ingredient.templateId });
-
+    // useSortable({ id: ingredient.templateId });
+    useSortable({ id: sortableId });
   const { t } = useTranslation();
 
   const selectedIds = allItems
@@ -75,7 +77,7 @@ const SortableIngredientItem = ({
 
       {/* Ingredient Combobox */}
       <GenericCombobox
-        defaultValue="Ingredient"
+        defaultValue="Nguyên liệu"
         onChange={(templateId) => {
           const selected = templateIngredients.find(
             (ing) => ing.id === templateId
@@ -87,7 +89,8 @@ const SortableIngredientItem = ({
         }}
         value={ingredient.templateId}
         options={mergedOptions.map((i) => ({ id: i.id, name: i.name }))}
-        placeholder={t(TRANSLATION_KEYS.selectIngredient)}
+        placeholder={"Nguyên liệu"}
+        // placeholder={t(TRANSLATION_KEYS.selectIngredient)}
         buttonClassName="w-60 justify-between bg-white text-paragraph border-stroke/30 hover:bg-main"
         contentClassName="w-60 p-0 bg-white"
       />
@@ -107,7 +110,7 @@ const SortableIngredientItem = ({
         />
         <GenericCombobox
           value={ingredient.unitId ?? ""}
-          defaultValue="Units"
+          defaultValue="Đơn vị"
           options={
             selectedIngredient?.allowedUnits.map((unit) => ({
               id: unit.id,

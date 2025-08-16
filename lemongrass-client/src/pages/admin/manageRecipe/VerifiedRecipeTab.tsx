@@ -4,7 +4,9 @@ import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 import RecipeList from "./RecipeList";
 
 const VerifiedRecipeTab = () => {
-  const { data: recipes = [], isLoading } = useRecipesQuery();
+  const { data, isLoading } = useRecipesQuery();
+  const recipes = Array.isArray(data?.content) ? data.content : [];
+  console.log("recipe", recipes)
   const verified = recipes.filter((r) => r.verified);
 
   return (

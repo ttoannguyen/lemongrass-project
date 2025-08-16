@@ -42,7 +42,7 @@ export const AppProviders = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       {wrapped}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       <Toaster position="top-right" richColors />
     </>
   );

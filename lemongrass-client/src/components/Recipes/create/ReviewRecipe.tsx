@@ -5,11 +5,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import type { RecipeCreateRequest } from "@/types/Recipe/RecipeRequest";
+import type { RecipeUpdateRequest } from "@/types/Recipe/RecipeUpdateRequest";
 
 type Props = {
   open: boolean;
   onClose: () => void;
-  data: RecipeCreateRequest;
+   data: RecipeCreateRequest | RecipeUpdateRequest;
   ingredientTemplates: { id: string; name: string }[];
   units: { id: string; name: string }[];
 };

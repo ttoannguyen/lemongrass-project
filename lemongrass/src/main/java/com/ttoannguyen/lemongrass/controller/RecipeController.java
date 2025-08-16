@@ -1,8 +1,10 @@
 package com.ttoannguyen.lemongrass.controller;
 
 import com.ttoannguyen.lemongrass.dto.PageResponse.PageResponse;
+import com.ttoannguyen.lemongrass.dto.Request.recipe.RateRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeGetUpdateResponse;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
@@ -37,6 +39,9 @@ public interface RecipeController {
   @GetMapping("/{recipeId}")
   ApiResponse<RecipeResponse> getRecipeById(@PathVariable("recipeId") String id);
 
+  @GetMapping("/getUpdate/{recipeId}")
+  ApiResponse<RecipeGetUpdateResponse> getUpdateRecipeById(@PathVariable("recipeId") String id);
+
   @GetMapping("/myRecipes")
   ApiResponse<List<RecipeResponse>> getMyRecipes();
 
@@ -52,4 +57,8 @@ public interface RecipeController {
 
   @PostMapping("/natural-search")
   CompletableFuture<List<RecipeDocument>> naturalSearch(@RequestParam String keyword);
+
+  @PostMapping("/{recipeId}/rate")
+  ApiResponse<Void> rateRecipe(
+      @PathVariable("recipeId") String recipeId, @RequestBody RateRequest rateRequest);
 }

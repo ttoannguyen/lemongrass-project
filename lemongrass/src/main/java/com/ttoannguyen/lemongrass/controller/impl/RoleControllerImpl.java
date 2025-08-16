@@ -23,7 +23,7 @@ public class RoleControllerImpl implements RoleController {
 
   @Override
   public ApiResponse<RoleResponse> create(RoleRequest request) {
-    return ApiResponse.<RoleResponse>builder().result(roleService.crate(request)).build();
+    return ApiResponse.<RoleResponse>builder().result(roleService.create(request)).build();
   }
 
   @Override

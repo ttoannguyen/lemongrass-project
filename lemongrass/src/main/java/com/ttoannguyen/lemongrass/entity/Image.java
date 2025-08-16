@@ -34,4 +34,8 @@ public class Image {
   Post post;
 
   Integer displayOrder;
+
+  @ManyToOne
+  @JoinColumn(name = "post_content_id")
+  PostContent postContent;
 }

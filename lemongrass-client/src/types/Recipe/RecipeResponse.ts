@@ -8,6 +8,7 @@ export interface RecipeResponse {
   difficulty: "EASY" | "MEDIUM" | "HARD";
   servings: number;
   ratingAvg: number;
+  ratingCount: number;
   createdBy: string;
   description: string;
   lastModifiedBy: string;
@@ -21,10 +22,10 @@ export interface RecipeResponse {
   shareCount: number;
   verified: boolean;
 
-  tags: {
-    name: string;
-    color: string;
-  }[];
+  // tags?: {
+  //   name: string;
+  //   color: string;
+  // }[];
 
   images: {
     url: string;
@@ -32,6 +33,7 @@ export interface RecipeResponse {
   }[];
 
   ingredients: {
+    // templateId: string | undefined;
     id: string;
     name: string;
     quantity: string;

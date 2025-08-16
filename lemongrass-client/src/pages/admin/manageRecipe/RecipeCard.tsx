@@ -70,10 +70,10 @@ const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
                   <p>
                     <strong>Khẩu phần:</strong> {recipe.servings}
                   </p>
-                  <p>
+                  {/* <p>
                     <strong>Tags:</strong>{" "}
                     {recipe.tags.map((tag) => tag.name).join(", ")}
-                  </p>
+                  </p> */}
                 </div>
                 <SheetFooter className="mt-4">
                   <SheetClose asChild>
@@ -91,7 +91,7 @@ const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
               Thời gian: {recipe.cookingTime} phút | Độ khó: {recipe.difficulty}{" "}
               | Khẩu phần: {recipe.servings}
             </p>
-            <div className="flex flex-wrap gap-1">
+            {/* <div className="flex flex-wrap gap-1">
               {recipe.tags.map((tag) => (
                 <Badge
                   key={tag.name}
@@ -101,7 +101,7 @@ const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
                   {tag.name}
                 </Badge>
               ))}
-            </div>
+            </div> */}
             <p
               onClick={handleCardClick}
               className="cursor-pointer hover:underline"

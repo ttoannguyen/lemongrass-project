@@ -25,7 +25,6 @@ import Units from "@/pages/admin/Units";
 import Tags from "@/pages/admin/Tags";
 import Moderation from "@/pages/admin/system/Moderation";
 import Setting from "@/pages/admin/system/Setting";
-// import PostDetailPage from "@/components/posts/PostDetailPage";
 import AccountLayout from "@/pages/account/AccountLayout";
 import RecipeLayout from "@/pages/recipe/RecipeLayout";
 import RecipePage from "@/pages/recipe/RecipePage";
@@ -46,6 +45,7 @@ import { Info } from "lucide-react";
 import General from "@/components/profile/General";
 import GroupPage from "@/pages/community/groups/GroupPage";
 import GroupLayout from "@/pages/community/groups/GroupLayout";
+import EditRecipe from "@/components/recipes/edit/EditRecipe";
 
 const routes: RouteObject[] = [
   {
@@ -55,7 +55,6 @@ const routes: RouteObject[] = [
       { index: true, element: <Home /> },
       { path: "my-post", element: wrapProtected(<MyPost />) },
       { path: "my-recipe", element: wrapProtected(<MyRecipe />) },
-      // { path: "post/:postId", element: <PostDetailPage /> },
       {
         path: "search",
         element: <SearchResultsPage />,
@@ -71,28 +70,21 @@ const routes: RouteObject[] = [
           { path: "category/:categoryId", element: <RecipeCategory /> },
         ],
       },
-
       {
         path: "community",
         element: <CommunityLayout />,
         children: [
           { index: true, element: <FeedPage /> },
-          // { path: "group/:groupId", element: <GroupPage /> },
           { path: "trending", element: <TrendingPage /> },
           { path: "my-groups", element: <MyGroupsPage /> },
 
           {
             path: "group/:groupId",
             element: <GroupLayout />,
-            children: [
-              { index: true, element: <GroupPage /> },
-              // { path: "admin", element: <GroupAdminPage /> },
-              // các route khác như /member, /setting,...
-            ],
+            children: [{ index: true, element: <GroupPage /> }],
           },
         ],
       },
-
       {
         path: "account/:accountId",
         element: wrapProtected(<AccountLayout />),
@@ -118,6 +110,13 @@ const routes: RouteObject[] = [
     element: wrapProtected(<NewRecipeLayout />),
     children: [{ index: true, element: <Create /> }],
   },
+
+  {
+    path: "edit-recipe/:recipeId",
+    element: wrapProtected(<NewRecipeLayout />),
+    children: [{ index: true, element: <EditRecipe /> }],
+  },
+
   // --- ADMIN Routes ---
   {
     path: "/admin",
@@ -131,7 +130,6 @@ const routes: RouteObject[] = [
       { path: "ingredients", element: <Ingredient /> },
       { path: "units", element: <Units /> },
       { path: "tags", element: <Tags /> },
-
       // He thong
       { path: "moderation", element: <Moderation /> },
       { path: "settings", element: <Setting /> },

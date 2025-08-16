@@ -54,25 +54,44 @@ const CommunityLayout = () => {
 
   // Logged in layout (scroll vẫn bình thường)
   return (
-    <div className=" flex bg-background gap-4 w-full max-w-[1440px] mx-auto">
-      {!isGroupPage && (
-        <div className="fixed top-0 left-0 h-screen w-[250px] bg-background z-10 hidden lg:block">
-          <LeftSidebar />
-        </div>
-      )}
+    // <div className=" flex bg-background gap-4 w-full max-w-[1440px] mx-auto">
+    //   {/* {!isGroupPage && (
+    //     <div className="fixed top-0 left-0 h-screen w-[250px] bg-background z-10 hidden lg:block">
+    //       <LeftSidebar />
+    //     </div>
+    //   )} */}
 
-      <main className="flex-1 flex justify-center px-4 py-6">
-        <div className="w-full max-w-2xl">
-          <Outlet context={{ account }} />
+    //   {/* <main className="flex-1 flex justify-center px-4 py-6"> */}
+    //     <div className="w-full max-w-2xl">
+    //       <Outlet context={{ account }} />
+    //     </div>
+    //   {/* </main> */}
+    //   {/* {!isGroupPage && (
+    //     <div className="fixed top-0 right-0 h-screen w-[250px] bg-background z-10 hidden xl:block">
+    //       <RightSidebar />
+    //     </div>
+    //   )} */}
+    // </div>
+
+    <div className="bg-gray-50 min-h-screen">
+          <div className="relative w-full h-48 sm:h-64 md:h-60 flex items-center justify-center overflow-hidden">
+            <img
+              src="/src/assets/images/food-vegetable-colorful-background-tasty-fresh-vegetables-wooden-table-top-view-with-copy-space.jpg"
+              alt="Recipe Header"
+              className="absolute inset-0 w-full h-full object-cover opacity-70 transition-opacity duration-300"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
+            <h1 className="relative z-10 text-center text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-highlight drop-shadow-lg">
+              
+            </h1>
+          </div>
+    
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <Outlet />
+          </div>
         </div>
-      </main>
-      {!isGroupPage && (
-        <div className="fixed top-0 right-0 h-screen w-[250px] bg-background z-10 hidden xl:block">
-          <RightSidebar />
-        </div>
-      )}
-    </div>
   );
+
 };
 
 export default CommunityLayout;

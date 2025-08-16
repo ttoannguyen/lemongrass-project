@@ -5,9 +5,14 @@ import type { ImageResponse } from "../image/ImageResponse";
 export interface PostResponse {
   id: string;
   title: string;
-  content: string;
+  contents: {
+    text: string;
+    contentTitle: string;
+    displayOrder: number;
+    imageResponse: ImageResponse;
+
+  }[],
   visibility: "PUBLIC" | "PRIVATE" | "FRIENDS"; // thêm nếu có nhiều loại
-  images: ImageResponse[];
   author: Account;
   group: any | null; // nếu có kiểu cụ thể thì thay any
   recipe: any | null; // nếu có kiểu cụ thể thì thay any

@@ -106,32 +106,33 @@
 
 import { Skeleton } from "@/components/ui/skeleton";
 import RecipeCard from "./RecipeCard";
+import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
 
-type Recipe = {
-  id: string;
-  title: string;
-  cookingTime: number;
-  difficulty: string;
-  servings: number;
-  ratingAvg: number | null;
-  verified: boolean;
-  shareCount: number;
-  tags: { name: string; color: string }[];
-  images: { url: string; displayOrder: number }[];
-  accountShortResponse: {
-    id: string;
-    username: string;
-    firstName: string;
-    lastName: string;
-    profilePictureUrl: string | null;
-  };
-};
+// type Recipe = {
+//   id: string;
+//   title: string;
+//   cookingTime: number;
+//   difficulty: string;
+//   servings: number;
+//   ratingAvg: number | null;
+//   verified: boolean;
+//   shareCount: number;
+//   tags: { name: string; color: string }[];
+//   images: { url: string; displayOrder: number }[];
+//   accountShortResponse: {
+//     id: string;
+//     username: string;
+//     firstName: string;
+//     lastName: string;
+//     profilePictureUrl: string | null;
+//   };
+// };
 
 const RecipeList = ({
   recipes,
   loading,
 }: {
-  recipes: Recipe[];
+  recipes: RecipeResponse[];
   loading: boolean;
 }) => {
   if (loading) {

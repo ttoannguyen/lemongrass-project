@@ -14,25 +14,25 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Comment extends AbstractAuditingEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id", nullable = false)
-    Post post;
+  @ManyToOne
+  @JoinColumn(name = "post_id", nullable = false)
+  Post post;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id", nullable = false)
-    Account account;
+  @ManyToOne
+  @JoinColumn(name = "account_id", nullable = false)
+  Account account;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_comment_id")
-    Comment parentComment;
+  @ManyToOne
+  @JoinColumn(name = "parent_comment_id")
+  Comment parentComment;
 
-    @Column(nullable = false)
-    String content;
+  @Column(nullable = false)
+  String content;
 
-    @Column(nullable = false)
-    CommentStatus status;
+  @Column(nullable = false)
+  CommentStatus status;
 }

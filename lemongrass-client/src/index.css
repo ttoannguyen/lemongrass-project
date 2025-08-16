@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
+@layer base {
+  html {
+    font-family: "Lexend", sans-serif;
+  }
+}
 
 @theme {
   --color-background: #f2f7f5;

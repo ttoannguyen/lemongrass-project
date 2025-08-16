@@ -3,7 +3,12 @@ spring:
     name: lemongrass
   config:
     import: optional:file:.env[.properties]
-  
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
   elasticsearch:
     uris: http://localhost:9200
     connection-timeout: 5s
@@ -27,6 +32,8 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+    #      query:
+    #        fail_on_pagination_over_collection_fetch: false
     generate-ddl: true
     properties:
       hibernate.jdbc.time_zone: UTC
@@ -49,6 +56,7 @@ logging:
 
 server:
   port: 8080
+
 
 elasticsearch:
   host: localhost

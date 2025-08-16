@@ -180,16 +180,16 @@ const Ingredients = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Quản lý nguyên liệu</h1>
+        {/* <h1 className="text-2xl font-bold">Quản lý nguyên liệu</h1> */}
         <div className="p-4">
-          <input type="file" accept=".xlsx, .xls" ref={fileInputRef} />
-          <button
+          <input placeholder="tải file nguyên liệu" type="file" accept=".xlsx, .xls" ref={fileInputRef} />
+          <Button
             onClick={handleUpload}
             disabled={uploading}
-            className="ml-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            // className="ml-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
           >
-            {uploading ? "Uploading..." : "Upload Excel"}
-          </button>
+            {uploading ? "Uploading..." : "Tải file Excel"}
+          </Button>
         </div>
         <div className="flex gap-2">
           <SearchAndSortControls
@@ -266,7 +266,7 @@ const Ingredients = () => {
       </table>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+        <DialogContent className="w-full sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>Thêm nguyên liệu</DialogTitle>
           </DialogHeader>

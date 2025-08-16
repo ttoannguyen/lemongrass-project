@@ -18,10 +18,9 @@ import java.util.List;
 public class PostResponse {
   String id;
   String title;
-  String content;
+  //  List<ContentResponse> contents;
   String visibility;
   boolean isApproved;
-  List<ImageResponse> images;
   AccountResponse author;
   GroupResponse group;
   RecipeResponse recipe;

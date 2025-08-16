@@ -23,7 +23,6 @@ const GroupSidebar = () => {
             Quản lý nhóm
           </NavLink>
         </li>
-        {/* ... thêm tab khác nếu cần */}
       </ul>
     </div>
   );

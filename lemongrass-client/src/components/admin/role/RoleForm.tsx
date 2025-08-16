@@ -124,9 +124,9 @@ const RoleForm = ({
 
   return (
     <div className="text-sm space-y-4 text-headline bg-background">
-      <h2 className="text-base font-semibold">
+      {/* <h2 className="text-base font-semibold">
         {role ? "Sửa vai trò" : "Tạo vai trò mới"}
-      </h2>
+      </h2> */}
 
       <Input
         placeholder="Tên vai trò (VD: REGISTERED)"

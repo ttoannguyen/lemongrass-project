@@ -1,6 +1,6 @@
 // providers/PreloadPublicData.tsx
 import { useQuery } from "@tanstack/react-query";
-import { feedsService } from "@/services/feeds.service";
+// import { feedsService } from "@/services/feeds.service";
 import { categoryService } from "@/services/category/category.service";
 
 export const PreloadPublicData = ({
@@ -8,11 +8,11 @@ export const PreloadPublicData = ({
 }: {
   children: React.ReactNode;
 }) => {
-  useQuery({
-    queryKey: ["feeds"],
-    queryFn: feedsService.getFeeds,
-    staleTime: 5 * 60 * 1000,
-  });
+  // useQuery({
+  //   queryKey: ["feeds"],
+  //   queryFn: feedsService.getFeeds,
+  //   staleTime: 5 * 60 * 1000,
+  // });
 
   useQuery({
     queryKey: ["categories"],

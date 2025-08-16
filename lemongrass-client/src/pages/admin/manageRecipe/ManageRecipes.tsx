@@ -13,12 +13,6 @@ const ManageRecipes = () => {
   // }, [setPageTitle]);
   return (
     <div className="flex flex-col h-full text-sm">
-      {/* Header */}
-      {/* <div className="px-4 pt-4 pb-2 border-b">
-        <h1 className="text-xl font-semibold">Quản lý công thức</h1>
-      </div> */}
-
-      {/* Tabs */}
       <Tabs
         defaultValue="unverified"
         className="flex-1 flex flex-col overflow-hidden gap-0"

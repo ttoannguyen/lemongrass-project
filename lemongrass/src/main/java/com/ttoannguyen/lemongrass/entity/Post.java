@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,11 +21,16 @@ public class Post extends AbstractAuditingEntity {
   @Column(name = "id", updatable = false, nullable = false)
   String id;
 
-  @Column(unique = true, nullable = false)
+  @Column(columnDefinition = "TEXT", unique = true, nullable = false)
   String title;
 
-  @Column(columnDefinition = "jsonb", nullable = false)
-  String content;
+  @OneToMany(
+      mappedBy = "post",
+      cascade = CascadeType.ALL,
+      orphanRemoval = true,
+      fetch = FetchType.LAZY)
+  @Builder.Default
+  List<PostContent> contents = new ArrayList<>();
 
   @Column(nullable = false)
   String visibility;
@@ -44,6 +50,10 @@ public class Post extends AbstractAuditingEntity {
   @JoinColumn(name = "recipe_id")
   Recipe recipe;
 
+  @Column(name = "comment_count")
+  int commentCount;
+
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-  List<Image> images;
+  @Builder.Default
+  List<Comment> comments = new ArrayList<>();
 }

@@ -2,6 +2,8 @@ package com.ttoannguyen.lemongrass.service;
 
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.comment.CommentResponse;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeGetUpdateResponse;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +22,13 @@ public interface RecipeService {
 
   RecipeResponse getRecipeId(String id);
 
+  RecipeGetUpdateResponse getUpdateRecipeId(String id);
+
   RecipeResponse getRecipeName(String name);
 
   List<RecipeResponse> getMyRecipes(String username);
 
   List<RecipeResponse> getAccountRecipe(String id);
+
+  void rateRecipe(String recipeId, Double rating, String username);
 }

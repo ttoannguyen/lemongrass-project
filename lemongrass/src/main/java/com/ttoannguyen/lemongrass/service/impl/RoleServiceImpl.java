@@ -34,7 +34,7 @@ public class RoleServiceImpl implements RoleService {
   AccountRepository accountRepository;
 
   @Override
-  public RoleResponse crate(RoleRequest request) {
+  public RoleResponse create(RoleRequest request) {
     var role = roleMapper.toRole(request);
     final var permissions = permissionRepository.findAllById(request.getPermissions());
     role.setPermissions(new HashSet<>(permissions));

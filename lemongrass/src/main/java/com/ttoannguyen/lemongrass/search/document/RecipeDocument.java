@@ -29,7 +29,8 @@ public class RecipeDocument {
   List<Ingredient> ingredients = new ArrayList<>();
   List<Instruction> instructions = new ArrayList<>();
   List<Image> images = new ArrayList<>();
-
+  Double ratingAvg;
+  Integer ratingCount;
   String createdAt;
   String updatedAt;
 

@@ -178,9 +178,9 @@ export default function AdminRecipeCategoryPage() {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Quản lý Danh muc</h1>
+        {/* <h1 className="text-2xl font-bold">Quản lý Danh muc</h1> */}
 
-        <div className="flex gap-2">
+        <div className="flex ml-auto gap-2">
           <SearchAndSortControls
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
@@ -306,7 +306,7 @@ export default function AdminRecipeCategoryPage() {
 
       {/* Create/Edit Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="w-full sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>
               {editingCategory ? "Chỉnh sửa danh mục" : "Thêm danh mục"}

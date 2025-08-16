@@ -39,7 +39,11 @@ public class Recipe extends AbstractAuditingEntity {
 
   Integer servings;
 
-  Float ratingAvg;
+  @Column(name = "rating_avg")
+  Double ratingAvg; // Average rating (0–5)
+
+  @Column(name = "rating_count")
+  Integer ratingCount;
 
   @Column(nullable = false)
   boolean isVerified;

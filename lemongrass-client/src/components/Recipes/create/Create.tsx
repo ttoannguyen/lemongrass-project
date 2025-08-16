@@ -128,7 +128,7 @@ const Create = () => {
         title,
         cookingTime,
         servings,
-        
+
         description,
         difficulty,
         categoryIds: category,
@@ -173,11 +173,11 @@ const Create = () => {
             to={"/"}
             className="text-paragraph ml-4 bg-main/10 px-2 p-1 rounded-sm border border-stroke/10"
           >
-            Home
+            Trang chủ
           </Link>
         </div>
         <h1 className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold">
-          CreateNav
+          Tạo công thức
         </h1>
         <div className="ml-auto flex gap-2">
           <Button
@@ -186,7 +186,7 @@ const Create = () => {
             onClick={() => setShowPreview(true)}
           >
             <Eye className="mr-2 h-4 w-4" />
-            See preview
+            Xem trước
           </Button>
           <PreviewRecipe
             open={showPreview}
@@ -246,7 +246,7 @@ const Create = () => {
 
           <Button size="sm" onClick={handlePublish}>
             <Upload className="mr-2 h-4 w-4" />
-            Publish Recipe
+            Đăng công thức
           </Button>
         </div>
       </div>
@@ -272,15 +272,22 @@ const Create = () => {
 
         <div className="w-full">
           <h1 className="text-paragraph font-semibold text-lg mt-4 mb-2 mx-2">
-            DETAIL
+            Nguyên liệu & Hướng dẫn
           </h1>
           <div className="flex gap-4 flex-col">
             <div className="bg-white p-4 rounded-md shadow-sm">
               <div className="font-medium text-paragraph flex items-center mb-4">
-                <p className="text-sm mr-2">Ingredient</p>
+                <p className="text-sm mr-2">Nguyên liệu</p>
                 <CircleAlert className="size-3 text-paragraph my-auto" />
               </div>
 
+              {/* <IngredientList
+                addIngredient={addIngredient}
+                ingredients={ingredients}
+                removeIngredient={removeIngredient}
+                templateIngredients={templateIngredients}
+                updateIngredient={updateIngredient}
+              /> */}
               <IngredientList
                 addIngredient={addIngredient}
                 ingredients={ingredients}
@@ -292,15 +299,23 @@ const Create = () => {
 
             <div className="bg-white p-4 rounded-md shadow-sm">
               <div className="font-medium text-paragraph flex items-center mb-4">
-                <p className="text-sm mr-2">Instruction</p>
+                <p className="text-sm mr-2">Hướng dẫn</p>
                 <CircleAlert className="size-3 text-paragraph my-auto" />
               </div>
-              <InstructionList
+              {/* <InstructionList
                 addInstructionImage={addInstructionImage}
                 addInstruction={addInstruction}
                 instructions={instructions}
                 removeInstruction={removeInstruction}
                 updateInstruction={updateInstruction}
+                removeInstructionImage={removeInstructionImage}
+              /> */}
+              <InstructionList
+                addInstruction={addInstruction}
+                instructions={instructions}
+                removeInstruction={removeInstruction}
+                updateInstruction={updateInstruction}
+                addInstructionImage={addInstructionImage}
                 removeInstructionImage={removeInstructionImage}
               />
             </div>

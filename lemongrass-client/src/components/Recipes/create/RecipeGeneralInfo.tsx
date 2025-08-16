@@ -111,6 +111,8 @@ const RecipeGeneralInfo = ({
                     src={
                       firstImage.file
                         ? URL.createObjectURL(firstImage.file)
+                        : firstImage.previewUrl
+                        ? firstImage.previewUrl
                         : ""
                     }
                     className="w-60 mx-auto h-40 object-contain rounded-sm"
@@ -125,12 +127,18 @@ const RecipeGeneralInfo = ({
                   </Button>
                 </div>
               </HoverCardTrigger>
-              <HoverCardContent >
+              <HoverCardContent>
                 <div className="flex gap-4">
                   {recipeImages.map((image, index) => (
                     <div key={`${image.file}-${index}`} className="relative">
                       <img
-                        src={image.file ? URL.createObjectURL(image.file) : ""}
+                        src={
+                          image.file
+                            ? URL.createObjectURL(image.file)
+                            : firstImage.previewUrl
+                            ? firstImage.previewUrl
+                            : ""
+                        }
                         alt={`Ảnh ${index + 1}`}
                         className="w-36 h-24 object-cover rounded-md"
                       />
@@ -145,7 +153,10 @@ const RecipeGeneralInfo = ({
                     </div>
                   ))}
                   {recipeImages.length < 3 && (
-                    <UploadImage onUpload={onUpload} className="w-36 h-24 bg-main"/>
+                    <UploadImage
+                      onUpload={onUpload}
+                      className="w-36 h-24 bg-main"
+                    />
                   )}
                 </div>
               </HoverCardContent>

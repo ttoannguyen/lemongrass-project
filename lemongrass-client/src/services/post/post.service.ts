@@ -4,7 +4,14 @@ import api from "@/lib/axios";
 import type { BaseResponse } from "@/types/BaseResponse";
 import type { PostResponse } from "@/types/post/PostResponse";
 import type { PostCreate } from "@/types/post/PostCreate";
+import type { PagedResponse } from "@/types/PagedResponse";
 
+type PostFilterParams = {
+  page?: number;
+  size?: number;
+  keyword?: string;
+  groupId?: string;
+};
 export const postService = {
   createPost: async (post: PostCreate): Promise<PostResponse[]> => {
     const formData = new FormData();
@@ -35,12 +42,32 @@ export const postService = {
     return res.data.result;
   },
 
-  getPosts: async (): Promise<PostResponse[]> => {
-    const res = await api.get<BaseResponse<PostResponse[]>>("/posts", {
-      headers: {
-        "x-auth-required": "false",
-      },
-    });
+  // getPosts: async (): Promise<PostResponse[]> => {
+  //   const res = await api.get<BaseResponse<PostResponse[]>>("/posts", {
+  //     headers: {
+  //       "x-auth-required": "false",
+  //     },
+  //   });
+  //   return res.data.result;
+  // },
+
+  getPosts: async (
+    params?: PostFilterParams
+  ): Promise<PagedResponse<PostResponse>> => {
+    const res = await api.get<BaseResponse<PagedResponse<PostResponse>>>(
+      "/posts",
+      {
+        headers: {
+          "x-auth-required": "false",
+        },
+        params: {
+          page: params?.page ?? 0,
+          size: params?.size ?? 10,
+          keyword: params?.keyword,
+          groupId: params?.groupId,
+        },
+      }
+    );
     return res.data.result;
   },
 

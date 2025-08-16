@@ -1,5 +1,5 @@
 export type ImageUpload = {
   previewUrl?: string;
-  file: File;
+  file?: File;
   displayOrder: number;
 };

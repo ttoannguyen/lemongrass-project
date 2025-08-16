@@ -17,7 +17,6 @@ public class IngredientResponse {
   String name;
   String unitName;
   String note;
-
   String quantity;
   Integer order;
 }

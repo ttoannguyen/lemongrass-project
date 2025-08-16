@@ -58,7 +58,10 @@ public enum ErrorCode {
   NOT_A_MEMBER(1037, "You not a member", HttpStatus.BAD_REQUEST),
   OWNER_CANNOT_LEAVE(1038, "Owner cannot leave", HttpStatus.BAD_REQUEST),
   ALREADY_FOLLOWED(1039, "Already followed", HttpStatus.BAD_REQUEST),
-  INVALID_FILE_FORMAT(1040, "Invalid file format", HttpStatus.BAD_REQUEST);
+  INVALID_FILE_FORMAT(1040, "Invalid file format", HttpStatus.BAD_REQUEST),
+  INVALID_RATING(1041, "Invalid rating", HttpStatus.BAD_REQUEST),
+  INVALID_COMMENT(1042, "Invalid comment", HttpStatus.BAD_REQUEST),
+  COMMENT_TOO_LONG(1043, "Comment to long", HttpStatus.BAD_REQUEST);
 
   private int code;
   private String message;

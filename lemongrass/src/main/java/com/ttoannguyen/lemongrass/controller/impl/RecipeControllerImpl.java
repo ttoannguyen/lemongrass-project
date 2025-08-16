@@ -2,8 +2,10 @@ package com.ttoannguyen.lemongrass.controller.impl;
 
 import com.ttoannguyen.lemongrass.controller.RecipeController;
 import com.ttoannguyen.lemongrass.dto.PageResponse.PageResponse;
+import com.ttoannguyen.lemongrass.dto.Request.recipe.RateRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
+import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeGetUpdateResponse;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.dto.apiResponse.ApiResponse;
 import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
@@ -74,6 +76,13 @@ public class RecipeControllerImpl implements RecipeController {
   }
 
   @Override
+  public ApiResponse<RecipeGetUpdateResponse> getUpdateRecipeById(String id) {
+    return ApiResponse.<RecipeGetUpdateResponse>builder()
+        .result(recipeService.getUpdateRecipeId(id))
+        .build();
+  }
+
+  @Override
   public ApiResponse<List<RecipeResponse>> getMyRecipes() {
     final String username = SecurityContextHolder.getContext().getAuthentication().getName();
     return ApiResponse.<List<RecipeResponse>>builder()
@@ -114,5 +123,12 @@ public class RecipeControllerImpl implements RecipeController {
   @Override
   public CompletableFuture<List<RecipeDocument>> naturalSearch(String keyword) {
     return searchService.naturalSearch(keyword);
+  }
+
+  @Override
+  public ApiResponse<Void> rateRecipe(String recipeId, RateRequest rateRequest) {
+    final String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    recipeService.rateRecipe(recipeId, rateRequest.getRating(), username);
+    return ApiResponse.<Void>builder().message("Success").build();
   }
 }

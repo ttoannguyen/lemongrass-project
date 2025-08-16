@@ -149,8 +149,8 @@ const Units = () => {
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Quản lý đơn vị</h1>
-        <div className="flex items-center gap-2 flex-wrap">
+        {/* <h1 className="text-2xl font-bold">Quản lý đơn vị</h1> */}
+        <div className="flex ml-auto items-center gap-2 flex-wrap">
           <SearchAndSortControls
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
@@ -289,7 +289,7 @@ const Units = () => {
 
       {/* Thêm đơn vị: Popup dialog */}
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-        <DialogContent>
+        <DialogContent className="w-full sm:max-w-lg">
           <DialogHeader>
             <DialogTitle>Thêm đơn vị</DialogTitle>
           </DialogHeader>

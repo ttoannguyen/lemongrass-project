@@ -65,12 +65,6 @@ const navSections: {
         icon: Ruler,
         requiredRoles: ["ADMIN"],
       },
-      {
-        label: "Thẻ / Tags",
-        path: "/admin/tags",
-        icon: Tag,
-        requiredRoles: ["ADMIN"],
-      },
     ],
   },
   {

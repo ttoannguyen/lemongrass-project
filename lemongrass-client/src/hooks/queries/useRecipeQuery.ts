@@ -1,7 +1,9 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { recipeService } from "@/services/recipe/recipe.service";
+import { recipeUpdateService } from "@/services/recipe/recipe.update.service";
 import { savedRecipeService } from "@/services/savedRecipe/saved.recipe.service";
 import type { PagedResponse } from "@/types/PagedResponse";
+import type { RecipeGetDataToUpdateResponse } from "@/types/Recipe/RecipeGetDataToUpdateResponse";
 import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 type RecipeFilterParams = {
@@ -30,7 +32,6 @@ export const useRecipesQuery = (params?: RecipeFilterParams) => {
   });
 };
 
-
 export const useAccountRecipeQuery = (id?: string) => {
   const { isLoggedIn } = useAuth();
 
@@ -38,6 +39,15 @@ export const useAccountRecipeQuery = (id?: string) => {
     queryKey: ["account-recipe", id],
     queryFn: () => recipeService.getAccountRecipe(id!),
     enabled: !!id && isLoggedIn,
-    staleTime: 5 * 60 * 1000,
+  });
+};
+
+export const useGetDataToUpdateRecipe = (id: string) => {
+  const { isLoggedIn } = useAuth();
+
+  return useQuery<RecipeGetDataToUpdateResponse>({
+    queryKey: ["recipe-get-data-update", id],
+    queryFn: () => recipeUpdateService.getData(id),
+    enabled: !!id && isLoggedIn,
   });
 };

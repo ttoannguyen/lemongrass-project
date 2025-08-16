@@ -73,7 +73,7 @@ export function RecipeSearchBox({ onSearchResult }: Props) {
   const [keyword, setKeyword] = useState("");
   const { data = [] } = useAutocomplete(keyword);
   const suggestions = data as RecipeSuggestion[];
-
+  console.log(suggestions)
   const handleSearch = async () => {
     const ids = await recipeSearchService.searchRecipes({ keyword });
     onSearchResult?.(ids);
@@ -91,7 +91,7 @@ export function RecipeSearchBox({ onSearchResult }: Props) {
         />
         <button
           onClick={handleSearch}
-          className="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm transition-shadow shadow"
+          className="bg-button hover:bg-button/90 text-white px-4 py-2 rounded-lg text-sm transition-shadow shadow"
         >
           Tìm
         </button>

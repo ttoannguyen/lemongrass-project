@@ -128,7 +128,7 @@ const NavBar = () => {
               </Button>
 
               <AvatarNav />
-              <ModeToggle />
+              {/* <ModeToggle /> */}
             </div>
           ) : (
             <>
@@ -148,14 +148,14 @@ const NavBar = () => {
               </Button>
             </>
           )}
-          <select
+          {/* <select
             onChange={handleChangeLanguage}
             value={i18n.language}
             id="change-language"
           >
             <option value="en">English</option>
             <option value="vi">Việt Nam</option>
-          </select>
+          </select> */}
         </div>
       </div>
 
