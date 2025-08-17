@@ -16,15 +16,19 @@ export const postService = {
   createPost: async (post: PostCreate): Promise<PostResponse[]> => {
     const formData = new FormData();
     formData.append("title", post.title);
-    formData.append("content", post.content);
+    formData.append("mainContents", post.mainContents);
     formData.append("visibility", post.visibility);
 
-    post.images.forEach((img, index) => {
-      formData.append(`images[${index}].file`, img.file);
+    post.contents?.forEach((content, i) => {
+      if (content.file) {
+        formData.append(`contents[${i}].file`, content.file);
+      }
       formData.append(
-        `images[${index}].displayOrder`,
-        String(img.displayOrder)
+        `contents[${i}].displayOrder`,
+        content.displayOrder.toString()
       );
+      formData.append(`contents[${i}].contentTitle`, content.contentTitle);
+      formData.append(`contents[${i}].text`, content.text);
     });
 
     console.log("in service post", formData, post);
@@ -41,15 +45,6 @@ export const postService = {
 
     return res.data.result;
   },
-
-  // getPosts: async (): Promise<PostResponse[]> => {
-  //   const res = await api.get<BaseResponse<PostResponse[]>>("/posts", {
-  //     headers: {
-  //       "x-auth-required": "false",
-  //     },
-  //   });
-  //   return res.data.result;
-  // },
 
   getPosts: async (
     params?: PostFilterParams

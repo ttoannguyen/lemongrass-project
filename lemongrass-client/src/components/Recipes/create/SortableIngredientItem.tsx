@@ -32,7 +32,6 @@ const SortableIngredientItem = ({
   onDeleteIngredient,
 }: Props) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    // useSortable({ id: ingredient.templateId });
     useSortable({ id: sortableId });
   const { t } = useTranslation();
 

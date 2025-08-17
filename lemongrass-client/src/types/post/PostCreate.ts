@@ -1,9 +1,12 @@
+export interface ContentCreate {
+  text: string;
+  contentTitle: string;
+  displayOrder: number;
+  file?: File;
+}
 export interface PostCreate {
-  visibility: string;
   title: string;
-  content: string;
-  images: {
-    file: File;
-    displayOrder: number;
-  }[];
+  mainContents: string;
+  contents: ContentCreate[];
+  visibility: "PUBLIC";
 }

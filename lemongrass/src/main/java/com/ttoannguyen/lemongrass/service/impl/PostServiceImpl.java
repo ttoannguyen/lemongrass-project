@@ -54,6 +54,7 @@ public class PostServiceImpl implements PostService {
         Post.builder()
             .title(request.getTitle())
             .visibility(request.getVisibility())
+            .mainContents(request.getMainContents())
             .isApproved(false)
             .account(account)
             .group(null)

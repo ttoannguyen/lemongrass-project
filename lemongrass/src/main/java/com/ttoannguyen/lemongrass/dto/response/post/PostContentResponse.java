@@ -20,6 +20,8 @@ public class PostContentResponse {
   List<ContentResponse> contents;
   String visibility;
   boolean isApproved;
+  String mainContents;
+
   AccountResponse author;
   GroupResponse group;
   RecipeResponse recipe;

@@ -47,13 +47,8 @@ const RecipeDetailPage = () => {
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   const handleRate = (rating: number) => {
-    // Check if user is logged in (implement your auth check)
-    const isLoggedIn = true; // Replace with actual auth check
+    const isLoggedIn = true;
     if (!isLoggedIn) {
-      // toast.warning( "Vui lòng đăng nhập",
-      //   description: "Bạn cần đăng nhập để đánh giá công thức.",
-      //   variant: "destructive",
-      // });
       return;
     }
     submitRating(rating);

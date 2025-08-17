@@ -23,7 +23,9 @@ public class PostResponse {
   boolean isApproved;
   AccountResponse author;
   GroupResponse group;
+
   RecipeResponse recipe;
+  String mainContents;
   String createdBy;
   String lastModifiedBy;
   LocalDateTime createdDate;

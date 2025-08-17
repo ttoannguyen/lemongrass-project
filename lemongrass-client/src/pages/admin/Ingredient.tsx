@@ -161,7 +161,7 @@ const Ingredients = () => {
     if (!fileInputRef.current?.files?.[0]) return;
 
     const file = fileInputRef.current.files[0];
-
+    console.log("123")
     setUploading(true);
     upload.mutate(file, {
       onSuccess: () => {

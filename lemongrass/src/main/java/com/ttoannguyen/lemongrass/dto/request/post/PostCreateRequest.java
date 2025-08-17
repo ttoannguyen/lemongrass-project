@@ -14,6 +14,7 @@ import java.util.List;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PostCreateRequest {
   String title;
+  String mainContents;
   List<ContentRequest> contents;
   String visibility;
   Account account;

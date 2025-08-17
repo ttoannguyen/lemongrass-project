@@ -24,6 +24,9 @@ public class Post extends AbstractAuditingEntity {
   @Column(columnDefinition = "TEXT", unique = true, nullable = false)
   String title;
 
+  @Column(columnDefinition = "TEXT", unique = true, nullable = false)
+  String mainContents;
+
   @OneToMany(
       mappedBy = "post",
       cascade = CascadeType.ALL,
