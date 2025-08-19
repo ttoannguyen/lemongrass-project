@@ -5,14 +5,15 @@ import { format } from "date-fns";
 import { Button } from "../../ui/button";
 import { Link } from "react-router-dom";
 import { vi } from "date-fns/locale";
-import RecipeExportModal from "./RecipeExportModal"; // <-- sửa tên file ở đây
+import RecipeExportModal from "./RecipeExportModal";
 import AvatarAuthor from "@/components/AvatarAuhtor";
 import { Stars } from "@/components/icons/StarComponent";
 import clsx from "clsx";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Flame, Users } from "lucide-react";
-import AuthorHoverCard from "@/components/profile/AuthorHoverCard";
+// import AuthorHoverCard from "@/components/profile/AuthorHoverCard";
 import { useSubmitRating } from "@/hooks/queries/useSubmitRating";
+import RecipeCommentSection from "@/components/comment/RecipeCommentSection";
 
 const RecipeDetailPage = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
@@ -89,12 +90,12 @@ const RecipeDetailPage = () => {
           </div>
         </div>
         <div className="flex gap-2">
-          <Link
+          {/* <Link
             to={`/edit-recipe/${recipeId}`}
             className="w-max px-4 py-2 border rounded-full text-sm text-gray-700 hover:bg-gray-100 transition"
           >
             Chỉnh sửa công thức
-          </Link>
+          </Link> */}
           <Button
             onClick={handleScroll}
             className="w-max px-4 py-2 border rounded-full text-sm text-gray-700 hover:bg-gray-100 transition"
@@ -217,14 +218,20 @@ const RecipeDetailPage = () => {
             ))}
         </div>
       </section>
-
-      <div className="mt-10 flex items-center gap-4 text-sm text-gray-500">
+      
+      {/* <div className="mt-10 flex items-center gap-4 text-sm text-gray-500">
         <p>Người đăng:</p>
         <AuthorHoverCard
-          author={recipe.accountShortResponse}
+         authorId={recipe.accountShortResponse.id}
+          authorUsername={recipe.accountShortResponse.username}
+          profilePictureUrl={recipe.accountShortResponse.profilePictureUrl !}
+          firstName={recipe.accountShortResponse.firstName}
+          lastName={recipe.accountShortResponse.lastName}
           createdAt={recipe.createdDate}
         />
-      </div>
+      </div> */}
+      <RecipeCommentSection recipeId={recipeId} />
+
     </div>
   );
 };

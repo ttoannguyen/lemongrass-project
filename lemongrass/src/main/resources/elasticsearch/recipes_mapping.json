@@ -128,6 +128,12 @@
           }
         }
       },
+      "title_vector": {
+        "type": "dense_vector",
+        "dims": 384,
+        "index": true,
+        "similarity": "cosine"
+      },
       "cookingTime": {
         "type": "integer"
       },
@@ -155,6 +161,18 @@
       },
       "servings": {
         "type": "integer"
+      },
+      "description_vector": {
+        "type": "dense_vector",
+        "dims": 384,
+        "index": true,
+        "similarity": "cosine"
+      },
+      "ingredients_vector": {
+        "type": "dense_vector",
+        "dims": 384,
+        "index": true,
+        "similarity": "cosine"
       },
       "accountId": {
         "type": "keyword"

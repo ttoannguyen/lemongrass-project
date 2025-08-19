@@ -1,77 +1,70 @@
-import Masonry from "react-masonry-css";
 import PostCard from "@/components/community/PostCard";
-import InfiniteScroll from "react-infinite-scroll-component";
-import { useInfinitePostsQuery } from "@/hooks/queries/useInfinitePostsQuery";
-import { useMemo } from "react";
+import { useState } from "react";
 import PostComposer from "@/components/community/PostComposer";
+import { Button } from "@/components/ui/button";
+import { usePostsQuery } from "@/hooks/queries/useInfinitePostsQuery";
 
 const FeedPage = () => {
-  const {
-    data,
-    fetchNextPage,
-    hasNextPage,
-    isLoading,
-    isError,
-    error,
-  } = useInfinitePostsQuery();
+  const [page, setPage] = useState(0);
+  const size = 6;
 
-  const posts = useMemo(() => {
-    const allPosts = data?.pages.flatMap((page, pageIndex) =>
-      page.content.map((post) => ({ ...post, pageIndex }))
-    ) ?? [];
-    // Log to check for duplicates
-    const postIds = allPosts.map((post) => post.id);
-    const uniqueIds = new Set(postIds);
-    if (postIds.length !== uniqueIds.size) {
-      console.warn("Duplicate post IDs detected:", postIds);
-    }
-    return allPosts;
-  }, [data]);
+  const { data, isLoading, isError, error, isFetching } = usePostsQuery(page, size);
 
-  const defaultCols = useMemo(() => 4, []); // Fixed for consistency
-
-  const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1,
-  };
+  const posts = data?.content ?? [];
+  const totalPages = data?.totalPages ?? 1;
 
   if (isLoading) {
-    return <p className="text-center py-4">Đang tải...</p>;
+    return <p className="text-center py-6 text-lg font-medium">⏳ Đang tải...</p>;
   }
 
   if (isError) {
     return (
-      <p className="text-center py-4 text-red-500">
-        Lỗi: {error instanceof Error ? error.message : "Không thể tải bài viết"}
+      <p className="text-center py-6 text-red-500 font-semibold">
+        ❌ Lỗi: {error instanceof Error ? error.message : "Không thể tải bài viết"}
       </p>
     );
   }
 
   return (
-    <div>
-      <PostComposer />
-      <InfiniteScroll
-        dataLength={posts.length}
-        next={fetchNextPage}
-        hasMore={!!hasNextPage}
-        loader={<p className="text-center py-4">Đang tải...</p>}
-        endMessage={<p className="text-center py-4">Hết bài viết</p>}
-      >
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="flex gap-0"
-          columnClassName="bg-transparent space-y-0"
-        >
+    <div className="max-w-6xl mx-auto px-4">
+      {/* Composer */}
+      <div className="mb-6">
+        <PostComposer />
+      </div>
+
+      {/* Grid Feed */}
+      {posts.length > 0 ? (
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {posts.map((post, index) => (
-            <PostCard
-              key={`${post.id}-${post.pageIndex}-${index}`} // Ensure unique key
-              post={post}
-            />
+            <PostCard key={`${post.id}-${index}`} post={post} />
           ))}
-        </Masonry>
-      </InfiniteScroll>
+        </div>
+      ) : (
+        <p className="text-center py-10 text-gray-500">Chưa có bài viết nào.</p>
+      )}
+
+      {/* Pagination */}
+      <div className="flex justify-center items-center gap-4 py-8">
+        <Button
+          variant="outline"
+          onClick={() => setPage((p) => Math.max(p - 1, 0))}
+          disabled={page === 0 || isFetching}
+        >
+          ← Trang trước
+        </Button>
+
+        <span className="px-3 py-1 rounded bg-muted text-sm font-medium">
+          Trang {page + 1} / {totalPages}
+        </span>
+
+        <Button
+          variant="outline"
+          onClick={() => setPage((p) => (p + 1 < totalPages ? p + 1 : p))}
+          disabled={page + 1 >= totalPages || isFetching}
+        >
+          Trang sau →
+        </Button>
+      </div>
     </div>
   );
 };

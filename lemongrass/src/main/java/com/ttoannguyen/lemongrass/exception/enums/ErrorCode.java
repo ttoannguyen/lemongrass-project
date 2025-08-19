@@ -61,7 +61,8 @@ public enum ErrorCode {
   INVALID_FILE_FORMAT(1040, "Invalid file format", HttpStatus.BAD_REQUEST),
   INVALID_RATING(1041, "Invalid rating", HttpStatus.BAD_REQUEST),
   INVALID_COMMENT(1042, "Invalid comment", HttpStatus.BAD_REQUEST),
-  COMMENT_TOO_LONG(1043, "Comment to long", HttpStatus.BAD_REQUEST);
+  COMMENT_TOO_LONG(1043, "Comment to long", HttpStatus.BAD_REQUEST),
+  INVALID_EMBEDDING_DIMENSION(1044, "Invalid embedding dimension", HttpStatus.BAD_REQUEST);
 
   private int code;
   private String message;

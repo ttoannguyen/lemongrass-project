@@ -53,6 +53,13 @@ public class AccountControllerImpl implements AccountController {
   }
 
   @Override
+  public ApiResponse<AccountResponse> getAccountByUsername(String username) {
+    return ApiResponse.<AccountResponse>builder()
+        .result(accountService.getAccountByUsername(username))
+        .build();
+  }
+
+  @Override
   public ApiResponse<AccountResponse> getMyInfo() {
     return ApiResponse.<AccountResponse>builder().result(accountService.getMyInfo()).build();
   }

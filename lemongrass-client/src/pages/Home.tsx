@@ -1,5 +1,4 @@
 import SectionRecipeList from "@/components/home/SectionRecipeList";
-import HomeSearch from "@/components/searchInput/HomeSearch";
 import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
@@ -15,7 +14,7 @@ const Home = () => {
   const latestRecipes = [...recipes].reverse().slice(0, 4);
   return (
     <div className="bg-white">
-      <div className="relative bg-headline h-[250px] md:h-[300px] flex items-center justify-center overflow-hidden">
+      {/* <div className="relative bg-headline h-[250px] md:h-[300px] flex items-center justify-center overflow-hidden">
         <img
           src="/src/assets/images/flat-lay-corn-with-potatoes-tomatoes50.jpg"
           alt="Trang trí"
@@ -27,7 +26,7 @@ const Home = () => {
             <HomeSearch />
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="">
         <SectionRecipeList
           className="bg-main"

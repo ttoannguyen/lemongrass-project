@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import AvatarNav from "./AvatarNav";
-import { ModeToggle } from "../mode-toggle";
 import { useWebSocket } from "@/providers/WebSocketProvider";
 import { toast } from "sonner";
 import { motion } from "framer-motion";
@@ -18,6 +17,9 @@ import SearchInput from "../searchInput/SearchInput";
 import { useTranslation } from "react-i18next";
 import i18n from "@/utils/i18n";
 import { TRANSLATION_KEYS } from "@/locales/translationKeys";
+import { useNotifications } from "@/hooks/queries/useNotification";
+import { ScrollArea } from "../ui/scroll-area";
+import { Separator } from "../ui/separator";
 
 const NavBar = () => {
   const { t } = useTranslation();
@@ -26,8 +28,13 @@ const NavBar = () => {
   const { notifications } = useWebSocket();
   const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/" ;
+  const isHome = location.pathname === "/";
+  const { account } = useAuth();
+  const { data: dbNotifications = [] } = useNotifications(account?.username);
+  const { notifications: wsNotifications } = useWebSocket();
 
+  // Gộp lại: WS + DB
+  const allNotifications = [...wsNotifications, ...dbNotifications];
   const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
@@ -47,12 +54,12 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [showSearch]);
 
-  const handleChangeLanguage = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const selectedLanguage = event.target.value;
-    i18n.changeLanguage(selectedLanguage);
-  };
+  // const handleChangeLanguage = (
+  //   event: React.ChangeEvent<HTMLSelectElement>
+  // ) => {
+  //   const selectedLanguage = event.target.value;
+  //   i18n.changeLanguage(selectedLanguage);
+  // };
 
   return (
     <div className="w-full bg-background text-text sticky top-0 z-50 shadow-xs">
@@ -98,24 +105,29 @@ const NavBar = () => {
                     )}
                   </Button>
                 </PopoverTrigger>
-                <PopoverContent className="w-80">
-                  <div className="space-y-2">
+                <PopoverContent className="w-80 p-0">
+                  <div className="p-3 border-b">
                     <h4 className="font-semibold text-headline">Thông báo</h4>
-                    {notifications?.length > 0 ? (
-                      notifications.map((notif, index) => (
-                        <div
-                          key={index}
-                          className="p-2 rounded-md bg-muted text-sm"
-                        >
-                          {notif.message}
+                  </div>
+
+                  <ScrollArea className="h-60 px-3 py-2">
+                    {allNotifications.length > 0 ? (
+                      allNotifications.map((notif, index) => (
+                        <div key={index}>
+                          <div className="p-2 rounded-md bg-muted text-sm">
+                            {notif.message}
+                          </div>
+                          {index < allNotifications.length - 1 && (
+                            <Separator className="my-2" />
+                          )}
                         </div>
                       ))
                     ) : (
-                      <p className="text-sm text-gray-500">
-                        Không có thông báo mới
+                      <p className="text-sm text-gray-500 px-2 py-4">
+                        Không có thông báo
                       </p>
                     )}
-                  </div>
+                  </ScrollArea>
                 </PopoverContent>
               </Popover>
 
@@ -148,14 +160,6 @@ const NavBar = () => {
               </Button>
             </>
           )}
-          {/* <select
-            onChange={handleChangeLanguage}
-            value={i18n.language}
-            id="change-language"
-          >
-            <option value="en">English</option>
-            <option value="vi">Việt Nam</option>
-          </select> */}
         </div>
       </div>
 

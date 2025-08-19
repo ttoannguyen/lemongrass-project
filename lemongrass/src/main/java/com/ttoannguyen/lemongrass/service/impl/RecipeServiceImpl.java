@@ -2,6 +2,7 @@ package com.ttoannguyen.lemongrass.service.impl;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ttoannguyen.lemongrass.dto.Request.image.ImageRequest;
 import com.ttoannguyen.lemongrass.dto.Request.image.ImageUpdateRequest;
@@ -11,7 +12,6 @@ import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionCreationReq
 import com.ttoannguyen.lemongrass.dto.Request.instruction.InstructionUpdateRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeCreationRequest;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RecipeUpdateRequest;
-import com.ttoannguyen.lemongrass.dto.Response.comment.CommentResponse;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeGetUpdateResponse;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import com.ttoannguyen.lemongrass.entity.*;
@@ -20,6 +20,7 @@ import com.ttoannguyen.lemongrass.exception.enums.ErrorCode;
 import com.ttoannguyen.lemongrass.mapper.RecipeMapper;
 import com.ttoannguyen.lemongrass.repository.*;
 import com.ttoannguyen.lemongrass.search.document.RecipeDocument;
+import com.ttoannguyen.lemongrass.search.service.embedding.EmbeddingService;
 import com.ttoannguyen.lemongrass.service.CloudinaryService;
 import com.ttoannguyen.lemongrass.service.RecipeService;
 import jakarta.transaction.Transactional;
@@ -54,6 +55,7 @@ public class RecipeServiceImpl implements RecipeService {
   IngredientUnitRepository ingredientUnitRepository;
   IngredientTemplateRepository ingredientTemplateRepository;
   RatingRepository ratingRepository;
+  EmbeddingService embeddingService;
 
   @Override
   @Transactional
@@ -590,6 +592,33 @@ public class RecipeServiceImpl implements RecipeService {
   }
 
   @Override
+  public String unableRecipe(String recipeId, String username) {
+    //    Account account =
+    //        accountRepository
+    //            .findByUsername(username)
+    //            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
+    Recipe recipe =
+        recipeRepository
+            .findById(recipeId)
+            .orElseThrow(() -> new AppException(ErrorCode.RECIPE_NOT_EXISTED));
+
+    recipe.setVerified(false);
+    recipeRepository.save(recipe);
+    return "Recipe " + recipeId + " has been disabled successfully.";
+  }
+
+  @Override
+  public String enableRecipe(String recipeId, String username) {
+    Recipe recipe =
+        recipeRepository
+            .findById(recipeId)
+            .orElseThrow(() -> new AppException(ErrorCode.RECIPE_NOT_EXISTED));
+    recipe.setVerified(true);
+    recipeRepository.save(recipe);
+    return "Recipe " + recipeId + " has been enasabled successfully.";
+  }
+
+  @Override
   public Page<RecipeResponse> getRecipes(
       Pageable pageable, String keyword, List<String> categoryIds, Integer maxTime) {
 
@@ -699,6 +728,7 @@ public class RecipeServiceImpl implements RecipeService {
         .isVerified(false)
         .isDeleted(false)
         .shareCount(0)
+        .likeCount(0)
         .build();
   }
 
@@ -714,38 +744,6 @@ public class RecipeServiceImpl implements RecipeService {
             })
         .collect(Collectors.toCollection(ArrayList::new));
   }
-
-  //  private Set<Tag> resolveTags(List<TagCreationRequest> requests) {
-  //    log.info("- Resolving tags: {}", requests);
-  //    return requests.stream()
-  //        .map(
-  //            tagCreationRequest -> {
-  //              log.info("Processing tag: {}", tagCreationRequest.getName());
-  //              return tagRepository
-  //                  .findByName(tagCreationRequest.getName())
-  //                  .map(
-  //                      existing -> {
-  //                        if (!Objects.equals(existing.getColor(), tagCreationRequest.getColor()))
-  // {
-  //                          existing.setColor(tagCreationRequest.getColor());
-  //                          log.info("Saving updated tag: {}", existing.getName());
-  //                          tagRepository.save(existing);
-  //                        }
-  //                        return existing;
-  //                      })
-  //                  .orElseGet(
-  //                      () -> {
-  //                        Tag newTag =
-  //                            Tag.builder()
-  //                                .name(tagCreationRequest.getName())
-  //                                .color(tagCreationRequest.getColor())
-  //                                .build();
-  //                        log.info("Saving new tag: {}", newTag.getName());
-  //                        return tagRepository.save(newTag);
-  //                      });
-  //            })
-  //        .collect(Collectors.toCollection(HashSet::new));
-  //  }
 
   private List<Ingredient> buildIngredients(
       List<IngredientCreationRequest> requests, Recipe recipe) {
@@ -827,7 +825,8 @@ public class RecipeServiceImpl implements RecipeService {
         .collect(Collectors.toCollection(ArrayList::new));
   }
 
-  private RecipeDocument mapToDocument(Recipe recipe, Account account) {
+  private RecipeDocument mapToDocument(Recipe recipe, Account account)
+      throws JsonProcessingException {
     return RecipeDocument.builder()
         .id(recipe.getId())
         .title(recipe.getTitle())
@@ -837,10 +836,17 @@ public class RecipeServiceImpl implements RecipeService {
         .servings(recipe.getServings())
         .accountId(account.getId())
         .accountName(account.getUsername())
+        .titleVector(embeddingService.embedOne(recipe.getTitle()))
+        .descriptionVector(embeddingService.embedOne(recipe.getDescription()))
+        .ingredientsVector(
+            embeddingService.embedOne(
+                recipe.getIngredients().stream()
+                    .map(i -> i.getTemplate().getName())
+                    .collect(Collectors.joining(", "))))
         .categoryIds(
             recipe.getCategories() != null
-                ? new ArrayList<>(recipe.getCategories().stream().map(Category::getName).toList())
-                : new ArrayList<>())
+                ? (recipe.getCategories().stream().map(Category::getName).toList())
+                : List.of())
         .ingredients(
             recipe.getIngredients() != null
                 ? new ArrayList<>(
@@ -1011,8 +1017,6 @@ public class RecipeServiceImpl implements RecipeService {
     instructionRepository.deleteAll(
         recipe.getInstructions().stream().filter(ins -> !reqIds.contains(ins.getId())).toList());
 
-    //    recipe.setInstructions(updatedInstructions);
-    //    instructionRepository.saveAll(updatedInstructions);
     recipe.getInstructions().clear();
     recipe.getInstructions().addAll(updatedInstructions);
   }

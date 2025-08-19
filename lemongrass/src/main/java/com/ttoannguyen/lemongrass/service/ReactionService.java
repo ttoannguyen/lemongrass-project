@@ -12,4 +12,8 @@ public interface ReactionService {
   List<String> getLikedPostIds(String username);
 
   List<String> getLikedRecipeIds(String username);
+
+  Integer getCountLikedRecipeId(String id);
+
+  Integer getCountLikedPostId(String id);
 }

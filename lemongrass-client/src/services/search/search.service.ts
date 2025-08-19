@@ -19,7 +19,7 @@ export const recipeSearchService = {
     return res.data;
   },
 
-  searchRecipes: async (params: { keyword: string }): Promise<string[]> => {
+  searchRecipes: async (params: { keyword: string }): Promise<RecipeResponse[]> => {
     const res = await axios.post<RecipeResponse[]>(
       "/recipes/search",
       {
@@ -31,7 +31,7 @@ export const recipeSearchService = {
         },
       }
     );
-    console.log(res.data);
-    return res.data.map((r) => r.id);
+    console.log("search ",res.data);
+    return res.data;
   },
 };

@@ -17,6 +17,8 @@ public interface AccountService {
   // @PostAuthorize("returnObject.username == authentication.name")
   AccountResponse getAccount(String accountId);
 
+  AccountResponse getAccountByUsername(String username);
+
   AccountResponse getMyInfo();
 
   AccountResponse updateMyInfo(String username, AccountUpdateRequest request, MultipartFile avatar);

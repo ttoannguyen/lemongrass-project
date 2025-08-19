@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.controller.impl;
 
+import com.cloudinary.Api;
 import com.ttoannguyen.lemongrass.controller.RecipeController;
 import com.ttoannguyen.lemongrass.dto.PageResponse.PageResponse;
 import com.ttoannguyen.lemongrass.dto.Request.recipe.RateRequest;
@@ -57,6 +58,18 @@ public class RecipeControllerImpl implements RecipeController {
         .result(recipeService.delete(id, username))
         .message("success")
         .build();
+  }
+
+  @Override
+  public ApiResponse<String> unableRecipe(String id) {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<String>builder().result(recipeService.unableRecipe(id, username)).build();
+  }
+
+  @Override
+  public ApiResponse<String> enableRecipe(String id) {
+    String username = SecurityContextHolder.getContext().getAuthentication().getName();
+    return ApiResponse.<String>builder().result(recipeService.enableRecipe(id, username)).build();
   }
 
   @Override

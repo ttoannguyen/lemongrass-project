@@ -29,69 +29,7 @@ public class ReactionServiceImpl implements ReactionService {
   ReactionRepository reactionRepository;
   PostRepository postRepository;
   RecipeRepository recipeRepository;
-  // CommentRepository commentRepository;
-  // SimpMessagingTemplate messagingTemplate;
   NotificationService notificationService;
-
-  // NotificationRepository notificationRepository;
-
-  //  @Override
-  //  public void toggleHeartPost(ReactionRequest request) {
-  //    String username = request.getUsername();
-  //    log.info(username);
-  //    Account account =
-  //        accountRepository
-  //            .findByUsername(username)
-  //            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
-  //    Post post =
-  //        postRepository
-  //            .findById(request.getTargetId())
-  //            .orElseThrow(() -> new AppException(ErrorCode.POST_NOT_EXISTED));
-  //    Account receiver =
-  //        accountRepository
-  //            .findById(request.getReceiverId())
-  //            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
-  //    Reaction existingReaction =
-  //        reactionRepository.findByAccount_IdAndTargetIdAndTargetType(
-  //            account.getId(), request.getTargetId(), ReactionTargetType.POST);
-  //
-  //    if (existingReaction != null) {
-  //      reactionRepository.delete(existingReaction);
-  //    } else {
-  //      Reaction reaction =
-  //          Reaction.builder()
-  //              .targetId(request.getTargetId())
-  //              .account(account)
-  //              .targetType(ReactionTargetType.POST)
-  //              .build();
-  //
-  //      reactionRepository.save(reaction);
-  //
-  //      Notification notification =
-  //          Notification.builder()
-  //              .account(receiver)
-  //              .type(NotificationType.POST)
-  //              .content(account.getUsername() + " has liked your post: " + post.getTitle())
-  //              .post(post)
-  //              .priority(Priority.MEDIUM)
-  //              .isRead(false)
-  //              .build();
-  //      notificationRepository.save(notification);
-  //
-  //      NotificationMessage notificationMessage =
-  //          NotificationMessage.builder()
-  //              .senderId(account.getId())
-  //              .receiverId(receiver.getId())
-  //              .message(notification.getContent())
-  //              .targetType(ReactionTargetType.POST.name())
-  //              .targetId(request.getTargetId())
-  //              .build();
-  //      log.info(notificationMessage.toString());
-  //      messagingTemplate.convertAndSendToUser(
-  //          String.valueOf(request.getReceiverId()), "/queue/notifications", notificationMessage);
-  //      log.info("{}/queue/notifications{}", request.getReceiverId(), notificationMessage);
-  //    }
-  //  }
 
   @Override
   @Transactional
@@ -120,6 +58,8 @@ public class ReactionServiceImpl implements ReactionService {
               .findById(targetId)
               .orElseThrow(() -> new AppException(ErrorCode.RECIPE_NOT_EXISTED));
       targetAccountId = recipe.getAccount().getId();
+      recipe.setLikeCount(recipe.getLikeCount() + 1);
+      recipeRepository.save(recipe);
       contentTitle = recipe.getTitle();
     } else {
       throw new AppException(ErrorCode.INVALID_KEY);
@@ -150,56 +90,6 @@ public class ReactionServiceImpl implements ReactionService {
     return true;
   }
 
-  //  @Override
-  //  @Transactional
-  //  public boolean handleLike(ReactionRequest request) {
-  //    // 1. Lấy account người gửi và post
-  //    Account sender =
-  //        accountRepository
-  //            .findByUsername(request.getUsername())
-  //            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
-  //    if (request.getTargetType() == ReactionTargetType.POST) {
-  //      Post post =
-  //          postRepository
-  //              .findById(request.getTargetId())
-  //              .orElseThrow(() -> new AppException(ErrorCode.POST_NOT_EXISTED));
-  //    }
-  //
-  //    if (request.getTargetType() == ReactionTargetType.RECIPE) {
-  //      Recipe recipe =
-  //          reactionRepository
-  //              .findById(request.getTargetId())
-  //              .orElseThrow(() -> new AppException(ErrorCode.POST_NOT_EXISTED));
-  //    }
-  //
-  //    Reaction existingReaction =
-  //        reactionRepository.findByAccount_IdAndTargetIdAndTargetType(
-  //            sender.getId(), post.getId(), request.getTargetType());
-  //
-  //    if (existingReaction != null) {
-  //      // Đã like trước đó => unlike
-  //      reactionRepository.delete(existingReaction);
-  //      return false;
-  //    }
-  //
-  //    // Chưa like => tạo mới Reaction
-  //    Reaction reaction =
-  //        Reaction.builder()
-  //            .account(sender)
-  //            .targetId(post.getId())
-  //            .targetType(request.getTargetType())
-  //            .build();
-  //    reactionRepository.save(reaction);
-  //
-  //    // Gửi thông báo nếu không phải tự like chính mình
-  //    Account receiver = post.getAccount();
-  //    if (!sender.getId().equals(receiver.getId())) {
-  //      notificationService.sendLikeNotification(sender, receiver, post);
-  //    }
-  //
-  //    return true;
-  //  }
-
   @Override
   public List<String> getLikedPostIds(String username) {
     Account account =
@@ -222,11 +112,15 @@ public class ReactionServiceImpl implements ReactionService {
         account.getId(), ReactionTargetType.RECIPE);
   }
 
-  //  private String getCurrentUsername() {
-  //    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-  //    if (authentication == null || authentication.getName() == null) {
-  //      throw new AppException(ErrorCode.UNAUTHORIZED);
-  //    }
-  //    return authentication.getName();
-  //  }
+  @Override
+  public Integer getCountLikedRecipeId(String id) {
+    return Math.toIntExact(
+        reactionRepository.countByTargetIdAndTargetType(id, ReactionTargetType.RECIPE));
+  }
+
+  @Override
+  public Integer getCountLikedPostId(String id) {
+    return Math.toIntExact(
+        reactionRepository.countByTargetIdAndTargetType(id, ReactionTargetType.POST));
+  }
 }

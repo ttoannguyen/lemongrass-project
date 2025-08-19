@@ -46,6 +46,7 @@ import General from "@/components/profile/General";
 import GroupPage from "@/pages/community/groups/GroupPage";
 import GroupLayout from "@/pages/community/groups/GroupLayout";
 import EditRecipe from "@/components/recipes/edit/EditRecipe";
+import PostDetailPage from "@/components/posts/PostDetailPage";
 
 const routes: RouteObject[] = [
   {
@@ -83,6 +84,7 @@ const routes: RouteObject[] = [
             element: <GroupLayout />,
             children: [{ index: true, element: <GroupPage /> }],
           },
+          {path: "post/:postId", element: <PostDetailPage/>}
         ],
       },
       {

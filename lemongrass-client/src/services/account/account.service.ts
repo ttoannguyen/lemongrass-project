@@ -12,6 +12,15 @@ export const accountService = {
     return res.data.result;
   },
 
+  getAccountByUsername: async (username: string): Promise<Account> => {
+    const res = await api.get<BaseResponse<Account>>(`/accounts/username/${username}`);
+    console.log(res.data.result);
+    if (res.data.code !== 1000) {
+      throw new Error("Login failed: Invalid res code");
+    }
+    return res.data.result;
+  },
+
   getAccounts: async (): Promise<Account[]> => {
     const res = await api.get<BaseResponse<Account[]>>("/accounts");
     return res.data.result;

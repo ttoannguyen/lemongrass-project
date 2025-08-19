@@ -37,6 +37,7 @@ public class SecurityConfig {
     "/api/_v1/posts/**",
     "/api/_v1/categories/**",
     "/api/_v1/ingredient_template",
+    "/api/_v1/recommendations/**",
   };
 
   protected static final String[] PUBLIC_POST_ENDPOINTS = {

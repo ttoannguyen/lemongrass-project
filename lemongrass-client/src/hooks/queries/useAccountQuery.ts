@@ -23,3 +23,16 @@ export const useAllAccountsQuery = () => {
     staleTime: 5 * 60 * 1000,
   });
 };
+
+export const useAccountByUsername = (username: string) => {
+  return useQuery<Account>({
+    queryKey: ["account", username],
+    queryFn: ({ queryKey }) => {
+      const [, username] = queryKey;
+      return accountService.getAccountByUsername(username as string);
+    },
+    enabled: !!username,
+    staleTime: 5 * 60 * 1000,
+  });
+};
+

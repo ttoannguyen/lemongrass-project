@@ -40,7 +40,9 @@ public class Recipe extends AbstractAuditingEntity {
   Integer servings;
 
   @Column(name = "rating_avg")
-  Double ratingAvg; // Average rating (0–5)
+  Double ratingAvg;
+
+  Integer likeCount;
 
   @Column(name = "rating_count")
   Integer ratingCount;

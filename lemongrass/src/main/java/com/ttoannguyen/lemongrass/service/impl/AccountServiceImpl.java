@@ -77,6 +77,14 @@ public class AccountServiceImpl implements AccountService {
   }
 
   @Override
+  public AccountResponse getAccountByUsername(String username) {
+    return accountMapper.toAccountResponse(
+        accountRepository
+            .findByUsername(username)
+            .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED)));
+  }
+
+  @Override
   public AccountResponse getMyInfo() {
     String username = SecurityContextHolder.getContext().getAuthentication().getName();
     final var account =

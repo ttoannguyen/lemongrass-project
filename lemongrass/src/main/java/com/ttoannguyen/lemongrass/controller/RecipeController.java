@@ -28,6 +28,12 @@ public interface RecipeController {
   @PostMapping("/delete/{recipeId}")
   ApiResponse<String> delete(@PathVariable("recipeId") String id);
 
+  @PostMapping("/unable/{recipeId}")
+  ApiResponse<String> unableRecipe(@PathVariable("recipeId") String id);
+
+  @PostMapping("/enable/{recipeId}")
+  ApiResponse<String> enableRecipe(@PathVariable("recipeId") String id);
+
   @GetMapping
   ApiResponse<PageResponse<RecipeResponse>> getRecipes(
       @RequestParam(defaultValue = "0") int page,

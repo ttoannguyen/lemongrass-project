@@ -3,6 +3,7 @@ package com.ttoannguyen.lemongrass.dto.Response.comment;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +16,9 @@ public class CommentResponse {
   String id;
   String content;
   String username;
-  Date createdDate;
+  String recipeId;
+  String postId;
+  LocalDateTime createdDate;
+  LocalDateTime updatedDate;
   List<CommentResponse> replies;
 }

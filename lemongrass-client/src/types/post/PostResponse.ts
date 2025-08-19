@@ -1,21 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { Account } from "../auth/auth.types";
-import type { ImageResponse } from "../image/ImageResponse";
 
 export interface PostResponse {
   id: string;
   title: string;
+  mainContents: string;
   contents: {
     text: string;
     contentTitle: string;
     displayOrder: number;
-    imageResponse: ImageResponse;
-
+    urlImage: string;
   }[],
-  visibility: "PUBLIC" | "PRIVATE" | "FRIENDS"; // thêm nếu có nhiều loại
+  visibility: "PUBLIC" | "PRIVATE" | "FRIENDS"; 
   author: Account;
-  group: any | null; // nếu có kiểu cụ thể thì thay any
-  recipe: any | null; // nếu có kiểu cụ thể thì thay any
+  group: any | null; 
+  recipe: any | null; 
   createdBy: string;
   lastModifiedBy: string;
   createdDate: string;

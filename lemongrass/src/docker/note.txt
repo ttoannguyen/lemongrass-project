@@ -1,3 +1,67 @@
 docker run --name sonar-qube -p 9000:9000 -d sonarqube:lts-developer
 
 mvn clean verify sonar:sonar -Dsonar.projectKey=ttoannguyen.lemongrass -Dsonar.host.url=http://localhost:9000 -Dsonar.login=sqp_0d806cb6be3e20bc746571b28244100660150096
+
+
+version: '3.8'
+services:
+  postgresql_lemongrass:
+    container_name: postgresql_lemongrass
+    image: postgres:16.2
+    environment:
+      - POSTGRES_USER=lemongrass
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=lemongrass
+    ports:
+      - "5432:5432"
+    volumes:
+      - lemongrass_data:/var/lib/postgresql/data
+    restart: on-failure
+    networks:
+      - lemongrass_network
+
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.0.3
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.http.ssl.enabled=false
+      - xpack.monitoring.collection.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+      - node.store.allow_mmap=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    restart: on-failure
+    mem_limit: 1g
+    networks:
+      - lemongrass_network
+
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:9.0.3
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+    restart: on-failure
+    networks:
+      - lemongrass_network
+
+volumes:
+  lemongrass_data:
+    driver: local
+  esdata:
+    driver: local
+
+networks:
+  lemongrass_network:
+    driver: bridge

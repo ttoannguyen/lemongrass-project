@@ -25,4 +25,10 @@ public interface ReactionRepository extends JpaRepository<Reaction, String> {
       "SELECT r.targetId FROM Reaction r WHERE r.account.id = :accountId AND r.targetType = :targetType")
   List<String> findTargetIdsByAccountIdAndTargetType(
       String accountId, ReactionTargetType targetType);
+
+  List<Reaction> findByAccount_Id(String id);
+
+  List<Reaction> findByTargetIdInAndAccount_IdNot(List<String> myRecipeIds, String id);
+
+  List<Reaction> findByAccount_IdIn(List<String> similarUserIds);
 }

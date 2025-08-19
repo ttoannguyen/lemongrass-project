@@ -7,6 +7,7 @@ import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeGetUpdateResponse;
 import com.ttoannguyen.lemongrass.dto.Response.recipe.RecipeResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
@@ -16,6 +17,12 @@ public interface RecipeService {
   RecipeResponse update(RecipeUpdateRequest recipeUpdateRequest, String username);
 
   String delete(String recipeId, String username);
+
+  @PreAuthorize("hasRole('ADMIN')")
+  String unableRecipe(String recipeId, String username);
+
+  @PreAuthorize("hasRole('ADMIN')")
+  String enableRecipe(String recipeId, String username);
 
   Page<RecipeResponse> getRecipes(
       Pageable pageable, String keyword, List<String> categoryIds, Integer maxTime);

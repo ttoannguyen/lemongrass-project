@@ -4,45 +4,85 @@ import RecipeItem from "@/components/recipes/RecipeItem";
 import { useRecipesQuery } from "@/hooks/queries/useRecipeQuery";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-
+import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
+import { RecipeSearchBox } from "@/components/search/SearchBox";
+interface FilterParams {
+  keyword?: string;
+  size?: number;
+  categoryIds?: string[];
+  tags?: string[];
+  difficulty?: string;
+  maxTime?: number;
+  minRating?: number;
+}
 const RecipePage = () => {
-  const [filters, setFilters] = useState({
-    page: 0,
-    size: 20,
-    keyword: "",
-    categoryIds: [],
-    difficulty: "",
-    maxTime: undefined,
-    minRating: undefined,
-  });
+  const initialFilters: FilterParams & { page: number } = {
+  page: 0,
+  size: 20,
+  keyword: "",
+  categoryIds: [],
+  tags: [],
+  difficulty: "",
+  maxTime: undefined,
+  minRating: undefined,
+};
 
-  const [searchedIds, setSearchedIds] = useState<string[] | null>(null);
+const [filters, setFilters] = useState(initialFilters);
+
+
+  const [searchedRecipes, setSearchedRecipes] = useState<
+    RecipeResponse[] | null
+  >(null);
 
   const { data, isLoading, isFetching } = useRecipesQuery(filters);
   const recipes = Array.isArray(data?.content) ? data.content : [];
   const totalPages = data?.totalPages ?? 1;
-  const filteredRecipes = searchedIds
-    ? recipes.filter((r) => searchedIds.includes(r.id))
-    : recipes;
+
+  const searchedIds = searchedRecipes?.map((r) => r.id) ?? null;
+
+  let filteredRecipes: RecipeResponse[] = [];
+  console.log("filters", filters)
+  if (searchedIds) {
+    // Lọc ra những recipe có trong query
+    const matched = recipes.filter((r) => searchedIds.includes(r.id));
+
+    // Sắp xếp lại đúng thứ tự search
+    filteredRecipes = searchedIds
+      .map((id) => matched.find((r) => r.id === id))
+      .filter((r): r is RecipeResponse => r !== undefined);
+  } else {
+    filteredRecipes = recipes.slice().reverse(); // mặc định bạn đang reverse
+  }
+
+  console.log("filteredRecipes", filteredRecipes);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleFilterChange = (newFilters: any) => {
-    setFilters({
-      ...filters,
+  const handleFilterChange = (newFilters: FilterParams | "reset") => {
+  if (newFilters === "reset") {
+    setFilters(initialFilters); // reset về ban đầu
+  } else {
+    setFilters((prev) => ({
+      ...prev,
       ...newFilters,
-      page: 0,
-    });
-  };
+      page: 0, // reset về trang đầu mỗi khi đổi filter
+    }));
+  }
+
+};
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8">
       <aside className="order-last lg:order-first">
         <AdvancedRecipeFilter
           onFilterChange={handleFilterChange}
-          onSearchResult={(ids) => setSearchedIds(ids)}
         />
       </aside>
 
       <main>
+        <div className="mb-6 w-full">
+          <RecipeSearchBox
+            onSearchResult={(recipes) => setSearchedRecipes(recipes)}
+          />
+        </div>
         <RecipeBreadcrumbBar />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {isLoading || isFetching ? (

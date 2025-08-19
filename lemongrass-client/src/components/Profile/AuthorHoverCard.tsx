@@ -5,16 +5,20 @@ import {
   HoverCardTrigger,
 } from "../ui/hover-card";
 import { format, formatDistanceToNow } from "date-fns";
-import type { AccountShortResponse } from "@/types/AccountShortResponse";
 
 type AuthorProps = {
-  author: AccountShortResponse;
+  firstName: string;
+  lastName: string;
+  authorId: string;
+  authorUsername: string;
+  profilePictureUrl: string;
+  // author: AccountShortResponse;
   createdAt: string;
 };
 
-const AuthorHoverCard = ({ author, createdAt }: AuthorProps) => {
+const AuthorHoverCard = ({firstName,lastName, authorId, authorUsername, profilePictureUrl,createdAt }: AuthorProps) => {
   const avatarUrl =
-    author?.profilePictureUrl ||
+    profilePictureUrl ||
     "https://res.cloudinary.com/didxuklgy/image/upload/v1750257521/27470351_7342052_xx4iiz.jpg";
 
   const formattedDate = format(new Date(createdAt), "MMM d yyyy");
@@ -35,15 +39,15 @@ const AuthorHoverCard = ({ author, createdAt }: AuthorProps) => {
         <div className="inline-flex items-center gap-1">
           <img
             src={avatarUrl}
-            alt={`${author.firstName} ${author.lastName}`}
+            alt={`${firstName} ${lastName}`}
             className="w-8 h-8 rounded-full object-cover"
           />
           <Link
-            to={`/account/${author.id}`}
+            to={`/account/${authorId}`}
             className="flex flex-col cursor-pointer "
           >
             <span className="font-medium text-blue-600 hover:underline">
-              {author.firstName + " " + author.lastName}
+              {firstName + " " + lastName}
             </span>
             <p className="text-[10px] text-gray-500">
               {isLessThanOneDay(new Date(createdAt))
@@ -63,17 +67,17 @@ const AuthorHoverCard = ({ author, createdAt }: AuthorProps) => {
         <div className="flex items-center gap-4">
           <img
             src={avatarUrl}
-            alt={`${author.firstName} ${author.lastName}`}
+            alt={`${firstName} ${lastName}`}
             className="w-12 h-12 rounded-full object-cover"
           />
           <div>
             <Link
-              to={`/account/${author.id}`}
+              to={`/account/${authorId}`}
               className="text-base font-semibold hover:underline"
             >
-              {author.firstName + " " + author.lastName}
+              {firstName + " " + lastName}
             </Link>
-            <p className="text-sm text-gray-500">@{author.username}</p>
+            <p className="text-sm text-gray-500">@{authorUsername}</p>
           </div>
         </div>
       </HoverCardContent>

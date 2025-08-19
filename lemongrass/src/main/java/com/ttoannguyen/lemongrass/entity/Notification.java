@@ -1,5 +1,6 @@
 package com.ttoannguyen.lemongrass.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import com.ttoannguyen.lemongrass.entity.enums.NotificationType;
 import com.ttoannguyen.lemongrass.entity.enums.Priority;
@@ -19,16 +20,14 @@ public class Notification extends AbstractAuditingEntity {
   @GeneratedValue(strategy = GenerationType.UUID)
   String id;
 
-  //    @ManyToOne
-  //    @JoinColumn(name = "account_id", nullable = false)
-  //    Account account;
-
   @ManyToOne
   @JoinColumn(name = "account_id", nullable = false)
+  @JsonIgnore
   Account receiver;
 
   @ManyToOne
   @JoinColumn(name = "sender_id")
+  @JsonIgnore
   Account sender;
 
   @Enumerated(EnumType.STRING)
@@ -40,14 +39,17 @@ public class Notification extends AbstractAuditingEntity {
 
   @ManyToOne
   @JoinColumn(name = "post_id")
+  @JsonIgnore
   Post post;
 
   @ManyToOne
   @JoinColumn(name = "groups_id")
+  @JsonIgnore
   Group group;
 
   @ManyToOne
   @JoinColumn(name = "recipe_id")
+  @JsonIgnore
   Recipe recipe;
 
   @Column(nullable = false)

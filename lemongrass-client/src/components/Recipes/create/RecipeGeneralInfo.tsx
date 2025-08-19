@@ -79,17 +79,20 @@ const RecipeGeneralInfo = ({
   };
   const categoryGroups = [
     {
-      label: t(TRANSLATION_KEYS.createRecipe.cuisine),
+      // label: t(TRANSLATION_KEYS.createRecipe.cuisine),
+      label: "Ẩm thực",
       categories: cuisineCategories,
       placeholder: "Chọn kiểu ẩm thực",
     },
     {
-      label: t(TRANSLATION_KEYS.createRecipe.mealType),
+      // label: t(TRANSLATION_KEYS.createRecipe.mealType),
+      label: "Loại bữa ăn",
       categories: mealTypeCategories,
       placeholder: "Chọn loại bữa ăn",
     },
     {
-      label: t(TRANSLATION_KEYS.createRecipe.occasion),
+      // label: t(TRANSLATION_KEYS.createRecipe.occasion),
+      label: "Dịp",
       categories: occasionCategories,
       placeholder: "Chọn dịp đặc biệt",
     },
@@ -98,7 +101,8 @@ const RecipeGeneralInfo = ({
   return (
     <div className="w-full max-w-lg">
       <h1 className="text-paragraph font-semibold text-lg mt-4 mb-2 mx-2">
-        {t(TRANSLATION_KEYS.createRecipe.generalInfo).toUpperCase()}
+        Thông tin chung
+        {/* {t(TRANSLATION_KEYS.createRecipe.generalInfo).toUpperCase()} */}
       </h1>
 
       <div className="bg-white p-4 rounded-md shadow-sm">
@@ -187,7 +191,8 @@ const RecipeGeneralInfo = ({
         <div className="flex flex-col gap-2 mt-6">
           <div className="flex flex-col gap-1">
             <Label className="text-paragraph font-semibold mb-2">
-              {t(TRANSLATION_KEYS.createRecipe.name)}
+              {/* {t(TRANSLATION_KEYS.createRecipe.name)} */}
+              Tên công thức
             </Label>
             <Input
               value={title}
@@ -236,7 +241,8 @@ const RecipeGeneralInfo = ({
             <div className="flex flex-col gap-5">
               <div className="flex flex-col">
                 <Label className="text-paragraph font-semibold mb-2">
-                  {t(TRANSLATION_KEYS.createRecipe.difficulty)}
+                  {/* {t(TRANSLATION_KEYS.createRecipe.difficulty)} */}
+                  Độ khó
                 </Label>
                 <GenericDropdown
                   buttonClassName="md:w-34"
@@ -249,7 +255,8 @@ const RecipeGeneralInfo = ({
 
               <div className="flex flex-col">
                 <Label className="text-paragraph font-semibold mb-2">
-                  {t(TRANSLATION_KEYS.createRecipe.duration)}
+                  {/* {t(TRANSLATION_KEYS.createRecipe.duration)} */}
+                  Thời gian
                 </Label>
                 <div className="flex items-center md:w-34">
                   <Input
@@ -270,7 +277,8 @@ const RecipeGeneralInfo = ({
 
               <div className="flex flex-col">
                 <Label className="text-paragraph font-semibold mb-2">
-                  {t(TRANSLATION_KEYS.createRecipe.number)}
+                  {/* {t(TRANSLATION_KEYS.createRecipe.number)} */}
+                  Phục vụ
                 </Label>
                 <div className="flex items-center md:w-34">
                   <Input

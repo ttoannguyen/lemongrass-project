@@ -170,7 +170,7 @@ const Create = () => {
       <div className="fixed z-50 top-0 w-full flex items-center h-16 px-4 bg-white shadow">
         <div className="absolute z-50">
           <Link
-            to={"/"}
+            to={"/recipe"}
             className="text-paragraph ml-4 bg-main/10 px-2 p-1 rounded-sm border border-stroke/10"
           >
             Trang chủ

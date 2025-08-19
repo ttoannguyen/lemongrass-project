@@ -112,13 +112,13 @@ const PostForm = ({ onSuccess }: PostFormProps) => {
           required
         />
         <label htmlFor="mainContents" className="text-sm font-medium text-gray-700">
-          Tiêu đề bài viết
+          Nội dung
         </label>
         <Input
           id="mainContents"
           value={mainContents}
           onChange={(e) => setMainContents(e.target.value)}
-          placeholder="Nhập tiêu đề bài viết..."
+          placeholder="Nhập nội dung bài viết..."
           className="rounded-md border-stroke/30 focus:ring-primary focus:border-primary transition-colors duration-200"
           required
         />

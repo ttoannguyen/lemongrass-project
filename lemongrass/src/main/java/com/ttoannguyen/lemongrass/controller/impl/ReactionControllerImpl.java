@@ -59,4 +59,18 @@ public class ReactionControllerImpl implements ReactionController {
     List<String> likedRecipeIds = reactionService.getLikedRecipeIds(username);
     return ApiResponse.<List<String>>builder().result(likedRecipeIds).build();
   }
+
+  @Override
+  public ApiResponse<Integer> getCountLikedRecipeId(String recipeId) {
+    return ApiResponse.<Integer>builder()
+        .result(reactionService.getCountLikedRecipeId(recipeId))
+        .build();
+  }
+
+  @Override
+  public ApiResponse<Integer> getCountLikedPostId(String postId) {
+    return ApiResponse.<Integer>builder()
+        .result(reactionService.getCountLikedPostId(postId))
+        .build();
+  }
 }

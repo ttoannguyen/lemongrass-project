@@ -28,8 +28,4 @@ public class Reaction extends AbstractAuditingEntity {
   @ManyToOne
   @JoinColumn(name = "account_id", nullable = false)
   Account account;
-
-  //    @ManyToOne
-  //    @JoinColumn(name = "reaction_type_id", nullable = false)
-  //    ReactionType reactionType;
 }

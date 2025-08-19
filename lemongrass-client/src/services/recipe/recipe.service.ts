@@ -60,7 +60,9 @@ export const recipeService = {
     const res = await api.post<BaseResponse>(`/recipes/${id}/rate`, {rating: rating})
 
     return res.data.message;
-  }
+  },
+
+  // getFavorite
 };
 
 

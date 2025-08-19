@@ -19,8 +19,12 @@ public class Comment extends AbstractAuditingEntity {
   String id;
 
   @ManyToOne
-  @JoinColumn(name = "post_id", nullable = false)
+  @JoinColumn(name = "post_id")
   Post post;
+
+  @ManyToOne
+  @JoinColumn(name = "recipe_id")
+  Recipe recipe;
 
   @ManyToOne
   @JoinColumn(name = "account_id", nullable = false)

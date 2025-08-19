@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class NotificationMessage {
+  String id;
   AccountResponse sender;
   AccountResponse receiver;
   String message;

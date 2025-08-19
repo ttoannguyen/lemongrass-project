@@ -2,7 +2,10 @@ package com.ttoannguyen.lemongrass.configuration.elasticsearch;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.rest_client.RestClientTransport;
+
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
 
@@ -25,12 +28,6 @@ public class ElasticsearchConfig {
   public RestClient restClient() {
     return RestClient.builder(new HttpHost(host, port, scheme)).build();
   }
-
-  // @Bean
-  // public ElasticsearchTransport elasticsearchTransport(
-  //     RestClient restClient, ObjectMapper objectMapper) {
-  //   return new RestClientTransport(restClient, new JacksonJsonpMapper(objectMapper));
-  // }
 
   @Bean
   public ElasticsearchClient elasticsearchClient(ElasticsearchTransport transport) {

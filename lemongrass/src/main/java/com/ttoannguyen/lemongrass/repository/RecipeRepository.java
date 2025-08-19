@@ -43,4 +43,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, String> {
       @Param("keyword") String keyword,
       @Param("categoryIds") List<String> categoryIds,
       @Param("maxTime") Integer maxTime);
+
+  List<Recipe> findAllByOrderByLikeCountDesc(Pageable pageable);
 }

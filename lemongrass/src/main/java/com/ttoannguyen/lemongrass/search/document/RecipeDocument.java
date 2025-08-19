@@ -34,6 +34,10 @@ public class RecipeDocument {
   String createdAt;
   String updatedAt;
 
+  float[] titleVector;
+  float[] descriptionVector;
+  float[] ingredientsVector;
+
   @Data
   @NoArgsConstructor
   @AllArgsConstructor

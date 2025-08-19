@@ -24,15 +24,14 @@ export function RecipeItem({ recipe }: RecipeItemMainProps) {
   const imageUrl = recipe.images?.[0]?.url ?? "";
   const minutes = recipe.cookingTime ?? 0;
   const categories = recipe.categories;
-
-   const { data: likedIds = [], refetch } = useLikedRecipeIdsQuery();
+  const { data: likedIds = [], refetch } = useLikedRecipeIdsQuery();
   const toggleHeart = useToggleHeartRecipeMutation();
 
-  const isLiked = likedIds.includes(recipe.id)
-  console.log(likedIds)
+  const rate = recipe.ratingAvg == null ? 0 : recipe.ratingAvg;
+  const isLiked = likedIds.includes(recipe.id);
   const handleClick = (recipeId: string) => {
     toggleHeart.mutate(recipeId);
-    refetch()
+    refetch();
   };
 
   return (
@@ -54,7 +53,7 @@ export function RecipeItem({ recipe }: RecipeItemMainProps) {
         </Link>
         <button
           type="button"
-          onClick={()=>handleClick(recipe.id)}
+          onClick={() => handleClick(recipe.id)}
           aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
           className={cn(
             "absolute top-2 right-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-white shadow transition",
@@ -74,7 +73,7 @@ export function RecipeItem({ recipe }: RecipeItemMainProps) {
         <div className="flex flex-col">
           <Link
             to={`/recipe/${recipe.id}`}
-            className="scroll-m-20 text-sm font-bold tracking-tight"
+            className="scroll-m-20 text-sm line-clamp-2 font-bold tracking-tight"
           >
             {recipe.title}
           </Link>
@@ -97,13 +96,16 @@ export function RecipeItem({ recipe }: RecipeItemMainProps) {
           </div>
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className=" items-center justify-between">
           <div className="flex items-center gap-1 text-sm text-paragraph">
             <Hourglass className="h-4 w-4" />
             {minutes} {t(TRANSLATION_KEYS.recipe.minute)}
           </div>
-          <div className="flex items-center gap-2">
-            <Stars rating={6} />
+          <div className="flex justify-between  items-center gap-2">
+            <Stars rating={rate} />{" "}
+            <span className="">
+              ({((recipe.ratingAvg || 0) / 2).toFixed(1)})
+            </span>
           </div>
         </div>
       </div>

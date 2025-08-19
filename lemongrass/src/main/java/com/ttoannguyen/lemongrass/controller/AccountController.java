@@ -25,6 +25,10 @@ public interface AccountController {
   ApiResponse<AccountResponse> getAccount(
       @Valid @PathVariable(name = "accountId") String accountId);
 
+  @GetMapping("/username/{username}")
+  ApiResponse<AccountResponse> getAccountByUsername(
+      @PathVariable(name = "username") String username);
+
   @GetMapping("/myInfo")
   ApiResponse<AccountResponse> getMyInfo();
 

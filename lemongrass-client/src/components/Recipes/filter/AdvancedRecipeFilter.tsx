@@ -10,7 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { RecipeSearchBox } from "@/components/search/SearchBox";
+// import { RecipeSearchBox } from "@/components/search/SearchBox";
+// import type { RecipeResponse } from "@/types/Recipe/RecipeResponse";
 
 interface FilterParams {
   keyword?: string;
@@ -26,8 +27,8 @@ interface AdvancedRecipeFilterProps {
   initialKeyword?: string;
   initialCategoryIds?: string[];
   initialPageSize?: number;
-  onFilterChange: (filters: FilterParams) => void;
-  onSearchResult?: (ids: string[]) => void;
+  onFilterChange: (filters: FilterParams|"reset") => void;
+  // onSearchResult?: (recipes: RecipeResponse[]) => void;
 }
 
 const AdvancedRecipeFilter = ({
@@ -35,7 +36,7 @@ const AdvancedRecipeFilter = ({
   initialCategoryIds = [],
   initialPageSize = 8,
   onFilterChange,
-  onSearchResult,
+  // onSearchResult,
 }: AdvancedRecipeFilterProps) => {
   const [keyword, setKeyword] = useState(initialKeyword);
   const [size, setSize] = useState(initialPageSize);
@@ -44,7 +45,7 @@ const AdvancedRecipeFilter = ({
   const [difficulty, setDifficulty] = useState("");
   const [maxTime, setMaxTime] = useState<number>(Number.NaN);
   const [minRating, setMinRating] = useState<number>(Number.NaN);
-
+  console.log(categoryIds)
   const handleReset = () => {
     setKeyword("");
     setSize(8);
@@ -53,10 +54,19 @@ const AdvancedRecipeFilter = ({
     setDifficulty("");
     setMaxTime(Number.NaN);
     setMinRating(Number.NaN);
-    onFilterChange({});
+    onFilterChange("reset");
   };
 
   const handleFilter = () => {
+    console.log("hello", {
+      keyword,
+      size,
+      categoryIds,
+      tags,
+      difficulty: difficulty || "",
+      maxTime,
+      minRating,
+    })
     onFilterChange({
       keyword,
       size,
@@ -73,13 +83,13 @@ const AdvancedRecipeFilter = ({
       <h2 className="text-xl font-semibold text-gray-800">Bộ lọc</h2>
 
       <div className="space-y-5">
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label
             htmlFor="keyword"
             className="text-sm font-medium text-gray-700"
           >
             Từ khóa
-          </Label>
+          </Label> */}
           {/* <Input
             id="keyword"
             placeholder="Nhập tên công thức..."
@@ -88,8 +98,8 @@ const AdvancedRecipeFilter = ({
             className="rounded-md border-gray-300 focus:ring-primary focus:border-primary transition-colors duration-200"
           /> */}
 
-          <RecipeSearchBox onSearchResult={onSearchResult} />
-        </div>
+          {/* <RecipeSearchBox onSearchResult={onSearchResult} />
+        </div> */}
 
         <div className="space-y-2">
           <Label htmlFor="size" className="text-sm font-medium text-gray-700">
@@ -142,7 +152,7 @@ const AdvancedRecipeFilter = ({
           />
         </div>
 
-        <div className="space-y-2">
+        {/* <div className="space-y-2">
           <Label
             htmlFor="minRating"
             className="text-sm font-medium text-gray-700"
@@ -157,7 +167,7 @@ const AdvancedRecipeFilter = ({
             onChange={(e) => setMinRating(Number(e.target.value) || 0)}
             className="rounded-md border-gray-300 focus:ring-primary focus:border-primary transition-colors duration-200"
           />
-        </div>
+        </div> */}
 
         <div className="flex gap-3 pt-4">
           <Button

@@ -23,4 +23,10 @@ public interface ReactionController {
 
   @GetMapping("/like/recipe/ids")
   ApiResponse<List<String>> getLikedRecipeIds();
+
+  @GetMapping("/like/recipe/count/{recipeId}")
+  ApiResponse<Integer> getCountLikedRecipeId(@PathVariable("recipeId") String recipeId);
+
+  @GetMapping("/like/post/count/{postId}")
+  ApiResponse<Integer> getCountLikedPostId(@PathVariable("postId") String postId);
 }
