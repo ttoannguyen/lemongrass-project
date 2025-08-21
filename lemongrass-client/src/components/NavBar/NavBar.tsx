@@ -71,7 +71,7 @@ const NavBar = () => {
           Lemongrass
         </h1>
 
-        {isHome && showSearch && (
+        {/* {isHome && showSearch && (
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -81,7 +81,7 @@ const NavBar = () => {
           >
             <SearchInput />
           </motion.div>
-        )}
+        )} */}
 
         <div className="md:hidden">
           <Button

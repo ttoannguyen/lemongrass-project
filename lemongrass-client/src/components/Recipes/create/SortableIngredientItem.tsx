@@ -71,7 +71,7 @@ const SortableIngredientItem = ({
         {...listeners}
         className="cursor-move p-2 text-gray-400 hover:text-gray-600"
       >
-        <GripVertical className="h-5 w-5" />
+        {/* <GripVertical className="h-5 w-5" /> */}
       </div>
 
       {/* Ingredient Combobox */}

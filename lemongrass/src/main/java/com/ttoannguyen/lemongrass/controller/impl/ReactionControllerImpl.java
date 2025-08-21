@@ -29,7 +29,6 @@ public class ReactionControllerImpl implements ReactionController {
     request.setTargetType(ReactionTargetType.POST); // Thả tim cho bài viết
 
     boolean liked = reactionService.handleLike(request);
-
     return ApiResponse.<Boolean>builder().result(liked).build();
   }
 
@@ -42,7 +41,6 @@ public class ReactionControllerImpl implements ReactionController {
     request.setTargetType(ReactionTargetType.RECIPE);
 
     boolean liked = reactionService.handleLike(request);
-
     return ApiResponse.<Boolean>builder().result(liked).build();
   }
 

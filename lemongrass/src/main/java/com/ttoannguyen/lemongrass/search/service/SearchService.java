@@ -81,11 +81,11 @@ public class SearchService {
             q ->
                 q.queryString(
                     qs ->
-                        qs.fields(List.of("title^2", "description", "accountName"))
+                        qs.fields(List.of("title^3", "description^0.5", "accountName^0.5"))
                             .query(request.getKeyword())
                             .defaultOperator(Operator.And)
                             .analyzer("vietnamese_analyzer")
-                            .fuzziness("AUTO"))));
+                            .fuzziness("0"))));
 
     // Nested query for ingredients.name
     shouldQueries.add(
@@ -102,7 +102,7 @@ public class SearchService {
                                                 .query(request.getKeyword())
                                                 .analyzer("vietnamese_analyzer")
                                                 .operator(Operator.And)
-                                                .fuzziness("AUTO"))))));
+                                                .fuzziness("0"))))));
 
     // Nested query for instructions.description
     shouldQueries.add(

@@ -112,7 +112,7 @@ const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
 
           {/* Actions with Sheet */}
           <div className="flex flex-col items-end gap-2 min-w-max">
-            {!recipe.verified ? (
+            {/* {recipe.verified ? (
               <Badge
                 variant="outline"
                 className="text-yellow-500 border-yellow-500"
@@ -126,9 +126,9 @@ const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
               >
                 Đã duyệt
               </Badge>
-            )}
+            )} */}
             <div className="flex gap-2">
-              {!recipe.verified && (
+              {/* {!recipe.verified && (
                 <Button
                   variant="ghost"
                   size="icon"
@@ -136,14 +136,14 @@ const RecipeCard = ({ recipe }: { recipe: RecipeResponse }) => {
                 >
                   <CircleCheck className="size-4 text-green-600" />
                 </Button>
-              )}
-              <Button
+              )} */}
+              {/* <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => console.log("Xóa công thức:", recipe.id)}
               >
                 <Trash2 className="size-4 text-red-500" />
-              </Button>
+              </Button> */}
             </div>
           </div>
         </div>

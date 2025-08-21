@@ -75,15 +75,15 @@ const RecipeDetailPage = () => {
             avatarFallback={recipe.accountShortResponse.username}
           />
           <div>
-            <p className="text-base font-semibold text-paragraph">
+            <Link to={`/account/${recipe.accountShortResponse.id}`} className="text-base font-semibold text-paragraph">
               {recipe.accountShortResponse.firstName +
                 " " +
                 recipe.accountShortResponse.lastName}
-            </p>
+            </Link>
 
             <p className="text-sm font-medium text-paragraph/50">
-              Lần cuối chỉnh sửa:{" "}
-              {format(new Date(recipe.lastModifiedDate), "MMM d, yyyy", {
+              {" "}
+              {format(new Date(recipe.createdDate), "MMM d, yyyy", {
                 locale: vi,
               })}
             </p>

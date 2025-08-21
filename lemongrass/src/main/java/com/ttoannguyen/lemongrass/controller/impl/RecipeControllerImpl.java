@@ -77,7 +77,7 @@ public class RecipeControllerImpl implements RecipeController {
       int page, int size, String keyword, List<String> categoryIds, Integer maxTime) {
     PageRequest pageRequest = PageRequest.of(page, size);
     Page<RecipeResponse> result =
-        recipeService.getRecipes(pageRequest, keyword, categoryIds, maxTime);
+        recipeService.getRecipes(pageRequest, keyword, categoryIds, maxTime = 999);
     return ApiResponse.<PageResponse<RecipeResponse>>builder()
         .result(PageResponse.from(result))
         .build();

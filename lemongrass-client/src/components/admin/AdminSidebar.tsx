@@ -37,11 +37,11 @@ const navSections: {
   {
     title: "Quản lý nội dung",
     links: [
-      {
-        label: "Bài viết",
-        path: "/admin/posts",
-        icon: FileText,
-      },
+      // {
+      //   label: "Bài viết",
+      //   path: "/admin/posts",
+      //   icon: FileText,
+      // },
       {
         label: "Công thức",
         path: "/admin/recipes",
@@ -70,12 +70,12 @@ const navSections: {
   {
     title: "Hệ thống",
     links: [
-      {
-        label: "Kiểm duyệt",
-        path: "/admin/moderation",
-        icon: ShieldCheck,
-        requiredRoles: ["ADMIN"],
-      },
+      // {
+      //   label: "Kiểm duyệt",
+      //   path: "/admin/moderation",
+      //   icon: ShieldCheck,
+      //   requiredRoles: ["ADMIN"],
+      // },
       {
         label: "Người dùng",
         path: "/admin/users",
@@ -152,7 +152,7 @@ const AdminSidebar = () => {
           );
         })}
 
-        {hasRole("ADMIN") && (
+        {/* {hasRole("ADMIN") && (
           <div>
             <h4 className="text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider px-2">
               Chuyển vai trò
@@ -172,13 +172,13 @@ const AdminSidebar = () => {
               </NavLink>
             </div>
           </div>
-        )}
+        )} */}
       </nav>
 
       {/* Nút quay lại trang chủ */}
       <div className="mt-4 pt-4 border-t">
         <NavLink
-          to="/"
+          to="/recipe"
           className={({ isActive }) =>
             cn(
               "flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-100 text-sm font-medium text-gray-700",

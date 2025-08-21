@@ -34,17 +34,17 @@ const AvatarNav = () => {
       label: t(TRANSLATION_KEYS.profile.title),
       onClick: () => navigate(`/account/${account?.id}`),
     },
-    {
-      label: t(TRANSLATION_KEYS.profile.myPost),
-      onClick: () => navigate(`/account/${account?.id}/post`),
-    },
-    {
-      label: t(TRANSLATION_KEYS.profile.myRecipe),
-      onClick: () => navigate(`/account/${account?.id}`),
-    },
+    // {
+    //   label: t(TRANSLATION_KEYS.profile.myPost),
+    //   onClick: () => navigate(`/account/${account?.id}/post`),
+    // },
+    // {
+    //   label: t(TRANSLATION_KEYS.profile.myRecipe),
+    //   onClick: () => navigate(`/account/${account?.id}`),
+    // },
     {
       label: t(TRANSLATION_KEYS.profile.adminPanel),
-      onClick: () => navigate("/admin"),
+      onClick: () => navigate("/admin/ingredients"),
       show: isAdmin,
       separatorBefore: true,
       className: "focus:bg-yellow-500/20 focus:text-yellow-700",

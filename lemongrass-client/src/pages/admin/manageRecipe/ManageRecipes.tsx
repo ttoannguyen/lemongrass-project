@@ -13,7 +13,7 @@ const ManageRecipes = () => {
   // }, [setPageTitle]);
   return (
     <div className="flex flex-col h-full text-sm">
-      <Tabs
+      {/* <Tabs
         defaultValue="unverified"
         className="flex-1 flex flex-col overflow-hidden gap-0"
       >
@@ -36,10 +36,10 @@ const ManageRecipes = () => {
           <UnverifiedRecipeTab />
         </TabsContent>
 
-        <TabsContent value="verified" className="flex-1 overflow-auto p-4">
+        <TabsContent value="verified" className="flex-1 overflow-auto p-4"> */}
           <VerifiedRecipeTab />
-        </TabsContent>
-      </Tabs>
+        {/* </TabsContent>
+      </Tabs> */}
     </div>
   );
 };

@@ -7,7 +7,7 @@ const UnverifiedRecipeTab = () => {
   const { data, isLoading } = useRecipesQuery();
   const recipes = Array.isArray(data?.content) ? data.content : [];
   console.log("recipe", recipes)
-  const unverified = recipes.filter((r) => !r.verified);
+  const unverified = recipes.filter((r) => r.verified);
 
   return (
     <div>

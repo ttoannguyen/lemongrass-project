@@ -17,10 +17,11 @@ const RecipeLayout = () => {
           className="absolute inset-0 w-full h-full object-cover opacity-70 transition-opacity duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-transparent"></div>
-        <h1 className="relative z-10 text-center text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-highlight drop-shadow-lg">
-          {isCategoryPage
+        <h1 className="relative z-10 text-center text-xl sm:text-4xl md:text-3xl font-bold tracking-tight text-highlight drop-shadow-lg">
+          {/* {isCategoryPage
             ? t(TRANSLATION_KEYS.recipe.categoryTitle)
-            : t(TRANSLATION_KEYS.recipe.title)}
+            : t(TRANSLATION_KEYS.recipe.title)} */}
+            Dễ dàng tìm kiếm các công thức nấu ăn yêu thích của bạn
         </h1>
       </div>
 

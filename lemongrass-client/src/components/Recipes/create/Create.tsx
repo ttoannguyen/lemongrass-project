@@ -153,6 +153,7 @@ const Create = () => {
       const recipe = await recipeCreateService.createRecipe(
         payload,
         (progress) => {
+          // toast.loading("Đang tải công thức")
           setUploadProgress(progress);
         }
       );

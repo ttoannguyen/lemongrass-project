@@ -32,14 +32,16 @@
     "recipe-title": "Easily search for your favorite recipes",
     "category-title": "Explore delicious recipes by category"
   },
+  
   "navigation": {
     "community": "Community",
     "quickAndEasy": "Quick & Easy",
-    "cuisine": "Cuisine",
-    "occasion": "Occasion",
-    "meal_type": "Meal Type",
+    "cuisine": "Ẩm thực",
+    
 
     "ingredient": "Ingredient",
+    "occasion": "Dịp đặc biệt",
+    "meal_type": "Thể loại bữa ăn",
     "searchPlaceholder": "Search...",
     "home": "Home",
     "recipe": "Recipe"

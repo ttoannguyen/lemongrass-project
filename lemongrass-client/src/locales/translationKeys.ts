@@ -1,5 +1,7 @@
 // src/locales/translationKeys.ts
-
+    // "cuisine": "Cuisine",
+// "occasion": "Occasion",
+//     "meal_type": "Meal Type",
 export const TRANSLATION_KEYS = {
   auth: {
     login: "auth.login",

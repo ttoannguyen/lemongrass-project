@@ -109,7 +109,7 @@ const CustomSidebar = ({
           </Button>
         )}
       </div>
-      <nav className="px-4">
+      {/* <nav className="px-4">
         <ul className="space-y-2">
           {tabs
             .filter((tab) => !tab.restricted || (tab.restricted && isMe))
@@ -133,7 +133,7 @@ const CustomSidebar = ({
               </li>
             ))}
         </ul>
-      </nav>
+      </nav> */}
     </div>
   );
 };
